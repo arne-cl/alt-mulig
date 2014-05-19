@@ -26,7 +26,7 @@ public:
         rhs = r;
     }
 
-    const LHS& get_lhs() const {return lhs;}
+    inline const LHS& get_lhs() const {return lhs;}
     
     bool operator<(const CFGRule& other) const
     {
@@ -59,13 +59,13 @@ private: // instance variables
     Rules rules;
 
 public:
-    const unsigned size() const {return rules.size();}
+    inline const unsigned size() const {return rules.size();}
 
-    const StartSymbol& get_startsym() const {return startsym;}
+    inline const StartSymbol& get_startsym() const {return startsym;}
     
-    void set_startsym(const StartSymbol& s) {startsym = s;}
+    inline void set_startsym(const StartSymbol& s) {startsym = s;}
     
-    void add_rule(const CFGRule& r) {rules.insert(r);}
+    inline void add_rule(const CFGRule& r) {rules.insert(r);}
     
     /// returns all rules w/ nt as lhs
     const Rules rules_for(const Nonterminal& nt) const {
