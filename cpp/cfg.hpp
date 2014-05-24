@@ -76,6 +76,37 @@ public: // instance functions
     
     inline void add_rule(const CFGRule& r) {rules.insert(r);}
     
+
+    /// true, iff all rules are in Chomsky normal form
+    /// A -> B C; A -> a; S -> epsilon
+    bool is_in_chomsky_nf() {
+        for (const CFGRule& r: productions) {
+            const SymbolVector& right = r.get_rhs();
+            const unsigned& rhs_len = right.size();
+
+            // no more than 2 symbols on the right-hand side
+            if (rhs_len > 2) {return false;}
+
+            // A -> B C
+            if (rhs_len == 2) {
+                for (const Symbol& s : right) {
+                     // rhs symbol must be a nonterminal
+                     if (nonterminals.find(s) == nonterminals.end()) {return false;}
+                     // rhs symbol can't be the start symbol
+                     if (s == get_startsymbol()) {return false;}
+                }
+            }
+
+            // A -> a
+            if (rhs_len == 1 && nonterminals.find(right[0]) != nonterminals.end()) {return false;}
+
+            // S(tart) -> epsilon
+            const Symbol& left = r.get_lhs();
+            if (rhs_len == 0 && left != get_startsymbol()) {return false;}
+        }
+        return true;
+    }
+
     /// returns all rules w/ nt as lhs
     const RuleSet rules_for(const Symbol& nonterminal) const {
         RuleSet nt_rules;
