@@ -5,8 +5,8 @@
 
 int main()
 {
-    LHS l = "NP";
-    RHS r = {"Det", "N"}; // C++11 initializer list assignment
+    CFGRule::Symbol l = "NP";
+    CFGRule::SymbolVector r = {"Det", "N"}; // C++11 initializer list assignment
     
     CFGRule rule1 = CFGRule(l, r);
     std::cout << "rule1: " << rule1 << std::endl;
@@ -51,7 +51,7 @@ int main()
             std::cout << "\t" << *r;
         }
         
-    std::cout << "\n\nstart symbol before setting it: " << cfg.get_startsym() << std::endl;
-    cfg.set_startsym("S");
-    std::cout << "start symbol after setting it: " << cfg.get_startsym() << std::endl;
+    std::cout << "\n\nstart symbol before setting it: " << cfg.get_startsymbol() << std::endl;
+    cfg.set_startsymbol("S");
+    std::cout << "start symbol after setting it: " << cfg.get_startsymbol() << std::endl;
 }
