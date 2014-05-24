@@ -58,24 +58,41 @@ class ContextfreeGrammar
 {
 public: // type definitions
     typedef std::set<CFGRule> RuleSet;
+    typedef RuleSet::const_iterator RuleSetIter;
     typedef CFGRule::Symbol Symbol;
+    typedef CFGRule::SymbolVector SymbolVector;
     typedef std::set<Symbol> SymbolSet;
+    typedef SymbolSet::const_iterator SymbolSetIter;
 
 private: // instance variables
-    SymbolSet nonterminals; // so far unused
-    SymbolSet terminals; // so far unused
+    SymbolSet nonterminals;
+    SymbolSet vocabulary; // incl. terminals & nonterminals
     Symbol start;
-    RuleSet rules;
+    RuleSet productions;
 
 public: // instance functions
-    inline const unsigned size() const {return rules.size();}
+    inline const unsigned size() const {return productions.size();}
 
     inline const Symbol& get_startsymbol() const {return start;}
-    
-    inline void set_startsymbol(const Symbol& s) {start = s;}
-    
-    inline void add_rule(const CFGRule& r) {rules.insert(r);}
-    
+
+    inline const SymbolSet& get_nonterminals() const {return nonterminals;}
+
+    inline const SymbolSet& get_vocabulary() const {return vocabulary;}
+
+    inline void set_startsymbol(const Symbol& s) {
+        start = s;
+        nonterminals.insert(s);
+        vocabulary.insert(s);
+    }
+
+    inline void add_rule(const CFGRule& r) {
+        const Symbol& left = r.get_lhs();
+        const SymbolVector& right = r.get_rhs();
+        nonterminals.insert(left);
+        vocabulary.insert(left);
+        vocabulary.insert(right.begin(), right.end());
+        productions.insert(r);
+    }
 
     /// true, iff all rules are in Chomsky normal form
     /// A -> B C; A -> a; S -> epsilon
@@ -110,18 +127,15 @@ public: // instance functions
     /// returns all rules w/ nt as lhs
     const RuleSet rules_for(const Symbol& nonterminal) const {
         RuleSet nt_rules;
-        for (RuleSet::const_iterator it = rules.begin();
-            it != rules.end(); ++it) {
+        for (RuleSetIter it = productions.begin(); it != productions.end(); ++it) {
                 if (it->get_lhs() == nonterminal) {nt_rules.insert(*it);}
         }
         return nt_rules; // can't return ref to local object
     }
 
     /// prints all CFG rules, one per line
-    void print(std::ostream& o) const
-    {
-        for (RuleSet::const_iterator r = rules.begin();
-            r != rules.end(); ++r) {
+    void print(std::ostream& o) const {
+        for (RuleSetIter r = productions.begin(); r != productions.end(); ++r) {
             r->print(o);
         }
     }
