@@ -26,12 +26,20 @@ public:
     }
 
     inline const Symbol& get_lhs() const {return lhs;}
-    
+
+    inline const SymbolVector& get_rhs() const {return rhs;}
+
     bool operator<(const CFGRule& other) const
     {
         if (lhs < other.lhs) {return true;}
         if (rhs < other.rhs) {return true;}
         return false;
+    }
+
+    // read access to rhs symbols
+    const Symbol& operator[](unsigned i) const {
+        static const Symbol invalid;
+        return (i < rhs.size()) ? rhs[i] : invalid;
     }
 
   /// prints CFGRule in 'A -> B C D' style
