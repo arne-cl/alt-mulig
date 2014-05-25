@@ -1,4 +1,5 @@
 
+
 #include "cfg.hpp"
 #include <iostream>
 #include <string>
@@ -23,7 +24,7 @@ int main()
     cfg.add_rule(CFGRule("NP", {"NP", "PP"}));
     cfg.add_rule(CFGRule("VP", {"V", "NP"}));
     cfg.add_rule(CFGRule("VP", {"VP", "PP"}));
-    cfg.add_rule(CFGRule("NP", {"NE"}));
+    cfg.add_rule(CFGRule("NP", {"NE"})); // not CNF compliant!
     cfg.add_rule(CFGRule("NP", {"NE", "NE"}));
     cfg.add_rule(CFGRule("Det", {"'a'"}));
     cfg.add_rule(CFGRule("Det", {"'the'"}));
@@ -61,4 +62,7 @@ int main()
     std::cout << "\n\nstart symbol before setting it: " << cfg.get_startsymbol() << std::endl;
     cfg.set_startsymbol("S");
     std::cout << "start symbol after setting it: " << cfg.get_startsymbol() << std::endl;
+
+    const bool& is_cnf = cfg.is_in_chomsky_nf();
+    std::cout << "cfg is in CNF: " << is_cnf << std::endl;
 }
