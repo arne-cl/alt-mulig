@@ -112,10 +112,14 @@ public: // instance functions
                      // rhs symbol can't be the start symbol
                      if (s == get_startsymbol()) {return false;}
                 }
+                continue; // this rule is in CNF
             }
 
             // A -> a
-            if (rhs_len == 1 && nonterminals.find(right[0]) != nonterminals.end()) {return false;}
+            if (rhs_len == 1) {
+                if (nonterminals.find(right[0]) != nonterminals.end()) {return false;}
+                continue; // this rule is in CNF
+            }
 
             // S(tart) -> epsilon
             const Symbol& left = r.get_lhs();
