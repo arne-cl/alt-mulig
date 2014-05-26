@@ -4,6 +4,9 @@
 #include "cfg.hpp"
 #include <iostream>
 
+// the end of a SECTION returns the TEST_CASE to the state it was
+// before the SECTION was run
+
 TEST_CASE("Is grammar in CNF?", "[CNF]") {
     ContextfreeGrammar cfg1;
     cfg1.add_rule(CFGRule("S", {"NP", "VP"}));
