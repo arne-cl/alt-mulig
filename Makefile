@@ -3,7 +3,7 @@ ifndef CXX
 endif
 
 all:
-	$(CXX) -std=c++11 cpp/cfg-test.cpp -o cfg-test
+	$(CXX) -std=c++11 -g cpp/cfg-test.cpp -o cfg-test
 
 test: all
 	./cfg-test
