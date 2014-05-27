@@ -101,7 +101,7 @@ public: // instance functions
     bool is_in_chomsky_nf() {
         for (const CFGRule& r: productions) {
             const SymbolVector& right = r.get_rhs();
-            const unsigned& rhs_len = right.size();
+            const unsigned rhs_len = right.size();
 
             // no more than 2 symbols on the right-hand side
             if (rhs_len > 2) {return false;}
@@ -136,7 +136,7 @@ public: // instance functions
     bool is_in_greibach_nf() {
         for (const CFGRule& r: productions) {
             const SymbolVector& right = r.get_rhs();
-            const unsigned& rhs_len = right.size();
+            const unsigned rhs_len = right.size();
 
             /// A -> a A_1 A_2 ... A_n
             // first symbol of rhs must be a terminal
