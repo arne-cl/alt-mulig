@@ -63,6 +63,6 @@ int main()
     cfg.set_startsymbol("S");
     std::cout << "start symbol after setting it: " << cfg.get_startsymbol() << std::endl;
 
-    const bool& is_cnf = cfg.is_in_chomsky_nf();
-    std::cout << "cfg is in CNF: " << is_cnf << std::endl;
+    //~ const bool& is_cnf = cfg.is_in_chomsky_nf();
+    //~ std::cout << "cfg is in CNF: " << is_cnf << std::endl;
 }
