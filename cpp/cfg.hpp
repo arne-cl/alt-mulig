@@ -189,10 +189,16 @@ public: // instance functions
 
 
     /// returns all rules w/ nt as lhs
-    const std::pair<Symbol,RuleSet> rules_for(const Symbol& nonterminal) const {
+    const RuleSet rules_for(const Symbol& nonterminal) const {
         // if I try to return this as a const reference, I'll get this warning:
         // returning reference to local temporary object
-        return *productions.find(nonterminal);
+        RuleMapIter f = productions.find(nonterminal);
+        static const RuleSet empty_ruleset;
+        if (f == productions.end()) {return empty_ruleset;}
+        else {
+            // f points to a std::pair<Symbol,RuleSet>
+            return f->second;
+        }
     }
 
     /// prints all CFG rules, one per line

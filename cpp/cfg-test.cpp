@@ -53,7 +53,7 @@ int main()
     std::cout << std::endl;
 
     std::cout << "rules w/ 'NP' as lhs:" << std::endl;
-    const ContextfreeGrammar::RuleSet& nt_rules = cfg.rules_for("NP").second;
+    const ContextfreeGrammar::RuleSet& nt_rules = cfg.rules_for("NP");
     for (ContextfreeGrammar::RuleSetIter r = nt_rules.begin(); r!= nt_rules.end(); ++r) {
             std::cout << "\t" << *r;
         }
