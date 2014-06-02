@@ -33,7 +33,7 @@ public:
     bool operator<(const CFGRule& other) const
     {
         if (lhs < other.lhs) {return true;}
-        if (rhs < other.rhs) {return true;}
+        if (lhs == other.lhs) {return rhs < other.rhs;}
         return false;
     }
 
