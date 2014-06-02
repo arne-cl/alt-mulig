@@ -1,9 +1,0 @@
-cfg-test
-
-# IDE files
-*.anjuta
-.anjuta_sym_db.db
-
-# IDE directories
-Debug/
-.anjuta/

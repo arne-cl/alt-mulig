@@ -1,0 +1,5 @@
+.anjuta/
+.anjuta_sym_db.db
+*.anjuta
+cfg-catch
+cfg-test
