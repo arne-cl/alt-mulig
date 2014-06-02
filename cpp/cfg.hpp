@@ -97,72 +97,95 @@ public: // instance functions
         vocabulary.insert(left);
         vocabulary.insert(right.begin(), right.end());
 
+        RuleMap::iterator f = productions.find(left);
+
+        if (f == productions.end()) { // lhs not in rules, yet
+            productions.insert(RuleMap::value_type(left, RuleSet({r})));
+        }
+        else {
+            // there's already a rule w/ left as its lhs
+            // so, we'll add this rule to the rule set
+            f->second.insert(r);
+        }
+    }
+
+  /// returns the number of rules
+    unsigned no_of_rules() const {
+        unsigned count = 0;
+        // iterate over all nonterminals
+        for (RuleMapIter nt = productions.begin(); nt != productions.end(); ++nt) {
+            // add the number of expansions (valid right-hand sides for a lhs)
+            count += nt->second.size();
+        }
+        return count;
+    }
+
     /// true, iff all rules are in Chomsky normal form
     /// A -> B C; A -> a; S -> epsilon
-    bool is_in_chomsky_nf() {
-        for (const CFGRule& r: productions) {
-            const SymbolVector& right = r.get_rhs();
-            const unsigned rhs_len = right.size();
-
-            // no more than 2 symbols on the right-hand side
-            if (rhs_len > 2) {return false;}
-
-            // A -> B C
-            if (rhs_len == 2) {
-                for (const Symbol& s : right) {
-                     // rhs symbol must be a nonterminal
-                     if (nonterminals.find(s) == nonterminals.end()) {return false;}
-                     // rhs symbol can't be the start symbol
-                     if (s == get_startsymbol()) {return false;}
-                }
-                continue; // this rule is in CNF
-            }
-
-            // A -> a
-            if (rhs_len == 1) {
-                // rhs must consist of one (and only one terminal)
-                if (nonterminals.find(right[0]) != nonterminals.end()) {return false;}
-                continue; // this rule is in CNF
-            }
-
-            // S(tart) -> epsilon
-            const Symbol& left = r.get_lhs();
-            if (rhs_len == 0 && left != get_startsymbol()) {return false;}
-        }
-        return true;
-    }
+    //~ bool is_in_chomsky_nf() {
+        //~ for (const CFGRule& r: productions) {
+            //~ const SymbolVector& right = r.get_rhs();
+            //~ const unsigned rhs_len = right.size();
+//~
+            //~ // no more than 2 symbols on the right-hand side
+            //~ if (rhs_len > 2) {return false;}
+//~
+            //~ // A -> B C
+            //~ if (rhs_len == 2) {
+                //~ for (const Symbol& s : right) {
+                     //~ // rhs symbol must be a nonterminal
+                     //~ if (nonterminals.find(s) == nonterminals.end()) {return false;}
+                     //~ // rhs symbol can't be the start symbol
+                     //~ if (s == get_startsymbol()) {return false;}
+                //~ }
+                //~ continue; // this rule is in CNF
+            //~ }
+//~
+            //~ // A -> a
+            //~ if (rhs_len == 1) {
+                //~ // rhs must consist of one (and only one terminal)
+                //~ if (nonterminals.find(right[0]) != nonterminals.end()) {return false;}
+                //~ continue; // this rule is in CNF
+            //~ }
+//~
+            //~ // S(tart) -> epsilon
+            //~ const Symbol& left = r.get_lhs();
+            //~ if (rhs_len == 0 && left != get_startsymbol()) {return false;}
+        //~ }
+        //~ return true;
+    //~ }
 
     /// true, iff all rules are in Chomsky normal form
     /// A -> a A_1 A_2 ... A_n; S -> epsilon
-    bool is_in_greibach_nf() {
-        for (const CFGRule& r: productions) {
-            const SymbolVector& right = r.get_rhs();
-            const unsigned rhs_len = right.size();
-
-            /// A -> a A_1 A_2 ... A_n
-            // first symbol of rhs must be a terminal
-            if (rhs_len >= 1) {
-                if (nonterminals.find(right[0]) != nonterminals.end()) {return false;}
-                if (rhs_len > 1) {
-                    // start loop over rhs with 2nd symbol
-                    SymbolVectorIter r = std::next(right.begin());
-                    for (; r != right.end(); ++r) {
-                        // A_1 A_2 ... A_n must be nonterminals
-                        if (nonterminals.find(*r) == nonterminals.end()) {return false;}
-                        // A_1 A_2 ... A_n must include the start symbol
-                        if (*r == get_startsymbol()) {return false;}
-                    }
-                    continue; // this rule (rhs_len > 1) is in GNB
-                }
-                continue; // this rule (rhs_len == 1) is in GNB
-            }
-
-            /// S(tart) -> epsilon
-            const Symbol& left = r.get_lhs();
-            if (rhs_len == 0 && left != get_startsymbol()) {return false;}
-        }
-        return true;
-    }
+    //~ bool is_in_greibach_nf() {
+        //~ for (const CFGRule& r: productions) {
+            //~ const SymbolVector& right = r.get_rhs();
+            //~ const unsigned rhs_len = right.size();
+//~
+            //~ /// A -> a A_1 A_2 ... A_n
+            //~ // first symbol of rhs must be a terminal
+            //~ if (rhs_len >= 1) {
+                //~ if (nonterminals.find(right[0]) != nonterminals.end()) {return false;}
+                //~ if (rhs_len > 1) {
+                    //~ // start loop over rhs with 2nd symbol
+                    //~ SymbolVectorIter r = std::next(right.begin());
+                    //~ for (; r != right.end(); ++r) {
+                        //~ // A_1 A_2 ... A_n must be nonterminals
+                        //~ if (nonterminals.find(*r) == nonterminals.end()) {return false;}
+                        //~ // A_1 A_2 ... A_n must include the start symbol
+                        //~ if (*r == get_startsymbol()) {return false;}
+                    //~ }
+                    //~ continue; // this rule (rhs_len > 1) is in GNB
+                //~ }
+                //~ continue; // this rule (rhs_len == 1) is in GNB
+            //~ }
+//~
+            //~ /// S(tart) -> epsilon
+            //~ const Symbol& left = r.get_lhs();
+            //~ if (rhs_len == 0 && left != get_startsymbol()) {return false;}
+        //~ }
+        //~ return true;
+    //~ }
 
 
     /// returns all rules w/ nt as lhs
