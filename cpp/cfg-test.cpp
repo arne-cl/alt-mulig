@@ -53,9 +53,8 @@ int main()
     std::cout << std::endl;
 
     std::cout << "rules w/ 'NP' as lhs:" << std::endl;
-    std::set<CFGRule> nt_rules = cfg.rules_for("NP");
-    for (std::set<CFGRule>::const_iterator r = nt_rules.begin();
-        r!= nt_rules.end(); ++r) {
+    const ContextfreeGrammar::RuleSet& nt_rules = cfg.rules_for("NP").second;
+    for (ContextfreeGrammar::RuleSetIter r = nt_rules.begin(); r!= nt_rules.end(); ++r) {
             std::cout << "\t" << *r;
         }
 
