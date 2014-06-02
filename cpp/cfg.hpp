@@ -4,6 +4,7 @@
 
 #include <vector>
 #include <set>
+#include <map>
 #include <iostream>
 #include <string>
 #include <iterator>
@@ -58,22 +59,24 @@ public:
 class ContextfreeGrammar
 {
 public: // type definitions
-    typedef std::set<CFGRule> RuleSet;
-    typedef RuleSet::const_iterator RuleSetIter;
     typedef CFGRule::Symbol Symbol;
     typedef CFGRule::SymbolVector SymbolVector;
     typedef SymbolVector::const_iterator SymbolVectorIter;
     typedef std::set<Symbol> SymbolSet;
     typedef SymbolSet::const_iterator SymbolSetIter;
+    typedef std::set<CFGRule> RuleSet;
+    typedef RuleSet::const_iterator RuleSetIter;
+    typedef std::map<Symbol,RuleSet> RuleMap;
+    typedef RuleMap::const_iterator RuleMapIter;
 
 private: // instance variables
     SymbolSet nonterminals;
     SymbolSet vocabulary; // incl. terminals & nonterminals
     Symbol start;
-    RuleSet productions;
+    RuleMap productions;
 
 public: // instance functions
-    inline const unsigned size() const {return productions.size();}
+    inline const unsigned size() const {return no_of_rules();}
 
     inline const Symbol& get_startsymbol() const {return start;}
 
@@ -93,8 +96,6 @@ public: // instance functions
         nonterminals.insert(left);
         vocabulary.insert(left);
         vocabulary.insert(right.begin(), right.end());
-        productions.insert(r);
-    }
 
     /// true, iff all rules are in Chomsky normal form
     /// A -> B C; A -> a; S -> epsilon
@@ -165,18 +166,19 @@ public: // instance functions
 
 
     /// returns all rules w/ nt as lhs
-    const RuleSet rules_for(const Symbol& nonterminal) const {
-        RuleSet nt_rules;
-        for (RuleSetIter it = productions.begin(); it != productions.end(); ++it) {
-                if (it->get_lhs() == nonterminal) {nt_rules.insert(*it);}
-        }
-        return nt_rules; // can't return ref to local object
+    const std::pair<Symbol,RuleSet> rules_for(const Symbol& nonterminal) const {
+        // if I try to return this as a const reference, I'll get this warning:
+        // returning reference to local temporary object
+        return *productions.find(nonterminal);
     }
 
     /// prints all CFG rules, one per line
     void print(std::ostream& o) const {
-        for (RuleSetIter r = productions.begin(); r != productions.end(); ++r) {
-            r->print(o);
+        for (RuleMapIter nt = productions.begin(); nt != productions.end(); ++nt) {
+            const RuleSet& rules = nt->second;
+            for (RuleSetIter r = rules.begin(); r != rules.end(); ++r) {
+                r->print(o);
+            }
         }
     }
 }; // ContextfreeGrammar
