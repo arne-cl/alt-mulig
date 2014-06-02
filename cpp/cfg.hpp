@@ -189,9 +189,7 @@ public: // instance functions
 
 
     /// returns all rules w/ nt as lhs
-    const RuleSet rules_for(const Symbol& nonterminal) const {
-        // if I try to return this as a const reference, I'll get this warning:
-        // returning reference to local temporary object
+    const RuleSet& rules_for(const Symbol& nonterminal) const {
         RuleMapIter f = productions.find(nonterminal);
         static const RuleSet empty_ruleset;
         if (f == productions.end()) {return empty_ruleset;}
