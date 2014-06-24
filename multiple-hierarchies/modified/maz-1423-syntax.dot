@@ -1,9 +1,11 @@
 digraph "maz-1423.xml" {
 	node [label="\N"];
+
 	s538_504	 [label=PP,
 		layers="set(['tiger:syntax', 'tiger'])",
 		"tiger:cat"=PP,
 		"tiger:id"=s538_504];
+
 	s538_11	 [label=ansehnlichen,
 		layers="set(['tiger', 'tiger:token'])",
 		"tiger:id"=s538_11,
@@ -12,12 +14,14 @@ digraph "maz-1423.xml" {
 		"tiger:pos"=ADJA,
 		"tiger:token"=ansehnlichen,
 		"tiger:word"=ansehnlichen];
+
 	s538_504 -> s538_11 [key=0,
 	edge_type=dominates,
 	label=NK,
 	layers="set(['tiger', 'tiger:edge'])",
 	"tiger:idref"=s538_11,
 	"tiger:label"=NK];
+
 s538_12 [label=Veranstaltungsort,
 	layers="set(['tiger', 'tiger:token'])",
 	"tiger:id"=s538_12,
@@ -26,12 +30,14 @@ s538_12 [label=Veranstaltungsort,
 	"tiger:pos"=NN,
 	"tiger:token"=Veranstaltungsort,
 	"tiger:word"=Veranstaltungsort];
+
 s538_504 -> s538_12 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s538_12,
 "tiger:label"=NK];
+
 s538_10 [label=einen,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s538_10,
@@ -40,12 +46,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ART,
 "tiger:token"=einen,
 "tiger:word"=einen];
+
 s538_504 -> s538_10 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s538_10,
 "tiger:label"=NK];
+
 s538_9 [label=ohne,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s538_9,
@@ -54,22 +62,26 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=APPR,
 "tiger:token"=ohne,
 "tiger:word"=ohne];
+
 s538_504 -> s538_9 [key=0,
 edge_type=dominates,
 label=AC,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s538_9,
 "tiger:label"=AC];
+
 s538_503 [label=PP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=PP,
 "tiger:id"=s538_503];
+
 s538_504 -> s538_503 [key=0,
 edge_type=dominates,
 label=MNR,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s538_503,
 "tiger:label"=MNR];
+
 s525_22 [label=".",
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s525_22,
@@ -78,6 +90,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"="$.",
 "tiger:token"=".",
 "tiger:word"="."];
+
 s525_21 [label=genommen,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s525_21,
@@ -86,6 +99,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=VVPP,
 "tiger:token"=genommen,
 "tiger:word"=genommen];
+
 s525_20 [label=Anspruch,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s525_20,
@@ -94,6 +108,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NN,
 "tiger:token"=Anspruch,
 "tiger:word"=Anspruch];
+
 s527_10 [label=Kasse,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s527_10,
@@ -102,6 +117,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NN,
 "tiger:token"=Kasse,
 "tiger:word"=Kasse];
+
 s527_11 [label=gebeten,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s527_11,
@@ -110,6 +126,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=VVPP,
 "tiger:token"=gebeten,
 "tiger:word"=gebeten];
+
 s527_12 [label=".",
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s527_12,
@@ -118,20 +135,24 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"="$.",
 "tiger:token"=".",
 "tiger:word"="."];
+
 s537_508 [label=PP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=PP,
 "tiger:id"=s537_508];
+
 s537_507 [label=VP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=VP,
 "tiger:id"=s537_507];
+
 s537_508 -> s537_507 [key=0,
 edge_type=dominates,
 label=RE,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s537_507,
 "tiger:label"=RE];
+
 s537_10 [label=daran,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s537_10,
@@ -140,12 +161,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=PROAV,
 "tiger:token"=daran,
 "tiger:word"=daran];
+
 s537_508 -> s537_10 [key=0,
 edge_type=dominates,
 label=PH,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s537_10,
 "tiger:label"=PH];
+
 s536_1 [label=Das,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s536_1,
@@ -154,6 +177,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ART,
 "tiger:token"=Das,
 "tiger:word"=Das];
+
 s524_1 [label=Zum,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s524_1,
@@ -162,10 +186,12 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=APPRART,
 "tiger:token"=Zum,
 "tiger:word"=Zum];
+
 s535_500 [label=NP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=NP,
 "tiger:id"=s535_500];
+
 s535_2 [label=dagegen,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s535_2,
@@ -174,12 +200,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=PROAV,
 "tiger:token"=dagegen,
 "tiger:word"=dagegen];
+
 s535_500 -> s535_2 [key=0,
 edge_type=dominates,
 label=MO,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s535_2,
 "tiger:label"=MO];
+
 s535_1 [label=Wittstock,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s535_1,
@@ -188,12 +216,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NE,
 "tiger:token"=Wittstock,
 "tiger:word"=Wittstock];
+
 s535_500 -> s535_1 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s535_1,
 "tiger:label"=NK];
+
 s524_2 [label=Angewöhnen,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s524_2,
@@ -202,6 +232,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NN,
 "tiger:token"=Angewöhnen,
 "tiger:word"=Angewöhnen];
+
 s538_8 [label=Mittelzentrum,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s538_8,
@@ -210,10 +241,12 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NN,
 "tiger:token"=Mittelzentrum,
 "tiger:word"=Mittelzentrum];
+
 s535_501 [label=NP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=NP,
 "tiger:id"=s535_501];
+
 s535_6 [label=einen,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s535_6,
@@ -222,12 +255,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ART,
 "tiger:token"=einen,
 "tiger:word"=einen];
+
 s535_501 -> s535_6 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s535_6,
 "tiger:label"=NK];
+
 s535_7 [label=Namen,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s535_7,
@@ -236,12 +271,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NN,
 "tiger:token"=Namen,
 "tiger:word"=Namen];
+
 s535_501 -> s535_7 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s535_7,
 "tiger:label"=NK];
+
 s538_6 [label="Dosse-Stadt",
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s538_6,
@@ -250,6 +287,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NN,
 "tiger:token"="Dosse-Stadt",
 "tiger:word"="Dosse-Stadt"];
+
 s538_7 [label=als,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s538_7,
@@ -258,6 +296,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=APPR,
 "tiger:token"=als,
 "tiger:word"=als];
+
 s538_4 [label=dass,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s538_4,
@@ -266,6 +305,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=KOUS,
 "tiger:token"=dass,
 "tiger:word"=dass];
+
 s534_1 [label=Auch,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s534_1,
@@ -274,6 +314,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ADV,
 "tiger:token"=Auch,
 "tiger:word"=Auch];
+
 s538_2 [label=steht,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s538_2,
@@ -282,16 +323,19 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=VVFIN,
 "tiger:token"=steht,
 "tiger:word"=steht];
+
 s535_502 [label=VP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=VP,
 "tiger:id"=s535_502];
+
 s535_502 -> s535_501 [key=0,
 edge_type=dominates,
 label=OA,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s535_501,
 "tiger:label"=OA];
+
 s535_4 [label=sich,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s535_4,
@@ -300,12 +344,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=PRF,
 "tiger:token"=sich,
 "tiger:word"=sich];
+
 s535_502 -> s535_4 [key=0,
 edge_type=dominates,
 label=DA,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s535_4,
 "tiger:label"=DA];
+
 s535_8 [label=machen,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s535_8,
@@ -314,12 +360,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=VVINF,
 "tiger:token"=machen,
 "tiger:word"=machen];
+
 s535_502 -> s535_8 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s535_8,
 "tiger:label"=HD];
+
 s538_1 [label=Fest,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s538_1,
@@ -328,10 +376,12 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=PTKVZ,
 "tiger:token"=Fest,
 "tiger:word"=Fest];
+
 s535_503 [label=S,
 layers="set(['tiger', 'tiger:sentence', 'tiger:sentence:root'])",
 "tiger:cat"=S,
 "tiger:id"=s535_503];
+
 s535_5 [label=erst,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s535_5,
@@ -340,18 +390,21 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ADV,
 "tiger:token"=erst,
 "tiger:word"=erst];
+
 s535_503 -> s535_5 [key=0,
 edge_type=dominates,
 label=MO,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s535_5,
 "tiger:label"=MO];
+
 s535_503 -> s535_500 [key=0,
 edge_type=dominates,
 label=SB,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s535_500,
 "tiger:label"=SB];
+
 s535_3 [label=muss,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s535_3,
@@ -360,18 +413,21 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=VMFIN,
 "tiger:token"=muss,
 "tiger:word"=muss];
+
 s535_503 -> s535_3 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s535_3,
 "tiger:label"=HD];
+
 s535_503 -> s535_502 [key=0,
 edge_type=dominates,
 label=OC,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s535_502,
 "tiger:label"=OC];
+
 s529_2 [label=Betriebskosten,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s529_2,
@@ -380,59 +436,72 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NN,
 "tiger:token"=Betriebskosten,
 "tiger:word"=Betriebskosten];
+
 s524_500 [label=PP,
 layers="set(['tiger', 'tiger:sentence', 'tiger:sentence:root'])",
 "tiger:cat"=PP,
 "tiger:id"=s524_500];
+
 s524_500 -> s524_1 [key=0,
 edge_type=dominates,
 label=AC,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s524_1,
 "tiger:label"=AC];
+
 s524_500 -> s524_2 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s524_2,
 "tiger:label"=NK];
+
 "tiger:root_node" [layers="set(['tiger'])"];
+
 "VROOT-s526" [layers="set(['tiger', 'tiger:sentence:vroot', 'tiger:sentence'])",
 "tiger:art_id"=1423,
 "tiger:id"=s526,
 "tiger:orig_id"="ID_maz-1423",
 tokens="['s526_1', 's526_2', 's526_3', 's526_4', 's526_5', 's526_6', 's526_7', 's526_8',\
  's526_9']"];
+
 "tiger:root_node" -> "VROOT-s526" [key=0,
 edge_type=spans,
 layers="set(['tiger', 'tiger:sentence'])"];
+
 "VROOT-s531" [layers="set(['tiger', 'tiger:sentence:vroot', 'tiger:sentence'])",
 "tiger:art_id"=1423,
 "tiger:id"=s531,
 "tiger:orig_id"="ID_maz-1423",
 tokens="['s531_1', 's531_2', 's531_3', 's531_4', 's531_5', 's531_6', 's531_7', 's531_8',\
  's531_9', 's531_10', 's531_11', 's531_12']"];
+
 "tiger:root_node" -> "VROOT-s531" [key=0,
 edge_type=spans,
 layers="set(['tiger', 'tiger:sentence'])"];
+
 "VROOT-s530" [layers="set(['tiger', 'tiger:sentence:vroot', 'tiger:sentence'])",
 "tiger:art_id"=1423,
 "tiger:id"=s530,
 "tiger:orig_id"="ID_maz-1423",
 tokens="['s530_1', 's530_2', 's530_3', 's530_4', 's530_5', 's530_6', 's530_7', 's530_8',\
  's530_9', 's530_10', 's530_11', 's530_12', 's530_13', 's530_14', 's530_15']"];
+
 "tiger:root_node" -> "VROOT-s530" [key=0,
 edge_type=spans,
 layers="set(['tiger', 'tiger:sentence'])"];
+
 "VROOT-s533" [layers="set(['tiger', 'tiger:sentence:vroot', 'tiger:sentence'])",
 "tiger:art_id"=1423,
 "tiger:id"=s533,
 "tiger:orig_id"="ID_maz-1423",
 tokens="['s533_1', 's533_2', 's533_3', 's533_4', 's533_5', 's533_6', 's533_7', 's533_8']\
 "];
+
 "tiger:root_node" -> "VROOT-s533" [key=0,
 edge_type=spans,
 layers="set(['tiger', 'tiger:sentence'])"];
+
 "VROOT-s538" [layers="set(['tiger', 'tiger:sentence:vroot', 'tiger:sentence'])",
 "tiger:art_id"=1423,
 "tiger:id"=s538,
@@ -440,71 +509,87 @@ layers="set(['tiger', 'tiger:sentence'])"];
 tokens="['s538_1', 's538_2', 's538_3', 's538_4', 's538_5', 's538_6', 's538_7', 's538_8',\
  's538_9', 's538_10', 's538_11', 's538_12', 's538_13', 's538_14', 's538_15', 's5\
 38_16', 's538_17', 's538_18', 's538_19', 's538_20']"];
+
 "tiger:root_node" -> "VROOT-s538" [key=0,
 edge_type=spans,
 layers="set(['tiger', 'tiger:sentence'])"];
+
 "VROOT-s534" [layers="set(['tiger', 'tiger:sentence:vroot', 'tiger:sentence'])",
 "tiger:art_id"=1423,
 "tiger:id"=s534,
 "tiger:orig_id"="ID_maz-1423",
 tokens="['s534_1', 's534_2', 's534_3', 's534_4', 's534_5', 's534_6', 's534_7', 's534_8']\
 "];
+
 "tiger:root_node" -> "VROOT-s534" [key=0,
 edge_type=spans,
 layers="set(['tiger', 'tiger:sentence'])"];
+
 "VROOT-s532" [layers="set(['tiger', 'tiger:sentence:vroot', 'tiger:sentence'])",
 "tiger:art_id"=1423,
 "tiger:id"=s532,
 "tiger:orig_id"="ID_maz-1423",
 tokens="['s532_1', 's532_2', 's532_3', 's532_4', 's532_5', 's532_6']"];
+
 "tiger:root_node" -> "VROOT-s532" [key=0,
 edge_type=spans,
 layers="set(['tiger', 'tiger:sentence'])"];
+
 "VROOT-s536" [layers="set(['tiger', 'tiger:sentence:vroot', 'tiger:sentence'])",
 "tiger:art_id"=1423,
 "tiger:id"=s536,
 "tiger:orig_id"="ID_maz-1423",
 tokens="['s536_1', 's536_2', 's536_3', 's536_4', 's536_5', 's536_6', 's536_7', 's536_8',\
  's536_9', 's536_10', 's536_11']"];
+
 "tiger:root_node" -> "VROOT-s536" [key=0,
 edge_type=spans,
 layers="set(['tiger', 'tiger:sentence'])"];
+
 "VROOT-s539" [layers="set(['tiger', 'tiger:sentence:vroot', 'tiger:sentence'])",
 "tiger:art_id"=1423,
 "tiger:id"=s539,
 "tiger:orig_id"="ID_maz-1423",
 tokens="['s539_1', 's539_2', 's539_3', 's539_4', 's539_5', 's539_6', 's539_7', 's539_8',\
  's539_9', 's539_10']"];
+
 "tiger:root_node" -> "VROOT-s539" [key=0,
 edge_type=spans,
 layers="set(['tiger', 'tiger:sentence'])"];
+
 "VROOT-s527" [layers="set(['tiger', 'tiger:sentence:vroot', 'tiger:sentence'])",
 "tiger:art_id"=1423,
 "tiger:id"=s527,
 "tiger:orig_id"="ID_maz-1423",
 tokens="['s527_1', 's527_2', 's527_3', 's527_4', 's527_5', 's527_6', 's527_7', 's527_8',\
  's527_9', 's527_10', 's527_11', 's527_12']"];
+
 "tiger:root_node" -> "VROOT-s527" [key=0,
 edge_type=spans,
 layers="set(['tiger', 'tiger:sentence'])"];
+
 "VROOT-s528" [layers="set(['tiger', 'tiger:sentence:vroot', 'tiger:sentence'])",
 "tiger:art_id"=1423,
 "tiger:id"=s528,
 "tiger:orig_id"="ID_maz-1423",
 tokens="['s528_1', 's528_2', 's528_3', 's528_4', 's528_5', 's528_6', 's528_7', 's528_8',\
  's528_9', 's528_10', 's528_11', 's528_12']"];
+
 "tiger:root_node" -> "VROOT-s528" [key=0,
 edge_type=spans,
 layers="set(['tiger', 'tiger:sentence'])"];
+
 "VROOT-s535" [layers="set(['tiger', 'tiger:sentence:vroot', 'tiger:sentence'])",
 "tiger:art_id"=1423,
 "tiger:id"=s535,
 "tiger:orig_id"="ID_maz-1423",
 tokens="['s535_1', 's535_2', 's535_3', 's535_4', 's535_5', 's535_6', 's535_7', 's535_8',\
  's535_9']"];
+
 "tiger:root_node" -> "VROOT-s535" [key=0,
 edge_type=spans,
 layers="set(['tiger', 'tiger:sentence'])"];
+
 "VROOT-s537" [layers="set(['tiger', 'tiger:sentence:vroot', 'tiger:sentence'])",
 "tiger:art_id"=1423,
 "tiger:id"=s537,
@@ -512,9 +597,11 @@ layers="set(['tiger', 'tiger:sentence'])"];
 tokens="['s537_1', 's537_2', 's537_3', 's537_4', 's537_5', 's537_6', 's537_7', 's537_8',\
  's537_9', 's537_10', 's537_11', 's537_12', 's537_13', 's537_14', 's537_15', 's5\
 37_16', 's537_17', 's537_18', 's537_19', 's537_20']"];
+
 "tiger:root_node" -> "VROOT-s537" [key=0,
 edge_type=spans,
 layers="set(['tiger', 'tiger:sentence'])"];
+
 "VROOT-s525" [layers="set(['tiger', 'tiger:sentence:vroot', 'tiger:sentence'])",
 "tiger:art_id"=1423,
 "tiger:id"=s525,
@@ -522,26 +609,32 @@ layers="set(['tiger', 'tiger:sentence'])"];
 tokens="['s525_1', 's525_2', 's525_3', 's525_4', 's525_5', 's525_6', 's525_7', 's525_8',\
  's525_9', 's525_10', 's525_11', 's525_12', 's525_13', 's525_14', 's525_15', 's5\
 25_16', 's525_17', 's525_18', 's525_19', 's525_20', 's525_21', 's525_22']"];
+
 "tiger:root_node" -> "VROOT-s525" [key=0,
 edge_type=spans,
 layers="set(['tiger', 'tiger:sentence'])"];
+
 "VROOT-s529" [layers="set(['tiger', 'tiger:sentence:vroot', 'tiger:sentence'])",
 "tiger:art_id"=1423,
 "tiger:id"=s529,
 "tiger:orig_id"="ID_maz-1423",
 tokens="['s529_1', 's529_2', 's529_3', 's529_4', 's529_5', 's529_6', 's529_7', 's529_8',\
  's529_9']"];
+
 "tiger:root_node" -> "VROOT-s529" [key=0,
 edge_type=spans,
 layers="set(['tiger', 'tiger:sentence'])"];
+
 "VROOT-s524" [layers="set(['tiger', 'tiger:sentence:vroot', 'tiger:sentence'])",
 "tiger:art_id"=1423,
 "tiger:id"=s524,
 "tiger:orig_id"="ID_maz-1423",
 tokens="['s524_1', 's524_2']"];
+
 "tiger:root_node" -> "VROOT-s524" [key=0,
 edge_type=spans,
 layers="set(['tiger', 'tiger:sentence'])"];
+
 s531_12 [label=".",
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s531_12,
@@ -550,16 +643,20 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"="$.",
 "tiger:token"=".",
 "tiger:word"="."];
+
 "VROOT-s531" -> s531_12 [key=0,
 edge_type=spans,
 layers="set(['tiger', 'tiger:sentence'])"];
+
 s531_507 [label=S,
 layers="set(['tiger', 'tiger:sentence', 'tiger:sentence:root'])",
 "tiger:cat"=S,
 "tiger:id"=s531_507];
+
 "VROOT-s531" -> s531_507 [key=0,
 edge_type=dominates,
 layers="set(['tiger', 'tiger:sentence:vroot', 'tiger:sentence'])"];
+
 s531_5 [label=",",
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s531_5,
@@ -568,13 +665,16 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"="$,",
 "tiger:token"=",",
 "tiger:word"=","];
+
 "VROOT-s531" -> s531_5 [key=0,
 edge_type=spans,
 layers="set(['tiger', 'tiger:sentence'])"];
+
 s539_501 [label=PP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=PP,
 "tiger:id"=s539_501];
+
 s539_8 [label=Hintertreffen,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s539_8,
@@ -583,12 +683,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NN,
 "tiger:token"=Hintertreffen,
 "tiger:word"=Hintertreffen];
+
 s539_501 -> s539_8 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s539_8,
 "tiger:label"=NK];
+
 s539_7 [label=ins,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s539_7,
@@ -597,12 +699,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=APPRART,
 "tiger:token"=ins,
 "tiger:word"=ins];
+
 s539_501 -> s539_7 [key=0,
 edge_type=dominates,
 label=AC,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s539_7,
 "tiger:label"=AC];
+
 s539_1 [label=Ohne,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s539_1,
@@ -611,10 +715,12 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=APPR,
 "tiger:token"=Ohne,
 "tiger:word"=Ohne];
+
 s539_503 [label=S,
 layers="set(['tiger', 'tiger:sentence', 'tiger:sentence:root'])",
 "tiger:cat"=S,
 "tiger:id"=s539_503];
+
 s539_5 [label=Wittstock,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s539_5,
@@ -623,22 +729,26 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NE,
 "tiger:token"=Wittstock,
 "tiger:word"=Wittstock];
+
 s539_503 -> s539_5 [key=0,
 edge_type=dominates,
 label=SB,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s539_5,
 "tiger:label"=SB];
+
 s539_502 [label=VP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=VP,
 "tiger:id"=s539_502];
+
 s539_503 -> s539_502 [key=0,
 edge_type=dominates,
 label=OC,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s539_502,
 "tiger:label"=OC];
+
 s539_4 [label=würde,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s539_4,
@@ -647,16 +757,19 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=VAFIN,
 "tiger:token"=würde,
 "tiger:word"=würde];
+
 s539_503 -> s539_4 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s539_4,
 "tiger:label"=HD];
+
 s525_502 [label=CNP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=CNP,
 "tiger:id"=s525_502];
+
 s525_11 [label=Vereine,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s525_11,
@@ -665,12 +778,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NN,
 "tiger:token"=Vereine,
 "tiger:word"=Vereine];
+
 s525_502 -> s525_11 [key=0,
 edge_type=dominates,
 label=CJ,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s525_11,
 "tiger:label"=CJ];
+
 s525_13 [label=Veranstalter,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s525_13,
@@ -679,12 +794,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NN,
 "tiger:token"=Veranstalter,
 "tiger:word"=Veranstalter];
+
 s525_502 -> s525_13 [key=0,
 edge_type=dominates,
 label=CJ,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s525_13,
 "tiger:label"=CJ];
+
 s525_12 [label=und,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s525_12,
@@ -693,22 +810,26 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=KON,
 "tiger:token"=und,
 "tiger:word"=und];
+
 s525_502 -> s525_12 [key=0,
 edge_type=dominates,
 label=CD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s525_12,
 "tiger:label"=CD];
+
 s534_500 [label=NP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=NP,
 "tiger:id"=s534_500];
+
 s534_500 -> s534_1 [key=0,
 edge_type=dominates,
 label=MO,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s534_1,
 "tiger:label"=MO];
+
 s534_2 [label=die,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s534_2,
@@ -717,12 +838,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ART,
 "tiger:token"=die,
 "tiger:word"=die];
+
 s534_500 -> s534_2 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s534_2,
 "tiger:label"=NK];
+
 s534_3 [label=Nachbarstädte,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s534_3,
@@ -731,12 +854,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NN,
 "tiger:token"=Nachbarstädte,
 "tiger:word"=Nachbarstädte];
+
 s534_500 -> s534_3 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s534_3,
 "tiger:label"=NK];
+
 s525_2 [label=Diskussion,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s525_2,
@@ -745,10 +870,12 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NN,
 "tiger:token"=Diskussion,
 "tiger:word"=Diskussion];
+
 s525_500 [label=AP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=AP,
 "tiger:id"=s525_500];
+
 s525_5 [label=teuer,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s525_5,
@@ -757,12 +884,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ADJD,
 "tiger:token"=teuer,
 "tiger:word"=teuer];
+
 s525_500 -> s525_5 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s525_5,
 "tiger:label"=HD];
+
 s525_4 [label=wie,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s525_4,
@@ -771,26 +900,31 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=PWAV,
 "tiger:token"=wie,
 "tiger:word"=wie];
+
 s525_500 -> s525_4 [key=0,
 edge_type=dominates,
 label=MO,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s525_4,
 "tiger:label"=MO];
+
 s525_507 [label=S,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=S,
 "tiger:id"=s525_507];
+
 s525_505 [label=PP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=PP,
 "tiger:id"=s525_505];
+
 s525_507 -> s525_505 [key=0,
 edge_type=dominates,
 label=MO,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s525_505,
 "tiger:label"=MO];
+
 s525_14 [label=wird,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s525_14,
@@ -799,34 +933,40 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=VAFIN,
 "tiger:token"=wird,
 "tiger:word"=wird];
+
 s525_507 -> s525_14 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s525_14,
 "tiger:label"=HD];
+
 s525_507 -> s525_500 [key=0,
 edge_type=dominates,
 label=PD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s525_500,
 "tiger:label"=PD];
+
 s525_501 [label=NP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=NP,
 "tiger:id"=s525_501];
+
 s525_507 -> s525_501 [key=0,
 edge_type=dominates,
 label=SB,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s525_501,
 "tiger:label"=SB];
+
 s525_505 -> s525_502 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s525_502,
 "tiger:label"=NK];
+
 s525_10 [label=für,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s525_10,
@@ -835,36 +975,43 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=APPR,
 "tiger:token"=für,
 "tiger:word"=für];
+
 s525_505 -> s525_10 [key=0,
 edge_type=dominates,
 label=AC,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s525_10,
 "tiger:label"=AC];
+
 s532_502 [label=S,
 layers="set(['tiger', 'tiger:sentence', 'tiger:sentence:root'])",
 "tiger:cat"=S,
 "tiger:id"=s532_502];
+
 s532_501 [label=VP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=VP,
 "tiger:id"=s532_501];
+
 s532_502 -> s532_501 [key=0,
 edge_type=dominates,
 label=OC,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s532_501,
 "tiger:label"=OC];
+
 s532_500 [label=NP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=NP,
 "tiger:id"=s532_500];
+
 s532_502 -> s532_500 [key=0,
 edge_type=dominates,
 label=SB,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s532_500,
 "tiger:label"=SB];
+
 s532_3 [label=muss,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s532_3,
@@ -873,28 +1020,33 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=VMFIN,
 "tiger:token"=muss,
 "tiger:word"=muss];
+
 s532_502 -> s532_3 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s532_3,
 "tiger:label"=HD];
+
 s538_500 [label=PP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=PP,
 "tiger:id"=s538_500];
+
 s538_500 -> s538_7 [key=0,
 edge_type=dominates,
 label=AC,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s538_7,
 "tiger:label"=AC];
+
 s538_500 -> s538_8 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s538_8,
 "tiger:label"=NK];
+
 s532_1 [label=Die,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s532_1,
@@ -903,6 +1055,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ART,
 "tiger:token"=Die,
 "tiger:word"=Die];
+
 s532_5 [label=sein,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s532_5,
@@ -911,12 +1064,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=VAINF,
 "tiger:token"=sein,
 "tiger:word"=sein];
+
 s532_501 -> s532_5 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s532_5,
 "tiger:label"=HD];
+
 s532_4 [label=ausgelastet,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s532_4,
@@ -925,16 +1080,19 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=VVPP,
 "tiger:token"=ausgelastet,
 "tiger:word"=ausgelastet];
+
 s532_501 -> s532_4 [key=0,
 edge_type=dominates,
 label=OC,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s532_4,
 "tiger:label"=OC];
+
 s525_504 [label=PP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=PP,
 "tiger:id"=s525_504];
+
 s525_19 [label=in,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s525_19,
@@ -943,18 +1101,21 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=APPR,
 "tiger:token"=in,
 "tiger:word"=in];
+
 s525_504 -> s525_19 [key=0,
 edge_type=dominates,
 label=AC,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s525_19,
 "tiger:label"=AC];
+
 s525_504 -> s525_20 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s525_20,
 "tiger:label"=NK];
+
 s532_6 [label=".",
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s532_6,
@@ -963,6 +1124,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"="$.",
 "tiger:token"=".",
 "tiger:word"="."];
+
 s536_3 [label=hat,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s536_3,
@@ -971,6 +1133,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=VAFIN,
 "tiger:token"=hat,
 "tiger:word"=hat];
+
 s538_18 [label=nicht,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s538_18,
@@ -979,6 +1142,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=PTKNEG,
 "tiger:token"=nicht,
 "tiger:word"=nicht];
+
 s538_19 [label=auskommt,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s538_19,
@@ -987,6 +1151,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=VVFIN,
 "tiger:token"=auskommt,
 "tiger:word"=auskommt];
+
 s539_10 [label=".",
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s539_10,
@@ -995,6 +1160,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"="$.",
 "tiger:token"=".",
 "tiger:word"="."];
+
 s538_14 [label=ausreichend,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s538_14,
@@ -1003,6 +1169,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=PIAT,
 "tiger:token"=ausreichend,
 "tiger:word"=ausreichend];
+
 s538_15 [label=Platz,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s538_15,
@@ -1011,6 +1178,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NN,
 "tiger:token"=Platz,
 "tiger:word"=Platz];
+
 s538_16 [label=fürs,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s538_16,
@@ -1019,6 +1187,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=APPRART,
 "tiger:token"=fürs,
 "tiger:word"=fürs];
+
 s538_17 [label=Publikum,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s538_17,
@@ -1027,6 +1196,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NN,
 "tiger:token"=Publikum,
 "tiger:word"=Publikum];
+
 s538_13 [label=mit,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s538_13,
@@ -1035,50 +1205,60 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=APPR,
 "tiger:token"=mit,
 "tiger:word"=mit];
+
 s530_505 [label=VP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=VP,
 "tiger:id"=s530_505];
+
 s530_504 [label=AVP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=AVP,
 "tiger:id"=s530_504];
+
 s530_505 -> s530_504 [key=0,
 edge_type=dominates,
 label=MO,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s530_504,
 "tiger:label"=MO];
+
 s530_500 [label=NP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=NP,
 "tiger:id"=s530_500];
+
 s530_505 -> s530_500 [key=0,
 edge_type=dominates,
 label=OA,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s530_500,
 "tiger:label"=OA];
+
 s530_502 [label=VZ,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=VZ,
 "tiger:id"=s530_502];
+
 s530_505 -> s530_502 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s530_502,
 "tiger:label"=HD];
+
 s530_503 [label=AVP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=AVP,
 "tiger:id"=s530_503];
+
 s530_504 -> s530_503 [key=0,
 edge_type=dominates,
 label=MO,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s530_503,
 "tiger:label"=MO];
+
 s530_10 [label=oft,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s530_10,
@@ -1087,26 +1267,31 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ADV,
 "tiger:token"=oft,
 "tiger:word"=oft];
+
 s530_504 -> s530_10 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s530_10,
 "tiger:label"=HD];
+
 s530_507 [label=VP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=VP,
 "tiger:id"=s530_507];
+
 s530_506 [label=PP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=PP,
 "tiger:id"=s530_506];
+
 s530_507 -> s530_506 [key=0,
 edge_type=dominates,
 label=OP,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s530_506,
 "tiger:label"=OP];
+
 s530_5 [label=gehen,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s530_5,
@@ -1115,12 +1300,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=VVINF,
 "tiger:token"=gehen,
 "tiger:word"=gehen];
+
 s530_507 -> s530_5 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s530_5,
 "tiger:label"=HD];
+
 s530_1 [label=Jetzt,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s530_1,
@@ -1129,18 +1316,21 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ADV,
 "tiger:token"=Jetzt,
 "tiger:word"=Jetzt];
+
 s530_507 -> s530_1 [key=0,
 edge_type=dominates,
 label=MO,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s530_1,
 "tiger:label"=MO];
+
 s530_506 -> s530_505 [key=0,
 edge_type=dominates,
 label=RE,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s530_505,
 "tiger:label"=RE];
+
 s530_4 [label=darum,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s530_4,
@@ -1149,16 +1339,19 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=PROAV,
 "tiger:token"=darum,
 "tiger:word"=darum];
+
 s530_506 -> s530_4 [key=0,
 edge_type=dominates,
 label=PH,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s530_4,
 "tiger:label"=PH];
+
 s530_501 [label=AP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=AP,
 "tiger:id"=s530_501];
+
 s530_12 [label=möglich,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s530_12,
@@ -1167,12 +1360,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ADJD,
 "tiger:token"=möglich,
 "tiger:word"=möglich];
+
 s530_501 -> s530_12 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s530_12,
 "tiger:label"=HD];
+
 s530_11 [label=wie,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s530_11,
@@ -1181,12 +1376,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=KOKOM,
 "tiger:token"=wie,
 "tiger:word"=wie];
+
 s530_501 -> s530_11 [key=0,
 edge_type=dominates,
 label=CM,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s530_11,
 "tiger:label"=CM];
+
 s530_7 [label=die,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s530_7,
@@ -1195,12 +1392,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ART,
 "tiger:token"=die,
 "tiger:word"=die];
+
 s530_500 -> s530_7 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s530_7,
 "tiger:label"=NK];
+
 s530_8 [label=Halle,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s530_8,
@@ -1209,18 +1408,21 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NN,
 "tiger:token"=Halle,
 "tiger:word"=Halle];
+
 s530_500 -> s530_8 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s530_8,
 "tiger:label"=NK];
+
 s530_503 -> s530_501 [key=0,
 edge_type=dominates,
 label=CC,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s530_501,
 "tiger:label"=CC];
+
 s530_9 [label=so,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s530_9,
@@ -1229,12 +1431,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ADV,
 "tiger:token"=so,
 "tiger:word"=so];
+
 s530_503 -> s530_9 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s530_9,
 "tiger:label"=HD];
+
 s530_14 [label=füllen,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s530_14,
@@ -1243,12 +1447,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=VVINF,
 "tiger:token"=füllen,
 "tiger:word"=füllen];
+
 s530_502 -> s530_14 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s530_14,
 "tiger:label"=HD];
+
 s530_13 [label=zu,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s530_13,
@@ -1257,16 +1463,19 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=PTKZU,
 "tiger:token"=zu,
 "tiger:word"=zu];
+
 s530_502 -> s530_13 [key=0,
 edge_type=dominates,
 label=PM,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s530_13,
 "tiger:label"=PM];
+
 s530_508 [label=S,
 layers="set(['tiger', 'tiger:sentence', 'tiger:sentence:root'])",
 "tiger:cat"=S,
 "tiger:id"=s530_508];
+
 s530_2 [label=wird,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s530_2,
@@ -1275,18 +1484,21 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=VAFIN,
 "tiger:token"=wird,
 "tiger:word"=wird];
+
 s530_508 -> s530_2 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s530_2,
 "tiger:label"=HD];
+
 s530_508 -> s530_507 [key=0,
 edge_type=dominates,
 label=OC,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s530_507,
 "tiger:label"=OC];
+
 s530_3 [label=es,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s530_3,
@@ -1295,16 +1507,19 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=PPER,
 "tiger:token"=es,
 "tiger:word"=es];
+
 s530_508 -> s530_3 [key=0,
 edge_type=dominates,
 label=EP,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s530_3,
 "tiger:label"=EP];
+
 s536_502 [label=S,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=S,
 "tiger:id"=s536_502];
+
 s536_6 [label=dass,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s536_6,
@@ -1313,12 +1528,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=KOUS,
 "tiger:token"=dass,
 "tiger:word"=dass];
+
 s536_502 -> s536_6 [key=0,
 edge_type=dominates,
 label=CP,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s536_6,
 "tiger:label"=CP];
+
 s536_10 [label=braucht,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s536_10,
@@ -1327,22 +1544,26 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=VVFIN,
 "tiger:token"=braucht,
 "tiger:word"=braucht];
+
 s536_502 -> s536_10 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s536_10,
 "tiger:label"=HD];
+
 s536_501 [label=NP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=NP,
 "tiger:id"=s536_501];
+
 s536_502 -> s536_501 [key=0,
 edge_type=dominates,
 label=OA,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s536_501,
 "tiger:label"=OA];
+
 s536_7 [label=es,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s536_7,
@@ -1351,16 +1572,19 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=PPER,
 "tiger:token"=es,
 "tiger:word"=es];
+
 s536_502 -> s536_7 [key=0,
 edge_type=dominates,
 label=SB,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s536_7,
 "tiger:label"=SB];
+
 s537_509 [label=VP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=VP,
 "tiger:id"=s537_509];
+
 s537_11 [label=gewöhnen,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s537_11,
@@ -1369,18 +1593,21 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=VVINF,
 "tiger:token"=gewöhnen,
 "tiger:word"=gewöhnen];
+
 s537_509 -> s537_11 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s537_11,
 "tiger:label"=HD];
+
 s537_509 -> s537_508 [key=0,
 edge_type=dominates,
 label=OP,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s537_508,
 "tiger:label"=OP];
+
 s537_8 [label=sich,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s537_8,
@@ -1389,12 +1616,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=PRF,
 "tiger:token"=sich,
 "tiger:word"=sich];
+
 s537_509 -> s537_8 [key=0,
 edge_type=dominates,
 label=OA,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s537_8,
 "tiger:label"=OA];
+
 s534_8 [label=".",
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s534_8,
@@ -1403,19 +1632,24 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"="$.",
 "tiger:token"=".",
 "tiger:word"="."];
+
 "VROOT-s534" -> s534_8 [key=0,
 edge_type=spans,
 layers="set(['tiger', 'tiger:sentence'])"];
+
 s534_502 [label=S,
 layers="set(['tiger', 'tiger:sentence', 'tiger:sentence:root'])",
 "tiger:cat"=S,
 "tiger:id"=s534_502];
+
 "VROOT-s534" -> s534_502 [key=0,
 edge_type=dominates,
 layers="set(['tiger', 'tiger:sentence:vroot', 'tiger:sentence'])"];
+
 "VROOT-s535" -> s535_503 [key=0,
 edge_type=dominates,
 layers="set(['tiger', 'tiger:sentence:vroot', 'tiger:sentence'])"];
+
 s535_9 [label=".",
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s535_9,
@@ -1424,9 +1658,11 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"="$.",
 "tiger:token"=".",
 "tiger:word"="."];
+
 "VROOT-s535" -> s535_9 [key=0,
 edge_type=spans,
 layers="set(['tiger', 'tiger:sentence'])"];
+
 s536_11 [label=".",
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s536_11,
@@ -1435,9 +1671,11 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"="$.",
 "tiger:token"=".",
 "tiger:word"="."];
+
 "VROOT-s536" -> s536_11 [key=0,
 edge_type=spans,
 layers="set(['tiger', 'tiger:sentence'])"];
+
 s536_5 [label=",",
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s536_5,
@@ -1446,22 +1684,27 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"="$,",
 "tiger:token"=",",
 "tiger:word"=","];
+
 "VROOT-s536" -> s536_5 [key=0,
 edge_type=spans,
 layers="set(['tiger', 'tiger:sentence'])"];
+
 s536_504 [label=S,
 layers="set(['tiger', 'tiger:sentence', 'tiger:sentence:root'])",
 "tiger:cat"=S,
 "tiger:id"=s536_504];
+
 "VROOT-s536" -> s536_504 [key=0,
 edge_type=dominates,
 layers="set(['tiger', 'tiger:sentence:vroot', 'tiger:sentence'])"];
+
 s532_500 -> s532_1 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s532_1,
 "tiger:label"=NK];
+
 s532_2 [label=Halle,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s532_2,
@@ -1470,12 +1713,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NN,
 "tiger:token"=Halle,
 "tiger:word"=Halle];
+
 s532_500 -> s532_2 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s532_2,
 "tiger:label"=NK];
+
 s530_6 [label=",",
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s530_6,
@@ -1484,12 +1729,15 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"="$,",
 "tiger:token"=",",
 "tiger:word"=","];
+
 "VROOT-s530" -> s530_6 [key=0,
 edge_type=spans,
 layers="set(['tiger', 'tiger:sentence'])"];
+
 "VROOT-s530" -> s530_508 [key=0,
 edge_type=dominates,
 layers="set(['tiger', 'tiger:sentence:vroot', 'tiger:sentence'])"];
+
 s530_15 [label=".",
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s530_15,
@@ -1498,15 +1746,19 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"="$.",
 "tiger:token"=".",
 "tiger:word"="."];
+
 "VROOT-s530" -> s530_15 [key=0,
 edge_type=spans,
 layers="set(['tiger', 'tiger:sentence'])"];
+
 "VROOT-s532" -> s532_6 [key=0,
 edge_type=spans,
 layers="set(['tiger', 'tiger:sentence'])"];
+
 "VROOT-s532" -> s532_502 [key=0,
 edge_type=dominates,
 layers="set(['tiger', 'tiger:sentence:vroot', 'tiger:sentence'])"];
+
 s533_8 [label=".",
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s533_8,
@@ -1515,16 +1767,20 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"="$.",
 "tiger:token"=".",
 "tiger:word"="."];
+
 "VROOT-s533" -> s533_8 [key=0,
 edge_type=spans,
 layers="set(['tiger', 'tiger:sentence'])"];
+
 s533_501 [label=S,
 layers="set(['tiger', 'tiger:sentence', 'tiger:sentence:root'])",
 "tiger:cat"=S,
 "tiger:id"=s533_501];
+
 "VROOT-s533" -> s533_501 [key=0,
 edge_type=dominates,
 layers="set(['tiger', 'tiger:sentence:vroot', 'tiger:sentence'])"];
+
 s538_3 [label=",",
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s538_3,
@@ -1533,9 +1789,11 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"="$,",
 "tiger:token"=",",
 "tiger:word"=","];
+
 "VROOT-s538" -> s538_3 [key=0,
 edge_type=spans,
 layers="set(['tiger', 'tiger:sentence'])"];
+
 s538_20 [label=".",
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s538_20,
@@ -1544,22 +1802,28 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"="$.",
 "tiger:token"=".",
 "tiger:word"="."];
+
 "VROOT-s538" -> s538_20 [key=0,
 edge_type=spans,
 layers="set(['tiger', 'tiger:sentence'])"];
+
 s538_506 [label=S,
 layers="set(['tiger', 'tiger:sentence', 'tiger:sentence:root'])",
 "tiger:cat"=S,
 "tiger:id"=s538_506];
+
 "VROOT-s538" -> s538_506 [key=0,
 edge_type=dominates,
 layers="set(['tiger', 'tiger:sentence:vroot', 'tiger:sentence'])"];
+
 "VROOT-s539" -> s539_503 [key=0,
 edge_type=dominates,
 layers="set(['tiger', 'tiger:sentence:vroot', 'tiger:sentence'])"];
+
 "VROOT-s539" -> s539_10 [key=0,
 edge_type=spans,
 layers="set(['tiger', 'tiger:sentence'])"];
+
 s534_7 [label=Platz,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s534_7,
@@ -1568,6 +1832,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NN,
 "tiger:token"=Platz,
 "tiger:word"=Platz];
+
 s525_18 [label=Zeit,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s525_18,
@@ -1576,6 +1841,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NN,
 "tiger:token"=Zeit,
 "tiger:word"=Zeit];
+
 s525_16 [label=hat,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s525_16,
@@ -1584,6 +1850,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=VAFIN,
 "tiger:token"=hat,
 "tiger:word"=hat];
+
 s525_17 [label=einige,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s525_17,
@@ -1592,6 +1859,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=PIAT,
 "tiger:token"=einige,
 "tiger:word"=einige];
+
 s525_15 [label=",",
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s525_15,
@@ -1600,30 +1868,36 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"="$,",
 "tiger:token"=",",
 "tiger:word"=","];
+
 s527_505 [label=S,
 layers="set(['tiger', 'tiger:sentence', 'tiger:sentence:root'])",
 "tiger:cat"=S,
 "tiger:id"=s527_505];
+
 s527_503 [label=NP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=NP,
 "tiger:id"=s527_503];
+
 s527_505 -> s527_503 [key=0,
 edge_type=dominates,
 label=SB,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s527_503,
 "tiger:label"=SB];
+
 s527_504 [label=VP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=VP,
 "tiger:id"=s527_504];
+
 s527_505 -> s527_504 [key=0,
 edge_type=dominates,
 label=OC,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s527_504,
 "tiger:label"=OC];
+
 s527_5 [label=werden,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s527_5,
@@ -1632,28 +1906,33 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=VAFIN,
 "tiger:token"=werden,
 "tiger:word"=werden];
+
 s527_505 -> s527_5 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s527_5,
 "tiger:label"=HD];
+
 s527_504 -> s527_11 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s527_11,
 "tiger:label"=HD];
+
 s527_502 [label=PP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=PP,
 "tiger:id"=s527_502];
+
 s527_504 -> s527_502 [key=0,
 edge_type=dominates,
 label=MO,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s527_502,
 "tiger:label"=MO];
+
 s527_8 [label=gut,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s527_8,
@@ -1662,22 +1941,26 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ADJD,
 "tiger:token"=gut,
 "tiger:word"=gut];
+
 s527_504 -> s527_8 [key=0,
 edge_type=dominates,
 label=MO,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s527_8,
 "tiger:label"=MO];
+
 s527_501 [label=PP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=PP,
 "tiger:id"=s527_501];
+
 s527_504 -> s527_501 [key=0,
 edge_type=dominates,
 label=MO,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s527_501,
 "tiger:label"=MO];
+
 s527_6 [label=ab,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s527_6,
@@ -1686,12 +1969,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=APPR,
 "tiger:token"=ab,
 "tiger:word"=ab];
+
 s527_501 -> s527_6 [key=0,
 edge_type=dominates,
 label=AC,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s527_6,
 "tiger:label"=AC];
+
 s527_7 [label=2002,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s527_7,
@@ -1700,16 +1985,19 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=CARD,
 "tiger:token"=2002,
 "tiger:word"=2002];
+
 s527_501 -> s527_7 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s527_7,
 "tiger:label"=NK];
+
 s527_500 [label=PP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=PP,
 "tiger:id"=s527_500];
+
 s527_1 [label=Vor,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s527_1,
@@ -1718,12 +2006,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=APPR,
 "tiger:token"=Vor,
 "tiger:word"=Vor];
+
 s527_500 -> s527_1 [key=0,
 edge_type=dominates,
 label=AC,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s527_1,
 "tiger:label"=AC];
+
 s527_2 [label=allem,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s527_2,
@@ -1732,12 +2022,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=PIS,
 "tiger:token"=allem,
 "tiger:word"=allem];
+
 s527_500 -> s527_2 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s527_2,
 "tiger:label"=NK];
+
 s526_9 [label=".",
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s526_9,
@@ -1746,6 +2038,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"="$.",
 "tiger:token"=".",
 "tiger:word"="."];
+
 s526_8 [label=entschieden,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s526_8,
@@ -1754,6 +2047,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=VVPP,
 "tiger:token"=entschieden,
 "tiger:word"=entschieden];
+
 s526_7 [label=Stadtverordneten,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s526_7,
@@ -1762,6 +2056,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NN,
 "tiger:token"=Stadtverordneten,
 "tiger:word"=Stadtverordneten];
+
 s526_6 [label=die,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s526_6,
@@ -1770,6 +2065,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ART,
 "tiger:token"=die,
 "tiger:word"=die];
+
 s526_5 [label=haben,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s526_5,
@@ -1778,6 +2074,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=VAFIN,
 "tiger:token"=haben,
 "tiger:word"=haben];
+
 s526_4 [label=Sitzung,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s526_4,
@@ -1786,6 +2083,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NN,
 "tiger:token"=Sitzung,
 "tiger:word"=Sitzung];
+
 s526_3 [label=jüngsten,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s526_3,
@@ -1794,6 +2092,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ADJA,
 "tiger:token"=jüngsten,
 "tiger:word"=jüngsten];
+
 s526_2 [label=der,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s526_2,
@@ -1802,6 +2101,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ART,
 "tiger:token"=der,
 "tiger:word"=der];
+
 s526_1 [label=Bei,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s526_1,
@@ -1810,13 +2110,16 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=APPR,
 "tiger:token"=Bei,
 "tiger:word"=Bei];
+
 s529_502 [label=S,
 layers="set(['tiger', 'tiger:sentence', 'tiger:sentence:root'])",
 "tiger:cat"=S,
 "tiger:id"=s529_502];
+
 "VROOT-s529" -> s529_502 [key=0,
 edge_type=dominates,
 layers="set(['tiger', 'tiger:sentence:vroot', 'tiger:sentence'])"];
+
 s529_9 [label=".",
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s529_9,
@@ -1825,16 +2128,20 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"="$.",
 "tiger:token"=".",
 "tiger:word"="."];
+
 "VROOT-s529" -> s529_9 [key=0,
 edge_type=spans,
 layers="set(['tiger', 'tiger:sentence'])"];
+
 s528_503 [label=S,
 layers="set(['tiger', 'tiger:sentence', 'tiger:sentence:root'])",
 "tiger:cat"=S,
 "tiger:id"=s528_503];
+
 "VROOT-s528" -> s528_503 [key=0,
 edge_type=dominates,
 layers="set(['tiger', 'tiger:sentence:vroot', 'tiger:sentence'])"];
+
 s528_12 [label=".",
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s528_12,
@@ -1843,9 +2150,11 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"="$.",
 "tiger:token"=".",
 "tiger:word"="."];
+
 "VROOT-s528" -> s528_12 [key=0,
 edge_type=spans,
 layers="set(['tiger', 'tiger:sentence'])"];
+
 s537_12 [label=",",
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s537_12,
@@ -1854,16 +2163,20 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"="$,",
 "tiger:token"=",",
 "tiger:word"=","];
+
 "VROOT-s537" -> s537_12 [key=0,
 edge_type=spans,
 layers="set(['tiger', 'tiger:sentence'])"];
+
 s537_510 [label=S,
 layers="set(['tiger', 'tiger:sentence', 'tiger:sentence:root'])",
 "tiger:cat"=S,
 "tiger:id"=s537_510];
+
 "VROOT-s537" -> s537_510 [key=0,
 edge_type=dominates,
 layers="set(['tiger', 'tiger:sentence:vroot', 'tiger:sentence'])"];
+
 s537_20 [label=".",
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s537_20,
@@ -1872,38 +2185,49 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"="$.",
 "tiger:token"=".",
 "tiger:word"="."];
+
 "VROOT-s537" -> s537_20 [key=0,
 edge_type=spans,
 layers="set(['tiger', 'tiger:sentence'])"];
+
 "VROOT-s527" -> s527_12 [key=0,
 edge_type=spans,
 layers="set(['tiger', 'tiger:sentence'])"];
+
 "VROOT-s527" -> s527_505 [key=0,
 edge_type=dominates,
 layers="set(['tiger', 'tiger:sentence:vroot', 'tiger:sentence'])"];
+
 s526_503 [label=S,
 layers="set(['tiger', 'tiger:sentence', 'tiger:sentence:root'])",
 "tiger:cat"=S,
 "tiger:id"=s526_503];
+
 "VROOT-s526" -> s526_503 [key=0,
 edge_type=dominates,
 layers="set(['tiger', 'tiger:sentence:vroot', 'tiger:sentence'])"];
+
 "VROOT-s526" -> s526_9 [key=0,
 edge_type=spans,
 layers="set(['tiger', 'tiger:sentence'])"];
+
 "VROOT-s525" -> s525_22 [key=0,
 edge_type=spans,
 layers="set(['tiger', 'tiger:sentence'])"];
+
 "VROOT-s525" -> s525_15 [key=0,
 edge_type=spans,
 layers="set(['tiger', 'tiger:sentence'])"];
+
 s525_509 [label=S,
 layers="set(['tiger', 'tiger:sentence', 'tiger:sentence:root'])",
 "tiger:cat"=S,
 "tiger:id"=s525_509];
+
 "VROOT-s525" -> s525_509 [key=0,
 edge_type=dominates,
 layers="set(['tiger', 'tiger:sentence:vroot', 'tiger:sentence'])"];
+
 s525_3 [label=",",
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s525_3,
@@ -1912,26 +2236,32 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"="$,",
 "tiger:token"=",",
 "tiger:word"=","];
+
 "VROOT-s525" -> s525_3 [key=0,
 edge_type=spans,
 layers="set(['tiger', 'tiger:sentence'])"];
+
 "VROOT-s524" -> s524_500 [key=0,
 edge_type=dominates,
 layers="set(['tiger', 'tiger:sentence:vroot', 'tiger:sentence'])"];
+
 s537_506 [label=NP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=NP,
 "tiger:id"=s537_506];
+
 s537_504 [label=PP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=PP,
 "tiger:id"=s537_504];
+
 s537_506 -> s537_504 [key=0,
 edge_type=dominates,
 label=MNR,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s537_504,
 "tiger:label"=MNR];
+
 s537_1 [label=Die,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s537_1,
@@ -1940,12 +2270,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ART,
 "tiger:token"=Die,
 "tiger:word"=Die];
+
 s537_506 -> s537_1 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s537_1,
 "tiger:label"=NK];
+
 s537_2 [label=Gäste,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s537_2,
@@ -1954,42 +2286,50 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NN,
 "tiger:token"=Gäste,
 "tiger:word"=Gäste];
+
 s537_506 -> s537_2 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s537_2,
 "tiger:label"=NK];
+
 s537_505 [label=CO,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=CO,
 "tiger:id"=s537_505];
+
 s537_507 -> s537_505 [key=0,
 edge_type=dominates,
 label=MO,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s537_505,
 "tiger:label"=MO];
+
 s537_503 [label=VZ,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=VZ,
 "tiger:id"=s537_503];
+
 s537_507 -> s537_503 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s537_503,
 "tiger:label"=HD];
+
 s537_500 [label=CAP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=CAP,
 "tiger:id"=s537_500];
+
 s537_504 -> s537_500 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s537_500,
 "tiger:label"=NK];
+
 s537_3 [label=aus,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s537_3,
@@ -1998,22 +2338,26 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=APPR,
 "tiger:token"=aus,
 "tiger:word"=aus];
+
 s537_504 -> s537_3 [key=0,
 edge_type=dominates,
 label=AC,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s537_3,
 "tiger:label"=AC];
+
 s537_501 [label=PP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=PP,
 "tiger:id"=s537_501];
+
 s537_505 -> s537_501 [key=0,
 edge_type=dominates,
 label=CJ,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s537_501,
 "tiger:label"=CJ];
+
 s537_15 [label=und,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s537_15,
@@ -2022,22 +2366,26 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=KON,
 "tiger:token"=und,
 "tiger:word"=und];
+
 s537_505 -> s537_15 [key=0,
 edge_type=dominates,
 label=CD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s537_15,
 "tiger:label"=CD];
+
 s537_502 [label=NP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=NP,
 "tiger:id"=s537_502];
+
 s537_505 -> s537_502 [key=0,
 edge_type=dominates,
 label=CJ,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s537_502,
 "tiger:label"=CJ];
+
 s537_16 [label=Richtung,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s537_16,
@@ -2046,12 +2394,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NN,
 "tiger:token"=Richtung,
 "tiger:word"=Richtung];
+
 s537_502 -> s537_16 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s537_16,
 "tiger:label"=NK];
+
 s537_17 [label=Gymnasium,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s537_17,
@@ -2060,12 +2410,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NN,
 "tiger:token"=Gymnasium,
 "tiger:word"=Gymnasium];
+
 s537_502 -> s537_17 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s537_17,
 "tiger:label"=NK];
+
 s537_18 [label=zu,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s537_18,
@@ -2074,12 +2426,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=PTKZU,
 "tiger:token"=zu,
 "tiger:word"=zu];
+
 s537_503 -> s537_18 [key=0,
 edge_type=dominates,
 label=PM,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s537_18,
 "tiger:label"=PM];
+
 s537_19 [label=pilgern,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s537_19,
@@ -2088,12 +2442,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=VVINF,
 "tiger:token"=pilgern,
 "tiger:word"=pilgern];
+
 s537_503 -> s537_19 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s537_19,
 "tiger:label"=HD];
+
 s537_5 [label=und,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s537_5,
@@ -2102,12 +2458,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=KON,
 "tiger:token"=und,
 "tiger:word"=und];
+
 s537_500 -> s537_5 [key=0,
 edge_type=dominates,
 label=CD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s537_5,
 "tiger:label"=CD];
+
 s537_4 [label=nah,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s537_4,
@@ -2116,12 +2474,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ADJD,
 "tiger:token"=nah,
 "tiger:word"=nah];
+
 s537_500 -> s537_4 [key=0,
 edge_type=dominates,
 label=CJ,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s537_4,
 "tiger:label"=CJ];
+
 s537_6 [label=fern,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s537_6,
@@ -2130,12 +2490,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ADJD,
 "tiger:token"=fern,
 "tiger:word"=fern];
+
 s537_500 -> s537_6 [key=0,
 edge_type=dominates,
 label=CJ,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s537_6,
 "tiger:label"=CJ];
+
 s537_14 [label=Wittstock,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s537_14,
@@ -2144,12 +2506,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NE,
 "tiger:token"=Wittstock,
 "tiger:word"=Wittstock];
+
 s537_501 -> s537_14 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s537_14,
 "tiger:label"=NK];
+
 s537_13 [label=nach,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s537_13,
@@ -2158,16 +2522,19 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=APPR,
 "tiger:token"=nach,
 "tiger:word"=nach];
+
 s537_501 -> s537_13 [key=0,
 edge_type=dominates,
 label=AC,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s537_13,
 "tiger:label"=AC];
+
 s536_503 [label=VP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=VP,
 "tiger:id"=s536_503];
+
 s536_4 [label=gezeigt,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s536_4,
@@ -2176,18 +2543,21 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=VVPP,
 "tiger:token"=gezeigt,
 "tiger:word"=gezeigt];
+
 s536_503 -> s536_4 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s536_4,
 "tiger:label"=HD];
+
 s536_503 -> s536_502 [key=0,
 edge_type=dominates,
 label=OC,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s536_502,
 "tiger:label"=OC];
+
 s531_11 [label=belastet,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s531_11,
@@ -2196,6 +2566,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=VVPP,
 "tiger:token"=belastet,
 "tiger:word"=belastet];
+
 s531_10 [label=Stadthaushalt,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s531_10,
@@ -2204,6 +2575,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NN,
 "tiger:token"=Stadthaushalt,
 "tiger:word"=Stadthaushalt];
+
 s527_3 [label=kommerzielle,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s527_3,
@@ -2212,18 +2584,21 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ADJA,
 "tiger:token"=kommerzielle,
 "tiger:word"=kommerzielle];
+
 s527_503 -> s527_3 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s527_3,
 "tiger:label"=NK];
+
 s527_503 -> s527_500 [key=0,
 edge_type=dominates,
 label=MO,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s527_500,
 "tiger:label"=MO];
+
 s527_4 [label=Veranstalter,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s527_4,
@@ -2232,12 +2607,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NN,
 "tiger:token"=Veranstalter,
 "tiger:word"=Veranstalter];
+
 s527_503 -> s527_4 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s527_4,
 "tiger:label"=NK];
+
 s536_2 [label=Oktoberfest,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s536_2,
@@ -2246,6 +2623,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NN,
 "tiger:token"=Oktoberfest,
 "tiger:word"=Oktoberfest];
+
 s527_9 [label=zur,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s527_9,
@@ -2254,18 +2632,21 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=APPRART,
 "tiger:token"=zur,
 "tiger:word"=zur];
+
 s527_502 -> s527_9 [key=0,
 edge_type=dominates,
 label=AC,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s527_9,
 "tiger:label"=AC];
+
 s527_502 -> s527_10 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s527_10,
 "tiger:label"=NK];
+
 s536_8 [label=eine,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s536_8,
@@ -2274,6 +2655,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ART,
 "tiger:token"=eine,
 "tiger:word"=eine];
+
 s536_9 [label=Anlaufzeit,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s536_9,
@@ -2282,20 +2664,24 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NN,
 "tiger:token"=Anlaufzeit,
 "tiger:word"=Anlaufzeit];
+
 s528_502 [label=NP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=NP,
 "tiger:id"=s528_502];
+
 s528_501 [label=PP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=PP,
 "tiger:id"=s528_501];
+
 s528_502 -> s528_501 [key=0,
 edge_type=dominates,
 label=MNR,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s528_501,
 "tiger:label"=MNR];
+
 s528_5 [label=nur,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s528_5,
@@ -2304,12 +2690,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ADV,
 "tiger:token"=nur,
 "tiger:word"=nur];
+
 s528_502 -> s528_5 [key=0,
 edge_type=dominates,
 label=MO,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s528_5,
 "tiger:label"=MO];
+
 s528_7 [label=Tropfen,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s528_7,
@@ -2318,12 +2706,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NN,
 "tiger:token"=Tropfen,
 "tiger:word"=Tropfen];
+
 s528_502 -> s528_7 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s528_7,
 "tiger:label"=NK];
+
 s528_6 [label=ein,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s528_6,
@@ -2332,28 +2722,33 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ART,
 "tiger:token"=ein,
 "tiger:word"=ein];
+
 s528_502 -> s528_6 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s528_6,
 "tiger:label"=NK];
+
 s528_500 [label=NP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=NP,
 "tiger:id"=s528_500];
+
 s528_503 -> s528_500 [key=0,
 edge_type=dominates,
 label=SB,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s528_500,
 "tiger:label"=SB];
+
 s528_503 -> s528_502 [key=0,
 edge_type=dominates,
 label=PD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s528_502,
 "tiger:label"=PD];
+
 s528_3 [label=sind,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s528_3,
@@ -2362,12 +2757,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=VAFIN,
 "tiger:token"=sind,
 "tiger:word"=sind];
+
 s528_503 -> s528_3 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s528_3,
 "tiger:label"=HD];
+
 s528_4 [label=dennoch,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s528_4,
@@ -2376,12 +2773,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ADV,
 "tiger:token"=dennoch,
 "tiger:word"=dennoch];
+
 s528_503 -> s528_4 [key=0,
 edge_type=dominates,
 label=MO,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s528_4,
 "tiger:label"=MO];
+
 s528_2 [label=Einnahmen,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s528_2,
@@ -2390,12 +2789,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NN,
 "tiger:token"=Einnahmen,
 "tiger:word"=Einnahmen];
+
 s528_500 -> s528_2 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s528_2,
 "tiger:label"=NK];
+
 s528_1 [label=Die,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s528_1,
@@ -2404,12 +2805,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ART,
 "tiger:token"=Die,
 "tiger:word"=Die];
+
 s528_500 -> s528_1 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s528_1,
 "tiger:label"=NK];
+
 s528_10 [label=heißen,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s528_10,
@@ -2418,12 +2821,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ADJA,
 "tiger:token"=heißen,
 "tiger:word"=heißen];
+
 s528_501 -> s528_10 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s528_10,
 "tiger:label"=NK];
+
 s528_9 [label=den,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s528_9,
@@ -2432,12 +2837,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ART,
 "tiger:token"=den,
 "tiger:word"=den];
+
 s528_501 -> s528_9 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s528_9,
 "tiger:label"=NK];
+
 s528_8 [label=auf,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s528_8,
@@ -2446,12 +2853,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=APPR,
 "tiger:token"=auf,
 "tiger:word"=auf];
+
 s528_501 -> s528_8 [key=0,
 edge_type=dominates,
 label=AC,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s528_8,
 "tiger:label"=AC];
+
 s528_11 [label=Stein,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s528_11,
@@ -2460,24 +2869,28 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NN,
 "tiger:token"=Stein,
 "tiger:word"=Stein];
+
 s528_501 -> s528_11 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s528_11,
 "tiger:label"=NK];
+
 s537_510 -> s537_509 [key=0,
 edge_type=dominates,
 label=OC,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s537_509,
 "tiger:label"=OC];
+
 s537_510 -> s537_506 [key=0,
 edge_type=dominates,
 label=SB,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s537_506,
 "tiger:label"=SB];
+
 s537_9 [label=erst,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s537_9,
@@ -2486,12 +2899,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ADV,
 "tiger:token"=erst,
 "tiger:word"=erst];
+
 s537_510 -> s537_9 [key=0,
 edge_type=dominates,
 label=MO,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s537_9,
 "tiger:label"=MO];
+
 s537_7 [label=müssen,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s537_7,
@@ -2500,12 +2915,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=VMFIN,
 "tiger:token"=müssen,
 "tiger:word"=müssen];
+
 s537_510 -> s537_7 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s537_7,
 "tiger:label"=HD];
+
 s529_3 [label=für,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s529_3,
@@ -2514,6 +2931,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=APPR,
 "tiger:token"=für,
 "tiger:word"=für];
+
 s538_5 [label=die,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s538_5,
@@ -2522,6 +2940,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ART,
 "tiger:token"=die,
 "tiger:word"=die];
+
 s539_9 [label=geraten,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s539_9,
@@ -2530,28 +2949,33 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=VVPP,
 "tiger:token"=geraten,
 "tiger:word"=geraten];
+
 s536_501 -> s536_9 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s536_9,
 "tiger:label"=NK];
+
 s536_501 -> s536_8 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s536_8,
 "tiger:label"=NK];
+
 s529_501 [label=NP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=NP,
 "tiger:id"=s529_501];
+
 s529_502 -> s529_501 [key=0,
 edge_type=dominates,
 label=SB,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s529_501,
 "tiger:label"=SB];
+
 s529_8 [label=hoch,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s529_8,
@@ -2560,12 +2984,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ADJD,
 "tiger:token"=hoch,
 "tiger:word"=hoch];
+
 s529_502 -> s529_8 [key=0,
 edge_type=dominates,
 label=PD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s529_8,
 "tiger:label"=PD];
+
 s529_7 [label=sind,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s529_7,
@@ -2574,18 +3000,21 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=VAFIN,
 "tiger:token"=sind,
 "tiger:word"=sind];
+
 s529_502 -> s529_7 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s529_7,
 "tiger:label"=HD];
+
 s529_501 -> s529_2 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s529_2,
 "tiger:label"=NK];
+
 s529_1 [label=Die,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s529_1,
@@ -2594,28 +3023,33 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ART,
 "tiger:token"=Die,
 "tiger:word"=Die];
+
 s529_501 -> s529_1 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s529_1,
 "tiger:label"=NK];
+
 s529_500 [label=PP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=PP,
 "tiger:id"=s529_500];
+
 s529_501 -> s529_500 [key=0,
 edge_type=dominates,
 label=MNR,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s529_500,
 "tiger:label"=MNR];
+
 s529_500 -> s529_3 [key=0,
 edge_type=dominates,
 label=AC,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s529_3,
 "tiger:label"=AC];
+
 s529_5 [label=schmucken,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s529_5,
@@ -2624,12 +3058,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ADJA,
 "tiger:token"=schmucken,
 "tiger:word"=schmucken];
+
 s529_500 -> s529_5 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s529_5,
 "tiger:label"=NK];
+
 s529_6 [label=Veranstaltungsort,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s529_6,
@@ -2638,12 +3074,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NN,
 "tiger:token"=Veranstaltungsort,
 "tiger:word"=Veranstaltungsort];
+
 s529_500 -> s529_6 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s529_6,
 "tiger:label"=NK];
+
 s529_4 [label=den,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s529_4,
@@ -2652,12 +3090,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ART,
 "tiger:token"=den,
 "tiger:word"=den];
+
 s529_500 -> s529_4 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s529_4,
 "tiger:label"=NK];
+
 s539_6 [label=bald,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s539_6,
@@ -2666,20 +3106,24 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ADV,
 "tiger:token"=bald,
 "tiger:word"=bald];
+
 s531_504 [label=AVP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=AVP,
 "tiger:id"=s531_504];
+
 s531_503 [label=S,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=S,
 "tiger:id"=s531_503];
+
 s531_504 -> s531_503 [key=0,
 edge_type=dominates,
 label=CC,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s531_503,
 "tiger:label"=CC];
+
 s531_6 [label=desto,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s531_6,
@@ -2688,22 +3132,26 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ADV,
 "tiger:token"=desto,
 "tiger:word"=desto];
+
 s531_504 -> s531_6 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s531_6,
 "tiger:label"=HD];
+
 s531_505 [label=AVP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=AVP,
 "tiger:id"=s531_505];
+
 s531_505 -> s531_504 [key=0,
 edge_type=dominates,
 label=MO,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s531_504,
 "tiger:label"=MO];
+
 s531_7 [label=weniger,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s531_7,
@@ -2712,22 +3160,26 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ADV,
 "tiger:token"=weniger,
 "tiger:word"=weniger];
+
 s531_505 -> s531_7 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s531_7,
 "tiger:label"=HD];
+
 s539_500 [label=PP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=PP,
 "tiger:id"=s539_500];
+
 s539_500 -> s539_1 [key=0,
 edge_type=dominates,
 label=AC,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s539_1,
 "tiger:label"=AC];
+
 s539_3 [label=Halle,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s539_3,
@@ -2736,12 +3188,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NN,
 "tiger:token"=Halle,
 "tiger:word"=Halle];
+
 s539_500 -> s539_3 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s539_3,
 "tiger:label"=NK];
+
 s539_2 [label=die,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s539_2,
@@ -2750,38 +3204,45 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ART,
 "tiger:token"=die,
 "tiger:word"=die];
+
 s539_500 -> s539_2 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s539_2,
 "tiger:label"=NK];
+
 s531_506 [label=VP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=VP,
 "tiger:id"=s531_506];
+
 s531_506 -> s531_11 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s531_11,
 "tiger:label"=HD];
+
 s531_506 -> s531_505 [key=0,
 edge_type=dominates,
 label=MO,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s531_505,
 "tiger:label"=MO];
+
 s531_501 [label=NP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=NP,
 "tiger:id"=s531_501];
+
 s531_507 -> s531_501 [key=0,
 edge_type=dominates,
 label=SB,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s531_501,
 "tiger:label"=SB];
+
 s531_8 [label=wird,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s531_8,
@@ -2790,18 +3251,21 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=VAFIN,
 "tiger:token"=wird,
 "tiger:word"=wird];
+
 s531_507 -> s531_8 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s531_8,
 "tiger:label"=HD];
+
 s531_507 -> s531_506 [key=0,
 edge_type=dominates,
 label=OC,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s531_506,
 "tiger:label"=OC];
+
 s534_6 [label=genügend,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s534_6,
@@ -2810,6 +3274,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=PIAT,
 "tiger:token"=genügend,
 "tiger:word"=genügend];
+
 s534_4 [label=bieten,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s534_4,
@@ -2818,6 +3283,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=VVFIN,
 "tiger:token"=bieten,
 "tiger:word"=bieten];
+
 s534_5 [label=Veranstaltern,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s534_5,
@@ -2826,10 +3292,12 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NN,
 "tiger:token"=Veranstaltern,
 "tiger:word"=Veranstaltern];
+
 s531_500 [label=AP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=AP,
 "tiger:id"=s531_500];
+
 s531_2 [label=mehr,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s531_2,
@@ -2838,12 +3306,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=PIAT,
 "tiger:token"=mehr,
 "tiger:word"=mehr];
+
 s531_500 -> s531_2 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s531_2,
 "tiger:label"=HD];
+
 s531_1 [label=Je,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s531_1,
@@ -2852,18 +3322,21 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ADV,
 "tiger:token"=Je,
 "tiger:word"=Je];
+
 s531_500 -> s531_1 [key=0,
 edge_type=dominates,
 label=MO,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s531_1,
 "tiger:label"=MO];
+
 s531_501 -> s531_10 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s531_10,
 "tiger:label"=NK];
+
 s531_9 [label=der,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s531_9,
@@ -2872,22 +3345,26 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ART,
 "tiger:token"=der,
 "tiger:word"=der];
+
 s531_501 -> s531_9 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s531_9,
 "tiger:label"=NK];
+
 s531_502 [label=NP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=NP,
 "tiger:id"=s531_502];
+
 s531_502 -> s531_500 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s531_500,
 "tiger:label"=NK];
+
 s531_3 [label=Veranstaltungen,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s531_3,
@@ -2896,18 +3373,21 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NN,
 "tiger:token"=Veranstaltungen,
 "tiger:word"=Veranstaltungen];
+
 s531_502 -> s531_3 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s531_3,
 "tiger:label"=NK];
+
 s531_503 -> s531_502 [key=0,
 edge_type=dominates,
 label=SB,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s531_502,
 "tiger:label"=SB];
+
 s531_4 [label=stattfinden,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s531_4,
@@ -2916,136 +3396,160 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=VVFIN,
 "tiger:token"=stattfinden,
 "tiger:word"=stattfinden];
+
 s531_503 -> s531_4 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s531_4,
 "tiger:label"=HD];
+
 s538_505 [label=S,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=S,
 "tiger:id"=s538_505];
+
 s538_505 -> s538_19 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s538_19,
 "tiger:label"=HD];
+
 s538_505 -> s538_18 [key=0,
 edge_type=dominates,
 label=NG,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s538_18,
 "tiger:label"=NG];
+
 s538_505 -> s538_4 [key=0,
 edge_type=dominates,
 label=CP,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s538_4,
 "tiger:label"=CP];
+
 s538_502 [label=NP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=NP,
 "tiger:id"=s538_502];
+
 s538_505 -> s538_502 [key=0,
 edge_type=dominates,
 label=SB,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s538_502,
 "tiger:label"=SB];
+
 s538_505 -> s538_504 [key=0,
 edge_type=dominates,
 label=MO,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s538_504,
 "tiger:label"=MO];
+
 s538_506 -> s538_1 [key=0,
 edge_type=dominates,
 label=SVP,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s538_1,
 "tiger:label"=SVP];
+
 s538_506 -> s538_2 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s538_2,
 "tiger:label"=HD];
+
 s538_506 -> s538_505 [key=0,
 edge_type=dominates,
 label=SB,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s538_505,
 "tiger:label"=SB];
+
 s539_502 -> s539_9 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s539_9,
 "tiger:label"=HD];
+
 s539_502 -> s539_501 [key=0,
 edge_type=dominates,
 label=MO,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s539_501,
 "tiger:label"=MO];
+
 s539_502 -> s539_500 [key=0,
 edge_type=dominates,
 label=MO,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s539_500,
 "tiger:label"=MO];
+
 s539_502 -> s539_6 [key=0,
 edge_type=dominates,
 label=MO,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s539_6,
 "tiger:label"=MO];
+
 s538_501 [label=PP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=PP,
 "tiger:id"=s538_501];
+
 s538_501 -> s538_17 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s538_17,
 "tiger:label"=NK];
+
 s538_501 -> s538_16 [key=0,
 edge_type=dominates,
 label=AC,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s538_16,
 "tiger:label"=AC];
+
 s534_502 -> s534_500 [key=0,
 edge_type=dominates,
 label=SB,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s534_500,
 "tiger:label"=SB];
+
 s534_501 [label=NP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=NP,
 "tiger:id"=s534_501];
+
 s534_502 -> s534_501 [key=0,
 edge_type=dominates,
 label=OA,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s534_501,
 "tiger:label"=OA];
+
 s534_502 -> s534_4 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s534_4,
 "tiger:label"=HD];
+
 s534_502 -> s534_5 [key=0,
 edge_type=dominates,
 label=DA,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s534_5,
 "tiger:label"=DA];
+
 s525_8 [label=Wittstocker,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s525_8,
@@ -3054,6 +3558,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ADJA,
 "tiger:token"=Wittstocker,
 "tiger:word"=Wittstocker];
+
 s525_9 [label=Stadthalle,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s525_9,
@@ -3062,44 +3567,52 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NN,
 "tiger:token"=Stadthalle,
 "tiger:word"=Stadthalle];
+
 s525_509 -> s525_16 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s525_16,
 "tiger:label"=HD];
+
 s525_508 [label=NP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=NP,
 "tiger:id"=s525_508];
+
 s525_509 -> s525_508 [key=0,
 edge_type=dominates,
 label=SB,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s525_508,
 "tiger:label"=SB];
+
 s525_506 [label=VP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=VP,
 "tiger:id"=s525_506];
+
 s525_509 -> s525_506 [key=0,
 edge_type=dominates,
 label=OC,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s525_506,
 "tiger:label"=OC];
+
 s525_508 -> s525_507 [key=0,
 edge_type=dominates,
 label=OC,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s525_507,
 "tiger:label"=OC];
+
 s525_508 -> s525_2 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s525_2,
 "tiger:label"=NK];
+
 s525_1 [label=Die,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s525_1,
@@ -3108,80 +3621,94 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ART,
 "tiger:token"=Die,
 "tiger:word"=Die];
+
 s525_508 -> s525_1 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s525_1,
 "tiger:label"=NK];
+
 s538_503 -> s538_14 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s538_14,
 "tiger:label"=NK];
+
 s538_503 -> s538_13 [key=0,
 edge_type=dominates,
 label=AC,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s538_13,
 "tiger:label"=AC];
+
 s538_503 -> s538_15 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s538_15,
 "tiger:label"=NK];
+
 s538_503 -> s538_501 [key=0,
 edge_type=dominates,
 label=MNR,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s538_501,
 "tiger:label"=MNR];
+
 s536_500 [label=NP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=NP,
 "tiger:id"=s536_500];
+
 s536_500 -> s536_1 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s536_1,
 "tiger:label"=NK];
+
 s536_500 -> s536_2 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s536_2,
 "tiger:label"=NK];
+
 s525_503 [label=NP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=NP,
 "tiger:id"=s525_503];
+
 s525_503 -> s525_18 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s525_18,
 "tiger:label"=NK];
+
 s525_503 -> s525_17 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s525_17,
 "tiger:label"=NK];
+
 s525_501 -> s525_8 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s525_8,
 "tiger:label"=NK];
+
 s525_501 -> s525_9 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s525_9,
 "tiger:label"=NK];
+
 s525_6 [label=die,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s525_6,
@@ -3190,12 +3717,14 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ART,
 "tiger:token"=die,
 "tiger:word"=die];
+
 s525_501 -> s525_6 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s525_6,
 "tiger:label"=NK];
+
 s525_7 [label=neue,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s525_7,
@@ -3204,144 +3733,169 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ADJA,
 "tiger:token"=neue,
 "tiger:word"=neue];
+
 s525_501 -> s525_7 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s525_7,
 "tiger:label"=NK];
+
 s525_506 -> s525_21 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s525_21,
 "tiger:label"=HD];
+
 s525_506 -> s525_504 [key=0,
 edge_type=dominates,
 label=CVC,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s525_504,
 "tiger:label"=CVC];
+
 s525_506 -> s525_503 [key=0,
 edge_type=dominates,
 label=OA,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s525_503,
 "tiger:label"=OA];
+
 s538_502 -> s538_5 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s538_5,
 "tiger:label"=NK];
+
 s538_502 -> s538_500 [key=0,
 edge_type=dominates,
 label=MNR,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s538_500,
 "tiger:label"=MNR];
+
 s538_502 -> s538_6 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s538_6,
 "tiger:label"=NK];
+
 s536_504 -> s536_3 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s536_3,
 "tiger:label"=HD];
+
 s536_504 -> s536_503 [key=0,
 edge_type=dominates,
 label=OC,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s536_503,
 "tiger:label"=OC];
+
 s536_504 -> s536_500 [key=0,
 edge_type=dominates,
 label=SB,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s536_500,
 "tiger:label"=SB];
+
 s526_500 [label=PP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=PP,
 "tiger:id"=s526_500];
+
 s526_500 -> s526_2 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s526_2,
 "tiger:label"=NK];
+
 s526_500 -> s526_4 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s526_4,
 "tiger:label"=NK];
+
 s526_500 -> s526_1 [key=0,
 edge_type=dominates,
 label=AC,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s526_1,
 "tiger:label"=AC];
+
 s526_500 -> s526_3 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s526_3,
 "tiger:label"=NK];
+
 s526_501 [label=NP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=NP,
 "tiger:id"=s526_501];
+
 s526_501 -> s526_7 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s526_7,
 "tiger:label"=NK];
+
 s526_501 -> s526_6 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s526_6,
 "tiger:label"=NK];
+
 s526_502 [label=VP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=VP,
 "tiger:id"=s526_502];
+
 s526_502 -> s526_500 [key=0,
 edge_type=dominates,
 label=MO,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s526_500,
 "tiger:label"=MO];
+
 s526_502 -> s526_8 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s526_8,
 "tiger:label"=HD];
+
 s526_503 -> s526_5 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s526_5,
 "tiger:label"=HD];
+
 s526_503 -> s526_501 [key=0,
 edge_type=dominates,
 label=SB,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s526_501,
 "tiger:label"=SB];
+
 s526_503 -> s526_502 [key=0,
 edge_type=dominates,
 label=OC,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s526_502,
 "tiger:label"=OC];
+
 s533_1 [label=Und,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s533_1,
@@ -3350,6 +3904,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=KON,
 "tiger:token"=Und,
 "tiger:word"=Und];
+
 s533_3 [label=der,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s533_3,
@@ -3358,6 +3913,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=ART,
 "tiger:token"=der,
 "tiger:word"=der];
+
 s533_2 [label=in,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s533_2,
@@ -3366,6 +3922,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=APPR,
 "tiger:token"=in,
 "tiger:word"=in];
+
 s533_5 [label=gibt,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s533_5,
@@ -3374,6 +3931,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=VVFIN,
 "tiger:token"=gibt,
 "tiger:word"=gibt];
+
 s533_4 [label=Region,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s533_4,
@@ -3382,6 +3940,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NN,
 "tiger:token"=Region,
 "tiger:word"=Region];
+
 s533_7 [label=Konkurrenz,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s533_7,
@@ -3390,6 +3949,7 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=NN,
 "tiger:token"=Konkurrenz,
 "tiger:word"=Konkurrenz];
+
 s533_6 [label=es,
 layers="set(['tiger', 'tiger:token'])",
 "tiger:id"=s533_6,
@@ -3398,68 +3958,80 @@ layers="set(['tiger', 'tiger:token'])",
 "tiger:pos"=PPER,
 "tiger:token"=es,
 "tiger:word"=es];
+
 s534_501 -> s534_7 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s534_7,
 "tiger:label"=NK];
+
 s534_501 -> s534_6 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s534_6,
 "tiger:label"=NK];
+
 s533_500 [label=PP,
 layers="set(['tiger:syntax', 'tiger'])",
 "tiger:cat"=PP,
 "tiger:id"=s533_500];
+
 s533_500 -> s533_4 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s533_4,
 "tiger:label"=NK];
+
 s533_500 -> s533_2 [key=0,
 edge_type=dominates,
 label=AC,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s533_2,
 "tiger:label"=AC];
+
 s533_500 -> s533_3 [key=0,
 edge_type=dominates,
 label=NK,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s533_3,
 "tiger:label"=NK];
+
 s533_501 -> s533_5 [key=0,
 edge_type=dominates,
 label=HD,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s533_5,
 "tiger:label"=HD];
+
 s533_501 -> s533_500 [key=0,
 edge_type=dominates,
 label=MO,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s533_500,
 "tiger:label"=MO];
+
 s533_501 -> s533_6 [key=0,
 edge_type=dominates,
 label=EP,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s533_6,
 "tiger:label"=EP];
+
 s533_501 -> s533_7 [key=0,
 edge_type=dominates,
 label=OA,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s533_7,
 "tiger:label"=OA];
+
 s533_501 -> s533_1 [key=0,
 edge_type=dominates,
 label=JU,
 layers="set(['tiger', 'tiger:edge'])",
 "tiger:idref"=s533_1,
 "tiger:label"=JU];
+
 }
