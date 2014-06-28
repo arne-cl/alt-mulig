@@ -1,5 +1,28 @@
 digraph "manual-00002" {
 	node [label="\N"];
+    compound=true;
+
+	subgraph cluster_tokens {
+		graph [rank=same, label="Tokens"];
+		t_19 [shape=plaintext, label="Die Litanei ist nicht neu :"];
+		t_2 [label="Eltern beschweren sich über veraltete Schulbücher ,"];
+        t_3 [label="Kommunen jammern über leere Kassen"];
+        t_4 [label="und Schulbuchverlage beklagen Umsatzeinbrüche ."];
+        t_5 [label="Trommeln gehört halt zum Geschäft ."];
+        t_6 [label="Doch unterm Strich stehen Brandenburgs Schulen ganz gut da ."];
+        t_7 [label="Zum einen wurden nach der Wende fast alle Schulbuchbestände ausgetauscht ,"];
+        t_8 [label="zum anderen müssen sich märkische Eltern am Buchkauf beteiligen ."];
+        t_9 [label="Dafür gibt es sogar Lob von den Schulbuchverlagen ."];
+        t_10 [label="Denn in vielen alten Bundesländern gilt noch immer die Lernmittelfreiheit :"];
+        t_11 [label="Eltern müssen nichts zuzahlen ."];
+        t_12 [label="Der Preis dafür ist hoch -"];
+        t_13 [label="gerade dort wird oft mit völlig veraltetem Material gearbeitet ."];
+        t_14 [label="Doch auch Brandenburg muss aufpassen ."];
+        t_15 [label="Wenn immer mehr Kommunen finanziell ausbluten ,"];
+        t_16 [label="wird die regelmäßige Schulbucherneuerung zur Illusion ."];
+        t_17 [label="Deshalb ist auch die Landesregierung gefragt :"];
+        t_18 [label="Es kann nicht sein , dass für teure Modellprojekte wie Schnellläuferklassen oder Ganztagsschulen Geld locker gemacht , aber an der Grundausstattung gespart wird ."];
+	}
 
 	subgraph rank_0 {
 		graph [rank=same];
@@ -66,30 +89,6 @@ digraph "manual-00002" {
 		13;
 	}
 
-	subgraph tokens {
-		graph [rank=same];
-		t_19 [label="Litanei nicht neu"];
-		t_2 [label="Eltern beschweren sich"];
-        t_3 [label="Kommunen jammern"];
-        t_4 [label="Schulbuchverlage beklagen"];
-        t_5 [label="Trommeln"];
-        t_6 [label="doch unterm Strich"];
-        t_7 [label="zum einen"];
-        t_8 [label="zum anderen"];
-        t_9 [label="dafuer Lob von Verlagen"];
-        t_10 [label="denn in alten Bundeslaendern"];
-        t_11 [label="muessen Eltern zahlen"];
-        t_12 [label="hoher Preis"];
-        t_13 [label="veraltetes Material"];
-        t_14 [label="doch auch Brandenburg"];
-        t_15 [label="Kommunen ausbluten"];
-        t_16 [label="Schulbucherneuerung illusorisch"];
-        t_17 [label="deshalb Regierung gefragt"];
-        t_18 [label="es kann nicht sein"];
-	}
-
-
-
 34 -> 33;
 
 21 -> 33;
@@ -131,42 +130,43 @@ digraph "manual-00002" {
 13 -> 12;
 
 
-2 -> t_2;
-3 -> t_3;
-4 -> t_4;
-5 -> t_5;
-6 -> t_6;
-7 -> t_7;
-8 -> t_8;
-9 -> t_9;
-10 -> t_10;
-11 -> t_11;
-12 -> t_12;
-13 -> t_13;
-14 -> t_14;
-15 -> t_15;
-16 -> t_16;
-17 -> t_17;
-18 -> t_18;
-19 -> t_19;
+2 -> t_2 [lhead=cluster_tokens];
+3 -> t_3 [lhead=cluster_tokens];
+4 -> t_4 [lhead=cluster_tokens];
+5 -> t_5 [lhead=cluster_tokens];
+6 -> t_6 [lhead=cluster_tokens];
+7 -> t_7 [lhead=cluster_tokens];
+8 -> t_8 [lhead=cluster_tokens];
+9 -> t_9 [lhead=cluster_tokens];
+10 -> t_10 [lhead=cluster_tokens];
+11 -> t_11 [lhead=cluster_tokens];
+12 -> t_12 [lhead=cluster_tokens];
+13 -> t_13 [lhead=cluster_tokens];
+14 -> t_14 [lhead=cluster_tokens];
+15 -> t_15 [lhead=cluster_tokens];
+16 -> t_16 [lhead=cluster_tokens];
+17 -> t_17 [lhead=cluster_tokens];
+18 -> t_18 [lhead=cluster_tokens];
+19 -> t_19 [lhead=cluster_tokens];
 
-t_19 -> t_2 [style=invis, weight=10];
-t_2 -> t_3 [style=invis, weight=10];
-t_3 -> t_4 [style=invis, weight=10];
-t_4 -> t_5 [style=invis, weight=10];
-t_5 -> t_6 [style=invis, weight=10];
-t_6 -> t_7 [style=invis, weight=10];
-t_7 -> t_8 [style=invis, weight=10];
-t_8 -> t_9 [style=invis, weight=10];
-t_9 -> t_10 [style=invis, weight=10];
-t_10 -> t_11 [style=invis, weight=10];
-t_11 -> t_12 [style=invis, weight=10];
-t_12 -> t_13 [style=invis, weight=10];
-t_13 -> t_14 [style=invis, weight=10];
-t_14 -> t_15 [style=invis, weight=10];
-t_15 -> t_16 [style=invis, weight=10];
-t_16 -> t_17 [style=invis, weight=10];
-t_17 -> t_18 [style=invis, weight=10];
+
+t_19 -> t_2 [style=invis, weight=10, constraint=false];
+t_2 -> t_3 [style=invis, weight=10, constraint=false];
+t_3 -> t_4 [style=invis, weight=10, constraint=false];
+t_4 -> t_5 [style=invis, weight=10, constraint=false];
+t_5 -> t_6 [style=invis, weight=10, constraint=false];
+t_6 -> t_7 [style=invis, weight=10, constraint=false];
+t_7 -> t_8 [style=invis, weight=10, constraint=false];
+t_8 -> t_9 [style=invis, weight=10, constraint=false];
+t_9 -> t_10 [style=invis, weight=10, constraint=false];
+t_10 -> t_11 [style=invis, weight=10, constraint=false];
+t_11 -> t_12 [style=invis, weight=10, constraint=false];
+t_12 -> t_13 [style=invis, weight=10, constraint=false];
+t_13 -> t_14 [style=invis, weight=10, constraint=false];
+t_14 -> t_15 [style=invis, weight=10, constraint=false];
+t_15 -> t_16 [style=invis, weight=10, constraint=false];
+t_16 -> t_17 [style=invis, weight=10, constraint=false];
+t_17 -> t_18 [style=invis, weight=10, constraint=false];
 
 
 }
