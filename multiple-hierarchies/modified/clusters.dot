@@ -1,0 +1,35 @@
+digraph {
+    graph [newrank=true];
+    compound=true;
+
+    subgraph cluster0 {
+        graph [rank=same];
+        "ich"
+        subgraph tokens {
+        "ich" [shape=plaintext];
+        }
+    }
+
+    subgraph cluster1 {
+        graph [rank=same];
+        node [shape=plaintext];
+
+        "bin";
+        "so";
+        "doof";
+
+        subgraph tokens {
+        "bin" -> "so" [style=invis];
+        "so" -> "doof" [style=invis];
+        }
+    }
+
+    S; NP; VP;
+    S -> {NP VP};
+    VP -> "bin" [lhead=cluster1];
+    NP -> "ich" [lhead=cluster0];
+
+
+    "ich" -> "bin" [ltail=cluster0, lhead=cluster1, constraint=false, style=invis];
+
+}
