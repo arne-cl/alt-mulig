@@ -1,0 +1,46 @@
+digraph {
+    graph [newrank=true];
+    compound=true;
+
+    subgraph rank_a {
+       graph [rank=same];
+       A1 -> A2 [style=invis];
+    }
+
+    subgraph cluster_b1 {
+        graph [rank=same];
+        B1;
+        subgraph rank_b1 {
+        B1;
+        }
+    }
+
+    subgraph cluster_b2 {
+        graph [rank=same];
+
+        B2;
+        B3;
+        B4;
+
+        subgraph rank_b2 {
+        B2 -> B3 [style=invis];
+        B3 -> B4 [style=invis];
+        }
+    }
+
+    TOP; C1; C2; D1; 
+    TOP -> {A1 A2 B4};
+
+//   A1 -> A2;
+
+    A2 -> B2
+    A1 -> B1
+
+   B1 -> B2 [ltail=cluster_b1, lhead=cluster_b2, constraint=false, style=invis];
+
+   
+   B2 -> C1;
+   B4 -> C2;
+   {C1 C2} -> D1;
+
+}
