@@ -53,7 +53,7 @@ def get_bottom_rst_spans(reversed_docgraph):
 
 def gen_edge(source, target, **attr):
     return u'"{}" -> "{}" [{}];\n'.format(source, target, ', '.join('{}="{}"'.format(k,v) for k,v in attr.items()))
-    
+
 def gen_node(name, **attr):
     return u'"{}" [{}];\n'.format(name, u', '.join(u'{}="{}"'.format(k,v) for k,v in attr.items()))
 
@@ -66,9 +66,9 @@ subgraph {} {{
     graph [{}];
     node [{}];
     edge [{}];
-    
-    {}    
-    {}    
+
+    {}
+    {}
     {}
 }}\n\n""".format(name,
                  u', '.join(u'{}="{}"'.format(k,v) for k,v in graph_attrs.items()),
@@ -95,7 +95,7 @@ digraph {{
     node [{}];
     edge [{}];
 
-   {}   
+   {}
    {}
    {}
 }}
@@ -110,17 +110,17 @@ digraph {{
 def reversedrst2manualdot(nxgraph):
     digraph = nx.DiGraph(nxgraph) # convert multidigraph to digraph
     digraph.tokens = nxgraph.tokens
-    
+
     bottom_rst_spans = get_bottom_rst_spans(digraph)
-    bottom_rst_nodes = [segment_node for (segment_node, token_nodes, parent_nodes) 
+    bottom_rst_nodes = [segment_node for (segment_node, token_nodes, parent_nodes)
                         in bottom_rst_spans]
 
     hierarchy_node_ids = [node for node in digraph.nodes()
-                       if node not in digraph.tokens
-                       and node not in bottom_rst_nodes]
+                          if node not in digraph.tokens]
 
-    # generate hierarchical nodes (non-terminals, non-bottom-rst-segments)
-    hierarchy_nodes = []       
+
+    # generate hierarchical nodes (non-terminals)
+    hierarchy_nodes = []
     for node_id in hierarchy_node_ids:
         if 'label' in digraph.node[node_id]:
             hierarchy_nodes.append(gen_node(node_id,
@@ -139,7 +139,7 @@ def reversedrst2manualdot(nxgraph):
                                                    label=digraph.edge[source][target]['label']))
             else:
                 hierarchical_edges.append(gen_edge(source, target))
-            
+
 
     # leaving out segment nodes by connecting token nodes directly to
     # the parent nodes of segment nodes
@@ -147,41 +147,38 @@ def reversedrst2manualdot(nxgraph):
     token2segment_edges = []
     cluster_precedences = []
     for si, (segment_node_id, token_node_ids, parent_node_ids) in enumerate(bottom_rst_spans):
-        #~ print "DEBUG in segment {} (#{}), tokens {}".format(segment_node_id, si, token_node_ids)
-        
         # create all token nodes in a bottom rst segment
         token_nodes = []
         for token_node_id in token_node_ids:
             token_nodes.append(gen_node(token_node_id,
-                                        label=digraph.node[token_node_id]['label']+"_"+token_node_id))
-        
+                                        label=digraph.node[token_node_id]['label']))
+
         # generate invisible edges between the tokens of a segment
         token_precedences = []
         for i, token_node_id in enumerate(token_node_ids[:-1]):
             token_precedences.append(gen_edge(token_node_id, token_node_ids[i+1],
                                               style='invis'))
-        
+
         # add all token nodes (and their precedence edges) to a subgraph
         token_subgraph = gen_subgraph(name='tokens_segment{}'.format(segment_node_id),
                                       nodes=token_nodes, edges=token_precedences,
                                       graph_attrs={'rank': 'same'})
-        
+
         # add the subgraph to a bottom rst segment cluster
         cluster_name = 'segment{}'.format(segment_node_id)
         segment_clusters.append(gen_cluster(name=cluster_name, subgraphs=[token_subgraph],
                                             graph_attrs={'rank': 'same', 'style': 'filled',
                                                          'color': 'lightgrey',
-                                                         'label': cluster_name},
+                                                         'label': digraph.node[segment_node_id]['label']},
                                             node_attrs={'style': 'filled',
                                                         'color': 'white'}))
-        
-        # generate edges from the first token of a segment to all the parent nodes
-        # of the segment (with its tail pointing to the cluster)
-        for parent_node_id in parent_node_ids:
-            token2segment_edges.append(gen_edge(token_node_ids[0],
-                                                parent_node_id,
-                                                ltail="cluster_"+cluster_name))
-        
+
+        # generate ONE edge from the first token of a segment to the
+        # segment itself (with its tail pointing to the cluster)
+        token2segment_edges.append(gen_edge(token_node_ids[0],
+                                            segment_node_id,
+                                            ltail="cluster_"+cluster_name))
+
         # generate precedence relations (i.e. edges between clusters)
         # by adding an edge from the last token of segment i to the
         # first token of segment i+1
