@@ -1,80 +1,110 @@
+#ifndef __LEXICON_HPP__
+#define __LEXICON_HPP__
 
-#include <unordered_set>
-#include <unordered_map>
 #include <vector>
 #include <string>
 #include <iostream>
 
-#include <boost/algorithm/string.hpp>
+#include <boost/unordered_map.hpp>
+#include <boost/tokenizer.hpp>
 
+/// Lexicon implementiert ...
 class Lexicon
 {
-public: // type definitions
-  typedef std::unordered_set<std::string> POSSet;
-  typedef std::unordered_map<std::string, POSSet> LexiconMap;
+public:
+  typedef std::string Word;
+  typedef std::string Lemma;
+  typedef std::string Tag;
+  typedef std::string Morph;
 
-
-public: // functions, constructors
-  /// construct from input stream (file or cin)
-  Lexicon(std::istream& lexicon_in)
+  /// LexInfo kodiert einen einzelnen Lexikoneintrag, bestehend aus
+  /// POS-Tag, Lemma und morph. Analyse
+  struct LexInfo
   {
-    read_in(lexicon_in);
+    LexInfo(const Tag& t, const Word& l, const Morph& m) 
+    : tag(t), lemma(l), morph(m) {}
+    
+    const Tag& get_tag() const { return tag; }
+    const Word& get_lemma() const { return lemma; }
+    const Morph& get_morph() const { return morph; }
+    float get_log_prob() const { return log_prob; }
+    void set_log_prob(float p) { log_prob=p; }
+       
+    Tag tag;
+    Word lemma;
+    Morph morph;
+    float log_prob;
+  }; // LexInfo
+  
+  typedef std::vector<LexInfo> LexInfoVector;
+  
+public:
+  /// Konstruktor
+  Lexicon(std::istream& in) : num_lex_entries(0)
+  {
+    read_in(in);
+  }
+  
+  /// Fügt ein Wort zusammen mit POS-Tag, Lemma und Morph-Information in das Lexikon ein.
+  void add_word(const Word& w, const Tag& t, const Word& l, const Morph& m)
+  {
+    word_map[w].push_back(LexInfo(t,l,m));
+    ++num_lex_entries;
+  }
+  
+  /// Schlägt w im Lexicon nach und gibt einen Vektor mit den Analysen zurück
+  const LexInfoVector& word_info(const Word& w) const
+  {
+    static const LexInfoVector no_info;
+    LexiconMap::const_iterator fw = word_map.find(w);
+    return (fw != word_map.end()) ? fw->second : no_info;
+  }
+  
+  /// Gibt die Anzahl der momentan im Lexikon vorhandenen Einträge zurück
+  unsigned lex_entry_count() const 
+  { 
+    return num_lex_entries; 
+  }
+  
+  /// Gibt die Anzahl der momentan im Lexikon vorhandenen Wörter zurück
+  unsigned word_count() const 
+  { 
+    return word_map.size(); 
   }
 
-    /// returns True, iff the given word is in the lexicon
-    bool contains_word(const std::string& word)
-    {
-        return lexicon.find(word) != lexicon.end();
-    }
-
-    /// returns True, iff the given POS tag is one of the POS tags attributed
-    /// to the given word in the lexicon
-    bool has_postag(const std::string& word, const std::string& pos)
-    {
-        if (contains_word(word))
-        {
-            const POSSet postags = get_postags(word);
-            return postags.find(pos) != postags.end();
-        }
-        else {return false;}
-    }
-
-    /// returns the set of all possible POS tags for the given word
-    const POSSet get_postags(const std::string& word)
-    {
-        static const POSSet empty_posset;
-        return (contains_word(word)) ? lexicon[word] : empty_posset;
-    }
-
-private:  // functions
-  /// reads a lexicon (from file, cin ...)
-  /// returns true, iff reading the file didn't fail
-  bool read_in(std::istream& lexicon_in)
+private:
+  /// Definition der internen Lexikondatenstruktur
+  typedef boost::unordered_map<Word,LexInfoVector>  LexiconMap;
+  
+private:
+  void read_in(std::istream& in)
   {
+    typedef boost::char_separator<char>     CharSeparator;
+    typedef boost::tokenizer<CharSeparator> Tokenizer;
+    
+    CharSeparator tab("\t");
     std::string line;
+    std::vector<std::string> vtokens;
     unsigned line_no = 1;
-
-    // read lexicon entries from file
-    while (lexicon_in.good()) {
-      std::getline(lexicon_in, line);
+    while (in.good()) {
+      std::getline(in,line);
       if (!line.empty()) {
-        std::vector<std::string> lex_entry;
-        boost::split(lex_entry, line, boost::is_any_of("\t"));
-        if (lex_entry.size() == 2) {
-            const std::string& word = lex_entry[0];
-            const std::string& pos = lex_entry[1];
-            lexicon[word].insert(pos);
+        Tokenizer tokens(line,tab);
+        vtokens.assign(tokens.begin(),tokens.end());
+        if (vtokens.size() == 4) {
+          add_word(vtokens[0],vtokens[1],vtokens[2],vtokens[3]);
         }
         else {
-            std::cerr << "Lexicon: Warning (line " << line_no << "): entry ignored\n";
+          std::cerr << "Lexicon: Invalid lexicon entry at line " << line_no << "\n";
         }
       }
       ++line_no;
     } // while
-
-    return true;
   }
 
-private: // instance variables
-    LexiconMap lexicon;
+private:
+  LexiconMap word_map;
+  unsigned num_lex_entries;
 }; // Lexicon
+
+#endif

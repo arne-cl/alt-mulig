@@ -1,0 +1,18 @@
+S --> NP VP
+S --> S KONJ S
+NP --> ART NN
+NP --> NP PP
+NP --> NP CONJ NP
+NP --> NN
+NP --> NE
+NP --> ART AP NN
+NP --> AP NN
+VP --> VVFIN
+VP --> VVFIN NP
+VP --> VVFIN NP NP
+VP --> VVFIN PP
+VP --> VP PP
+VP --> VP CONJ VP
+PP --> APPR NP
+AP --> ADJA AP
+AP --> ADJA
