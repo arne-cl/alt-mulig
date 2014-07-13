@@ -106,14 +106,14 @@ public:
   }
 
   /// "Hasht" ein Regelobjekt
-  unsigned hash() const
+  unsigned long hash() const
   {
     // Linke Seite
-    unsigned h = FNVHash(lhs);
+    unsigned long h = FNVHash(lhs);
     // Rechte Seite
     for (unsigned i = 0; i < rhs.size(); ++i) {
       // Wir verwenden boost::hash_combine zur Kombination aller Hashwerte
-      boost::hash_combine(h,rhs[i]);
+      boost::hash_combine(h, rhs[i]);
     }
     return h;
   }
