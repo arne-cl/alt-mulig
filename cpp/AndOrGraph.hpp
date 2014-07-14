@@ -56,9 +56,9 @@ public:
       node_func.register_node(node);
       const OrNodes& or_nodes = fn->second;
       // Ja, oder-Knoten durchlaufen
-      for (OrNodes::const_iterator o = or_nodes.begin(); o != or_nodes.end(); ++o) {
+      for (typename OrNodes::const_iterator o = or_nodes.begin(); o != or_nodes.end(); ++o) {
         const AndNodes& and_nodes = *o;
-        for (AndNodes::const_iterator a = and_nodes.begin(); a != and_nodes.end(); ++a) {
+        for (typename AndNodes::const_iterator a = and_nodes.begin(); a != and_nodes.end(); ++a) {
           if (node_func.explore_node(*a)) {
             postorder_visit(*a,node_func,result_map);
           }
@@ -81,10 +81,10 @@ public:
     dot_out << "node  [shape = rect, style=filled, color=blue, fontcolor=white]\n";
     dot_out << "edge  []\n\n";
     
-    for (Graph::const_iterator n = and_or_graph.begin(); n != and_or_graph.end(); ++n) {
+    for (typename Graph::const_iterator n = and_or_graph.begin(); n != and_or_graph.end(); ++n) {
       dot_out << n->first << std::endl;
       const OrNodes& or_nodes = n->second;
-      for (OrNodes::const_iterator o = or_nodes.begin(); o != or_nodes.end(); ++o) {        
+      for (typename OrNodes::const_iterator o = or_nodes.begin(); o != or_nodes.end(); ++o) {
         dot_out << "\t" << "and_" << (o-or_nodes.begin()) << "_" << n->first 
                 << " [shape=Mrecord, width=.2, style=filled, color=gray, label=\"";
         
