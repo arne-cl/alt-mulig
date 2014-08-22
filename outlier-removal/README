@@ -1,0 +1,26 @@
+Grubbs' based outlier removal
+-----------------------------
+
+NIST says that Grubbs' test should only be used if there's one outlier [1]. Tietjen-Moore works exactly the same for one outlier, but can also be used for multiple outliers iff you can exactly specify how many outliers there will be [2].
+
+The Generalized ESD test works basically like Grubbs and Tietjen-Moore, but only requires you to specify the max. number of outliers in the (approx. normal distributed) dataset [3]. There's also a Python implementation of Generalized ESD avail. in the PyAstronomy package [4].
+
+More advanced stuff
+-------------------
+
+There's scikit-learn documentation demonstrating how to use a
+Minimum Covariance Determinant robust estimator of covariance
+(performs better if data is Gaussian distributed) and/or a one class SVM
+(better if there are two distinct clusters) to find outliers [5]. [6] is
+another example comparing the two methods on the Boston housing dataset.
+
+Another option would be to use a graph-distance based method called Topological Anomaly Detection [7], also avail. in Python [8].
+
+[1] http://www.itl.nist.gov/div898/handbook/eda/section3/eda35h1.htm
+[2] http://www.itl.nist.gov/div898/handbook/eda/section3/eda35h2.htm
+[3] http://www.itl.nist.gov/div898/handbook/eda/section3/eda35h3.htm
+[4] http://www.hs.uni-hamburg.de/DE/Ins/Per/Czesla/PyA/PyA/pyaslDoc/aslDoc/outlier.html
+[5] http://scikit-learn.org/stable/auto_examples/covariance/plot_outlier_detection.html
+[6] http://scikit-learn.org/stable/auto_examples/applications/plot_outlier_detection_housing.html
+[7] http://unsupervisedlearning.wordpress.com/2014/08/04/topological-anomaly-detection/
+[8] https://github.com/dmarx/Topological-Anomaly-Detection
