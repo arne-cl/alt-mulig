@@ -66,7 +66,7 @@ def readiter(fi, names, sep=' '):
             for i in range(len(names)):
                 item[names[i]] = fields[i]
             X.append(item)
-#            print(X)
+            yield X
 
 
 def escape(src):
