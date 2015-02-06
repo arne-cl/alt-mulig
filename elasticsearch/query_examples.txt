@@ -1,0 +1,101 @@
+{
+  "query": {
+    "match_all": {}
+  },
+  "fields": [
+    "age"
+  ]
+}
+
+
+{
+  "query": {
+    "query_string": {
+      "query": "firstname:Mario OR lastname:Martin"
+    }
+  }
+}
+
+----------------
+
+    "star": {
+        "properties": {
+            "city": { "type": "string", "index": "not_analyzed" }
+        }
+    }
+}
+
+# man kann nur noch nach city:Riga, aber nicht nach city:riga
+
+# term queries: suche terme, genau so, wie sie in lucene gespeichert sind
+
+# multi_match: suche term in mehreren feldern
+
+# bool: must, must_not, should
+
+# range: gte >=, lte <=
+
+# fuzzy: fuzziness, max_expansions
+
+# boosting: negative_boost (bestimmte terme sollen relevanz negativ
+  beeinflussen, z.B. fuer Zensur)
+
+# aggregations: aggregation_name, aggregation_type - einschraenken der
+suchergebnisse auf bestimmte felder/feldwerte (hat auch etwas deskriptive
+statistik)
+
+{
+  "query": {
+    "match_all": {}
+  },
+  "aggregations": {
+    "age_aggregation": {
+      "terms": {
+        "field": "age"
+      }
+    }
+  },
+  "size": 0
+}
+
+# fuer die aggr. wird auf die terms zugegriffen, also auf schlimmstenfalls
+gestemmte daten!
+
+{
+  "query": {
+    "match_all": {}
+  },
+  "aggregations": {
+    "age_aggregation": {
+      "stats": {
+        "field": "age"
+      }
+    }
+  },
+  "size": 0
+}
+
+liefert
+
+    "hits": {
+        "total": 30,
+        "max_score": 0,
+        "hits": [ ]
+    },
+    "aggregations": {
+        "age_aggregation": {
+            "count": 29,
+            "min": 28,
+            "max": 87,
+            "avg": 50.6551724137931,
+            "sum": 1469
+        }
+    }
+
+}
+
+extended_stats, histogram, date_histogram
+
+range: now-7d (in den letzten 7 tagen)
+
+# more_like_this, mlt, mlt_fields

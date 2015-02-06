@@ -1,6 +1,7 @@
 {
     "star": {
         "properties": {
+            "city": { "type": "string", "index": "not_analyzed" }
         }
     }
 }
