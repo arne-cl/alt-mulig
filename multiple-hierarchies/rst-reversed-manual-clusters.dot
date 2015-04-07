@@ -1,0 +1,820 @@
+
+digraph {
+    graph [compound="true", newrank="true"];
+    node [fontname="Sans-Serif"];
+    edge [fontname="Sans-Serif"];
+
+   
+subgraph cluster_segment1 {
+    graph [color="lightgrey", style="filled", rank="same", label="rst:segment:1"];
+    node [color="white", style="filled"];
+    edge [];
+
+    
+    
+    
+subgraph tokens_segment1 {
+    graph [rank="same"];
+    node [];
+    edge [];
+
+    "s2180_1" [label="Das"];
+	"s2180_2" [label="Büchergeld"];
+
+    "s2180_1" -> "s2180_2" [style="invis"];
+
+    
+}
+
+
+}
+
+
+subgraph cluster_segment19 {
+    graph [color="lightgrey", style="filled", rank="same", label="rst:segment:19"];
+    node [color="white", style="filled"];
+    edge [];
+
+    
+    
+    
+subgraph tokens_segment19 {
+    graph [rank="same"];
+    node [];
+    edge [];
+
+    "s2181_1" [label="Die"];
+	"s2181_2" [label="Litanei"];
+	"s2181_3" [label="ist"];
+	"s2181_4" [label="nicht"];
+	"s2181_5" [label="neu"];
+	"s2181_6" [label=":"];
+
+    "s2181_1" -> "s2181_2" [style="invis"];
+	"s2181_2" -> "s2181_3" [style="invis"];
+	"s2181_3" -> "s2181_4" [style="invis"];
+	"s2181_4" -> "s2181_5" [style="invis"];
+	"s2181_5" -> "s2181_6" [style="invis"];
+
+    
+}
+
+
+}
+
+
+subgraph cluster_segment2 {
+    graph [color="lightgrey", style="filled", rank="same", label="rst:segment:2"];
+    node [color="white", style="filled"];
+    edge [];
+
+    
+    
+    
+subgraph tokens_segment2 {
+    graph [rank="same"];
+    node [];
+    edge [];
+
+    "s2182_1" [label="Eltern"];
+	"s2182_2" [label="beschweren"];
+	"s2182_3" [label="sich"];
+	"s2182_4" [label="über"];
+	"s2182_5" [label="veraltete"];
+	"s2182_6" [label="Schulbücher"];
+	"s2182_7" [label=","];
+
+    "s2182_1" -> "s2182_2" [style="invis"];
+	"s2182_2" -> "s2182_3" [style="invis"];
+	"s2182_3" -> "s2182_4" [style="invis"];
+	"s2182_4" -> "s2182_5" [style="invis"];
+	"s2182_5" -> "s2182_6" [style="invis"];
+	"s2182_6" -> "s2182_7" [style="invis"];
+
+    
+}
+
+
+}
+
+
+subgraph cluster_segment3 {
+    graph [color="lightgrey", style="filled", rank="same", label="rst:segment:3"];
+    node [color="white", style="filled"];
+    edge [];
+
+    
+    
+    
+subgraph tokens_segment3 {
+    graph [rank="same"];
+    node [];
+    edge [];
+
+    "s2182_8" [label="Kommunen"];
+	"s2182_9" [label="jammern"];
+	"s2182_10" [label="über"];
+	"s2182_11" [label="leere"];
+	"s2182_12" [label="Kassen"];
+
+    "s2182_8" -> "s2182_9" [style="invis"];
+	"s2182_9" -> "s2182_10" [style="invis"];
+	"s2182_10" -> "s2182_11" [style="invis"];
+	"s2182_11" -> "s2182_12" [style="invis"];
+
+    
+}
+
+
+}
+
+
+subgraph cluster_segment4 {
+    graph [color="lightgrey", style="filled", rank="same", label="rst:segment:4"];
+    node [color="white", style="filled"];
+    edge [];
+
+    
+    
+    
+subgraph tokens_segment4 {
+    graph [rank="same"];
+    node [];
+    edge [];
+
+    "s2182_13" [label="und"];
+	"s2182_14" [label="Schulbuchverlage"];
+	"s2182_15" [label="beklagen"];
+	"s2182_16" [label="Umsatzeinbrüche"];
+	"s2182_17" [label="."];
+
+    "s2182_13" -> "s2182_14" [style="invis"];
+	"s2182_14" -> "s2182_15" [style="invis"];
+	"s2182_15" -> "s2182_16" [style="invis"];
+	"s2182_16" -> "s2182_17" [style="invis"];
+
+    
+}
+
+
+}
+
+
+subgraph cluster_segment5 {
+    graph [color="lightgrey", style="filled", rank="same", label="rst:segment:5"];
+    node [color="white", style="filled"];
+    edge [];
+
+    
+    
+    
+subgraph tokens_segment5 {
+    graph [rank="same"];
+    node [];
+    edge [];
+
+    "s2183_1" [label="Trommeln"];
+	"s2183_2" [label="gehört"];
+	"s2183_3" [label="halt"];
+	"s2183_4" [label="zum"];
+	"s2183_5" [label="Geschäft"];
+	"s2183_6" [label="."];
+
+    "s2183_1" -> "s2183_2" [style="invis"];
+	"s2183_2" -> "s2183_3" [style="invis"];
+	"s2183_3" -> "s2183_4" [style="invis"];
+	"s2183_4" -> "s2183_5" [style="invis"];
+	"s2183_5" -> "s2183_6" [style="invis"];
+
+    
+}
+
+
+}
+
+
+subgraph cluster_segment6 {
+    graph [color="lightgrey", style="filled", rank="same", label="rst:segment:6"];
+    node [color="white", style="filled"];
+    edge [];
+
+    
+    
+    
+subgraph tokens_segment6 {
+    graph [rank="same"];
+    node [];
+    edge [];
+
+    "s2184_1" [label="Doch"];
+	"s2184_2" [label="unterm"];
+	"s2184_3" [label="Strich"];
+	"s2184_4" [label="stehen"];
+	"s2184_5" [label="Brandenburgs"];
+	"s2184_6" [label="Schulen"];
+	"s2184_7" [label="ganz"];
+	"s2184_8" [label="gut"];
+	"s2184_9" [label="da"];
+	"s2184_10" [label="."];
+
+    "s2184_1" -> "s2184_2" [style="invis"];
+	"s2184_2" -> "s2184_3" [style="invis"];
+	"s2184_3" -> "s2184_4" [style="invis"];
+	"s2184_4" -> "s2184_5" [style="invis"];
+	"s2184_5" -> "s2184_6" [style="invis"];
+	"s2184_6" -> "s2184_7" [style="invis"];
+	"s2184_7" -> "s2184_8" [style="invis"];
+	"s2184_8" -> "s2184_9" [style="invis"];
+	"s2184_9" -> "s2184_10" [style="invis"];
+
+    
+}
+
+
+}
+
+
+subgraph cluster_segment7 {
+    graph [color="lightgrey", style="filled", rank="same", label="rst:segment:7"];
+    node [color="white", style="filled"];
+    edge [];
+
+    
+    
+    
+subgraph tokens_segment7 {
+    graph [rank="same"];
+    node [];
+    edge [];
+
+    "s2185_1" [label="Zum"];
+	"s2185_2" [label="einen"];
+	"s2185_3" [label="wurden"];
+	"s2185_4" [label="nach"];
+	"s2185_5" [label="der"];
+	"s2185_6" [label="Wende"];
+	"s2185_7" [label="fast"];
+	"s2185_8" [label="alle"];
+	"s2185_9" [label="Schulbuchbestände"];
+	"s2185_10" [label="ausgetauscht"];
+	"s2185_11" [label=","];
+
+    "s2185_1" -> "s2185_2" [style="invis"];
+	"s2185_2" -> "s2185_3" [style="invis"];
+	"s2185_3" -> "s2185_4" [style="invis"];
+	"s2185_4" -> "s2185_5" [style="invis"];
+	"s2185_5" -> "s2185_6" [style="invis"];
+	"s2185_6" -> "s2185_7" [style="invis"];
+	"s2185_7" -> "s2185_8" [style="invis"];
+	"s2185_8" -> "s2185_9" [style="invis"];
+	"s2185_9" -> "s2185_10" [style="invis"];
+	"s2185_10" -> "s2185_11" [style="invis"];
+
+    
+}
+
+
+}
+
+
+subgraph cluster_segment8 {
+    graph [color="lightgrey", style="filled", rank="same", label="rst:segment:8"];
+    node [color="white", style="filled"];
+    edge [];
+
+    
+    
+    
+subgraph tokens_segment8 {
+    graph [rank="same"];
+    node [];
+    edge [];
+
+    "s2185_12" [label="zum"];
+	"s2185_13" [label="anderen"];
+	"s2185_14" [label="müssen"];
+	"s2185_15" [label="sich"];
+	"s2185_16" [label="märkische"];
+	"s2185_17" [label="Eltern"];
+	"s2185_18" [label="am"];
+	"s2185_19" [label="Buchkauf"];
+	"s2185_20" [label="beteiligen"];
+	"s2185_21" [label="."];
+
+    "s2185_12" -> "s2185_13" [style="invis"];
+	"s2185_13" -> "s2185_14" [style="invis"];
+	"s2185_14" -> "s2185_15" [style="invis"];
+	"s2185_15" -> "s2185_16" [style="invis"];
+	"s2185_16" -> "s2185_17" [style="invis"];
+	"s2185_17" -> "s2185_18" [style="invis"];
+	"s2185_18" -> "s2185_19" [style="invis"];
+	"s2185_19" -> "s2185_20" [style="invis"];
+	"s2185_20" -> "s2185_21" [style="invis"];
+
+    
+}
+
+
+}
+
+
+subgraph cluster_segment9 {
+    graph [color="lightgrey", style="filled", rank="same", label="rst:segment:9"];
+    node [color="white", style="filled"];
+    edge [];
+
+    
+    
+    
+subgraph tokens_segment9 {
+    graph [rank="same"];
+    node [];
+    edge [];
+
+    "s2186_1" [label="Dafür"];
+	"s2186_2" [label="gibt"];
+	"s2186_3" [label="es"];
+	"s2186_4" [label="sogar"];
+	"s2186_5" [label="Lob"];
+	"s2186_6" [label="von"];
+	"s2186_7" [label="den"];
+	"s2186_8" [label="Schulbuchverlagen"];
+	"s2186_9" [label="."];
+
+    "s2186_1" -> "s2186_2" [style="invis"];
+	"s2186_2" -> "s2186_3" [style="invis"];
+	"s2186_3" -> "s2186_4" [style="invis"];
+	"s2186_4" -> "s2186_5" [style="invis"];
+	"s2186_5" -> "s2186_6" [style="invis"];
+	"s2186_6" -> "s2186_7" [style="invis"];
+	"s2186_7" -> "s2186_8" [style="invis"];
+	"s2186_8" -> "s2186_9" [style="invis"];
+
+    
+}
+
+
+}
+
+
+subgraph cluster_segment10 {
+    graph [color="lightgrey", style="filled", rank="same", label="rst:segment:10"];
+    node [color="white", style="filled"];
+    edge [];
+
+    
+    
+    
+subgraph tokens_segment10 {
+    graph [rank="same"];
+    node [];
+    edge [];
+
+    "s2187_1" [label="Denn"];
+	"s2187_2" [label="in"];
+	"s2187_3" [label="vielen"];
+	"s2187_4" [label="alten"];
+	"s2187_5" [label="Bundesländern"];
+	"s2187_6" [label="gilt"];
+	"s2187_7" [label="noch"];
+	"s2187_8" [label="immer"];
+	"s2187_9" [label="die"];
+	"s2187_10" [label="Lernmittelfreiheit"];
+	"s2187_11" [label=":"];
+
+    "s2187_1" -> "s2187_2" [style="invis"];
+	"s2187_2" -> "s2187_3" [style="invis"];
+	"s2187_3" -> "s2187_4" [style="invis"];
+	"s2187_4" -> "s2187_5" [style="invis"];
+	"s2187_5" -> "s2187_6" [style="invis"];
+	"s2187_6" -> "s2187_7" [style="invis"];
+	"s2187_7" -> "s2187_8" [style="invis"];
+	"s2187_8" -> "s2187_9" [style="invis"];
+	"s2187_9" -> "s2187_10" [style="invis"];
+	"s2187_10" -> "s2187_11" [style="invis"];
+
+    
+}
+
+
+}
+
+
+subgraph cluster_segment11 {
+    graph [color="lightgrey", style="filled", rank="same", label="rst:segment:11"];
+    node [color="white", style="filled"];
+    edge [];
+
+    
+    
+    
+subgraph tokens_segment11 {
+    graph [rank="same"];
+    node [];
+    edge [];
+
+    "s2188_1" [label="Eltern"];
+	"s2188_2" [label="müssen"];
+	"s2188_3" [label="nichts"];
+	"s2188_4" [label="zuzahlen"];
+	"s2188_5" [label="."];
+
+    "s2188_1" -> "s2188_2" [style="invis"];
+	"s2188_2" -> "s2188_3" [style="invis"];
+	"s2188_3" -> "s2188_4" [style="invis"];
+	"s2188_4" -> "s2188_5" [style="invis"];
+
+    
+}
+
+
+}
+
+
+subgraph cluster_segment12 {
+    graph [color="lightgrey", style="filled", rank="same", label="rst:segment:12"];
+    node [color="white", style="filled"];
+    edge [];
+
+    
+    
+    
+subgraph tokens_segment12 {
+    graph [rank="same"];
+    node [];
+    edge [];
+
+    "s2189_1" [label="Der"];
+	"s2189_2" [label="Preis"];
+	"s2189_3" [label="dafür"];
+	"s2189_4" [label="ist"];
+	"s2189_5" [label="hoch"];
+	"s2189_6" [label="-"];
+
+    "s2189_1" -> "s2189_2" [style="invis"];
+	"s2189_2" -> "s2189_3" [style="invis"];
+	"s2189_3" -> "s2189_4" [style="invis"];
+	"s2189_4" -> "s2189_5" [style="invis"];
+	"s2189_5" -> "s2189_6" [style="invis"];
+
+    
+}
+
+
+}
+
+
+subgraph cluster_segment13 {
+    graph [color="lightgrey", style="filled", rank="same", label="rst:segment:13"];
+    node [color="white", style="filled"];
+    edge [];
+
+    
+    
+    
+subgraph tokens_segment13 {
+    graph [rank="same"];
+    node [];
+    edge [];
+
+    "s2189_7" [label="gerade"];
+	"s2189_8" [label="dort"];
+	"s2189_9" [label="wird"];
+	"s2189_10" [label="oft"];
+	"s2189_11" [label="mit"];
+	"s2189_12" [label="völlig"];
+	"s2189_13" [label="veraltetem"];
+	"s2189_14" [label="Material"];
+	"s2189_15" [label="gearbeitet"];
+	"s2189_16" [label="."];
+
+    "s2189_7" -> "s2189_8" [style="invis"];
+	"s2189_8" -> "s2189_9" [style="invis"];
+	"s2189_9" -> "s2189_10" [style="invis"];
+	"s2189_10" -> "s2189_11" [style="invis"];
+	"s2189_11" -> "s2189_12" [style="invis"];
+	"s2189_12" -> "s2189_13" [style="invis"];
+	"s2189_13" -> "s2189_14" [style="invis"];
+	"s2189_14" -> "s2189_15" [style="invis"];
+	"s2189_15" -> "s2189_16" [style="invis"];
+
+    
+}
+
+
+}
+
+
+subgraph cluster_segment14 {
+    graph [color="lightgrey", style="filled", rank="same", label="rst:segment:14"];
+    node [color="white", style="filled"];
+    edge [];
+
+    
+    
+    
+subgraph tokens_segment14 {
+    graph [rank="same"];
+    node [];
+    edge [];
+
+    "s2190_1" [label="Doch"];
+	"s2190_2" [label="auch"];
+	"s2190_3" [label="Brandenburg"];
+	"s2190_4" [label="muss"];
+	"s2190_5" [label="aufpassen"];
+	"s2190_6" [label="."];
+
+    "s2190_1" -> "s2190_2" [style="invis"];
+	"s2190_2" -> "s2190_3" [style="invis"];
+	"s2190_3" -> "s2190_4" [style="invis"];
+	"s2190_4" -> "s2190_5" [style="invis"];
+	"s2190_5" -> "s2190_6" [style="invis"];
+
+    
+}
+
+
+}
+
+
+subgraph cluster_segment15 {
+    graph [color="lightgrey", style="filled", rank="same", label="rst:segment:15"];
+    node [color="white", style="filled"];
+    edge [];
+
+    
+    
+    
+subgraph tokens_segment15 {
+    graph [rank="same"];
+    node [];
+    edge [];
+
+    "s2191_1" [label="Wenn"];
+	"s2191_2" [label="immer"];
+	"s2191_3" [label="mehr"];
+	"s2191_4" [label="Kommunen"];
+	"s2191_5" [label="finanziell"];
+	"s2191_6" [label="ausbluten"];
+	"s2191_7" [label=","];
+
+    "s2191_1" -> "s2191_2" [style="invis"];
+	"s2191_2" -> "s2191_3" [style="invis"];
+	"s2191_3" -> "s2191_4" [style="invis"];
+	"s2191_4" -> "s2191_5" [style="invis"];
+	"s2191_5" -> "s2191_6" [style="invis"];
+	"s2191_6" -> "s2191_7" [style="invis"];
+
+    
+}
+
+
+}
+
+
+subgraph cluster_segment16 {
+    graph [color="lightgrey", style="filled", rank="same", label="rst:segment:16"];
+    node [color="white", style="filled"];
+    edge [];
+
+    
+    
+    
+subgraph tokens_segment16 {
+    graph [rank="same"];
+    node [];
+    edge [];
+
+    "s2191_8" [label="wird"];
+	"s2191_9" [label="die"];
+	"s2191_10" [label="regelmäßige"];
+	"s2191_11" [label="Schulbucherneuerung"];
+	"s2191_12" [label="zur"];
+	"s2191_13" [label="Illusion"];
+	"s2191_14" [label="."];
+
+    "s2191_8" -> "s2191_9" [style="invis"];
+	"s2191_9" -> "s2191_10" [style="invis"];
+	"s2191_10" -> "s2191_11" [style="invis"];
+	"s2191_11" -> "s2191_12" [style="invis"];
+	"s2191_12" -> "s2191_13" [style="invis"];
+	"s2191_13" -> "s2191_14" [style="invis"];
+
+    
+}
+
+
+}
+
+
+subgraph cluster_segment17 {
+    graph [color="lightgrey", style="filled", rank="same", label="rst:segment:17"];
+    node [color="white", style="filled"];
+    edge [];
+
+    
+    
+    
+subgraph tokens_segment17 {
+    graph [rank="same"];
+    node [];
+    edge [];
+
+    "s2192_1" [label="Deshalb"];
+	"s2192_2" [label="ist"];
+	"s2192_3" [label="auch"];
+	"s2192_4" [label="die"];
+	"s2192_5" [label="Landesregierung"];
+	"s2192_6" [label="gefragt"];
+	"s2192_7" [label=":"];
+
+    "s2192_1" -> "s2192_2" [style="invis"];
+	"s2192_2" -> "s2192_3" [style="invis"];
+	"s2192_3" -> "s2192_4" [style="invis"];
+	"s2192_4" -> "s2192_5" [style="invis"];
+	"s2192_5" -> "s2192_6" [style="invis"];
+	"s2192_6" -> "s2192_7" [style="invis"];
+
+    
+}
+
+
+}
+
+
+subgraph cluster_segment18 {
+    graph [color="lightgrey", style="filled", rank="same", label="rst:segment:18"];
+    node [color="white", style="filled"];
+    edge [];
+
+    
+    
+    
+subgraph tokens_segment18 {
+    graph [rank="same"];
+    node [];
+    edge [];
+
+    "s2193_1" [label="Es"];
+	"s2193_2" [label="kann"];
+	"s2193_3" [label="nicht"];
+	"s2193_4" [label="sein"];
+	"s2193_5" [label=","];
+	"s2193_6" [label="dass"];
+	"s2193_7" [label="für"];
+	"s2193_8" [label="teure"];
+	"s2193_9" [label="Modellprojekte"];
+	"s2193_10" [label="wie"];
+	"s2193_11" [label="Schnellläuferklassen"];
+	"s2193_12" [label="oder"];
+	"s2193_13" [label="Ganztagsschulen"];
+	"s2193_14" [label="Geld"];
+	"s2193_15" [label="locker"];
+	"s2193_16" [label="gemacht"];
+	"s2193_17" [label=","];
+	"s2193_18" [label="aber"];
+	"s2193_19" [label="an"];
+	"s2193_20" [label="der"];
+	"s2193_21" [label="Grundausstattung"];
+	"s2193_22" [label="gespart"];
+	"s2193_23" [label="wird"];
+	"s2193_24" [label="."];
+
+    "s2193_1" -> "s2193_2" [style="invis"];
+	"s2193_2" -> "s2193_3" [style="invis"];
+	"s2193_3" -> "s2193_4" [style="invis"];
+	"s2193_4" -> "s2193_5" [style="invis"];
+	"s2193_5" -> "s2193_6" [style="invis"];
+	"s2193_6" -> "s2193_7" [style="invis"];
+	"s2193_7" -> "s2193_8" [style="invis"];
+	"s2193_8" -> "s2193_9" [style="invis"];
+	"s2193_9" -> "s2193_10" [style="invis"];
+	"s2193_10" -> "s2193_11" [style="invis"];
+	"s2193_11" -> "s2193_12" [style="invis"];
+	"s2193_12" -> "s2193_13" [style="invis"];
+	"s2193_13" -> "s2193_14" [style="invis"];
+	"s2193_14" -> "s2193_15" [style="invis"];
+	"s2193_15" -> "s2193_16" [style="invis"];
+	"s2193_16" -> "s2193_17" [style="invis"];
+	"s2193_17" -> "s2193_18" [style="invis"];
+	"s2193_18" -> "s2193_19" [style="invis"];
+	"s2193_19" -> "s2193_20" [style="invis"];
+	"s2193_20" -> "s2193_21" [style="invis"];
+	"s2193_21" -> "s2193_22" [style="invis"];
+	"s2193_22" -> "s2193_23" [style="invis"];
+	"s2193_23" -> "s2193_24" [style="invis"];
+
+    
+}
+
+
+}
+
+
+   "1" [label="rst:segment:1"];
+	"2" [label="rst:segment:2"];
+	"3" [label="rst:segment:3"];
+	"4" [label="rst:segment:4"];
+	"5" [label="rst:segment:5"];
+	"6" [label="rst:segment:6"];
+	"7" [label="rst:segment:7"];
+	"8" [label="rst:segment:8"];
+	"9" [label="rst:segment:9"];
+	"10" [label="rst:segment:10"];
+	"11" [label="rst:segment:11"];
+	"12" [label="rst:segment:12"];
+	"13" [label="rst:segment:13"];
+	"14" [label="rst:segment:14"];
+	"15" [label="rst:segment:15"];
+	"16" [label="rst:segment:16"];
+	"17" [label="rst:segment:17"];
+	"18" [label="rst:segment:18"];
+	"19" [label="rst:segment:19"];
+	"20" [label="rst:group:multinuc:20"];
+	"21" [label="rst:group:span:21"];
+	"22" [label="rst:group:multinuc:22"];
+	"23" [label="rst:group:span:23"];
+	"24" [label="rst:group:span:24"];
+	"25" [label="rst:group:span:25"];
+	"26" [label="rst:group:span:26"];
+	"27" [label="rst:group:span:27"];
+	"28" [label="rst:group:span:28"];
+	"29" [label="rst:group:span:29"];
+	"30" [label="rst:group:span:30"];
+	"31" [label="rst:group:span:31"];
+	"32" [label="rst:group:span:32"];
+	"33" [label="rst:group:multinuc:33"];
+	"34" [label="rst:root:34"];
+
+   "s2180_1" -> "1" [ltail="cluster_segment1"];
+	"s2181_1" -> "19" [ltail="cluster_segment19"];
+	"s2182_1" -> "2" [ltail="cluster_segment2"];
+	"s2182_8" -> "3" [ltail="cluster_segment3"];
+	"s2182_13" -> "4" [ltail="cluster_segment4"];
+	"s2183_1" -> "5" [ltail="cluster_segment5"];
+	"s2184_1" -> "6" [ltail="cluster_segment6"];
+	"s2185_1" -> "7" [ltail="cluster_segment7"];
+	"s2185_12" -> "8" [ltail="cluster_segment8"];
+	"s2186_1" -> "9" [ltail="cluster_segment9"];
+	"s2187_1" -> "10" [ltail="cluster_segment10"];
+	"s2188_1" -> "11" [ltail="cluster_segment11"];
+	"s2189_1" -> "12" [ltail="cluster_segment12"];
+	"s2189_7" -> "13" [ltail="cluster_segment13"];
+	"s2190_1" -> "14" [ltail="cluster_segment14"];
+	"s2191_1" -> "15" [ltail="cluster_segment15"];
+	"s2191_8" -> "16" [ltail="cluster_segment16"];
+	"s2192_1" -> "17" [ltail="cluster_segment17"];
+	"s2193_1" -> "18" [ltail="cluster_segment18"];
+	"2" -> "20" [label="rst:list"];
+	"3" -> "20" [label="rst:list"];
+	"4" -> "20" [label="rst:list"];
+	"6" -> "32" [label="rst:span"];
+	"6" -> "27" [label="rst:evidence"];
+	"7" -> "22" [label="rst:conjunction"];
+	"8" -> "22" [label="rst:conjunction"];
+	"9" -> "25" [label="rst:reason"];
+	"9" -> "26" [label="rst:span"];
+	"10" -> "11" [label="rst:elaboration"];
+	"10" -> "23" [label="rst:span"];
+	"12" -> "24" [label="rst:span"];
+	"12" -> "13" [label="rst:elaboration"];
+	"14" -> "30" [label="rst:reason"];
+	"14" -> "31" [label="rst:span"];
+	"16" -> "29" [label="rst:span"];
+	"16" -> "15" [label="rst:condition"];
+	"18" -> "17" [label="rst:preparation"];
+	"18" -> "28" [label="rst:span"];
+	"20" -> "19" [label="rst:preparation"];
+	"20" -> "5" [label="rst:evaluation-s"];
+	"20" -> "21" [label="rst:span"];
+	"22" -> "26" [label="rst:elaboration"];
+	"22" -> "27" [label="rst:span"];
+	"23" -> "24" [label="rst:evaluation-s"];
+	"23" -> "25" [label="rst:span"];
+	"28" -> "29" [label="rst:reason"];
+	"28" -> "30" [label="rst:span"];
+	"31" -> "33" [label="rst:contrast"];
+	"32" -> "33" [label="rst:contrast"];
+	"33" -> "34" [label="rst:span"];
+	"33" -> "21" [label="rst:background"];
+	"s2180_2" -> "s2181_1" [style="invis", constraint="false"];
+	"s2181_6" -> "s2182_1" [style="invis", constraint="false"];
+	"s2182_7" -> "s2182_8" [style="invis", constraint="false"];
+	"s2182_12" -> "s2182_13" [style="invis", constraint="false"];
+	"s2182_17" -> "s2183_1" [style="invis", constraint="false"];
+	"s2183_6" -> "s2184_1" [style="invis", constraint="false"];
+	"s2184_10" -> "s2185_1" [style="invis", constraint="false"];
+	"s2185_11" -> "s2185_12" [style="invis", constraint="false"];
+	"s2185_21" -> "s2186_1" [style="invis", constraint="false"];
+	"s2186_9" -> "s2187_1" [style="invis", constraint="false"];
+	"s2187_11" -> "s2188_1" [style="invis", constraint="false"];
+	"s2188_5" -> "s2189_1" [style="invis", constraint="false"];
+	"s2189_6" -> "s2189_7" [style="invis", constraint="false"];
+	"s2189_16" -> "s2190_1" [style="invis", constraint="false"];
+	"s2190_6" -> "s2191_1" [style="invis", constraint="false"];
+	"s2191_7" -> "s2191_8" [style="invis", constraint="false"];
+	"s2191_14" -> "s2192_1" [style="invis", constraint="false"];
+	"s2192_7" -> "s2193_1" [style="invis", constraint="false"];
+
+}
