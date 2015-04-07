@@ -1,0 +1,61 @@
+;; Anything you type in here will be executed
+;; immediately with the results shown on the
+;; right.
+(defn twothree []
+  (if (< (rand) 0.5)
+    2
+    3))
+
+(twothree)
+(twothree)
+(twothree)
+
+(defn twothreelim [limit]
+  (if (< (rand) limit)
+    2
+    3))
+
+(twothreelim 0.9)
+(twothreelim 0.9)
+(twothreelim 0.9)
+(twothreelim 0.9)
+
+
+(defn arg-fn [x] x)
+
+(arg-fn 23)
+(arg-fn "s")
+
+(defn abc [[a b c] x]
+  (str a b c "-" x))
+
+(abc [1 2 3] "4")
+
+
+(defn greet [name]
+  (str "Hello, " name))
+
+(greet "foo")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
