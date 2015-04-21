@@ -1,0 +1,2605 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exml-doc>
+<schema>
+</schema>
+<body serialization="inline">
+
+<text xml:id="text_0" origin="T990507.2">
+ <sentence xml:id="s1">
+  <node xml:id="s1_505" cat="SIMPX" func="--">
+   <node xml:id="s1_501" cat="LK" func="-" parent="s1_505">
+    <node xml:id="s1_500" cat="VXFIN" func="HD" parent="s1_501">
+     <word xml:id="s1_1" form="Veruntreute" pos="VVFIN" morph="3sit" lemma="veruntreuen" func="HD" parent="s1_500" deprel="ROOT"/>
+    </node>
+   </node>
+   <node xml:id="s1_504" cat="MF" func="-" parent="s1_505">
+    <node xml:id="s1_502" cat="NX" func="ON" parent="s1_504">
+     <word xml:id="s1_2" form="die" pos="ART" morph="nsf" lemma="die" func="-" parent="s1_502" dephead="s1_3" deprel="DET"/>
+     <ne xml:id="ne_2" type="ORG">
+      <word xml:id="s1_3" form="AWO" pos="NN" morph="nsf" lemma="AWO" func="HD" parent="s1_502" dephead="s1_1" deprel="SUBJ"/>
+     </ne>
+    </node>
+    <node xml:id="s1_503" cat="NX" func="OA" parent="s1_504">
+     <word xml:id="s1_4" form="Spendengeld" pos="NN" morph="asn" lemma="Spendengeld" func="HD" parent="s1_503" dephead="s1_1" deprel="OBJA"/>
+    </node>
+   </node>
+  </node>
+  <word xml:id="s1_5" form="?" pos="$." lemma="?" func="--" deprel="ROOT"/>
+ </sentence>
+ <sentence xml:id="s2">
+  <node xml:id="s2_508" cat="SIMPX" func="--">
+   <node xml:id="s2_501" cat="VF" func="-" parent="s2_508">
+    <node xml:id="s2_500" cat="NX" func="ON" parent="s2_501">
+     <word xml:id="s2_1" form="Staatsanwaltschaft" pos="NN" morph="nsf" lemma="Staatsanwaltschaft" func="HD" parent="s2_500" dephead="s2_2" deprel="SUBJ"/>
+    </node>
+   </node>
+   <node xml:id="s2_503" cat="LK" func="-" parent="s2_508">
+    <node xml:id="s2_502" cat="VXFIN" func="HD" parent="s2_503">
+     <word xml:id="s2_2" form="muß" pos="VMFIN" morph="3sis" lemma="müssen%aux" func="HD" parent="s2_502" deprel="ROOT"/>
+    </node>
+   </node>
+   <node xml:id="s2_505" cat="MF" func="-" parent="s2_508">
+    <node xml:id="s2_504" cat="NX" func="OA" parent="s2_505">
+     <word xml:id="s2_3" form="AWO-Konten" pos="NN" morph="apn" lemma="AWO-Konto" func="HD" parent="s2_504" dephead="s2_4" deprel="OBJA"/>
+    </node>
+   </node>
+   <node xml:id="s2_507" cat="VC" func="-" parent="s2_508">
+    <node xml:id="s2_506" cat="VXINF" func="OV" parent="s2_507">
+     <word xml:id="s2_4" form="prüfen" pos="VVINF" lemma="prüfen" func="HD" parent="s2_506" dephead="s2_2" deprel="AUX"/>
+    </node>
+   </node>
+  </node>
+  <word xml:id="s2_5" form="/" pos="$(" lemma="/" func="--" deprel="ROOT"/>
+  <node xml:id="s2_523" cat="SIMPX" func="--">
+   <node xml:id="s2_510" cat="LK" func="-" parent="s2_523">
+    <node xml:id="s2_509" cat="VXFIN" func="HD" parent="s2_510">
+     <word xml:id="s2_6" form="Flossen" pos="VVFIN" morph="3pit" lemma="fließen" func="HD" parent="s2_509" deprel="ROOT"/>
+    </node>
+   </node>
+   <node xml:id="s2_522" cat="MF" func="-" parent="s2_523">
+    <node xml:id="s2_517" cat="NX" func="ON" parent="s2_522">
+     <node xml:id="s2_514" cat="NX" func="HD" parent="s2_517">
+      <node xml:id="s2_512" cat="NX" func="HD" parent="s2_514">
+       <node xml:id="s2_511" cat="ADJX" func="-" parent="s2_512">
+        <word xml:id="s2_7" form="165.000" pos="CARD" lemma="165.000" func="HD" parent="s2_511" dephead="s2_8" deprel="ATTR"/>
+       </node>
+       <word xml:id="s2_8" form="Mark" pos="NN" morph="npf" lemma="Mark" func="HD" parent="s2_512" dephead="s2_6" deprel="SUBJ"/>
+      </node>
+      <node xml:id="s2_513" cat="NX" func="-" parent="s2_514">
+       <word xml:id="s2_9" form="Sammelgelder" pos="NN" morph="npn" lemma="Sammelgeld" func="HD" parent="s2_513" dephead="s2_8" deprel="APP"/>
+      </node>
+     </node>
+     <node xml:id="s2_516" cat="PX" func="-" parent="s2_517">
+      <word xml:id="s2_10" form="für" pos="APPR" morph="a" lemma="für" func="-" parent="s2_516" dephead="s2_9" deprel="PP"/>
+      <node xml:id="s2_515" cat="NX" func="HD" parent="s2_516">
+       <word xml:id="s2_11" form="Flutopfer" pos="NN" morph="apn" lemma="Flutopfer" func="HD" parent="s2_515" dephead="s2_10" deprel="PN"/>
+      </node>
+     </node>
+    </node>
+    <node xml:id="s2_519" cat="PX" func="V-MOD" parent="s2_522">
+     <word xml:id="s2_12" form="in" pos="APPR" morph="a" lemma="in" func="-" parent="s2_519" dephead="s2_6" deprel="PP"/>
+     <node xml:id="s2_518" cat="NX" func="HD" parent="s2_519">
+      <word xml:id="s2_13" form="ein" pos="ART" morph="asn" lemma="ein" func="-" parent="s2_518" dephead="s2_14" deprel="DET"/>
+      <word xml:id="s2_14" form="Altenheim" pos="NN" morph="asn" lemma="Altenheim" func="HD" parent="s2_518" dephead="s2_12" deprel="PN"/>
+     </node>
+    </node>
+    <node xml:id="s2_521" cat="PX" func="MOD" parent="s2_522">
+     <word xml:id="s2_15" form="in" pos="APPR" morph="d" lemma="in" func="-" parent="s2_521" dephead="s2_6" deprel="PP"/>
+     <node xml:id="s2_520" cat="NX" func="HD" parent="s2_521">
+      <ne xml:id="ne_20" type="GPE">
+       <word xml:id="s2_16" form="Danzig" pos="NE" morph="dsn" lemma="Danzig" func="HD" parent="s2_520" dephead="s2_15" deprel="PN"/>
+      </ne>
+     </node>
+    </node>
+   </node>
+  </node>
+  <word xml:id="s2_17" form="?" pos="$." lemma="?" func="--" deprel="ROOT"/>
+ </sentence>
+ <sentence xml:id="s3">
+  <node xml:id="s3_502" cat="NX" func="--">
+   <node xml:id="s3_500" cat="NX" func="APP" parent="s3_502">
+    <word xml:id="s3_1" form="Landesvorsitzende" pos="NN" morph="nsf" lemma="Landesvorsitzende" func="HD" parent="s3_500" deprel="ROOT"/>
+   </node>
+   <node xml:id="s3_501" cat="NX" func="APP" parent="s3_502">
+    <ne xml:id="ne_23" type="PER">
+     <word xml:id="s3_2" form="Ute" pos="NE" morph="nsf" lemma="Ute" func="-" parent="s3_501" dephead="s3_1" deprel="APP"/>
+     <word xml:id="s3_3" form="Wedemeier" pos="NE" morph="nsf" lemma="Wedemeier" func="-" parent="s3_501" dephead="s3_2" deprel="APP"/>
+    </ne>
+   </node>
+  </node>
+  <word xml:id="s3_4" form=":" pos="$." lemma=":" func="--" deprel="ROOT"/>
+  <node xml:id="s3_503" cat="NX" func="--">
+   <word xml:id="s3_5" form="Ein" pos="ART" morph="nsm" lemma="ein" func="-" parent="s3_503" dephead="s3_6" deprel="DET"/>
+   <word xml:id="s3_6" form="Buchungsfehler" pos="NN" morph="nsm" lemma="Buchungsfehler" func="HD" parent="s3_503" deprel="ROOT"/>
+  </node>
+ </sentence>
+ <sentence xml:id="s4">
+  <node xml:id="s4_531" cat="SIMPX" func="--">
+   <node xml:id="s4_516" cat="SIMPX" func="KONJ" parent="s4_531">
+    <node xml:id="s4_502" cat="VF" func="-" parent="s4_516">
+     <node xml:id="s4_501" cat="PX" func="V-MOD" parent="s4_502">
+      <word xml:id="s4_1" form="Im" pos="APPRART" morph="dsm" lemma="in" func="-" parent="s4_501" dephead="s4_3" deprel="PP"/>
+      <node xml:id="s4_500" cat="NX" func="HD" parent="s4_501">
+       <word xml:id="s4_2" form="Januar" pos="NN" morph="dsm" lemma="Januar" func="HD" parent="s4_500" dephead="s4_1" deprel="PN"/>
+      </node>
+     </node>
+    </node>
+    <node xml:id="s4_504" cat="LK" func="-" parent="s4_516">
+     <node xml:id="s4_503" cat="VXFIN" func="HD" parent="s4_504">
+      <word xml:id="s4_3" form="hat" pos="VAFIN" morph="3sis" lemma="haben%aux" func="HD" parent="s4_503" deprel="ROOT"/>
+     </node>
+    </node>
+    <node xml:id="s4_513" cat="MF" func="-" parent="s4_516">
+     <node xml:id="s4_507" cat="NX" func="ON" parent="s4_513">
+      <relation type="coreferential" target="s1_502"/>
+      <node xml:id="s4_505" cat="NX" func="HD" parent="s4_507">
+       <word xml:id="s4_4" form="die" pos="ART" morph="nsf" lemma="die" func="-" parent="s4_505" dephead="s4_5" deprel="DET"/>
+       <ne xml:id="ne_32" type="ORG">
+        <word xml:id="s4_5" form="Arbeiterwohlfahrt" pos="NN" morph="nsf" lemma="Arbeiterwohlfahrt" func="HD" parent="s4_505" dephead="s4_3" deprel="SUBJ"/>
+       </ne>
+      </node>
+      <node xml:id="s4_506" cat="NX" func="-" parent="s4_507">
+       <ne xml:id="ne_33" type="GPE">
+        <word xml:id="s4_6" form="Bremen" pos="NE" morph="nsn" lemma="Bremen" func="HD" parent="s4_506" dephead="s4_5" deprel="APP"/>
+       </ne>
+      </node>
+     </node>
+     <node xml:id="s4_511" cat="NX" func="OA" parent="s4_513">
+      <node xml:id="s4_509" cat="NX" func="APP" parent="s4_511">
+       <word xml:id="s4_7" form="ihren" pos="PPOSAT" morph="asm" lemma="ihr" func="-" parent="s4_509" dephead="s4_9" deprel="DET">
+        <relation type="anaphoric" target="s4_507"/>
+       </word>
+       <node xml:id="s4_508" cat="ADJX" func="-" parent="s4_509">
+        <word xml:id="s4_8" form="langjährigen" pos="ADJA" morph="asm" lemma="langjährig" func="HD" parent="s4_508" dephead="s4_9" deprel="ATTR"/>
+       </node>
+       <word xml:id="s4_9" form="Geschäftsführer" pos="NN" morph="asm" lemma="Geschäftsführer" func="HD" parent="s4_509" dephead="s4_13" deprel="OBJA"/>
+      </node>
+      <node xml:id="s4_510" cat="NX" func="APP" parent="s4_511">
+       <ne xml:id="ne_37" type="PER">
+        <word xml:id="s4_10" form="Hans" pos="NE" morph="asm" lemma="Hans" func="-" parent="s4_510" dephead="s4_9" deprel="APP"/>
+        <word xml:id="s4_11" form="Taake" pos="NE" morph="asm" lemma="Taake" func="-" parent="s4_510" dephead="s4_10" deprel="APP"/>
+       </ne>
+      </node>
+     </node>
+     <node xml:id="s4_512" cat="ADJX" func="V-MOD" parent="s4_513">
+      <word xml:id="s4_12" form="fristlos" pos="ADJD" lemma="fristlos" func="HD" parent="s4_512" dephead="s4_13" deprel="ADV"/>
+     </node>
+    </node>
+    <node xml:id="s4_515" cat="VC" func="-" parent="s4_516">
+     <node xml:id="s4_514" cat="VXINF" func="OV" parent="s4_515">
+      <word xml:id="s4_13" form="entlassen" pos="VVPP" lemma="entlassen" func="HD" parent="s4_514" dephead="s4_3" deprel="AUX"/>
+     </node>
+    </node>
+   </node>
+   <word xml:id="s4_14" form="," pos="$," lemma="," func="--" deprel="ROOT"/>
+   <node xml:id="s4_530" cat="SIMPX" func="KONJ" parent="s4_531">
+    <node xml:id="s4_518" cat="VF" func="-" parent="s4_530">
+     <node xml:id="s4_517" cat="ADVX" func="MOD" parent="s4_518">
+      <word xml:id="s4_15" form="nun" pos="ADV" lemma="nun" func="HD" parent="s4_517" dephead="s4_16" deprel="ADV"/>
+     </node>
+    </node>
+    <node xml:id="s4_520" cat="LK" func="-" parent="s4_530">
+     <node xml:id="s4_519" cat="VXFIN" func="HD" parent="s4_520">
+      <word xml:id="s4_16" form="wird" pos="VAFIN" morph="3sis" lemma="werden%passiv" func="HD" parent="s4_519" dephead="s4_3" deprel="KON"/>
+     </node>
+    </node>
+    <node xml:id="s4_527" cat="MF" func="-" parent="s4_530">
+     <node xml:id="s4_521" cat="ADVX" func="MOD" parent="s4_527">
+      <word xml:id="s4_17" form="auch" pos="ADV" lemma="auch" func="HD" parent="s4_521" dephead="s4_25" deprel="ADV"/>
+     </node>
+     <node xml:id="s4_524" cat="NX" func="ON" parent="s4_527">
+      <node xml:id="s4_522" cat="NX" func="HD" parent="s4_524">
+       <word xml:id="s4_18" form="der" pos="ART" morph="nsm" lemma="der" func="-" parent="s4_522" dephead="s4_19" deprel="DET"/>
+       <word xml:id="s4_19" form="Vorstand" pos="NN" morph="nsm" lemma="Vorstand" func="HD" parent="s4_522" dephead="s4_16" deprel="SUBJ"/>
+      </node>
+      <node xml:id="s4_523" cat="NX" func="-" parent="s4_524">
+       <relation type="coreferential" target="s4_7"/>
+       <word xml:id="s4_20" form="der" pos="ART" morph="gsf" lemma="die" func="-" parent="s4_523" dephead="s4_21" deprel="DET"/>
+       <word xml:id="s4_21" form="Wohlfahrtsorganisation" pos="NN" morph="gsf" lemma="Wohlfahrtsorganisation" func="HD" parent="s4_523" dephead="s4_19" deprel="GMOD"/>
+      </node>
+     </node>
+     <node xml:id="s4_526" cat="PX" func="OPP" parent="s4_527">
+      <word xml:id="s4_22" form="in" pos="APPR" morph="a" lemma="in" func="-" parent="s4_526" dephead="s4_25" deprel="OBJP"/>
+      <node xml:id="s4_525" cat="NX" func="HD" parent="s4_526">
+       <word xml:id="s4_23" form="den" pos="ART" morph="asm" lemma="der" func="-" parent="s4_525" dephead="s4_24" deprel="DET"/>
+       <word xml:id="s4_24" form="Fall" pos="NN" morph="asm" lemma="Fall" func="HD" parent="s4_525" dephead="s4_22" deprel="PN"/>
+      </node>
+     </node>
+    </node>
+    <node xml:id="s4_529" cat="VC" func="-" parent="s4_530">
+     <node xml:id="s4_528" cat="VXINF" func="OV" parent="s4_529">
+      <word xml:id="s4_25" form="hineingezogen" pos="VVPP" lemma="hinein#ziehen" func="HD" parent="s4_528" dephead="s4_16" deprel="AUX"/>
+     </node>
+    </node>
+   </node>
+  </node>
+  <word xml:id="s4_26" form="." pos="$." lemma="." func="--" deprel="ROOT"/>
+ </sentence>
+ <sentence xml:id="s5">
+  <node xml:id="s5_517" cat="SIMPX" func="--">
+   <node xml:id="s5_503" cat="VF" func="-" parent="s5_517">
+    <node xml:id="s5_502" cat="PX" func="V-MOD" parent="s5_503">
+     <word xml:id="s5_1" form="In" pos="APPR" morph="d" lemma="in" func="-" parent="s5_502" dephead="s5_5" deprel="PP"/>
+     <node xml:id="s5_501" cat="NX" func="HD" parent="s5_502">
+      <word xml:id="s5_2" form="einer" pos="ART" morph="dsf" lemma="eine" func="-" parent="s5_501" dephead="s5_4" deprel="DET"/>
+      <node xml:id="s5_500" cat="ADJX" func="-" parent="s5_501">
+       <word xml:id="s5_3" form="anonymen" pos="ADJA" morph="dsf" lemma="anonym" func="HD" parent="s5_500" dephead="s5_4" deprel="ATTR"/>
+      </node>
+      <word xml:id="s5_4" form="Anzeige" pos="NN" morph="dsf" lemma="Anzeige" func="HD" parent="s5_501" dephead="s5_1" deprel="PN"/>
+     </node>
+    </node>
+   </node>
+   <node xml:id="s5_505" cat="LK" func="-" parent="s5_517">
+    <node xml:id="s5_504" cat="VXFIN" func="HD" parent="s5_505">
+     <word xml:id="s5_5" form="werden" pos="VAFIN" morph="3pis" lemma="werden%passiv" func="HD" parent="s5_504" deprel="ROOT"/>
+    </node>
+   </node>
+   <node xml:id="s5_514" cat="MF" func="-" parent="s5_517">
+    <node xml:id="s5_507" cat="NX" func="OD" parent="s5_514">
+     <relation type="coreferential" target="s2_500"/>
+     <word xml:id="s5_6" form="der" pos="ART" morph="dsf" lemma="die" func="-" parent="s5_507" dephead="s5_8" deprel="DET"/>
+     <node xml:id="s5_506" cat="ADJX" func="-" parent="s5_507">
+      <word xml:id="s5_7" form="Bremer" pos="ADJA" morph="***" lemma="Bremer" func="HD" parent="s5_506" dephead="s5_8" deprel="ATTR"/>
+     </node>
+     <word xml:id="s5_8" form="Staatsanwaltschaft" pos="NN" morph="dsf" lemma="Staatsanwaltschaft" func="HD" parent="s5_507" dephead="s5_14" deprel="OBJD"/>
+    </node>
+    <node xml:id="s5_513" cat="NX" func="ON" parent="s5_514">
+     <node xml:id="s5_508" cat="NX" func="HD" parent="s5_513">
+      <word xml:id="s5_9" form="Details" pos="NN" morph="npn" lemma="Detail" func="HD" parent="s5_508" dephead="s5_5" deprel="SUBJ"/>
+     </node>
+     <node xml:id="s5_512" cat="PX" func="-" parent="s5_513">
+      <word xml:id="s5_10" form="über" pos="APPR" morph="a" lemma="über" func="-" parent="s5_512" dephead="s5_9" deprel="PP"/>
+      <node xml:id="s5_511" cat="NX" func="HD" parent="s5_512">
+       <node xml:id="s5_509" cat="ADJX" func="-" parent="s5_511">
+        <word xml:id="s5_11" form="dubiose" pos="ADJA" morph="apf" lemma="dubios" func="HD" parent="s5_509" dephead="s5_13" deprel="ATTR"/>
+       </node>
+       <node xml:id="s5_510" cat="ADJX" func="-" parent="s5_511">
+        <word xml:id="s5_12" form="finanzielle" pos="ADJA" morph="apf" lemma="finanziell" func="HD" parent="s5_510" dephead="s5_13" deprel="ATTR"/>
+       </node>
+       <word xml:id="s5_13" form="Transaktionen" pos="NN" morph="apf" lemma="Transaktion" func="HD" parent="s5_511" dephead="s5_10" deprel="PN"/>
+      </node>
+     </node>
+    </node>
+   </node>
+   <node xml:id="s5_516" cat="VC" func="-" parent="s5_517">
+    <node xml:id="s5_515" cat="VXINF" func="OV" parent="s5_516">
+     <word xml:id="s5_14" form="mitgeteilt" pos="VVPP" lemma="mit#teilen" func="HD" parent="s5_515" dephead="s5_5" deprel="AUX"/>
+    </node>
+   </node>
+  </node>
+  <word xml:id="s5_15" form="." pos="$." lemma="." func="--" deprel="ROOT"/>
+ </sentence>
+ <sentence xml:id="s6">
+  <node xml:id="s6_538" cat="SIMPX" func="--">
+   <node xml:id="s6_501" cat="VF" func="-" parent="s6_538">
+    <node xml:id="s6_500" cat="ADJX" func="PRED" parent="s6_501">
+     <word xml:id="s6_1" form="Verantwortlich" pos="ADJD" lemma="verantwortlich" func="HD" parent="s6_500" dephead="s6_11" deprel="PRED"/>
+    </node>
+   </node>
+   <word xml:id="s6_2" form="," pos="$," lemma="," func="--" deprel="ROOT"/>
+   <node xml:id="s6_545" cat="NX" func="--">
+    <node xml:id="s6_539" cat="ADVX" func="-" parent="s6_545">
+     <word xml:id="s6_3" form="so" pos="ADV" lemma="so" func="HD" parent="s6_539" dephead="s6_5" deprel="ADV"/>
+    </node>
+    <node xml:id="s6_544" cat="NX" func="HD" parent="s6_545">
+     <node xml:id="s6_540" cat="NX" func="HD" parent="s6_544">
+      <word xml:id="s6_4" form="das" pos="ART" morph="nsn" lemma="das" func="-" parent="s6_540" dephead="s6_5" deprel="DET"/>
+      <word xml:id="s6_5" form="Schreiben" pos="NN" morph="nsn" lemma="Schreiben" func="HD" parent="s6_540" dephead="s6_1" deprel="PAR"/>
+     </node>
+     <node xml:id="s6_543" cat="NX" func="-" parent="s6_544">
+      <node xml:id="s6_541" cat="NX" func="HD" parent="s6_543">
+       <word xml:id="s6_6" form="einer" pos="ART" morph="gsf" lemma="eine" func="-" parent="s6_541" dephead="s6_7" deprel="DET"/>
+       <word xml:id="s6_7" form="Mitarbeiterin" pos="NN" morph="gsf" lemma="Mitarbeiterin" func="HD" parent="s6_541" dephead="s6_5" deprel="GMOD"/>
+      </node>
+      <node xml:id="s6_542" cat="NX" func="-" parent="s6_543">
+       <relation type="coreferential" target="s4_523"/>
+       <word xml:id="s6_8" form="der" pos="ART" morph="gsf" lemma="die" func="-" parent="s6_542" dephead="s6_9" deprel="DET"/>
+       <ne xml:id="ne_77" type="ORG">
+        <word xml:id="s6_9" form="AWO" pos="NN" morph="gsf" lemma="AWO" func="HD" parent="s6_542" dephead="s6_7" deprel="GMOD"/>
+       </ne>
+      </node>
+     </node>
+    </node>
+   </node>
+   <word xml:id="s6_10" form="," pos="$," lemma="," func="--" deprel="ROOT"/>
+   <node xml:id="s6_503" cat="LK" func="-" parent="s6_538">
+    <node xml:id="s6_502" cat="VXFIN" func="HD" parent="s6_503">
+     <word xml:id="s6_11" form="sei" pos="VAFIN" morph="3sks" lemma="sein" func="HD" parent="s6_502" deprel="ROOT"/>
+    </node>
+   </node>
+   <node xml:id="s6_507" cat="MF" func="-" parent="s6_538">
+    <node xml:id="s6_506" cat="NX" func="ON" parent="s6_507">
+     <relation type="coreferential" target="s3_502"/>
+     <node xml:id="s6_504" cat="NX" func="APP" parent="s6_506">
+      <word xml:id="s6_12" form="die" pos="ART" morph="nsf" lemma="die" func="-" parent="s6_504" dephead="s6_13" deprel="DET"/>
+      <word xml:id="s6_13" form="Landesvorsitzende" pos="NN" morph="nsf" lemma="Landesvorsitzende" func="HD" parent="s6_504" dephead="s6_11" deprel="SUBJ"/>
+     </node>
+     <node xml:id="s6_505" cat="NX" func="APP" parent="s6_506">
+      <ne xml:id="ne_82" type="PER">
+       <word xml:id="s6_14" form="Uter" pos="NE" morph="nsf" lemma="Ute" func="-" parent="s6_505" comment="Ute" dephead="s6_13" deprel="APP"/>
+       <word xml:id="s6_15" form="Wedemeier" pos="NE" morph="nsf" lemma="Wedemeier" func="-" parent="s6_505" dephead="s6_14" deprel="APP"/>
+      </ne>
+     </node>
+    </node>
+   </node>
+   <word xml:id="s6_16" form="," pos="$," lemma="," func="--" deprel="ROOT"/>
+   <node xml:id="s6_537" cat="NF" func="-" parent="s6_538">
+    <node xml:id="s6_536" cat="R-SIMPX" func="ON-MOD" parent="s6_537">
+     <node xml:id="s6_509" cat="C" func="-" parent="s6_536">
+      <node xml:id="s6_508" cat="NX" func="ON" parent="s6_509">
+       <relation type="anaphoric" target="s6_506"/>
+       <word xml:id="s6_17" form="die" pos="PRELS" morph="nsf" lemma="die" func="HD" parent="s6_508" dephead="s6_24" deprel="SUBJ"/>
+      </node>
+     </node>
+     <node xml:id="s6_513" cat="MF" func="-" parent="s6_536">
+      <node xml:id="s6_510" cat="NX" func="OA" parent="s6_513">
+       <word xml:id="s6_18" form="sich" pos="PRF" morph="as*3" lemma="#refl" func="HD" parent="s6_510" dephead="s6_24" deprel="OBJA"/>
+      </node>
+      <node xml:id="s6_511" cat="ADVX" func="MOD" parent="s6_513">
+       <word xml:id="s6_19" form="jetzt" pos="ADV" lemma="jetzt" func="HD" parent="s6_511" dephead="s6_24" deprel="ADV"/>
+      </node>
+      <node xml:id="s6_512" cat="NX" func="PRED" parent="s6_513">
+       <word xml:id="s6_20" form="als" pos="KOKOM" lemma="als" func="-" parent="s6_512" dephead="s6_22" deprel="-UNKNOWN-"/>
+       <word xml:id="s6_21" form='"' pos="$(" lemma='"' func="--" deprel="ROOT"/>
+       <word xml:id="s6_22" form="Sauberfrau" pos="NN" morph="nsf" lemma="Sauberfrau" func="HD" parent="s6_512" dephead="s6_24" deprel="PRED"/>
+      </node>
+     </node>
+     <word xml:id="s6_23" form='"' pos="$(" lemma='"' func="--" deprel="ROOT"/>
+     <node xml:id="s6_515" cat="VC" func="-" parent="s6_536">
+      <node xml:id="s6_514" cat="VXFIN" func="HD" parent="s6_515">
+       <word xml:id="s6_24" form="gebe" pos="VVFIN" morph="3sks" lemma="geben" func="HD" parent="s6_514" dephead="s6_15" deprel="REL"/>
+      </node>
+     </node>
+     <word xml:id="s6_25" form="," pos="$," lemma="," func="--" deprel="ROOT"/>
+     <word xml:id="s6_26" form='"' pos="$(" lemma='"' func="--" deprel="ROOT"/>
+     <node xml:id="s6_535" cat="NF" func="-" parent="s6_536">
+      <node xml:id="s6_534" cat="SIMPX" func="MOD" parent="s6_535">
+       <node xml:id="s6_517" cat="C" func="-" parent="s6_534">
+        <node xml:id="s6_516" cat="ADVX" func="MOD" parent="s6_517">
+         <word xml:id="s6_27" form="wo" pos="PWAV" lemma="wo" func="HD" parent="s6_516" dephead="s6_30" deprel="ADV"/>
+        </node>
+       </node>
+       <node xml:id="s6_520" cat="MF" func="-" parent="s6_534">
+        <node xml:id="s6_518" cat="ADVX" func="MOD" parent="s6_520">
+         <word xml:id="s6_28" form="doch" pos="ADV" lemma="doch" func="HD" parent="s6_518" dephead="s6_30" deprel="ADV"/>
+        </node>
+        <node xml:id="s6_519" cat="NX" func="ON" parent="s6_520">
+         <word xml:id="s6_29" form="alle" pos="PIS" morph="np*" lemma="alle" func="HD" parent="s6_519" dephead="s6_30" deprel="SUBJ"/>
+        </node>
+       </node>
+       <node xml:id="s6_522" cat="VC" func="-" parent="s6_534">
+        <node xml:id="s6_521" cat="VXFIN" func="HD" parent="s6_522">
+         <word xml:id="s6_30" form="wissen" pos="VVFIN" morph="3pis" lemma="wissen" func="HD" parent="s6_521" dephead="s6_24" deprel="NEB"/>
+        </node>
+       </node>
+       <word xml:id="s6_31" form="," pos="$," lemma="," func="--" deprel="ROOT"/>
+       <node xml:id="s6_533" cat="NF" func="-" parent="s6_534">
+        <node xml:id="s6_532" cat="SIMPX" func="OS" parent="s6_533">
+         <node xml:id="s6_525" cat="C" func="-" parent="s6_532">
+          <node xml:id="s6_524" cat="ADJX" func="V-MOD" parent="s6_525">
+           <node xml:id="s6_523" cat="ADVX" func="-" parent="s6_524">
+            <word xml:id="s6_32" form="wie" pos="PWAV" lemma="wie" func="HD" parent="s6_523" dephead="s6_33" deprel="ADV"/>
+           </node>
+           <word xml:id="s6_33" form="eng" pos="ADJD" lemma="eng" func="HD" parent="s6_524" dephead="s6_37" deprel="ADV"/>
+          </node>
+         </node>
+         <node xml:id="s6_529" cat="MF" func="-" parent="s6_532">
+          <node xml:id="s6_526" cat="NX" func="ON" parent="s6_529">
+           <relation type="anaphoric" target="s6_508"/>
+           <word xml:id="s6_34" form="sie" pos="PPER" morph="nsf3" lemma="sie" func="HD" parent="s6_526" dephead="s6_37" deprel="SUBJ"/>
+          </node>
+          <node xml:id="s6_528" cat="PX" func="OPP" parent="s6_529">
+           <word xml:id="s6_35" form="mit" pos="APPR" morph="d" lemma="mit" func="-" parent="s6_528" dephead="s6_37" deprel="OBJP"/>
+           <node xml:id="s6_527" cat="NX" func="HD" parent="s6_528">
+            <relation type="coreferential" target="s4_511"/>
+            <ne xml:id="ne_104" type="PER">
+             <word xml:id="s6_36" form="Taake" pos="NE" morph="dsm" lemma="Taake" func="HD" parent="s6_527" dephead="s6_35" deprel="PN"/>
+            </ne>
+           </node>
+          </node>
+         </node>
+         <node xml:id="s6_531" cat="VC" func="-" parent="s6_532">
+          <node xml:id="s6_530" cat="VXFIN" func="HD" parent="s6_531">
+           <word xml:id="s6_37" form="zusammenhing" pos="VVFIN" morph="3sit" lemma="zusammen#hängen" func="HD" parent="s6_530" dephead="s6_30" deprel="OBJC"/>
+          </node>
+         </node>
+        </node>
+       </node>
+      </node>
+     </node>
+    </node>
+   </node>
+  </node>
+  <word xml:id="s6_38" form='"' pos="$(" lemma='"' func="--" deprel="ROOT"/>
+  <word xml:id="s6_39" form="." pos="$." lemma="." func="--" deprel="ROOT"/>
+ </sentence>
+ <sentence xml:id="s7">
+  <node xml:id="s7_504" cat="NX" func="--">
+   <node xml:id="s7_500" cat="NX" func="APP" parent="s7_504">
+    <word xml:id="s7_1" form="Vorwurf" pos="NN" morph="nsm" lemma="Vorwurf" func="HD" parent="s7_500" deprel="ROOT"/>
+   </node>
+   <node xml:id="s7_503" cat="NX" func="APP" parent="s7_504">
+    <node xml:id="s7_501" cat="NX" func="APP" parent="s7_503">
+     <word xml:id="s7_2" form="Nummer" pos="NN" morph="nsf" lemma="Nummer" func="HD" parent="s7_501" dephead="s7_1" deprel="APP"/>
+    </node>
+    <node xml:id="s7_502" cat="NX" func="APP" parent="s7_503">
+     <word xml:id="s7_3" form="1" pos="CARD" lemma="1" func="HD" parent="s7_502" dephead="s7_2" deprel="APP"/>
+    </node>
+   </node>
+  </node>
+  <word xml:id="s7_4" form=":" pos="$." lemma=":" func="--" deprel="ROOT"/>
+  <node xml:id="s7_544" cat="SIMPX" func="--">
+   <node xml:id="s7_517" cat="VF" func="-" parent="s7_544">
+    <node xml:id="s7_516" cat="NX" func="ON" parent="s7_517">
+     <node xml:id="s7_506" cat="NX" func="HD" parent="s7_516">
+      <node xml:id="s7_505" cat="ADJX" func="-" parent="s7_506">
+       <word xml:id="s7_5" form="165.000" pos="CARD" lemma="165.000" func="HD" parent="s7_505" dephead="s7_6" deprel="ATTR"/>
+      </node>
+      <word xml:id="s7_6" form="Mark" pos="NN" morph="npf" lemma="Mark" func="HD" parent="s7_506" dephead="s7_16" deprel="SUBJ"/>
+     </node>
+     <node xml:id="s7_515" cat="PX" func="-" parent="s7_516">
+      <word xml:id="s7_7" form="aus" pos="APPR" morph="d" lemma="aus" func="-" parent="s7_515" dephead="s7_6" deprel="PP"/>
+      <node xml:id="s7_514" cat="NX" func="HD" parent="s7_515">
+       <node xml:id="s7_508" cat="NX" func="HD" parent="s7_514">
+        <word xml:id="s7_8" form="der" pos="ART" morph="dsf" lemma="die" func="-" parent="s7_508" dephead="s7_10" deprel="DET"/>
+        <node xml:id="s7_507" cat="ADJX" func="-" parent="s7_508">
+         <word xml:id="s7_9" form="bundesweiten" pos="ADJA" morph="dsf" lemma="bundesweit" func="HD" parent="s7_507" dephead="s7_10" deprel="ATTR"/>
+        </node>
+        <word xml:id="s7_10" form="Geldsammlung" pos="NN" morph="dsf" lemma="Geldsammlung" func="HD" parent="s7_508" dephead="s7_7" deprel="PN"/>
+       </node>
+       <node xml:id="s7_513" cat="PX" func="-" parent="s7_514">
+        <word xml:id="s7_11" form="für" pos="APPR" morph="a" lemma="für" func="-" parent="s7_513" dephead="s7_10" deprel="PP"/>
+        <node xml:id="s7_512" cat="NX" func="HD" parent="s7_513">
+         <node xml:id="s7_509" cat="NX" func="HD" parent="s7_512">
+          <word xml:id="s7_12" form="die" pos="ART" morph="apn" lemma="das" func="-" parent="s7_509" dephead="s7_13" deprel="DET"/>
+          <word xml:id="s7_13" form="Flutopfer" pos="NN" morph="apn" lemma="Flutopfer" func="HD" parent="s7_509" dephead="s7_11" deprel="PN"/>
+         </node>
+         <node xml:id="s7_511" cat="PX" func="-" parent="s7_512">
+          <word xml:id="s7_14" form="in" pos="APPR" morph="d" lemma="in" func="-" parent="s7_511" dephead="s7_13" deprel="PP"/>
+          <node xml:id="s7_510" cat="NX" func="HD" parent="s7_511">
+           <word xml:id="s7_15" form="Südpolen" pos="NN" morph="dsn" lemma="Südpolen" func="HD" parent="s7_510" dephead="s7_14" deprel="PN"/>
+          </node>
+         </node>
+        </node>
+       </node>
+      </node>
+     </node>
+    </node>
+   </node>
+   <node xml:id="s7_519" cat="LK" func="-" parent="s7_544">
+    <node xml:id="s7_518" cat="VXFIN" func="HD" parent="s7_519">
+     <word xml:id="s7_16" form="seien" pos="VAFIN" morph="3pks" lemma="sein%aux" func="HD" parent="s7_518" deprel="ROOT"/>
+    </node>
+   </node>
+   <node xml:id="s7_532" cat="MF" func="-" parent="s7_544">
+    <node xml:id="s7_526" cat="PX" func="V-MOD" parent="s7_532">
+     <word xml:id="s7_17" form="über" pos="APPR" morph="a" lemma="über" func="-" parent="s7_526" dephead="s7_30" deprel="PP"/>
+     <node xml:id="s7_525" cat="NX" func="HD" parent="s7_526">
+      <node xml:id="s7_520" cat="NX" func="HD" parent="s7_525">
+       <word xml:id="s7_18" form="das" pos="ART" morph="asn" lemma="das" func="-" parent="s7_520" dephead="s7_19" deprel="DET"/>
+       <word xml:id="s7_19" form="Konto" pos="NN" morph="asn" lemma="Konto" func="HD" parent="s7_520" dephead="s7_17" deprel="PN"/>
+      </node>
+      <node xml:id="s7_524" cat="NX" func="-" parent="s7_525">
+       <relation type="coreferential" target="s4_7"/>
+       <node xml:id="s7_522" cat="NX" func="HD" parent="s7_524">
+        <word xml:id="s7_20" form="des" pos="ART" morph="gsm" lemma="der" func="-" parent="s7_522" dephead="s7_22" deprel="DET"/>
+        <node xml:id="s7_521" cat="ADJX" func="-" parent="s7_522">
+         <word xml:id="s7_21" form="Bremer" pos="ADJA" morph="***" lemma="Bremer" func="HD" parent="s7_521" dephead="s7_22" deprel="ATTR"/>
+        </node>
+        <word xml:id="s7_22" form="Landesverbandes" pos="NN" morph="gsm" lemma="Landesverband" func="HD" parent="s7_522" dephead="s7_19" deprel="GMOD"/>
+       </node>
+       <node xml:id="s7_523" cat="NX" func="-" parent="s7_524">
+        <relation type="coreferential" target="s6_542"/>
+        <word xml:id="s7_23" form="der" pos="ART" morph="gsf" lemma="die" func="-" parent="s7_523" dephead="s7_24" deprel="DET"/>
+        <ne xml:id="ne_131" type="ORG">
+         <word xml:id="s7_24" form="AWO" pos="NN" morph="gsf" lemma="AWO" func="HD" parent="s7_523" dephead="s7_22" deprel="GMOD"/>
+        </ne>
+       </node>
+      </node>
+     </node>
+    </node>
+    <node xml:id="s7_531" cat="PX" func="FOPP" parent="s7_532">
+     <word xml:id="s7_25" form="an" pos="APPR" morph="a" lemma="an" func="-" parent="s7_531" dephead="s7_30" deprel="PP"/>
+     <node xml:id="s7_530" cat="NX" func="HD" parent="s7_531">
+      <node xml:id="s7_527" cat="NX" func="HD" parent="s7_530">
+       <word xml:id="s7_26" form="die" pos="ART" morph="asf" lemma="die" func="-" parent="s7_527" dephead="s7_27" deprel="DET"/>
+       <ne xml:id="ne_134" type="ORG">
+        <word xml:id="s7_27" form="Caritas" pos="NE" morph="asf" lemma="Caritas" func="HD" parent="s7_527" dephead="s7_25" deprel="PN"/>
+       </ne>
+      </node>
+      <node xml:id="s7_529" cat="PX" func="-" parent="s7_530">
+       <word xml:id="s7_28" form="in" pos="APPR" morph="d" lemma="in" func="-" parent="s7_529" dephead="s7_27" deprel="PP"/>
+       <node xml:id="s7_528" cat="NX" func="HD" parent="s7_529">
+        <relation type="coreferential" target="s2_520"/>
+        <ne xml:id="ne_136" type="GPE">
+         <word xml:id="s7_29" form="Danzig" pos="NE" morph="dsn" lemma="Danzig" func="HD" parent="s7_528" dephead="s7_28" deprel="PN"/>
+        </ne>
+       </node>
+      </node>
+     </node>
+    </node>
+   </node>
+   <node xml:id="s7_534" cat="VC" func="-" parent="s7_544">
+    <node xml:id="s7_533" cat="VXINF" func="OV" parent="s7_534">
+     <word xml:id="s7_30" form="geflossen" pos="VVPP" lemma="fließen" func="HD" parent="s7_533" dephead="s7_16" deprel="AUX"/>
+    </node>
+   </node>
+   <word xml:id="s7_31" form="," pos="$," lemma="," func="--" deprel="ROOT"/>
+   <word xml:id="s7_32" form='"' pos="$(" lemma='"' func="--" deprel="ROOT"/>
+   <node xml:id="s7_543" cat="NF" func="-" parent="s7_544">
+    <node xml:id="s7_542" cat="SIMPX" func="MOD" parent="s7_543">
+     <node xml:id="s7_535" cat="C" func="-" parent="s7_542">
+      <word xml:id="s7_33" form="damit" pos="KOUS" lemma="damit" func="-" parent="s7_535" dephead="s7_38" deprel="KONJ"/>
+     </node>
+     <node xml:id="s7_538" cat="MF" func="-" parent="s7_542">
+      <node xml:id="s7_536" cat="ADVX" func="V-MOD" parent="s7_538">
+       <word xml:id="s7_34" form="dort" pos="ADV" lemma="dort" func="HD" parent="s7_536" dephead="s7_37" deprel="ADV"/>
+      </node>
+      <node xml:id="s7_537" cat="NX" func="ON" parent="s7_538">
+       <word xml:id="s7_35" form="ein" pos="ART" morph="nsn" lemma="ein" func="-" parent="s7_537" dephead="s7_36" deprel="DET"/>
+       <word xml:id="s7_36" form="Altenheim" pos="NN" morph="nsn" lemma="Altenheim" func="HD" parent="s7_537" dephead="s7_38" deprel="SUBJ"/>
+      </node>
+     </node>
+     <node xml:id="s7_541" cat="VC" func="-" parent="s7_542">
+      <node xml:id="s7_539" cat="VXINF" func="OV" parent="s7_541">
+       <word xml:id="s7_37" form="gebaut" pos="VVPP" lemma="bauen" func="HD" parent="s7_539" dephead="s7_38" deprel="AUX"/>
+      </node>
+      <node xml:id="s7_540" cat="VXFIN" func="HD" parent="s7_541">
+       <word xml:id="s7_38" form="wird" pos="VAFIN" morph="3sis" lemma="werden%passiv" func="HD" parent="s7_540" dephead="s7_16" deprel="NEB"/>
+      </node>
+     </node>
+    </node>
+   </node>
+  </node>
+  <word xml:id="s7_39" form='"' pos="$(" lemma='"' func="--" deprel="ROOT"/>
+  <word xml:id="s7_40" form="." pos="$." lemma="." func="--" deprel="ROOT"/>
+ </sentence>
+ <sentence xml:id="s8">
+  <node xml:id="s8_511" cat="SIMPX" func="--">
+   <node xml:id="s8_501" cat="VF" func="-" parent="s8_511">
+    <node xml:id="s8_500" cat="NX" func="ON" parent="s8_501">
+     <relation type="coreferential" target="s7_537"/>
+     <word xml:id="s8_1" form="Das" pos="ART" morph="nsn" lemma="das" func="-" parent="s8_500" dephead="s8_2" deprel="DET"/>
+     <word xml:id="s8_2" form="Altenheim" pos="NN" morph="nsn" lemma="Altenheim" func="HD" parent="s8_500" dephead="s8_3" deprel="SUBJ"/>
+    </node>
+   </node>
+   <node xml:id="s8_503" cat="LK" func="-" parent="s8_511">
+    <node xml:id="s8_502" cat="VXFIN" func="HD" parent="s8_503">
+     <word xml:id="s8_3" form="sei" pos="VAFIN" morph="3sks" lemma="sein" func="HD" parent="s8_502" deprel="ROOT"/>
+    </node>
+   </node>
+   <word xml:id="s8_4" form='"' pos="$(" lemma='"' func="--" deprel="ROOT"/>
+   <node xml:id="s8_510" cat="MF" func="-" parent="s8_511">
+    <node xml:id="s8_509" cat="NX" func="PRED" parent="s8_510">
+     <node xml:id="s8_504" cat="NX" func="HD" parent="s8_509">
+      <word xml:id="s8_5" form="ein" pos="ART" morph="nsn" lemma="ein" func="-" parent="s8_504" dephead="s8_6" deprel="DET"/>
+      <word xml:id="s8_6" form="Prestigeobjekt" pos="NN" morph="nsn" lemma="Prestigeobjekt" func="HD" parent="s8_504" dephead="s8_3" deprel="PRED"/>
+     </node>
+     <node xml:id="s8_508" cat="PX" func="-" parent="s8_509">
+      <word xml:id="s8_7" form="von" pos="APPR" morph="d" lemma="von" func="-" parent="s8_508" dephead="s8_6" deprel="PP"/>
+      <node xml:id="s8_507" cat="NX" func="HD" parent="s8_508">
+       <node xml:id="s8_505" cat="NX" func="KONJ" parent="s8_507">
+        <relation type="anaphoric" target="s6_526"/>
+        <word xml:id="s8_8" form="ihr" pos="PPER" morph="dsf3" lemma="sie" func="HD" parent="s8_505" dephead="s8_7" deprel="PN"/>
+       </node>
+       <word xml:id="s8_9" form="und" pos="KON" lemma="und" func="-" parent="s8_507" dephead="s8_8" deprel="KON"/>
+       <node xml:id="s8_506" cat="NX" func="KONJ" parent="s8_507">
+        <word xml:id="s8_10" form="anderen" pos="PIS" morph="dp*" lemma="anderer|andere|anderes" func="HD" parent="s8_506" dephead="s8_9" deprel="CJ"/>
+       </node>
+      </node>
+     </node>
+    </node>
+   </node>
+  </node>
+  <word xml:id="s8_11" form='"' pos="$(" lemma='"' func="--" deprel="ROOT"/>
+  <word xml:id="s8_12" form="." pos="$." lemma="." func="--" deprel="ROOT"/>
+ </sentence>
+ <sentence xml:id="s9">
+  <node xml:id="s9_534" cat="SIMPX" func="--">
+   <node xml:id="s9_512" cat="SIMPX" func="KONJ" parent="s9_534">
+    <node xml:id="s9_502" cat="VF" func="-" parent="s9_512">
+     <node xml:id="s9_501" cat="PX" func="MOD" parent="s9_502">
+      <word xml:id="s9_1" form="In" pos="APPR" morph="d" lemma="in" func="-" parent="s9_501" dephead="s9_4" deprel="PP"/>
+      <node xml:id="s9_500" cat="NX" func="HD" parent="s9_501">
+       <word xml:id="s9_2" form="der" pos="ART" morph="dsf" lemma="die" func="-" parent="s9_500" dephead="s9_3" deprel="DET"/>
+       <word xml:id="s9_3" form="Tat" pos="NN" morph="dsf" lemma="Tat" func="HD" parent="s9_500" dephead="s9_1" deprel="PN"/>
+      </node>
+     </node>
+    </node>
+    <node xml:id="s9_504" cat="LK" func="-" parent="s9_512">
+     <node xml:id="s9_503" cat="VXFIN" func="HD" parent="s9_504">
+      <word xml:id="s9_4" form="sitzt" pos="VVFIN" morph="3sis" lemma="sitzen" func="HD" parent="s9_503" deprel="ROOT"/>
+     </node>
+    </node>
+    <node xml:id="s9_511" cat="MF" func="-" parent="s9_512">
+     <node xml:id="s9_505" cat="NX" func="ON" parent="s9_511">
+      <relation type="coreferential" target="s8_505"/>
+      <ne xml:id="ne_164" type="PER">
+       <word xml:id="s9_5" form="Ute" pos="NE" morph="nsf" lemma="Ute" func="-" parent="s9_505" dephead="s9_4" deprel="SUBJ"/>
+       <word xml:id="s9_6" form="Wedemeier" pos="NE" morph="nsf" lemma="Wedemeier" func="-" parent="s9_505" dephead="s9_5" deprel="APP"/>
+      </ne>
+     </node>
+     <node xml:id="s9_510" cat="PX" func="V-MOD" parent="s9_511">
+      <word xml:id="s9_7" form="im" pos="APPRART" morph="dsn" lemma="in" func="-" parent="s9_510" dephead="s9_4" deprel="PP"/>
+      <node xml:id="s9_509" cat="NX" func="HD" parent="s9_510">
+       <node xml:id="s9_506" cat="NX" func="HD" parent="s9_509">
+        <word xml:id="s9_8" form="Kuratorium" pos="NN" morph="dsn" lemma="Kuratorium" func="HD" parent="s9_506" dephead="s9_7" deprel="PN"/>
+       </node>
+       <node xml:id="s9_508" cat="PX" func="-" parent="s9_509">
+        <word xml:id="s9_9" form="für" pos="APPR" morph="a" lemma="für" func="-" parent="s9_508" dephead="s9_8" deprel="PP"/>
+        <node xml:id="s9_507" cat="NX" func="HD" parent="s9_508">
+         <relation type="coreferential" target="s8_500"/>
+         <word xml:id="s9_10" form="das" pos="ART" morph="asn" lemma="das" func="-" parent="s9_507" dephead="s9_11" deprel="DET"/>
+         <word xml:id="s9_11" form="Altenheim" pos="NN" morph="asn" lemma="Altenheim" func="HD" parent="s9_507" dephead="s9_9" deprel="PN"/>
+        </node>
+       </node>
+      </node>
+     </node>
+    </node>
+   </node>
+   <word xml:id="s9_12" form="," pos="$," lemma="," func="--" deprel="ROOT"/>
+   <node xml:id="s9_533" cat="SIMPX" func="KONJ" parent="s9_534">
+    <node xml:id="s9_528" cat="VF" func="-" parent="s9_533">
+     <node xml:id="s9_527" cat="SIMPX" func="OS" parent="s9_528">
+      <node xml:id="s9_518" cat="VF" func="-" parent="s9_527">
+       <node xml:id="s9_517" cat="NX" func="OA" parent="s9_518">
+        <node xml:id="s9_514" cat="NX" func="HD" parent="s9_517">
+         <word xml:id="s9_13" form="eine" pos="ART" morph="asf" lemma="eine" func="-" parent="s9_514" dephead="s9_15" deprel="DET"/>
+         <node xml:id="s9_513" cat="ADJX" func="-" parent="s9_514">
+          <word xml:id="s9_14" form="derartige" pos="ADJA" morph="asf" lemma="derartig" func="HD" parent="s9_513" dephead="s9_15" deprel="ATTR"/>
+         </node>
+         <word xml:id="s9_15" form="Umleitung" pos="NN" morph="asf" lemma="Umleitung" func="HD" parent="s9_514" dephead="s9_22" deprel="OBJA"/>
+        </node>
+        <node xml:id="s9_516" cat="PX" func="-" parent="s9_517">
+         <word xml:id="s9_16" form="von" pos="APPR" morph="d" lemma="von" func="-" parent="s9_516" dephead="s9_15" deprel="PP"/>
+         <node xml:id="s9_515" cat="NX" func="HD" parent="s9_516">
+          <word xml:id="s9_17" form="Geldern" pos="NN" morph="dpn" lemma="Geld" func="HD" parent="s9_515" dephead="s9_16" deprel="PN"/>
+         </node>
+        </node>
+       </node>
+      </node>
+      <node xml:id="s9_520" cat="LK" func="-" parent="s9_527">
+       <node xml:id="s9_519" cat="VXFIN" func="HD" parent="s9_520">
+        <word xml:id="s9_18" form="habe" pos="VAFIN" morph="3sks" lemma="haben%aux" func="HD" parent="s9_519" dephead="s9_24" deprel="S"/>
+       </node>
+      </node>
+      <node xml:id="s9_524" cat="MF" func="-" parent="s9_527">
+       <node xml:id="s9_521" cat="NX" func="ON" parent="s9_524">
+        <relation type="expletive"/>
+        <word xml:id="s9_19" form="es" pos="PPER" morph="nsn3" lemma="es" func="HD" parent="s9_521" dephead="s9_18" deprel="SUBJ"/>
+       </node>
+       <node xml:id="s9_522" cat="ADVX" func="MOD" parent="s9_524">
+        <word xml:id="s9_20" form="aber" pos="ADV" lemma="aber" func="HD" parent="s9_522" dephead="s9_22" deprel="ADV"/>
+       </node>
+       <node xml:id="s9_523" cat="ADVX" func="MOD" parent="s9_524">
+        <word xml:id="s9_21" form="nicht" pos="PTKNEG" lemma="nicht" func="HD" parent="s9_523" dephead="s9_22" deprel="ADV"/>
+       </node>
+      </node>
+      <node xml:id="s9_526" cat="VC" func="-" parent="s9_527">
+       <node xml:id="s9_525" cat="VXINF" func="OV" parent="s9_526">
+        <word xml:id="s9_22" form="gegeben" pos="VVPP" lemma="geben" func="HD" parent="s9_525" dephead="s9_18" deprel="AUX"/>
+       </node>
+      </node>
+     </node>
+    </node>
+    <word xml:id="s9_23" form="," pos="$," lemma="," func="--" deprel="ROOT"/>
+    <node xml:id="s9_530" cat="LK" func="-" parent="s9_533">
+     <node xml:id="s9_529" cat="VXFIN" func="HD" parent="s9_530">
+      <word xml:id="s9_24" form="sagt" pos="VVFIN" morph="3sis" lemma="sagen" func="HD" parent="s9_529" dephead="s9_4" deprel="KON"/>
+     </node>
+    </node>
+    <node xml:id="s9_532" cat="MF" func="-" parent="s9_533">
+     <node xml:id="s9_531" cat="NX" func="ON" parent="s9_532">
+      <relation type="anaphoric" target="s9_505"/>
+      <word xml:id="s9_25" form="sie" pos="PPER" morph="nsf3" lemma="sie" func="HD" parent="s9_531" dephead="s9_24" deprel="SUBJ"/>
+     </node>
+    </node>
+   </node>
+  </node>
+  <word xml:id="s9_26" form="." pos="$." lemma="." func="--" deprel="ROOT"/>
+ </sentence>
+ <sentence xml:id="s10">
+  <word xml:id="s10_1" form='"' pos="$(" lemma='"' func="--" deprel="ROOT"/>
+  <node xml:id="s10_531" cat="SIMPX" func="--">
+   <node xml:id="s10_519" cat="SIMPX" func="KONJ" parent="s10_531">
+    <node xml:id="s10_509" cat="LV" func="-" parent="s10_519">
+     <node xml:id="s10_508" cat="SIMPX" func="MOD-MOD" parent="s10_509">
+      <node xml:id="s10_500" cat="C" func="-" parent="s10_508">
+       <word xml:id="s10_2" form="Wenn" pos="KOUS" lemma="wenn" func="-" parent="s10_500" dephead="s10_7" deprel="KONJ"/>
+      </node>
+      <node xml:id="s10_503" cat="MF" func="-" parent="s10_508">
+       <node xml:id="s10_501" cat="ADVX" func="MOD" parent="s10_503">
+        <word xml:id="s10_3" form="da" pos="ADV" lemma="da" func="HD" parent="s10_501" dephead="s10_5" deprel="ADV"/>
+       </node>
+       <node xml:id="s10_502" cat="NX" func="ON" parent="s10_503">
+        <word xml:id="s10_4" form="was" pos="PIS" morph="***" lemma="etwas" func="HD" parent="s10_502" dephead="s10_7" deprel="SUBJ"/>
+       </node>
+      </node>
+      <node xml:id="s10_507" cat="VC" func="-" parent="s10_508">
+       <node xml:id="s10_504" cat="VXINF" func="OV" parent="s10_507">
+        <word xml:id="s10_5" form="gebucht" pos="VVPP" lemma="buchen" func="HD" parent="s10_504" dephead="s10_6" deprel="AUX"/>
+       </node>
+       <node xml:id="s10_505" cat="VXINF" func="OV" parent="s10_507">
+        <secEdge cat="refvc" parent="s10_504"/>
+        <word xml:id="s10_6" form="worden" pos="VAPP" lemma="werden%passiv" func="HD" parent="s10_505" dephead="s10_7" deprel="AUX"/>
+       </node>
+       <node xml:id="s10_506" cat="VXFIN" func="HD" parent="s10_507">
+        <word xml:id="s10_7" form="ist" pos="VAFIN" morph="3sis" lemma="sein%aux" func="HD" parent="s10_506" dephead="s10_10" deprel="NEB"/>
+       </node>
+      </node>
+     </node>
+    </node>
+    <word xml:id="s10_8" form="," pos="$," lemma="," func="--" deprel="ROOT"/>
+    <node xml:id="s10_511" cat="VF" func="-" parent="s10_519">
+     <node xml:id="s10_510" cat="ADVX" func="MOD" parent="s10_511">
+      <secEdge cat="refmod" parent="s10_508"/>
+      <word xml:id="s10_9" form="dann" pos="ADV" lemma="dann" func="HD" parent="s10_510" dephead="s10_10" deprel="ADV"/>
+     </node>
+    </node>
+    <node xml:id="s10_513" cat="LK" func="-" parent="s10_519">
+     <node xml:id="s10_512" cat="VXFIN" func="HD" parent="s10_513">
+      <word xml:id="s10_10" form="ist" pos="VAFIN" morph="3sis" lemma="sein" func="HD" parent="s10_512" deprel="ROOT"/>
+     </node>
+    </node>
+    <node xml:id="s10_518" cat="MF" func="-" parent="s10_519">
+     <node xml:id="s10_514" cat="NX" func="ON" parent="s10_518">
+      <word xml:id="s10_11" form="das" pos="PDS" morph="nsn" lemma="das" func="HD" parent="s10_514" dephead="s10_10" deprel="SUBJ"/>
+     </node>
+     <node xml:id="s10_515" cat="ADVX" func="MOD" parent="s10_518">
+      <word xml:id="s10_12" form="nicht" pos="PTKNEG" lemma="nicht" func="HD" parent="s10_515" dephead="s10_10" deprel="ADV"/>
+     </node>
+     <node xml:id="s10_517" cat="PX" func="PRED" parent="s10_518">
+      <word xml:id="s10_13" form="in" pos="APPR" morph="d" lemma="in" func="-" parent="s10_517" dephead="s10_10" deprel="PRED"/>
+      <node xml:id="s10_516" cat="NX" func="HD" parent="s10_517">
+       <word xml:id="s10_14" form="Ordnung" pos="NN" morph="dsf" lemma="Ordnung" func="HD" parent="s10_516" dephead="s10_13" deprel="PN"/>
+      </node>
+     </node>
+    </node>
+   </node>
+   <word xml:id="s10_15" form='"' pos="$(" lemma='"' func="--" deprel="ROOT"/>
+   <word xml:id="s10_16" form="-" pos="$(" lemma="-" func="--" deprel="ROOT"/>
+   <node xml:id="s10_530" cat="SIMPX" func="KONJ" parent="s10_531">
+    <node xml:id="s10_522" cat="VF" func="-" parent="s10_530">
+     <node xml:id="s10_521" cat="NX" func="OA" parent="s10_522">
+      <node xml:id="s10_520" cat="ADVX" func="-" parent="s10_521">
+       <word xml:id="s10_17" form="höchstens" pos="ADV" lemma="höchstens" func="HD" parent="s10_520" dephead="s10_19" deprel="ADV"/>
+      </node>
+      <word xml:id="s10_18" form="einen" pos="ART" morph="asm" lemma="ein" func="-" parent="s10_521" dephead="s10_19" deprel="DET"/>
+      <word xml:id="s10_19" form="Buchungsfehler" pos="NN" morph="asm" lemma="Buchungsfehler" func="HD" parent="s10_521" dephead="s10_23" deprel="OBJA"/>
+     </node>
+    </node>
+    <node xml:id="s10_524" cat="LK" func="-" parent="s10_530">
+     <node xml:id="s10_523" cat="VXFIN" func="HD" parent="s10_524">
+      <word xml:id="s10_20" form="kann" pos="VMFIN" morph="3sis" lemma="können%aux" func="HD" parent="s10_523" dephead="s10_10" deprel="KON"/>
+     </node>
+    </node>
+    <node xml:id="s10_527" cat="MF" func="-" parent="s10_530">
+     <node xml:id="s10_525" cat="NX" func="ON" parent="s10_527">
+      <relation type="anaphoric" target="s9_531"/>
+      <word xml:id="s10_21" form="sie" pos="PPER" morph="nsf3" lemma="sie" func="HD" parent="s10_525" dephead="s10_20" deprel="SUBJ"/>
+     </node>
+     <node xml:id="s10_526" cat="NX" func="OD" parent="s10_527">
+      <word xml:id="s10_22" form="sich" pos="PRF" morph="ds*3" lemma="#refl" func="HD" parent="s10_526" dephead="s10_23" deprel="OBJD"/>
+     </node>
+    </node>
+    <node xml:id="s10_529" cat="VC" func="-" parent="s10_530">
+     <node xml:id="s10_528" cat="VXINF" func="OV" parent="s10_529">
+      <word xml:id="s10_23" form="vorstellen" pos="VVINF" lemma="vor#stellen" func="HD" parent="s10_528" dephead="s10_20" deprel="AUX"/>
+     </node>
+    </node>
+   </node>
+  </node>
+  <word xml:id="s10_24" form="." pos="$." lemma="." func="--" deprel="ROOT"/>
+ </sentence>
+ <sentence xml:id="s11">
+  <node xml:id="s11_509" cat="SIMPX" func="--">
+   <node xml:id="s11_506" cat="VF" func="-" parent="s11_509">
+    <node xml:id="s11_505" cat="NX" func="ON" parent="s11_506">
+     <node xml:id="s11_500" cat="NX" func="APP" parent="s11_505">
+      <ne xml:id="ne_210" type="PER">
+       <word xml:id="s11_1" form="Volker" pos="NE" morph="nsm" lemma="Volker" func="-" parent="s11_500" dephead="s11_9" deprel="SUBJ"/>
+       <word xml:id="s11_2" form="Tegeler" pos="NE" morph="nsm" lemma="Tegeler" func="-" parent="s11_500" dephead="s11_1" deprel="APP"/>
+      </ne>
+     </node>
+     <word xml:id="s11_3" form="," pos="$," lemma="," func="--" deprel="ROOT"/>
+     <node xml:id="s11_504" cat="NX" func="APP" parent="s11_505">
+      <node xml:id="s11_502" cat="NX" func="HD" parent="s11_504">
+       <node xml:id="s11_501" cat="ADJX" func="-" parent="s11_502">
+        <word xml:id="s11_4" form="stellvertretender" pos="ADJA" morph="nsm" lemma="stellvertretend" func="HD" parent="s11_501" dephead="s11_5" deprel="ATTR"/>
+       </node>
+       <word xml:id="s11_5" form="Geschäftsführer" pos="NN" morph="nsm" lemma="Geschäftsführer" func="HD" parent="s11_502" dephead="s11_2" deprel="APP"/>
+      </node>
+      <node xml:id="s11_503" cat="NX" func="-" parent="s11_504">
+       <relation type="coreferential" target="s7_524"/>
+       <word xml:id="s11_6" form="des" pos="ART" morph="gsm" lemma="der" func="-" parent="s11_503" dephead="s11_7" deprel="DET"/>
+       <word xml:id="s11_7" form="Landesverbandes" pos="NN" morph="gsm" lemma="Landesverband" func="HD" parent="s11_503" dephead="s11_5" deprel="GMOD"/>
+      </node>
+     </node>
+    </node>
+   </node>
+   <word xml:id="s11_8" form="," pos="$," lemma="," func="--" deprel="ROOT"/>
+   <node xml:id="s11_508" cat="LK" func="-" parent="s11_509">
+    <node xml:id="s11_507" cat="VXFIN" func="HD" parent="s11_508">
+     <word xml:id="s11_9" form="sagt" pos="VVFIN" morph="3sis" lemma="sagen" func="HD" parent="s11_507" deprel="ROOT"/>
+    </node>
+   </node>
+  </node>
+  <word xml:id="s11_10" form=":" pos="$." lemma=":" func="--" deprel="ROOT"/>
+ </sentence>
+ <sentence xml:id="s12">
+  <word xml:id="s12_1" form='"' pos="$(" lemma='"' func="--" deprel="ROOT"/>
+  <node xml:id="s12_507" cat="SIMPX" func="--">
+   <node xml:id="s12_501" cat="VF" func="-" parent="s12_507">
+    <node xml:id="s12_500" cat="NX" func="ON" parent="s12_501">
+     <relation type="expletive"/>
+     <word xml:id="s12_2" form="Es" pos="PPER" morph="nsn3" lemma="es" func="HD" parent="s12_500" dephead="s12_3" deprel="SUBJ"/>
+    </node>
+   </node>
+   <node xml:id="s12_503" cat="LK" func="-" parent="s12_507">
+    <node xml:id="s12_502" cat="VXFIN" func="HD" parent="s12_503">
+     <word xml:id="s12_3" form="gibt" pos="VVFIN" morph="3sis" lemma="geben" func="HD" parent="s12_502" deprel="ROOT"/>
+    </node>
+   </node>
+   <node xml:id="s12_506" cat="MF" func="-" parent="s12_507">
+    <node xml:id="s12_505" cat="NX" func="OA" parent="s12_506">
+     <node xml:id="s12_504" cat="ADVX" func="-" parent="s12_505">
+      <word xml:id="s12_4" form="so" pos="ADV" lemma="so" func="HD" parent="s12_504" dephead="s12_6" deprel="ADV"/>
+     </node>
+     <word xml:id="s12_5" form="eine" pos="ART" morph="asf" lemma="eine" func="-" parent="s12_505" dephead="s12_6" deprel="DET"/>
+     <word xml:id="s12_6" form="Buchung" pos="NN" morph="asf" lemma="Buchung" func="HD" parent="s12_505" dephead="s12_3" deprel="OBJA"/>
+    </node>
+   </node>
+  </node>
+  <word xml:id="s12_7" form="." pos="$." lemma="." func="--" deprel="ROOT"/>
+  <word xml:id="s12_8" form='"' pos="$(" lemma='"' func="--" deprel="ROOT"/>
+ </sentence>
+ <sentence xml:id="s13">
+  <node xml:id="s13_529" cat="SIMPX" func="--">
+   <node xml:id="s13_516" cat="SIMPX" func="KONJ" parent="s13_529">
+    <node xml:id="s13_509" cat="VF" func="-" parent="s13_516">
+     <node xml:id="s13_508" cat="PX" func="V-MOD" parent="s13_509">
+      <word xml:id="s13_1" form="In" pos="APPR" morph="d" lemma="in" func="-" parent="s13_508" dephead="s13_10" deprel="PP"/>
+      <node xml:id="s13_507" cat="NX" func="HD" parent="s13_508">
+       <node xml:id="s13_501" cat="NX" func="HD" parent="s13_507">
+        <word xml:id="s13_2" form="einer" pos="ART" morph="dsf" lemma="eine" func="-" parent="s13_501" dephead="s13_4" deprel="DET"/>
+        <node xml:id="s13_500" cat="ADJX" func="-" parent="s13_501">
+         <word xml:id="s13_3" form="internen" pos="ADJA" morph="dsf" lemma="intern" func="HD" parent="s13_500" dephead="s13_4" deprel="ATTR"/>
+        </node>
+        <word xml:id="s13_4" form="Kontrolle" pos="NN" morph="dsf" lemma="Kontrolle" func="HD" parent="s13_501" dephead="s13_1" deprel="PN"/>
+       </node>
+       <node xml:id="s13_506" cat="PX" func="-" parent="s13_507">
+        <word xml:id="s13_5" form="nach" pos="APPR" morph="d" lemma="nach" func="-" parent="s13_506" dephead="s13_4" deprel="PP"/>
+        <node xml:id="s13_505" cat="NX" func="HD" parent="s13_506">
+         <node xml:id="s13_502" cat="NX" func="HD" parent="s13_505">
+          <word xml:id="s13_6" form="der" pos="ART" morph="dsf" lemma="die" func="-" parent="s13_502" dephead="s13_7" deprel="DET"/>
+          <word xml:id="s13_7" form="Kündigung" pos="NN" morph="dsf" lemma="Kündigung" func="HD" parent="s13_502" dephead="s13_5" deprel="PN"/>
+         </node>
+         <node xml:id="s13_504" cat="PX" func="-" parent="s13_505">
+          <word xml:id="s13_8" form="von" pos="APPR" morph="d" lemma="von" func="-" parent="s13_504" dephead="s13_7" deprel="PP"/>
+          <node xml:id="s13_503" cat="NX" func="HD" parent="s13_504">
+           <relation type="coreferential" target="s6_527"/>
+           <ne xml:id="ne_236" type="PER">
+            <word xml:id="s13_9" form="Taake" pos="NE" morph="dsm" lemma="Taake" func="HD" parent="s13_503" dephead="s13_8" deprel="PN"/>
+           </ne>
+          </node>
+         </node>
+        </node>
+       </node>
+      </node>
+     </node>
+    </node>
+    <node xml:id="s13_511" cat="LK" func="-" parent="s13_516">
+     <node xml:id="s13_510" cat="VXFIN" func="HD" parent="s13_511">
+      <word xml:id="s13_10" form="sei" pos="VAFIN" morph="3sks" lemma="sein%aux" func="HD" parent="s13_510" deprel="ROOT"/>
+     </node>
+    </node>
+    <node xml:id="s13_513" cat="MF" func="-" parent="s13_516">
+     <node xml:id="s13_512" cat="NX" func="ON" parent="s13_513">
+      <word xml:id="s13_11" form="dies" pos="PDS" morph="nsn" lemma="dieses" func="HD" parent="s13_512" dephead="s13_10" deprel="SUBJ"/>
+     </node>
+    </node>
+    <node xml:id="s13_515" cat="VC" func="-" parent="s13_516">
+     <node xml:id="s13_514" cat="VXINF" func="OV" parent="s13_515">
+      <word xml:id="s13_12" form="aufgefallen" pos="VVPP" lemma="auf#fallen" func="HD" parent="s13_514" dephead="s13_10" deprel="AUX"/>
+     </node>
+    </node>
+   </node>
+   <word xml:id="s13_13" form="," pos="$," lemma="," func="--" deprel="ROOT"/>
+   <node xml:id="s13_528" cat="SIMPX" func="KONJ" parent="s13_529">
+    <node xml:id="s13_519" cat="VF" func="-" parent="s13_528">
+     <node xml:id="s13_518" cat="PX" func="V-MOD" parent="s13_519">
+      <word xml:id="s13_14" form="zur" pos="APPRART" morph="dsf" lemma="zu" func="-" parent="s13_518" dephead="s13_16" deprel="PP"/>
+      <node xml:id="s13_517" cat="NX" func="HD" parent="s13_518">
+       <word xml:id="s13_15" form="Aufklärung" pos="NN" morph="dsf" lemma="Aufklärung" func="HD" parent="s13_517" dephead="s13_14" deprel="PN"/>
+      </node>
+     </node>
+    </node>
+    <node xml:id="s13_521" cat="LK" func="-" parent="s13_528">
+     <node xml:id="s13_520" cat="VXFIN" func="HD" parent="s13_521">
+      <word xml:id="s13_16" form="solle" pos="VMFIN" morph="3sks" lemma="sollen%aux" func="HD" parent="s13_520" dephead="s13_10" deprel="KON"/>
+     </node>
+    </node>
+    <node xml:id="s13_524" cat="MF" func="-" parent="s13_528">
+     <node xml:id="s13_523" cat="NX" func="ON" parent="s13_524">
+      <word xml:id="s13_17" form="ein" pos="ART" morph="nsm" lemma="ein" func="-" parent="s13_523" dephead="s13_19" deprel="DET"/>
+      <node xml:id="s13_522" cat="ADJX" func="-" parent="s13_523">
+       <word xml:id="s13_18" form="externer" pos="ADJA" morph="nsm" lemma="extern" func="HD" parent="s13_522" dephead="s13_19" deprel="ATTR"/>
+      </node>
+      <word xml:id="s13_19" form="Wirtschaftsprüfer" pos="NN" morph="nsm" lemma="Wirtschaftsprüfer" func="HD" parent="s13_523" dephead="s13_16" deprel="SUBJ"/>
+     </node>
+    </node>
+    <node xml:id="s13_527" cat="VC" func="-" parent="s13_528">
+     <node xml:id="s13_525" cat="VXINF" func="OV" parent="s13_527">
+      <word xml:id="s13_20" form="beauftragt" pos="VVPP" lemma="beauftragen" func="HD" parent="s13_525" dephead="s13_21" deprel="AUX"/>
+     </node>
+     <node xml:id="s13_526" cat="VXINF" func="HD" parent="s13_527">
+      <word xml:id="s13_21" form="werden" pos="VAINF" lemma="werden%passiv" func="HD" parent="s13_526" dephead="s13_16" deprel="AUX"/>
+     </node>
+    </node>
+   </node>
+  </node>
+  <word xml:id="s13_22" form="." pos="$." lemma="." func="--" deprel="ROOT"/>
+ </sentence>
+ <sentence xml:id="s14">
+  <node xml:id="s14_523" cat="SIMPX" func="--">
+   <node xml:id="s14_518" cat="VF" func="-" parent="s14_523">
+    <node xml:id="s14_517" cat="SIMPX" func="OS" parent="s14_518">
+     <node xml:id="s14_506" cat="VF" func="-" parent="s14_517">
+      <node xml:id="s14_505" cat="MF" func="-" parent="s14_506">
+       <node xml:id="s14_500" cat="ADJX" func="PRED" parent="s14_505">
+        <word xml:id="s14_1" form="Verantwortlich" pos="ADJD" lemma="verantwortlich" func="HD" parent="s14_500" dephead="s14_2" deprel="PRED"/>
+       </node>
+       <node xml:id="s14_504" cat="PX" func="OPP" parent="s14_505">
+        <word xml:id="s14_2" form="für" pos="APPR" morph="a" lemma="für" func="-" parent="s14_504" dephead="s14_14" deprel="PP"/>
+        <node xml:id="s14_503" cat="NX" func="HD" parent="s14_504">
+         <node xml:id="s14_501" cat="NX" func="HD" parent="s14_503">
+          <word xml:id="s14_3" form="die" pos="ART" morph="ap*" lemma="der|die|das" func="-" parent="s14_501" dephead="s14_4" deprel="DET"/>
+          <word xml:id="s14_4" form="Finanzen" pos="NN" morph="ap*" lemma="Finanzen" func="HD" parent="s14_501" dephead="s14_2" deprel="PN"/>
+         </node>
+         <node xml:id="s14_502" cat="NX" func="-" parent="s14_503">
+          <relation type="coreferential" target="s11_503"/>
+          <word xml:id="s14_5" form="des" pos="ART" morph="gsm" lemma="der" func="-" parent="s14_502" dephead="s14_6" deprel="DET"/>
+          <word xml:id="s14_6" form="Landesverbandes" pos="NN" morph="gsm" lemma="Landesverband" func="HD" parent="s14_502" dephead="s14_4" deprel="GMOD"/>
+         </node>
+        </node>
+       </node>
+      </node>
+     </node>
+     <node xml:id="s14_508" cat="LK" func="-" parent="s14_517">
+      <node xml:id="s14_507" cat="VXFIN" func="HD" parent="s14_508">
+       <word xml:id="s14_7" form="sei" pos="VAFIN" morph="3sks" lemma="sein%aux" func="HD" parent="s14_507" dephead="s14_16" deprel="S"/>
+      </node>
+     </node>
+     <node xml:id="s14_514" cat="MF" func="-" parent="s14_517">
+      <node xml:id="s14_509" cat="ADVX" func="MOD" parent="s14_514">
+       <word xml:id="s14_8" form="aber" pos="ADV" lemma="aber" func="HD" parent="s14_509" dephead="s14_14" deprel="ADV"/>
+      </node>
+      <word xml:id="s14_9" form='"' pos="$(" lemma='"' func="--" deprel="ROOT"/>
+      <node xml:id="s14_510" cat="ADJX" func="MOD" parent="s14_514">
+       <word xml:id="s14_10" form="durchgehend" pos="ADJD" lemma="durchgehend" func="HD" parent="s14_510" dephead="s14_14" deprel="ADV"/>
+      </node>
+      <node xml:id="s14_513" cat="NX" func="ON" parent="s14_514">
+       <relation type="coreferential" target="s13_503"/>
+       <node xml:id="s14_511" cat="NX" func="APP" parent="s14_513">
+        <word xml:id="s14_11" form="Herr" pos="NN" morph="nsm" lemma="Herr" func="HD" parent="s14_511" dephead="s14_7" deprel="SUBJ"/>
+       </node>
+       <node xml:id="s14_512" cat="NX" func="APP" parent="s14_513">
+        <ne xml:id="ne_261" type="PER">
+         <word xml:id="s14_12" form="Taake" pos="NE" morph="nsm" lemma="Taake" func="HD" parent="s14_512" dephead="s14_11" deprel="APP"/>
+        </ne>
+       </node>
+      </node>
+     </node>
+     <word xml:id="s14_13" form='"' pos="$(" lemma='"' func="--" deprel="ROOT"/>
+     <node xml:id="s14_516" cat="VC" func="-" parent="s14_517">
+      <node xml:id="s14_515" cat="VXINF" func="OV" parent="s14_516">
+       <word xml:id="s14_14" form="gewesen" pos="VAPP" lemma="sein" func="HD" parent="s14_515" dephead="s14_7" deprel="AUX"/>
+      </node>
+     </node>
+    </node>
+   </node>
+   <word xml:id="s14_15" form="," pos="$," lemma="," func="--" deprel="ROOT"/>
+   <node xml:id="s14_520" cat="LK" func="-" parent="s14_523">
+    <node xml:id="s14_519" cat="VXFIN" func="HD" parent="s14_520">
+     <word xml:id="s14_16" form="sagt" pos="VVFIN" morph="3sis" lemma="sagen" func="HD" parent="s14_519" deprel="ROOT"/>
+    </node>
+   </node>
+   <node xml:id="s14_522" cat="MF" func="-" parent="s14_523">
+    <node xml:id="s14_521" cat="NX" func="ON" parent="s14_522">
+     <relation type="coreferential" target="s11_505"/>
+     <ne xml:id="ne_266" type="PER">
+      <word xml:id="s14_17" form="Tegeler" pos="NE" morph="nsm" lemma="Tegeler" func="HD" parent="s14_521" dephead="s14_16" deprel="SUBJ"/>
+     </ne>
+    </node>
+   </node>
+  </node>
+  <word xml:id="s14_18" form="." pos="$." lemma="." func="--" deprel="ROOT"/>
+ </sentence>
+ <sentence xml:id="s15">
+  <node xml:id="s15_536" cat="SIMPX" func="--">
+   <node xml:id="s15_535" cat="SIMPX" func="KONJ" parent="s15_536">
+    <node xml:id="s15_533" cat="VF" func="-" parent="s15_535">
+     <node xml:id="s15_531" cat="FKONJ" func="-" parent="s15_533">
+      <node xml:id="s15_516" cat="VC" func="-" parent="s15_531">
+       <node xml:id="s15_500" cat="VXINF" func="OV" parent="s15_516">
+        <word xml:id="s15_1" form="Aufgefallen" pos="VVPP" lemma="auf#fallen" func="HD" parent="s15_500" dephead="s15_6" deprel="AUX"/>
+       </node>
+      </node>
+      <node xml:id="s15_528" cat="NF" func="-" parent="s15_531">
+       <node xml:id="s15_525" cat="PX" func="V-MOD" parent="s15_528">
+        <word xml:id="s15_2" form="bei" pos="APPR" morph="d" lemma="bei" func="-" parent="s15_525" dephead="s15_1" deprel="PP"/>
+        <node xml:id="s15_517" cat="NX" func="HD" parent="s15_525">
+         <word xml:id="s15_3" form="der" pos="ART" morph="dsf" lemma="die" func="-" parent="s15_517" dephead="s15_5" deprel="DET"/>
+         <node xml:id="s15_501" cat="ADJX" func="-" parent="s15_517">
+          <word xml:id="s15_4" form="internen" pos="ADJA" morph="dsf" lemma="intern" func="HD" parent="s15_501" dephead="s15_5" deprel="ATTR"/>
+         </node>
+         <word xml:id="s15_5" form="Prüfung" pos="NN" morph="dsf" lemma="Prüfung" func="HD" parent="s15_517" dephead="s15_2" deprel="PN"/>
+        </node>
+       </node>
+      </node>
+     </node>
+    </node>
+    <node xml:id="s15_518" cat="LK" func="-" parent="s15_535">
+     <node xml:id="s15_502" cat="VXFIN" func="HD" parent="s15_518">
+      <word xml:id="s15_6" form="ist" pos="VAFIN" morph="3sis" lemma="sein%aux" func="HD" parent="s15_502" deprel="ROOT"/>
+     </node>
+    </node>
+    <node xml:id="s15_529" cat="MF" func="-" parent="s15_535">
+     <node xml:id="s15_503" cat="ADVX" func="MOD" parent="s15_529">
+      <word xml:id="s15_7" form="auch" pos="ADV" lemma="auch" func="HD" parent="s15_503" dephead="s15_1" deprel="ADV"/>
+     </node>
+     <node xml:id="s15_526" cat="NX" func="ON" parent="s15_529">
+      <node xml:id="s15_504" cat="NX" func="APP" parent="s15_526">
+       <word xml:id="s15_8" form="Vorwurf" pos="NN" morph="nsm" lemma="Vorwurf" func="HD" parent="s15_504" dephead="s15_6" deprel="SUBJ"/>
+      </node>
+      <node xml:id="s15_519" cat="NX" func="APP" parent="s15_526">
+       <node xml:id="s15_505" cat="NX" func="APP" parent="s15_519">
+        <word xml:id="s15_9" form="Nummer" pos="NN" morph="nsf" lemma="Nummer" func="HD" parent="s15_505" dephead="s15_8" deprel="APP"/>
+       </node>
+       <node xml:id="s15_506" cat="NX" func="APP" parent="s15_519">
+        <word xml:id="s15_10" form="2" pos="CARD" lemma="2" func="HD" parent="s15_506" dephead="s15_9" deprel="APP"/>
+       </node>
+      </node>
+     </node>
+    </node>
+   </node>
+   <word xml:id="s15_11" form=":" pos="$." lemma=":" func="--" deprel="ROOT"/>
+   <node xml:id="s15_534" cat="SIMPX" func="KONJ" parent="s15_536">
+    <node xml:id="s15_520" cat="VF" func="-" parent="s15_534">
+     <node xml:id="s15_507" cat="NX" func="ON" parent="s15_520">
+      <relation type="coreferential" target="s7_523"/>
+      <word xml:id="s15_12" form="Die" pos="ART" morph="nsf" lemma="die" func="-" parent="s15_507" dephead="s15_13" deprel="DET"/>
+      <ne xml:id="ne_280" type="ORG">
+       <word xml:id="s15_13" form="AWO" pos="NN" morph="nsf" lemma="AWO" func="HD" parent="s15_507" dephead="s15_14" deprel="SUBJ"/>
+      </ne>
+     </node>
+    </node>
+    <node xml:id="s15_521" cat="LK" func="-" parent="s15_534">
+     <node xml:id="s15_508" cat="VXFIN" func="HD" parent="s15_521">
+      <word xml:id="s15_14" form="hat" pos="VAFIN" morph="3sis" lemma="haben%aux" func="HD" parent="s15_508" dephead="s15_6" deprel="KON"/>
+     </node>
+    </node>
+    <node xml:id="s15_532" cat="MF" func="-" parent="s15_534">
+     <node xml:id="s15_509" cat="NX" func="OD" parent="s15_532">
+      <relation type="anaphoric" target="s15_507"/>
+      <word xml:id="s15_15" form="sich" pos="PRF" morph="ds*3" lemma="#refl" func="HD" parent="s15_509" dephead="s15_24" deprel="OBJD"/>
+     </node>
+     <node xml:id="s15_530" cat="PX" func="MOD" parent="s15_532">
+      <word xml:id="s15_16" form="für" pos="APPR" morph="a" lemma="für" func="-" parent="s15_530" dephead="s15_24" deprel="PP"/>
+      <node xml:id="s15_527" cat="NX" func="HD" parent="s15_530">
+       <node xml:id="s15_510" cat="NX" func="HD" parent="s15_527">
+        <word xml:id="s15_17" form="Seniorenreisen" pos="NN" morph="apf" lemma="Seniorenreise" func="HD" parent="s15_510" dephead="s15_16" deprel="PN"/>
+       </node>
+       <node xml:id="s15_522" cat="PX" func="-" parent="s15_527">
+        <word xml:id="s15_18" form="nach" pos="APPR" morph="d" lemma="nach" func="-" parent="s15_522" dephead="s15_17" deprel="PP"/>
+        <node xml:id="s15_511" cat="NX" func="HD" parent="s15_522">
+         <ne xml:id="ne_286" type="LOC">
+          <word xml:id="s15_19" form="Mallorca" pos="NE" morph="dsn" lemma="Mallorca" func="HD" parent="s15_511" dephead="s15_18" deprel="PN"/>
+         </ne>
+        </node>
+       </node>
+      </node>
+     </node>
+     <node xml:id="s15_523" cat="PX" func="FOPP" parent="s15_532">
+      <word xml:id="s15_20" form="von" pos="APPR" morph="d" lemma="von" func="-" parent="s15_523" dephead="s15_24" deprel="PP"/>
+      <node xml:id="s15_512" cat="NX" func="HD" parent="s15_523">
+       <ne xml:id="ne_288" type="ORG">
+        <word xml:id="s15_21" form="Hapaq" pos="NE" morph="dsf" lemma="Hapaq" func="-" parent="s15_512" dephead="s15_20" deprel="PN"/>
+        <word xml:id="s15_22" form="Lloyd" pos="NE" morph="dsf" lemma="Lloyd" func="-" parent="s15_512" dephead="s15_21" deprel="APP"/>
+       </ne>
+      </node>
+     </node>
+     <node xml:id="s15_513" cat="NX" func="OA" parent="s15_532">
+      <word xml:id="s15_23" form="Provisionen" pos="NN" morph="apf" lemma="Provision" func="HD" parent="s15_513" dephead="s15_24" deprel="OBJA"/>
+     </node>
+    </node>
+    <node xml:id="s15_524" cat="VC" func="-" parent="s15_534">
+     <node xml:id="s15_514" cat="VXINF" func="OV" parent="s15_524">
+      <word xml:id="s15_24" form="zahlen" pos="VVINF" lemma="zahlen" func="HD" parent="s15_514" dephead="s15_25" deprel="OBJI"/>
+     </node>
+     <node xml:id="s15_515" cat="VXINF" func="HD" parent="s15_524">
+      <word xml:id="s15_25" form="lassen" pos="VVINF" lemma="lassen" func="HD" parent="s15_515" dephead="s15_14" deprel="AUX"/>
+     </node>
+    </node>
+   </node>
+  </node>
+  <word xml:id="s15_26" form="." pos="$." lemma="." func="--" deprel="ROOT"/>
+ </sentence>
+ <sentence xml:id="s16">
+  <node xml:id="s16_525" cat="SIMPX" func="--">
+   <node xml:id="s16_501" cat="VF" func="-" parent="s16_525">
+    <node xml:id="s16_500" cat="NX" func="ON" parent="s16_501">
+     <relation type="anaphoric" target="s15_513"/>
+     <word xml:id="s16_1" form="Die" pos="PDS" morph="np*" lemma="der|die|das" func="HD" parent="s16_500" dephead="s16_2" deprel="SUBJ"/>
+    </node>
+   </node>
+   <node xml:id="s16_503" cat="LK" func="-" parent="s16_525">
+    <node xml:id="s16_502" cat="VXFIN" func="HD" parent="s16_503">
+     <word xml:id="s16_2" form="seien" pos="VAFIN" morph="3pks" lemma="sein%aux" func="HD" parent="s16_502" deprel="ROOT"/>
+    </node>
+   </node>
+   <node xml:id="s16_510" cat="MF" func="-" parent="s16_525">
+    <node xml:id="s16_509" cat="PX" func="FOPP" parent="s16_510">
+     <word xml:id="s16_3" form="auf" pos="APPR" morph="a" lemma="auf" func="-" parent="s16_509" dephead="s16_10" deprel="PP"/>
+     <node xml:id="s16_508" cat="NX" func="HD" parent="s16_509">
+      <node xml:id="s16_504" cat="NX" func="HD" parent="s16_508">
+       <word xml:id="s16_4" form="ein" pos="ART" morph="asn" lemma="ein" func="-" parent="s16_504" dephead="s16_5" deprel="DET"/>
+       <word xml:id="s16_5" form="Konto" pos="NN" morph="asn" lemma="Konto" func="HD" parent="s16_504" dephead="s16_3" deprel="PN"/>
+      </node>
+      <node xml:id="s16_507" cat="NX" func="-" parent="s16_508">
+       <relation type="coreferential" target="s14_502"/>
+       <node xml:id="s16_505" cat="NX" func="HD" parent="s16_507">
+        <word xml:id="s16_6" form="des" pos="ART" morph="gsm" lemma="der" func="-" parent="s16_505" dephead="s16_7" deprel="DET"/>
+        <word xml:id="s16_7" form="Landesverbandes" pos="NN" morph="gsm" lemma="Landesverband" func="HD" parent="s16_505" dephead="s16_5" deprel="GMOD"/>
+       </node>
+       <node xml:id="s16_506" cat="NX" func="-" parent="s16_507">
+        <relation type="coreferential" target="s15_509"/>
+        <word xml:id="s16_8" form="der" pos="ART" morph="gsf" lemma="die" func="-" parent="s16_506" dephead="s16_9" deprel="DET"/>
+        <ne xml:id="ne_302" type="ORG">
+         <word xml:id="s16_9" form="AWO" pos="NN" morph="gsf" lemma="AWO" func="HD" parent="s16_506" dephead="s16_7" deprel="GMOD"/>
+        </ne>
+       </node>
+      </node>
+     </node>
+    </node>
+   </node>
+   <node xml:id="s16_512" cat="VC" func="-" parent="s16_525">
+    <node xml:id="s16_511" cat="VXINF" func="OV" parent="s16_512">
+     <word xml:id="s16_10" form="geflossen" pos="VVPP" lemma="fließen" func="HD" parent="s16_511" dephead="s16_2" deprel="AUX"/>
+    </node>
+   </node>
+   <word xml:id="s16_11" form="," pos="$," lemma="," func="--" deprel="ROOT"/>
+   <node xml:id="s16_524" cat="NF" func="-" parent="s16_525">
+    <node xml:id="s16_523" cat="SIMPX" func="MOD" parent="s16_524">
+     <node xml:id="s16_513" cat="C" func="-" parent="s16_523">
+      <word xml:id="s16_12" form="weil" pos="KOUS" lemma="weil" func="-" parent="s16_513" dephead="s16_20" deprel="KONJ"/>
+     </node>
+     <node xml:id="s16_519" cat="MF" func="-" parent="s16_523">
+      <node xml:id="s16_514" cat="NX" func="ON" parent="s16_519">
+       <relation type="anaphoric" target="s16_500"/>
+       <word xml:id="s16_13" form="sie" pos="PPER" morph="np*3" lemma="sie" func="HD" parent="s16_514" dephead="s16_20" deprel="SUBJ"/>
+      </node>
+      <node xml:id="s16_515" cat="ADVX" func="V-MOD" parent="s16_519">
+       <word xml:id="s16_14" form="dort" pos="ADV" lemma="dort" func="HD" parent="s16_515" dephead="s16_19" deprel="ADV"/>
+      </node>
+      <node xml:id="s16_517" cat="PX" func="FOPP" parent="s16_519">
+       <word xml:id="s16_15" form="vor" pos="APPR" morph="d" lemma="vor" func="-" parent="s16_517" dephead="s16_19" deprel="PP"/>
+       <node xml:id="s16_516" cat="NX" func="HD" parent="s16_517">
+        <word xml:id="s16_16" form="einer" pos="ART" morph="dsf" lemma="eine" func="-" parent="s16_516" dephead="s16_17" deprel="DET"/>
+        <word xml:id="s16_17" form="Finanzamtsprüfung" pos="NN" morph="dsf" lemma="Finanzamtsprüfung" func="HD" parent="s16_516" dephead="s16_15" deprel="PN"/>
+       </node>
+      </node>
+      <node xml:id="s16_518" cat="ADJX" func="PRED" parent="s16_519">
+       <word xml:id="s16_18" form="sicherer" pos="ADJD" lemma="sicherer" func="HD" parent="s16_518" dephead="s16_19" deprel="PRED"/>
+      </node>
+     </node>
+     <node xml:id="s16_522" cat="VC" func="-" parent="s16_523">
+      <node xml:id="s16_520" cat="VXINF" func="OV" parent="s16_522">
+       <word xml:id="s16_19" form="gewesen" pos="VAPP" lemma="sein" func="HD" parent="s16_520" dephead="s16_20" deprel="AUX"/>
+      </node>
+      <node xml:id="s16_521" cat="VXFIN" func="HD" parent="s16_522">
+       <word xml:id="s16_20" form="seien" pos="VAFIN" morph="3pks" lemma="sein%aux" func="HD" parent="s16_521" dephead="s16_2" deprel="NEB"/>
+      </node>
+     </node>
+    </node>
+   </node>
+  </node>
+  <word xml:id="s16_21" form="." pos="$." lemma="." func="--" deprel="ROOT"/>
+ </sentence>
+ <sentence xml:id="s17">
+  <node xml:id="s17_526" cat="SIMPX" func="--">
+   <node xml:id="s17_501" cat="VF" func="-" parent="s17_526">
+    <node xml:id="s17_500" cat="NX" func="ON" parent="s17_501">
+     <relation type="coreferential" target="s14_521"/>
+     <ne xml:id="ne_315" type="PER">
+      <word xml:id="s17_1" form="Tegeler" pos="NE" morph="nsm" lemma="Tegeler" func="HD" parent="s17_500" dephead="s17_2" deprel="SUBJ"/>
+     </ne>
+    </node>
+   </node>
+   <node xml:id="s17_525" cat="FKOORD" func="-" parent="s17_526">
+    <node xml:id="s17_508" cat="FKONJ" func="KONJ" parent="s17_525">
+     <node xml:id="s17_503" cat="LK" func="-" parent="s17_508">
+      <node xml:id="s17_502" cat="VXFIN" func="HD" parent="s17_503">
+       <word xml:id="s17_2" form="bestätigt" pos="VVFIN" morph="3sis" lemma="bestätigen" func="HD" parent="s17_502" deprel="ROOT"/>
+      </node>
+     </node>
+     <node xml:id="s17_507" cat="MF" func="-" parent="s17_508">
+      <node xml:id="s17_506" cat="NX" func="OA" parent="s17_507">
+       <node xml:id="s17_504" cat="NX" func="HD" parent="s17_506">
+        <word xml:id="s17_3" form="den" pos="ART" morph="asm" lemma="der" func="-" parent="s17_504" dephead="s17_4" deprel="DET"/>
+        <word xml:id="s17_4" form="Vorgang" pos="NN" morph="asm" lemma="Vorgang" func="HD" parent="s17_504" dephead="s17_2" deprel="OBJA"/>
+       </node>
+       <node xml:id="s17_505" cat="NX" func="-" parent="s17_506">
+        <word xml:id="s17_5" form="der" pos="ART" morph="gpf" lemma="die" func="-" parent="s17_505" dephead="s17_6" deprel="DET"/>
+        <word xml:id="s17_6" form="Provisionszahlungen" pos="NN" morph="gpf" lemma="Provisionszahlung" func="HD" parent="s17_505" dephead="s17_4" deprel="GMOD"/>
+       </node>
+      </node>
+     </node>
+    </node>
+    <word xml:id="s17_7" form="," pos="$," lemma="," func="--" deprel="ROOT"/>
+    <node xml:id="s17_524" cat="FKONJ" func="KONJ" parent="s17_525">
+     <node xml:id="s17_510" cat="LK" func="-" parent="s17_524">
+      <node xml:id="s17_509" cat="VXFIN" func="HD" parent="s17_510">
+       <word xml:id="s17_8" form="meint" pos="VVFIN" morph="3sis" lemma="meinen" func="HD" parent="s17_509" dephead="s17_2" deprel="KON"/>
+      </node>
+     </node>
+     <node xml:id="s17_512" cat="MF" func="-" parent="s17_524">
+      <node xml:id="s17_511" cat="ADVX" func="MOD" parent="s17_512">
+       <word xml:id="s17_9" form="allerdings" pos="ADV" lemma="allerdings" func="HD" parent="s17_511" dephead="s17_8" deprel="ADV"/>
+      </node>
+     </node>
+     <word xml:id="s17_10" form="," pos="$," lemma="," func="--" deprel="ROOT"/>
+     <node xml:id="s17_523" cat="NF" func="-" parent="s17_524">
+      <node xml:id="s17_522" cat="SIMPX" func="OS" parent="s17_523">
+       <node xml:id="s17_514" cat="VF" func="-" parent="s17_522">
+        <node xml:id="s17_513" cat="NX" func="ON" parent="s17_514">
+         <relation type="expletive"/>
+         <word xml:id="s17_11" form="es" pos="PPER" morph="nsn3" lemma="es" func="HD" parent="s17_513" dephead="s17_12" deprel="SUBJ"/>
+        </node>
+       </node>
+       <node xml:id="s17_516" cat="LK" func="-" parent="s17_522">
+        <node xml:id="s17_515" cat="VXFIN" func="HD" parent="s17_516">
+         <word xml:id="s17_12" form="müsse" pos="VMFIN" morph="3sks" lemma="müssen%aux" func="HD" parent="s17_515" dephead="s17_8" deprel="S"/>
+        </node>
+       </node>
+       <node xml:id="s17_518" cat="MF" func="-" parent="s17_522">
+        <node xml:id="s17_517" cat="NX" func="PRED" parent="s17_518">
+         <word xml:id="s17_13" form="ein" pos="ART" morph="nsm" lemma="ein" func="-" parent="s17_517" dephead="s17_15" deprel="DET"/>
+         <word xml:id="s17_14" form='"' pos="$(" lemma='"' func="--" deprel="ROOT"/>
+         <word xml:id="s17_15" form="Buchungsfehler" pos="NN" morph="nsm" lemma="Buchungsfehler" func="HD" parent="s17_517" dephead="s17_17" deprel="PRED"/>
+        </node>
+       </node>
+       <word xml:id="s17_16" form='"' pos="$(" lemma='"' func="--" deprel="ROOT"/>
+       <node xml:id="s17_521" cat="VC" func="-" parent="s17_522">
+        <node xml:id="s17_519" cat="VXINF" func="OV" parent="s17_521">
+         <word xml:id="s17_17" form="gewesen" pos="VAPP" lemma="sein" func="HD" parent="s17_519" dephead="s17_18" deprel="AUX"/>
+        </node>
+        <node xml:id="s17_520" cat="VXINF" func="HD" parent="s17_521">
+         <word xml:id="s17_18" form="sein" pos="VAINF" lemma="sein%aux" func="HD" parent="s17_520" dephead="s17_12" deprel="AUX"/>
+        </node>
+       </node>
+      </node>
+     </node>
+    </node>
+   </node>
+  </node>
+  <word xml:id="s17_19" form="." pos="$." lemma="." func="--" deprel="ROOT"/>
+ </sentence>
+ <sentence xml:id="s18">
+  <node xml:id="s18_530" cat="SIMPX" func="--">
+   <node xml:id="s18_511" cat="SIMPX" func="KONJ" parent="s18_530">
+    <node xml:id="s18_504" cat="VF" func="-" parent="s18_511">
+     <node xml:id="s18_503" cat="NX" func="ON" parent="s18_504">
+      <relation type="anaphoric" target="s10_525"/>
+      <node xml:id="s18_501" cat="NX" func="APP" parent="s18_503">
+       <word xml:id="s18_1" form="Die" pos="ART" morph="nsf" lemma="die" func="-" parent="s18_501" dephead="s18_3" deprel="DET"/>
+       <node xml:id="s18_500" cat="ADJX" func="-" parent="s18_501">
+        <word xml:id="s18_2" form="ehrenamtliche" pos="ADJA" morph="nsf" lemma="ehrenamtlich" func="HD" parent="s18_500" dephead="s18_3" deprel="ATTR"/>
+       </node>
+       <word xml:id="s18_3" form="Landesvorsitzende" pos="NN" morph="nsf" lemma="Landesvorsitzende" func="HD" parent="s18_501" dephead="s18_5" deprel="SUBJ"/>
+      </node>
+      <node xml:id="s18_502" cat="NX" func="APP" parent="s18_503">
+       <ne xml:id="ne_337" type="PER">
+        <word xml:id="s18_4" form="Wedemeier" pos="NE" morph="nsf" lemma="Wedemeier" func="HD" parent="s18_502" dephead="s18_3" deprel="APP"/>
+       </ne>
+      </node>
+     </node>
+    </node>
+    <node xml:id="s18_506" cat="LK" func="-" parent="s18_511">
+     <node xml:id="s18_505" cat="VXFIN" func="HD" parent="s18_506">
+      <word xml:id="s18_5" form="weiß" pos="VVFIN" morph="3sis" lemma="wissen" func="HD" parent="s18_505" deprel="ROOT"/>
+     </node>
+    </node>
+    <node xml:id="s18_510" cat="MF" func="-" parent="s18_511">
+     <node xml:id="s18_508" cat="PX" func="FOPP" parent="s18_510">
+      <word xml:id="s18_6" form="von" pos="APPR" morph="d" lemma="von" func="-" parent="s18_508" dephead="s18_5" deprel="PP"/>
+      <node xml:id="s18_507" cat="NX" func="HD" parent="s18_508">
+       <word xml:id="s18_7" form="diesem" pos="PDAT" morph="dsm" lemma="dieser" func="-" parent="s18_507" dephead="s18_8" deprel="DET"/>
+       <word xml:id="s18_8" form="Vorgang" pos="NN" morph="dsm" lemma="Vorgang" func="HD" parent="s18_507" dephead="s18_6" deprel="PN"/>
+      </node>
+     </node>
+     <node xml:id="s18_509" cat="NX" func="OA" parent="s18_510">
+      <word xml:id="s18_9" form="nichts" pos="PIS" morph="***" lemma="nichts" func="HD" parent="s18_509" dephead="s18_5" deprel="OBJA"/>
+     </node>
+    </node>
+   </node>
+   <word xml:id="s18_10" form="," pos="$," lemma="," func="--" deprel="ROOT"/>
+   <word xml:id="s18_11" form='"' pos="$(" lemma='"' func="--" deprel="ROOT"/>
+   <node xml:id="s18_529" cat="SIMPX" func="KONJ" parent="s18_530">
+    <node xml:id="s18_520" cat="SIMPX" func="KONJ" parent="s18_529">
+     <node xml:id="s18_513" cat="VF" func="-" parent="s18_520">
+      <node xml:id="s18_512" cat="NX" func="ON" parent="s18_513">
+       <relation type="anaphoric" target="s18_503"/>
+       <word xml:id="s18_12" form="ich" pos="PPER" morph="ns*1" lemma="ich" func="HD" parent="s18_512" dephead="s18_13" deprel="SUBJ"/>
+      </node>
+     </node>
+     <node xml:id="s18_515" cat="LK" func="-" parent="s18_520">
+      <node xml:id="s18_514" cat="VXFIN" func="HD" parent="s18_515">
+       <word xml:id="s18_13" form="kontrolliere" pos="VVFIN" morph="1sis" lemma="kontrollieren" func="HD" parent="s18_514" dephead="s18_5" deprel="KON"/>
+      </node>
+     </node>
+     <node xml:id="s18_519" cat="MF" func="-" parent="s18_520">
+      <node xml:id="s18_516" cat="NX" func="OA" parent="s18_519">
+       <word xml:id="s18_14" form="solche" pos="PIDAT" morph="apf" lemma="solche" func="-" parent="s18_516" dephead="s18_15" deprel="DET"/>
+       <word xml:id="s18_15" form="Sachen" pos="NN" morph="apf" lemma="Sache" func="HD" parent="s18_516" dephead="s18_13" deprel="OBJA"/>
+      </node>
+      <node xml:id="s18_517" cat="ADVX" func="MOD" parent="s18_519">
+       <word xml:id="s18_16" form="doch" pos="ADV" lemma="doch" func="HD" parent="s18_517" dephead="s18_13" deprel="ADV"/>
+      </node>
+      <node xml:id="s18_518" cat="ADVX" func="MOD" parent="s18_519">
+       <word xml:id="s18_17" form="nicht" pos="PTKNEG" lemma="nicht" func="HD" parent="s18_518" dephead="s18_13" deprel="ADV"/>
+      </node>
+     </node>
+    </node>
+    <word xml:id="s18_18" form="," pos="$," lemma="," func="--" deprel="ROOT"/>
+    <node xml:id="s18_528" cat="SIMPX" func="KONJ" parent="s18_529">
+     <node xml:id="s18_522" cat="VF" func="-" parent="s18_528">
+      <node xml:id="s18_521" cat="NX" func="OA" parent="s18_522">
+       <word xml:id="s18_19" form="das" pos="PDS" morph="asn" lemma="das" func="HD" parent="s18_521" dephead="s18_20" deprel="OBJA"/>
+      </node>
+     </node>
+     <node xml:id="s18_524" cat="LK" func="-" parent="s18_528">
+      <node xml:id="s18_523" cat="VXFIN" func="HD" parent="s18_524">
+       <word xml:id="s18_20" form="machen" pos="VVFIN" morph="3pis" lemma="machen" func="HD" parent="s18_523" dephead="s18_13" deprel="KON"/>
+      </node>
+     </node>
+     <node xml:id="s18_527" cat="MF" func="-" parent="s18_528">
+      <node xml:id="s18_526" cat="NX" func="ON" parent="s18_527">
+       <word xml:id="s18_21" form="die" pos="ART" morph="npm" lemma="der" func="-" parent="s18_526" dephead="s18_23" deprel="DET"/>
+       <node xml:id="s18_525" cat="ADJX" func="-" parent="s18_526">
+        <word xml:id="s18_22" form="hauptamtlichen" pos="ADJA" morph="npm" lemma="hauptamtlich" func="HD" parent="s18_525" dephead="s18_23" deprel="ATTR"/>
+       </node>
+       <word xml:id="s18_23" form="Geschäftsführer" pos="NN" morph="npm" lemma="Geschäftsführer" func="HD" parent="s18_526" dephead="s18_20" deprel="SUBJ"/>
+      </node>
+     </node>
+    </node>
+   </node>
+  </node>
+  <word xml:id="s18_24" form="." pos="$." lemma="." func="--" deprel="ROOT"/>
+  <word xml:id="s18_25" form='"' pos="$(" lemma='"' func="--" deprel="ROOT"/>
+ </sentence>
+ <sentence xml:id="s19">
+  <node xml:id="s19_522" cat="SIMPX" func="--">
+   <node xml:id="s19_512" cat="SIMPX" func="KONJ" parent="s19_522">
+    <node xml:id="s19_502" cat="VF" func="-" parent="s19_512">
+     <node xml:id="s19_501" cat="VC" func="-" parent="s19_502">
+      <node xml:id="s19_500" cat="VXINF" func="OV" parent="s19_501">
+       <word xml:id="s19_1" form="Kontrolliert" pos="VVPP" lemma="kontrollieren" func="HD" parent="s19_500" dephead="s19_2" deprel="AUX"/>
+      </node>
+     </node>
+    </node>
+    <node xml:id="s19_504" cat="LK" func="-" parent="s19_512">
+     <node xml:id="s19_503" cat="VXFIN" func="HD" parent="s19_504">
+      <word xml:id="s19_2" form="werden" pos="VAFIN" morph="3pis" lemma="werden%passiv" func="HD" parent="s19_503" deprel="ROOT"/>
+     </node>
+    </node>
+    <node xml:id="s19_511" cat="MF" func="-" parent="s19_512">
+     <node xml:id="s19_505" cat="NX" func="ON" parent="s19_511">
+      <relation type="coreferential" target="s18_526"/>
+      <word xml:id="s19_3" form="die" pos="ART" morph="npm" lemma="der" func="-" parent="s19_505" dephead="s19_4" deprel="DET"/>
+      <word xml:id="s19_4" form="Geschäftsführer" pos="NN" morph="npm" lemma="Geschäftsführer" func="HD" parent="s19_505" dephead="s19_2" deprel="SUBJ"/>
+     </node>
+     <node xml:id="s19_510" cat="PX" func="FOPP" parent="s19_511">
+      <word xml:id="s19_5" form="von" pos="APPR" morph="d" lemma="von" func="-" parent="s19_510" dephead="s19_1" deprel="PP"/>
+      <node xml:id="s19_509" cat="NX" func="HD" parent="s19_510">
+       <node xml:id="s19_507" cat="NX" func="HD" parent="s19_509">
+        <word xml:id="s19_6" form="den" pos="ART" morph="dpm" lemma="der" func="-" parent="s19_507" dephead="s19_8" deprel="DET"/>
+        <node xml:id="s19_506" cat="ADJX" func="-" parent="s19_507">
+         <word xml:id="s19_7" form="gewählten" pos="ADJA" morph="dpm" lemma="gewählt" func="HD" parent="s19_506" dephead="s19_8" deprel="ATTR"/>
+        </node>
+        <word xml:id="s19_8" form="Revisoren" pos="NN" morph="dpm" lemma="Revisor" func="HD" parent="s19_507" dephead="s19_5" deprel="PN"/>
+       </node>
+       <node xml:id="s19_508" cat="NX" func="-" parent="s19_509">
+        <relation type="coreferential" target="s16_507"/>
+        <word xml:id="s19_9" form="des" pos="ART" morph="gsm" lemma="der" func="-" parent="s19_508" dephead="s19_10" deprel="DET"/>
+        <word xml:id="s19_10" form="AWO-Landesverbandes" pos="NN" morph="gsm" lemma="AWO-Landesverband" func="HD" parent="s19_508" dephead="s19_8" deprel="GMOD"/>
+       </node>
+      </node>
+     </node>
+    </node>
+   </node>
+   <word xml:id="s19_11" form="," pos="$," lemma="," func="--" deprel="ROOT"/>
+   <node xml:id="s19_521" cat="SIMPX" func="KONJ" parent="s19_522">
+    <node xml:id="s19_514" cat="VF" func="-" parent="s19_521">
+     <node xml:id="s19_513" cat="NX" func="PRED" parent="s19_514">
+      <word xml:id="s19_12" form="das" pos="PDS" morph="nsn" lemma="das" func="HD" parent="s19_513" dephead="s19_13" deprel="PRED"/>
+     </node>
+    </node>
+    <node xml:id="s19_516" cat="LK" func="-" parent="s19_521">
+     <node xml:id="s19_515" cat="VXFIN" func="HD" parent="s19_516">
+      <word xml:id="s19_13" form="sind" pos="VAFIN" morph="3pis" lemma="sein" func="HD" parent="s19_515" dephead="s19_2" deprel="KON"/>
+     </node>
+    </node>
+    <node xml:id="s19_520" cat="MF" func="-" parent="s19_521">
+     <node xml:id="s19_519" cat="NX" func="ON" parent="s19_520">
+      <relation type="coreferential" target="s19_509"/>
+      <node xml:id="s19_517" cat="NX" func="KONJ" parent="s19_519">
+       <ne xml:id="ne_372" type="PER">
+        <word xml:id="s19_14" form="Detlev" pos="NE" morph="nsm" lemma="Detlev" func="-" parent="s19_517" dephead="s19_13" deprel="SUBJ"/>
+        <word xml:id="s19_15" form="Griesche" pos="NE" morph="nsm" lemma="Griesche" func="-" parent="s19_517" dephead="s19_14" deprel="APP"/>
+       </ne>
+      </node>
+      <word xml:id="s19_16" form="und" pos="KON" lemma="und" func="-" parent="s19_519" dephead="s19_15" deprel="KON"/>
+      <node xml:id="s19_518" cat="NX" func="KONJ" parent="s19_519">
+       <ne xml:id="ne_375" type="PER">
+        <word xml:id="s19_17" form="Karin" pos="NE" morph="nsf" lemma="Karin" func="-" parent="s19_518" dephead="s19_16" deprel="CJ"/>
+        <word xml:id="s19_18" form="Freudenthal" pos="NE" morph="nsf" lemma="Freudenthal" func="-" parent="s19_518" dephead="s19_17" deprel="APP"/>
+       </ne>
+      </node>
+     </node>
+    </node>
+   </node>
+  </node>
+  <word xml:id="s19_19" form="." pos="$." lemma="." func="--" deprel="ROOT"/>
+ </sentence>
+ <sentence xml:id="s20">
+  <node xml:id="s20_521" cat="SIMPX" func="--">
+   <node xml:id="s20_501" cat="VF" func="-" parent="s20_521">
+    <node xml:id="s20_500" cat="NX" func="ON" parent="s20_501">
+     <relation type="coreferential" target="s19_518"/>
+     <ne xml:id="ne_378" type="PER">
+      <word xml:id="s20_1" form="Freuden-thal" pos="NE" morph="nsf" lemma="Freudenthal" func="HD" parent="s20_500" comment="Freudenthal" dephead="s20_2" deprel="SUBJ"/>
+     </ne>
+    </node>
+   </node>
+   <node xml:id="s20_503" cat="LK" func="-" parent="s20_521">
+    <node xml:id="s20_502" cat="VXFIN" func="HD" parent="s20_503">
+     <word xml:id="s20_2" form="wollte" pos="VMFIN" morph="3sit" lemma="wollen%aux" func="HD" parent="s20_502" deprel="ROOT"/>
+    </node>
+   </node>
+   <node xml:id="s20_507" cat="MF" func="-" parent="s20_521">
+    <node xml:id="s20_504" cat="ADVX" func="V-MOD" parent="s20_507">
+     <word xml:id="s20_3" form="gestern" pos="ADV" lemma="gestern" func="HD" parent="s20_504" dephead="s20_6" deprel="ADV"/>
+    </node>
+    <node xml:id="s20_505" cat="NX" func="OA" parent="s20_507">
+     <word xml:id="s20_4" form="nichts" pos="PIS" morph="***" lemma="nichts" func="HD" parent="s20_505" dephead="s20_6" deprel="OBJA"/>
+    </node>
+    <node xml:id="s20_506" cat="PX" func="FOPP" parent="s20_507">
+     <word xml:id="s20_5" form="dazu" pos="PROP" lemma="dazu" func="HD" parent="s20_506" dephead="s20_6" deprel="PP"/>
+    </node>
+   </node>
+   <node xml:id="s20_509" cat="VC" func="-" parent="s20_521">
+    <node xml:id="s20_508" cat="VXINF" func="OV" parent="s20_509">
+     <word xml:id="s20_6" form="sagen" pos="VVINF" lemma="sagen" func="HD" parent="s20_508" dephead="s20_2" deprel="AUX"/>
+    </node>
+   </node>
+   <word xml:id="s20_7" form="," pos="$," lemma="," func="--" deprel="ROOT"/>
+   <node xml:id="s20_520" cat="NF" func="-" parent="s20_521">
+    <node xml:id="s20_519" cat="SIMPX" func="FOPP-MOD" parent="s20_520">
+     <node xml:id="s20_510" cat="C" func="-" parent="s20_519">
+      <word xml:id="s20_8" form="ob" pos="KOUS" lemma="ob" func="-" parent="s20_510" dephead="s20_15" deprel="KONJ"/>
+     </node>
+     <node xml:id="s20_515" cat="MF" func="-" parent="s20_519">
+      <node xml:id="s20_512" cat="PX" func="V-MOD" parent="s20_515">
+       <word xml:id="s20_9" form="bei" pos="APPR" morph="d" lemma="bei" func="-" parent="s20_512" dephead="s20_14" deprel="PP"/>
+       <node xml:id="s20_511" cat="NX" func="HD" parent="s20_512">
+        <word xml:id="s20_10" form="ihren" pos="PPOSAT" morph="dpf" lemma="ihre" func="-" parent="s20_511" dephead="s20_11" deprel="DET">
+         <relation type="anaphoric" target="s19_519"/>
+        </word>
+        <word xml:id="s20_11" form="Prüfungen" pos="NN" morph="dpf" lemma="Prüfung" func="HD" parent="s20_511" dephead="s20_9" deprel="PN"/>
+       </node>
+      </node>
+      <node xml:id="s20_513" cat="NX" func="OD" parent="s20_515">
+       <relation type="anaphoric" target="s20_500"/>
+       <word xml:id="s20_12" form="ihr" pos="PPER" morph="dsf3" lemma="sie" func="HD" parent="s20_513" dephead="s20_14" deprel="OBJD"/>
+      </node>
+      <node xml:id="s20_514" cat="NX" func="ON" parent="s20_515">
+       <word xml:id="s20_13" form="etwas" pos="PIS" morph="***" lemma="etwas" func="HD" parent="s20_514" dephead="s20_15" deprel="SUBJ"/>
+      </node>
+     </node>
+     <node xml:id="s20_518" cat="VC" func="-" parent="s20_519">
+      <node xml:id="s20_516" cat="VXINF" func="OV" parent="s20_518">
+       <word xml:id="s20_14" form="aufgefallen" pos="VVPP" lemma="auf#fallen" func="HD" parent="s20_516" dephead="s20_15" deprel="AUX"/>
+      </node>
+      <node xml:id="s20_517" cat="VXFIN" func="HD" parent="s20_518">
+       <word xml:id="s20_15" form="sei" pos="VAFIN" morph="3sks" lemma="sein%aux" func="HD" parent="s20_517" dephead="s20_2" deprel="NEB"/>
+      </node>
+     </node>
+    </node>
+   </node>
+  </node>
+  <word xml:id="s20_16" form="." pos="$." lemma="." func="--" deprel="ROOT"/>
+ </sentence>
+ <sentence xml:id="s21">
+  <node xml:id="s21_531" cat="SIMPX" func="--">
+   <node xml:id="s21_516" cat="VF" func="-" parent="s21_531">
+    <node xml:id="s21_515" cat="SIMPX" func="MOD" parent="s21_516">
+     <node xml:id="s21_500" cat="C" func="-" parent="s21_515">
+      <word xml:id="s21_1" form="Da" pos="KOUS" lemma="da" func="-" parent="s21_500" dephead="s21_16" deprel="KONJ"/>
+     </node>
+     <node xml:id="s21_512" cat="MF" func="-" parent="s21_515">
+      <node xml:id="s21_507" cat="NX" func="ON" parent="s21_512">
+       <relation type="coreferential" target="s19_508"/>
+       <node xml:id="s21_501" cat="NX" func="HD" parent="s21_507">
+        <word xml:id="s21_2" form="der" pos="ART" morph="nsm" lemma="der" func="-" parent="s21_501" dephead="s21_3" deprel="DET"/>
+        <word xml:id="s21_3" form="Landesverband" pos="NN" morph="nsm" lemma="Landesverband" func="HD" parent="s21_501" dephead="s21_16" deprel="SUBJ"/>
+       </node>
+       <node xml:id="s21_506" cat="NX" func="-" parent="s21_507">
+        <word xml:id="s21_4" form="als" pos="KOKOM" lemma="als" func="-" parent="s21_506" dephead="s21_5" deprel="-UNKNOWN-"/>
+        <node xml:id="s21_502" cat="NX" func="HD" parent="s21_506">
+         <word xml:id="s21_5" form="Dachverband" pos="NN" morph="nsm" lemma="Dachverband" func="HD" parent="s21_502" dephead="s21_3" deprel="APP"/>
+        </node>
+        <node xml:id="s21_505" cat="PX" func="-" parent="s21_506">
+         <word xml:id="s21_6" form="ohne" pos="APPR" morph="a" lemma="ohne" func="-" parent="s21_505" dephead="s21_5" deprel="PP"/>
+         <node xml:id="s21_504" cat="NX" func="HD" parent="s21_505">
+          <node xml:id="s21_503" cat="ADJX" func="-" parent="s21_504">
+           <word xml:id="s21_7" form="hauptamtliches" pos="ADJA" morph="asn" lemma="hauptamtlich" func="HD" parent="s21_503" dephead="s21_8" deprel="ATTR"/>
+          </node>
+          <word xml:id="s21_8" form="Personal" pos="NN" morph="asn" lemma="Personal" func="HD" parent="s21_504" dephead="s21_6" deprel="PN"/>
+         </node>
+        </node>
+       </node>
+      </node>
+      <node xml:id="s21_508" cat="ADVX" func="MOD" parent="s21_512">
+       <word xml:id="s21_9" form="nur" pos="ADV" lemma="nur" func="HD" parent="s21_508" dephead="s21_16" deprel="ADV"/>
+      </node>
+      <node xml:id="s21_511" cat="NX" func="OA" parent="s21_512">
+       <word xml:id="s21_10" form="einen" pos="ART" morph="asm" lemma="ein" func="-" parent="s21_511" dephead="s21_14" deprel="DET"/>
+       <word xml:id="s21_11" form='"' pos="$(" lemma='"' func="--" deprel="ROOT"/>
+       <node xml:id="s21_510" cat="ADJX" func="-" parent="s21_511">
+        <node xml:id="s21_509" cat="ADVX" func="-" parent="s21_510">
+         <word xml:id="s21_12" form="ganz" pos="ADV" lemma="ganz" func="HD" parent="s21_509" dephead="s21_13" deprel="ADV"/>
+        </node>
+        <word xml:id="s21_13" form="kleinen" pos="ADJA" morph="asm" lemma="klein" func="HD" parent="s21_510" dephead="s21_14" deprel="ATTR"/>
+       </node>
+       <word xml:id="s21_14" form="Haushalt" pos="NN" morph="asm" lemma="Haushalt" func="HD" parent="s21_511" dephead="s21_16" deprel="OBJA"/>
+      </node>
+     </node>
+     <word xml:id="s21_15" form='"' pos="$(" lemma='"' func="--" deprel="ROOT"/>
+     <node xml:id="s21_514" cat="VC" func="-" parent="s21_515">
+      <node xml:id="s21_513" cat="VXFIN" func="HD" parent="s21_514">
+       <word xml:id="s21_16" form="hat" pos="VAFIN" morph="3sis" lemma="haben" func="HD" parent="s21_513" dephead="s21_21" deprel="NEB"/>
+      </node>
+     </node>
+    </node>
+   </node>
+   <word xml:id="s21_17" form="(" pos="$(" lemma="(" func="--" deprel="ROOT"/>
+   <ne xml:id="ne_411" type="PER">
+    <node xml:id="s21_532" cat="NX" func="--">
+     <relation type="coreferential" target="s18_512"/>
+     <word xml:id="s21_18" form="Wedemeier" pos="NE" morph="nsf" lemma="Wedemeier" func="HD" parent="s21_532" dephead="s21_16" deprel="PAR"/>
+    </node>
+   </ne>
+   <word xml:id="s21_19" form=")" pos="$(" lemma=")" func="--" deprel="ROOT"/>
+   <word xml:id="s21_20" form="," pos="$," lemma="," func="--" deprel="ROOT"/>
+   <node xml:id="s21_518" cat="LK" func="-" parent="s21_531">
+    <node xml:id="s21_517" cat="VXFIN" func="HD" parent="s21_518">
+     <word xml:id="s21_21" form="hätten" pos="VAFIN" morph="3pkt" lemma="haben%aux" func="HD" parent="s21_517" deprel="ROOT"/>
+    </node>
+   </node>
+   <node xml:id="s21_527" cat="MF" func="-" parent="s21_531">
+    <node xml:id="s21_525" cat="NX" func="ON" parent="s21_527">
+     <node xml:id="s21_522" cat="NX" func="KONJ" parent="s21_525">
+      <node xml:id="s21_519" cat="NX" func="HD" parent="s21_522">
+       <word xml:id="s21_22" form="Summen" pos="NN" morph="npf" lemma="Summe" func="HD" parent="s21_519" dephead="s21_21" deprel="SUBJ"/>
+      </node>
+      <node xml:id="s21_521" cat="PX" func="-" parent="s21_522">
+       <word xml:id="s21_23" form="von" pos="APPR" morph="d" lemma="von" func="-" parent="s21_521" dephead="s21_22" deprel="PP"/>
+       <node xml:id="s21_520" cat="NX" func="HD" parent="s21_521">
+        <relation type="coreferential" target="s15_512"/>
+        <ne xml:id="ne_417" type="ORG">
+         <word xml:id="s21_24" form="Hapaq" pos="NE" morph="dsf" lemma="Hapaq" func="-" parent="s21_520" dephead="s21_23" deprel="PN"/>
+         <word xml:id="s21_25" form="Lloyd" pos="NE" morph="dsf" lemma="Lloyd" func="-" parent="s21_520" dephead="s21_24" deprel="APP"/>
+        </ne>
+       </node>
+      </node>
+     </node>
+     <word xml:id="s21_26" form="oder" pos="KON" lemma="oder" func="-" parent="s21_525" dephead="s21_22" deprel="KON"/>
+     <node xml:id="s21_524" cat="NX" func="KONJ" parent="s21_525">
+      <node xml:id="s21_523" cat="ADJX" func="-" parent="s21_524">
+       <word xml:id="s21_27" form="165.000" pos="CARD" lemma="165.000" func="HD" parent="s21_523" dephead="s21_28" deprel="ATTR"/>
+      </node>
+      <word xml:id="s21_28" form="Mark" pos="NN" morph="npf" lemma="Mark" func="HD" parent="s21_524" dephead="s21_26" deprel="CJ"/>
+     </node>
+    </node>
+    <node xml:id="s21_526" cat="ADVX" func="MOD" parent="s21_527">
+     <word xml:id="s21_29" form="schon" pos="ADV" lemma="schon" func="HD" parent="s21_526" dephead="s21_30" deprel="ADV"/>
+    </node>
+   </node>
+   <node xml:id="s21_530" cat="VC" func="-" parent="s21_531">
+    <node xml:id="s21_528" cat="VXINF" func="OV" parent="s21_530">
+     <word xml:id="s21_30" form="auffallen" pos="VVINF" lemma="auf#fallen" func="HD" parent="s21_528" dephead="s21_31" deprel="AUX"/>
+    </node>
+    <node xml:id="s21_529" cat="VXINF" func="HD" parent="s21_530">
+     <word xml:id="s21_31" form="müssen" pos="VMINF" lemma="müssen%aux" func="HD" parent="s21_529" dephead="s21_21" deprel="AUX"/>
+    </node>
+   </node>
+  </node>
+  <word xml:id="s21_32" form="." pos="$." lemma="." func="--" deprel="ROOT"/>
+ </sentence>
+ <sentence xml:id="s22">
+  <node xml:id="s22_504" cat="NX" func="--">
+   <node xml:id="s22_500" cat="NX" func="APP" parent="s22_504">
+    <word xml:id="s22_1" form="Vorwurf" pos="NN" morph="nsm" lemma="Vorwurf" func="HD" parent="s22_500" deprel="ROOT"/>
+   </node>
+   <node xml:id="s22_503" cat="NX" func="APP" parent="s22_504">
+    <node xml:id="s22_501" cat="NX" func="APP" parent="s22_503">
+     <word xml:id="s22_2" form="Nummer" pos="NN" morph="nsf" lemma="Nummer" func="HD" parent="s22_501" dephead="s22_1" deprel="APP"/>
+    </node>
+    <node xml:id="s22_502" cat="NX" func="APP" parent="s22_503">
+     <word xml:id="s22_3" form="3" pos="CARD" lemma="3" func="HD" parent="s22_502" dephead="s22_2" deprel="APP"/>
+    </node>
+   </node>
+  </node>
+  <word xml:id="s22_4" form=":" pos="$." lemma=":" func="--" deprel="ROOT"/>
+  <node xml:id="s22_515" cat="SIMPX" func="--">
+   <node xml:id="s22_508" cat="VF" func="-" parent="s22_515">
+    <node xml:id="s22_507" cat="NX" func="ON" parent="s22_508">
+     <relation type="coreferential" target="s21_532"/>
+     <node xml:id="s22_505" cat="NX" func="APP" parent="s22_507">
+      <word xml:id="s22_5" form="Die" pos="ART" morph="nsf" lemma="die" func="-" parent="s22_505" dephead="s22_6" deprel="DET"/>
+      <word xml:id="s22_6" form="Landesvorsitzende" pos="NN" morph="nsf" lemma="Landesvorsitzende" func="HD" parent="s22_505" dephead="s22_9" deprel="SUBJ"/>
+     </node>
+     <node xml:id="s22_506" cat="NX" func="APP" parent="s22_507">
+      <ne xml:id="ne_432" type="PER">
+       <word xml:id="s22_7" form="Ute" pos="NE" morph="nsf" lemma="Ute" func="-" parent="s22_506" dephead="s22_6" deprel="APP"/>
+       <word xml:id="s22_8" form="Wedemeier" pos="NE" morph="nsf" lemma="Wedemeier" func="-" parent="s22_506" dephead="s22_7" deprel="APP"/>
+      </ne>
+     </node>
+    </node>
+   </node>
+   <node xml:id="s22_510" cat="LK" func="-" parent="s22_515">
+    <node xml:id="s22_509" cat="VXFIN" func="HD" parent="s22_510">
+     <word xml:id="s22_9" form="hatte" pos="VAFIN" morph="3sit" lemma="haben" func="HD" parent="s22_509" deprel="ROOT"/>
+    </node>
+   </node>
+   <node xml:id="s22_514" cat="MF" func="-" parent="s22_515">
+    <node xml:id="s22_512" cat="PX" func="V-MOD" parent="s22_514">
+     <word xml:id="s22_10" form="auf" pos="APPR" morph="a" lemma="auf" func="-" parent="s22_512" dephead="s22_9" deprel="PP"/>
+     <node xml:id="s22_511" cat="NX" func="HD" parent="s22_512">
+      <word xml:id="s22_11" form="AWO-Kosten" pos="NN" morph="ap*" lemma="AWO-Kosten" func="HD" parent="s22_511" dephead="s22_10" deprel="PN"/>
+     </node>
+    </node>
+    <node xml:id="s22_513" cat="NX" func="OA" parent="s22_514">
+     <word xml:id="s22_12" form="ein" pos="ART" morph="asn" lemma="ein" func="-" parent="s22_513" dephead="s22_13" deprel="DET"/>
+     <word xml:id="s22_13" form="Handy" pos="NN" morph="asn" lemma="Handy" func="HD" parent="s22_513" dephead="s22_9" deprel="OBJA"/>
+    </node>
+   </node>
+  </node>
+  <word xml:id="s22_14" form="." pos="$." lemma="." func="--" deprel="ROOT"/>
+ </sentence>
+ <sentence xml:id="s23">
+  <word xml:id="s23_1" form='"' pos="$(" lemma='"' func="--" deprel="ROOT"/>
+  <node xml:id="s23_535" cat="SIMPX" func="--">
+   <node xml:id="s23_527" cat="VF" func="-" parent="s23_535">
+    <node xml:id="s23_526" cat="SIMPX" func="OS" parent="s23_527">
+     <node xml:id="s23_501" cat="VF" func="-" parent="s23_526">
+      <node xml:id="s23_500" cat="ADVX" func="MOD" parent="s23_501">
+       <word xml:id="s23_2" form="Hier" pos="ADV" lemma="hier" func="HD" parent="s23_500" dephead="s23_3" deprel="ADV"/>
+      </node>
+     </node>
+     <node xml:id="s23_503" cat="LK" func="-" parent="s23_526">
+      <node xml:id="s23_502" cat="VXFIN" func="HD" parent="s23_503">
+       <word xml:id="s23_3" form="werden" pos="VAFIN" morph="3pis" lemma="werden%passiv" func="HD" parent="s23_502" dephead="s23_21" deprel="S"/>
+      </node>
+     </node>
+     <node xml:id="s23_509" cat="MF" func="-" parent="s23_526">
+      <node xml:id="s23_508" cat="NX" func="ON" parent="s23_509">
+       <node xml:id="s23_504" cat="NX" func="HD" parent="s23_508">
+        <word xml:id="s23_4" form="Beiträge" pos="NN" morph="npm" lemma="Beitrag" func="HD" parent="s23_504" dephead="s23_3" deprel="SUBJ"/>
+       </node>
+       <node xml:id="s23_507" cat="PX" func="-" parent="s23_508">
+        <word xml:id="s23_5" form="von" pos="APPR" morph="d" lemma="von" func="-" parent="s23_507" dephead="s23_4" deprel="PP"/>
+        <node xml:id="s23_506" cat="NX" func="HD" parent="s23_507">
+         <node xml:id="s23_505" cat="ADJX" func="-" parent="s23_506">
+          <word xml:id="s23_6" form="kleinen" pos="ADJA" morph="dp*" lemma="klein" func="HD" parent="s23_505" dephead="s23_7" deprel="ATTR"/>
+         </node>
+         <word xml:id="s23_7" form="Leuten" pos="NN" morph="dp*" lemma="Leute" func="HD" parent="s23_506" dephead="s23_5" deprel="PN"/>
+        </node>
+       </node>
+      </node>
+     </node>
+     <node xml:id="s23_511" cat="VC" func="-" parent="s23_526">
+      <node xml:id="s23_510" cat="VXINF" func="OV" parent="s23_511">
+       <word xml:id="s23_8" form="veraast" pos="VVPP" lemma="veraasen" func="HD" parent="s23_510" dephead="s23_3" deprel="AUX"/>
+      </node>
+     </node>
+     <word xml:id="s23_9" form="," pos="$," lemma="," func="--" deprel="ROOT"/>
+     <node xml:id="s23_525" cat="NF" func="-" parent="s23_526">
+      <node xml:id="s23_524" cat="R-SIMPX" func="ON-MOD" parent="s23_525">
+       <node xml:id="s23_513" cat="C" func="-" parent="s23_524">
+        <node xml:id="s23_512" cat="NX" func="ON" parent="s23_513">
+         <relation type="anaphoric" target="s23_508"/>
+         <word xml:id="s23_10" form="die" pos="PRELS" morph="np*" lemma="der|die|das" func="HD" parent="s23_512" dephead="s23_18" deprel="SUBJ"/>
+        </node>
+       </node>
+       <node xml:id="s23_520" cat="MF" func="-" parent="s23_524">
+        <node xml:id="s23_516" cat="PX" func="FOPP" parent="s23_520">
+         <word xml:id="s23_11" form="von" pos="APPR" morph="d" lemma="von" func="-" parent="s23_516" dephead="s23_17" deprel="PP"/>
+         <node xml:id="s23_515" cat="NX" func="HD" parent="s23_516">
+          <node xml:id="s23_514" cat="ADJX" func="-" parent="s23_515">
+           <word xml:id="s23_12" form="ehrenamtlichen" pos="ADJA" morph="dpm" lemma="ehrenamtlich" func="HD" parent="s23_514" dephead="s23_13" deprel="ATTR"/>
+          </node>
+          <word xml:id="s23_13" form="Kassierern" pos="NN" morph="dpm" lemma="Kassierer" func="HD" parent="s23_515" dephead="s23_11" deprel="PN"/>
+         </node>
+        </node>
+        <node xml:id="s23_519" cat="ADVX" func="V-MOD" parent="s23_520">
+         <node xml:id="s23_518" cat="NX" func="-" parent="s23_519">
+          <node xml:id="s23_517" cat="ADJX" func="-" parent="s23_518">
+           <word xml:id="s23_14" form="fünf" pos="CARD" lemma="fünf" func="HD" parent="s23_517" dephead="s23_15" deprel="ATTR"/>
+          </node>
+          <word xml:id="s23_15" form="Mark" pos="NN" morph="npf" lemma="Mark" func="HD" parent="s23_518" dephead="s23_16" deprel="GRAD"/>
+         </node>
+         <word xml:id="s23_16" form="weise" pos="ADV" lemma="weise" func="HD" parent="s23_519" dephead="s23_17" deprel="ADV"/>
+        </node>
+       </node>
+       <node xml:id="s23_523" cat="VC" func="-" parent="s23_524">
+        <node xml:id="s23_521" cat="VXINF" func="OV" parent="s23_523">
+         <word xml:id="s23_17" form="gesammelt" pos="VVPP" lemma="sammeln" func="HD" parent="s23_521" dephead="s23_18" deprel="AUX"/>
+        </node>
+        <node xml:id="s23_522" cat="VXFIN" func="HD" parent="s23_523">
+         <word xml:id="s23_18" form="werden" pos="VAFIN" morph="3pis" lemma="werden%passiv" func="HD" parent="s23_522" dephead="s23_4" deprel="REL"/>
+        </node>
+       </node>
+      </node>
+     </node>
+    </node>
+   </node>
+   <word xml:id="s23_19" form='"' pos="$(" lemma='"' func="--" deprel="ROOT"/>
+   <word xml:id="s23_20" form="," pos="$," lemma="," func="--" deprel="ROOT"/>
+   <node xml:id="s23_529" cat="LK" func="-" parent="s23_535">
+    <node xml:id="s23_528" cat="VXFIN" func="HD" parent="s23_529">
+     <word xml:id="s23_21" form="schreibt" pos="VVFIN" morph="3sis" lemma="schreiben" func="HD" parent="s23_528" deprel="ROOT"/>
+    </node>
+   </node>
+   <node xml:id="s23_534" cat="MF" func="-" parent="s23_535">
+    <node xml:id="s23_531" cat="NX" func="ON" parent="s23_534">
+     <word xml:id="s23_22" form="die" pos="ART" morph="nsf" lemma="die" func="-" parent="s23_531" dephead="s23_24" deprel="DET"/>
+     <node xml:id="s23_530" cat="ADJX" func="-" parent="s23_531">
+      <word xml:id="s23_23" form="anonyme" pos="ADJA" morph="nsf" lemma="anonym" func="HD" parent="s23_530" dephead="s23_24" deprel="ATTR"/>
+     </node>
+     <word xml:id="s23_24" form="AWO-Mitarbeiterin" pos="NN" morph="nsf" lemma="AWO-Mitarbeiterin" func="HD" parent="s23_531" dephead="s23_21" deprel="SUBJ"/>
+    </node>
+    <node xml:id="s23_533" cat="PX" func="FOPP" parent="s23_534">
+     <word xml:id="s23_25" form="an" pos="APPR" morph="a" lemma="an" func="-" parent="s23_533" dephead="s23_21" deprel="PP"/>
+     <node xml:id="s23_532" cat="NX" func="HD" parent="s23_533">
+      <relation type="coreferential" target="s5_507"/>
+      <word xml:id="s23_26" form="die" pos="ART" morph="asf" lemma="die" func="-" parent="s23_532" dephead="s23_27" deprel="DET"/>
+      <word xml:id="s23_27" form="Staatsanwaltschaft" pos="NN" morph="asf" lemma="Staatsanwaltschaft" func="HD" parent="s23_532" dephead="s23_25" deprel="PN"/>
+     </node>
+    </node>
+   </node>
+  </node>
+  <word xml:id="s23_28" form="." pos="$." lemma="." func="--" deprel="ROOT"/>
+ </sentence>
+ <sentence xml:id="s24">
+  <node xml:id="s24_522" cat="SIMPX" func="--">
+   <node xml:id="s24_513" cat="VF" func="-" parent="s24_522">
+    <node xml:id="s24_512" cat="SIMPX" func="MOD" parent="s24_513">
+     <node xml:id="s24_500" cat="C" func="-" parent="s24_512">
+      <word xml:id="s24_1" form="Obwohl" pos="KOUS" lemma="obwohl" func="-" parent="s24_500" dephead="s24_12" deprel="KONJ"/>
+     </node>
+     <node xml:id="s24_509" cat="MF" func="-" parent="s24_512">
+      <node xml:id="s24_503" cat="NX" func="ON" parent="s24_509">
+       <relation type="coreferential" target="s22_507"/>
+       <node xml:id="s24_501" cat="NX" func="APP" parent="s24_503">
+        <word xml:id="s24_2" form="Frau" pos="NN" morph="nsf" lemma="Frau" func="HD" parent="s24_501" dephead="s24_12" deprel="SUBJ"/>
+       </node>
+       <node xml:id="s24_502" cat="NX" func="APP" parent="s24_503">
+        <ne xml:id="ne_470" type="PER">
+         <word xml:id="s24_3" form="Wedemeier" pos="NE" morph="nsf" lemma="Wedemeier" func="HD" parent="s24_502" dephead="s24_2" deprel="APP"/>
+        </ne>
+       </node>
+      </node>
+      <word xml:id="s24_4" form='"' pos="$(" lemma='"' func="--" deprel="ROOT"/>
+      <node xml:id="s24_505" cat="PX" func="MOD" parent="s24_509">
+       <word xml:id="s24_5" form="vor" pos="APPR" morph="d" lemma="vor" func="-" parent="s24_505" dephead="s24_12" deprel="PP"/>
+       <node xml:id="s24_504" cat="NX" func="HD" parent="s24_505">
+        <word xml:id="s24_6" form="allem" pos="PIS" morph="dsn" lemma="alles" func="HD" parent="s24_504" dephead="s24_5" deprel="PN"/>
+       </node>
+      </node>
+      <node xml:id="s24_506" cat="NX" func="OA" parent="s24_509">
+       <word xml:id="s24_7" form="Privatgespräche" pos="NN" morph="apn" lemma="Privatgespräch" func="HD" parent="s24_506" dephead="s24_12" deprel="OBJA"/>
+      </node>
+      <node xml:id="s24_508" cat="PX" func="V-MOD" parent="s24_509">
+       <word xml:id="s24_8" form="über" pos="APPR" morph="a" lemma="über" func="-" parent="s24_508" dephead="s24_12" deprel="PP"/>
+       <node xml:id="s24_507" cat="NX" func="HD" parent="s24_508">
+        <relation type="coreferential" target="s22_513"/>
+        <word xml:id="s24_9" form="das" pos="ART" morph="asn" lemma="das" func="-" parent="s24_507" dephead="s24_10" deprel="DET"/>
+        <word xml:id="s24_10" form="Handy" pos="NN" morph="asn" lemma="Handy" func="HD" parent="s24_507" dephead="s24_8" deprel="PN"/>
+       </node>
+      </node>
+     </node>
+     <word xml:id="s24_11" form='"' pos="$(" lemma='"' func="--" deprel="ROOT"/>
+     <node xml:id="s24_511" cat="VC" func="-" parent="s24_512">
+      <node xml:id="s24_510" cat="VXFIN" func="HD" parent="s24_511">
+       <word xml:id="s24_12" form="führe" pos="VVFIN" morph="3sks" lemma="führen" func="HD" parent="s24_510" dephead="s24_14" deprel="NEB"/>
+      </node>
+     </node>
+    </node>
+   </node>
+   <word xml:id="s24_13" form="," pos="$," lemma="," func="--" deprel="ROOT"/>
+   <node xml:id="s24_515" cat="LK" func="-" parent="s24_522">
+    <node xml:id="s24_514" cat="VXFIN" func="HD" parent="s24_515">
+     <word xml:id="s24_14" form="würde" pos="VAFIN" morph="3skt" lemma="werden%passiv" func="HD" parent="s24_514" deprel="ROOT"/>
+    </node>
+   </node>
+   <node xml:id="s24_519" cat="MF" func="-" parent="s24_522">
+    <node xml:id="s24_516" cat="NX" func="ON" parent="s24_519">
+     <word xml:id="s24_15" form="alles" pos="PIS" morph="nsn" lemma="alles" func="HD" parent="s24_516" dephead="s24_14" deprel="SUBJ"/>
+    </node>
+    <node xml:id="s24_518" cat="PX" func="FOPP" parent="s24_519">
+     <word xml:id="s24_16" form="von" pos="APPR" morph="d" lemma="von" func="-" parent="s24_518" dephead="s24_19" deprel="PP"/>
+     <node xml:id="s24_517" cat="NX" func="HD" parent="s24_518">
+      <relation type="coreferential" target="s16_506"/>
+      <word xml:id="s24_17" form="der" pos="ART" morph="dsf" lemma="die" func="-" parent="s24_517" dephead="s24_18" deprel="DET"/>
+      <ne xml:id="ne_485" type="ORG">
+       <word xml:id="s24_18" form="AWO" pos="NN" morph="dsf" lemma="AWO" func="HD" parent="s24_517" dephead="s24_16" deprel="PN"/>
+      </ne>
+     </node>
+    </node>
+   </node>
+   <node xml:id="s24_521" cat="VC" func="-" parent="s24_522">
+    <node xml:id="s24_520" cat="VXINF" func="OV" parent="s24_521">
+     <word xml:id="s24_19" form="bezahlt" pos="VVPP" lemma="bezahlen" func="HD" parent="s24_520" dephead="s24_14" deprel="AUX"/>
+    </node>
+   </node>
+  </node>
+  <word xml:id="s24_20" form="." pos="$." lemma="." func="--" deprel="ROOT"/>
+ </sentence>
+ <sentence xml:id="s25">
+  <node xml:id="s25_520" cat="SIMPX" func="--">
+   <node xml:id="s25_509" cat="VF" func="-" parent="s25_520">
+    <node xml:id="s25_500" cat="NX" func="ON" parent="s25_509">
+     <relation type="coreferential" target="s24_503"/>
+     <ne xml:id="ne_488" type="PER">
+      <word xml:id="s25_1" form="Ute" pos="NE" morph="nsf" lemma="Ute" func="-" parent="s25_500" dephead="s25_3" deprel="SUBJ"/>
+      <word xml:id="s25_2" form="Wedemeier" pos="NE" morph="nsf" lemma="Wedemeier" func="-" parent="s25_500" dephead="s25_1" deprel="APP"/>
+     </ne>
+    </node>
+   </node>
+   <node xml:id="s25_510" cat="LK" func="-" parent="s25_520">
+    <node xml:id="s25_501" cat="VXFIN" func="HD" parent="s25_510">
+     <word xml:id="s25_3" form="hält" pos="VVFIN" morph="3sis" lemma="halten" func="HD" parent="s25_501" deprel="ROOT"/>
+    </node>
+   </node>
+   <node xml:id="s25_515" cat="MF" func="-" parent="s25_520">
+    <node xml:id="s25_502" cat="NX" func="OS-MOD" parent="s25_515">
+     <relation type="expletive"/>
+     <word xml:id="s25_4" form="es" pos="PPER" morph="asn3" lemma="es" func="HD" parent="s25_502" dephead="s25_3" deprel="EXPL"/>
+    </node>
+    <node xml:id="s25_511" cat="PX" func="PRED" parent="s25_515">
+     <word xml:id="s25_5" form="für" pos="APPR" morph="a" lemma="für" func="-" parent="s25_511" dephead="s25_3" deprel="PRED"/>
+     <word xml:id="s25_6" form='"' pos="$(" lemma='"' func="--" deprel="ROOT"/>
+     <node xml:id="s25_503" cat="ADJX" func="HD" parent="s25_511">
+      <word xml:id="s25_7" form="selbstverständlich" pos="ADJD" lemma="selbstverständlich" func="HD" parent="s25_503" dephead="s25_5" deprel="PN"/>
+     </node>
+    </node>
+   </node>
+   <word xml:id="s25_8" form='"' pos="$(" lemma='"' func="--" deprel="ROOT"/>
+   <word xml:id="s25_9" form="," pos="$," lemma="," func="--" deprel="ROOT"/>
+   <node xml:id="s25_519" cat="NF" func="-" parent="s25_520">
+    <node xml:id="s25_518" cat="SIMPX" func="OS" parent="s25_519">
+     <node xml:id="s25_504" cat="C" func="-" parent="s25_518">
+      <word xml:id="s25_10" form="daß" pos="KOUS" lemma="daß" func="-" parent="s25_504" dephead="s25_18" deprel="KONJ"/>
+     </node>
+     <node xml:id="s25_517" cat="MF" func="-" parent="s25_518">
+      <node xml:id="s25_516" cat="NX" func="ON" parent="s25_517">
+       <node xml:id="s25_505" cat="NX" func="HD" parent="s25_516">
+        <relation type="anaphoric" target="s25_500"/>
+        <word xml:id="s25_11" form="sie" pos="PPER" morph="nsf3" lemma="sie" func="HD" parent="s25_505" dephead="s25_18" deprel="SUBJ"/>
+       </node>
+       <node xml:id="s25_512" cat="NX" func="-" parent="s25_516">
+        <word xml:id="s25_12" form="als" pos="KOKOM" lemma="als" func="-" parent="s25_512" dephead="s25_14" deprel="-UNKNOWN-"/>
+        <node xml:id="s25_506" cat="ADJX" func="-" parent="s25_512">
+         <word xml:id="s25_13" form="ehrenamtliche" pos="ADJA" morph="nsf" lemma="ehrenamtlich" func="HD" parent="s25_506" dephead="s25_14" deprel="ATTR"/>
+        </node>
+        <word xml:id="s25_14" form="Vorsitzende" pos="NN" morph="nsf" lemma="Vorsitzende" func="HD" parent="s25_512" dephead="s25_11" deprel="APP"/>
+       </node>
+      </node>
+      <node xml:id="s25_513" cat="NX" func="OA" parent="s25_517">
+       <word xml:id="s25_15" form="ein" pos="ART" morph="asn" lemma="ein" func="-" parent="s25_513" dephead="s25_17" deprel="DET"/>
+       <node xml:id="s25_507" cat="ADJX" func="-" parent="s25_513">
+        <word xml:id="s25_16" form="dienstliches" pos="ADJA" morph="asn" lemma="dienstlich" func="HD" parent="s25_507" dephead="s25_17" deprel="ATTR"/>
+       </node>
+       <word xml:id="s25_17" form="Handy" pos="NN" morph="asn" lemma="Handy" func="HD" parent="s25_513" dephead="s25_18" deprel="OBJA"/>
+      </node>
+     </node>
+     <node xml:id="s25_514" cat="VC" func="-" parent="s25_518">
+      <node xml:id="s25_508" cat="VXFIN" func="HD" parent="s25_514">
+       <word xml:id="s25_18" form="hat" pos="VAFIN" morph="3sis" lemma="haben" func="HD" parent="s25_508" dephead="s25_3" deprel="OBJC"/>
+      </node>
+     </node>
+    </node>
+   </node>
+  </node>
+  <word xml:id="s25_19" form="." pos="$." lemma="." func="--" deprel="ROOT"/>
+ </sentence>
+ <sentence xml:id="s26">
+  <node xml:id="s26_524" cat="SIMPX" func="--">
+   <node xml:id="s26_508" cat="VF" func="-" parent="s26_524">
+    <node xml:id="s26_507" cat="PX" func="V-MOD" parent="s26_508">
+     <node xml:id="s26_500" cat="ADVX" func="-" parent="s26_507">
+      <word xml:id="s26_1" form="Insbesondere" pos="ADV" lemma="insbesondere" func="HD" parent="s26_500" dephead="s26_2" deprel="ADV"/>
+     </node>
+     <word xml:id="s26_2" form="wegen" pos="APPR" morph="g" lemma="wegen" func="-" parent="s26_507" dephead="s26_9" deprel="PP"/>
+     <node xml:id="s26_506" cat="NX" func="HD" parent="s26_507">
+      <node xml:id="s26_501" cat="NX" func="HD" parent="s26_506">
+       <word xml:id="s26_3" form="ihrer" pos="PPOSAT" morph="gpf" lemma="ihre" func="-" parent="s26_501" dephead="s26_4" deprel="DET">
+        <relation type="anaphoric" target="s25_505"/>
+       </word>
+       <word xml:id="s26_4" form="Aktivitäten" pos="NN" morph="gpf" lemma="Aktivität" func="HD" parent="s26_501" dephead="s26_2" deprel="PN"/>
+      </node>
+      <node xml:id="s26_505" cat="PX" func="-" parent="s26_506">
+       <word xml:id="s26_5" form="in" pos="APPR" morph="d" lemma="in" func="-" parent="s26_505" dephead="s26_4" deprel="PP"/>
+       <node xml:id="s26_504" cat="NX" func="HD" parent="s26_505">
+        <node xml:id="s26_502" cat="NX" func="KONJ" parent="s26_504">
+         <ne xml:id="ne_512" type="GPE">
+          <word xml:id="s26_6" form="Riga" pos="NE" morph="dsn" lemma="Riga" func="HD" parent="s26_502" dephead="s26_5" deprel="PN"/>
+         </ne>
+        </node>
+        <word xml:id="s26_7" form="und" pos="KON" lemma="und" func="-" parent="s26_504" dephead="s26_6" deprel="KON"/>
+        <node xml:id="s26_503" cat="NX" func="KONJ" parent="s26_504">
+         <relation type="coreferential" target="s7_528"/>
+         <ne xml:id="ne_514" type="GPE">
+          <word xml:id="s26_8" form="Danzig" pos="NE" morph="dsn" lemma="Danzig" func="HD" parent="s26_503" dephead="s26_7" deprel="CJ"/>
+         </ne>
+        </node>
+       </node>
+      </node>
+     </node>
+    </node>
+   </node>
+   <node xml:id="s26_510" cat="LK" func="-" parent="s26_524">
+    <node xml:id="s26_509" cat="VXFIN" func="HD" parent="s26_510">
+     <word xml:id="s26_9" form="müsse" pos="VMFIN" morph="3sks" lemma="müssen%aux" func="HD" parent="s26_509" deprel="ROOT"/>
+    </node>
+   </node>
+   <node xml:id="s26_523" cat="FKOORD" func="-" parent="s26_524">
+    <node xml:id="s26_516" cat="FKONJ" func="KONJ" parent="s26_523">
+     <node xml:id="s26_513" cat="MF" func="-" parent="s26_516">
+      <node xml:id="s26_511" cat="NX" func="ON" parent="s26_513">
+       <relation type="anaphoric" target="s26_3"/>
+       <word xml:id="s26_10" form="sie" pos="PPER" morph="nsf3" lemma="sie" func="HD" parent="s26_511" dephead="s26_9" deprel="SUBJ"/>
+      </node>
+      <node xml:id="s26_512" cat="ADJX" func="PRED" parent="s26_513">
+       <word xml:id="s26_11" form="erreichbar" pos="ADJD" lemma="erreichbar" func="HD" parent="s26_512" dephead="s26_12" deprel="PRED"/>
+      </node>
+     </node>
+     <node xml:id="s26_515" cat="VC" func="-" parent="s26_516">
+      <node xml:id="s26_514" cat="VXINF" func="OV" parent="s26_515">
+       <word xml:id="s26_12" form="sein" pos="VAINF" lemma="sein" func="HD" parent="s26_514" dephead="s26_9" deprel="AUX"/>
+      </node>
+     </node>
+    </node>
+    <word xml:id="s26_13" form="und" pos="KON" lemma="und" func="-" parent="s26_523" dephead="s26_9" deprel="KON"/>
+    <node xml:id="s26_522" cat="FKONJ" func="KONJ" parent="s26_523">
+     <node xml:id="s26_518" cat="MF" func="-" parent="s26_522">
+      <node xml:id="s26_517" cat="ADVX" func="MOD" parent="s26_518">
+       <word xml:id="s26_14" form="auch" pos="ADV" lemma="auch" func="HD" parent="s26_517" dephead="s26_15" deprel="ADV"/>
+      </node>
+     </node>
+     <node xml:id="s26_521" cat="VC" func="-" parent="s26_522">
+      <node xml:id="s26_519" cat="VXINF" func="OV" parent="s26_521">
+       <word xml:id="s26_15" form="telefonieren" pos="VVINF" lemma="telefonieren" func="HD" parent="s26_519" dephead="s26_16" deprel="AUX"/>
+      </node>
+      <node xml:id="s26_520" cat="VXINF" func="HD" parent="s26_521">
+       <word xml:id="s26_16" form="können" pos="VMINF" lemma="können%aux" func="HD" parent="s26_520" dephead="s26_13" deprel="CJ"/>
+      </node>
+     </node>
+    </node>
+   </node>
+  </node>
+  <word xml:id="s26_17" form="." pos="$." lemma="." func="--" deprel="ROOT"/>
+ </sentence>
+ <sentence xml:id="s27">
+  <node xml:id="s27_526" cat="SIMPX" func="--">
+   <node xml:id="s27_516" cat="SIMPX" func="KONJ" parent="s27_526">
+    <node xml:id="s27_509" cat="VF" func="-" parent="s27_516">
+     <node xml:id="s27_508" cat="SIMPX" func="OS" parent="s27_509">
+      <node xml:id="s27_501" cat="C" func="-" parent="s27_508">
+       <node xml:id="s27_500" cat="NX" func="ON" parent="s27_501">
+        <word xml:id="s27_1" form="Wieviel" pos="PWS" morph="nsn" lemma="wieviel" func="HD" parent="s27_500" dephead="s27_5" deprel="SUBJ"/>
+       </node>
+      </node>
+      <node xml:id="s27_505" cat="MF" func="-" parent="s27_508">
+       <node xml:id="s27_502" cat="ADVX" func="MOD" parent="s27_505">
+        <word xml:id="s27_2" form="da" pos="ADV" lemma="da" func="HD" parent="s27_502" dephead="s27_5" deprel="ADV"/>
+       </node>
+       <node xml:id="s27_503" cat="ADJX" func="V-MOD" parent="s27_505">
+        <word xml:id="s27_3" form="monatlich" pos="ADJD" lemma="monatlich" func="HD" parent="s27_503" dephead="s27_5" deprel="ADV"/>
+       </node>
+       <node xml:id="s27_504" cat="ADJX" func="PRED" parent="s27_505">
+        <word xml:id="s27_4" form="fällig" pos="ADJD" lemma="fällig" func="HD" parent="s27_504" dephead="s27_5" deprel="PRED"/>
+       </node>
+      </node>
+      <node xml:id="s27_507" cat="VC" func="-" parent="s27_508">
+       <node xml:id="s27_506" cat="VXFIN" func="HD" parent="s27_507">
+        <word xml:id="s27_5" form="wird" pos="VAFIN" morph="3sis" lemma="werden" func="HD" parent="s27_506" dephead="s27_7" deprel="OBJC"/>
+       </node>
+      </node>
+     </node>
+    </node>
+    <word xml:id="s27_6" form="," pos="$," lemma="," func="--" deprel="ROOT"/>
+    <node xml:id="s27_511" cat="LK" func="-" parent="s27_516">
+     <node xml:id="s27_510" cat="VXFIN" func="HD" parent="s27_511">
+      <word xml:id="s27_7" form="weiß" pos="VVFIN" morph="3sis" lemma="wissen" func="HD" parent="s27_510" deprel="ROOT"/>
+     </node>
+    </node>
+    <node xml:id="s27_515" cat="MF" func="-" parent="s27_516">
+     <node xml:id="s27_512" cat="NX" func="ON" parent="s27_515">
+      <relation type="anaphoric" target="s26_511"/>
+      <word xml:id="s27_8" form="sie" pos="PPER" morph="nsf3" lemma="sie" func="HD" parent="s27_512" dephead="s27_7" deprel="SUBJ"/>
+     </node>
+     <node xml:id="s27_513" cat="ADVX" func="MOD" parent="s27_515">
+      <word xml:id="s27_9" form="aber" pos="ADV" lemma="aber" func="HD" parent="s27_513" dephead="s27_7" deprel="ADV"/>
+     </node>
+     <node xml:id="s27_514" cat="ADVX" func="MOD" parent="s27_515">
+      <word xml:id="s27_10" form="nicht" pos="PTKNEG" lemma="nicht" func="HD" parent="s27_514" dephead="s27_7" deprel="ADV"/>
+     </node>
+    </node>
+   </node>
+   <word xml:id="s27_11" form="-" pos="$(" lemma="-" func="--" deprel="ROOT"/>
+   <word xml:id="s27_12" form='"' pos="$(" lemma='"' func="--" deprel="ROOT"/>
+   <node xml:id="s27_525" cat="SIMPX" func="KONJ" parent="s27_526">
+    <node xml:id="s27_518" cat="VF" func="-" parent="s27_525">
+     <node xml:id="s27_517" cat="NX" func="ON" parent="s27_518">
+      <word xml:id="s27_13" form="die" pos="ART" morph="nsf" lemma="die" func="-" parent="s27_517" dephead="s27_14" deprel="DET"/>
+      <word xml:id="s27_14" form="Rechnung" pos="NN" morph="nsf" lemma="Rechnung" func="HD" parent="s27_517" dephead="s27_15" deprel="SUBJ"/>
+     </node>
+    </node>
+    <node xml:id="s27_520" cat="LK" func="-" parent="s27_525">
+     <node xml:id="s27_519" cat="VXFIN" func="HD" parent="s27_520">
+      <word xml:id="s27_15" form="geht" pos="VVFIN" morph="3sis" lemma="gehen" func="HD" parent="s27_519" dephead="s27_7" deprel="KON"/>
+     </node>
+    </node>
+    <node xml:id="s27_524" cat="MF" func="-" parent="s27_525">
+     <node xml:id="s27_523" cat="PX" func="OPP" parent="s27_524">
+      <node xml:id="s27_521" cat="ADJX" func="-" parent="s27_523">
+       <word xml:id="s27_16" form="direkt" pos="ADJD" lemma="direkt" func="HD" parent="s27_521" dephead="s27_17" deprel="ADV"/>
+      </node>
+      <word xml:id="s27_17" form="an" pos="APPR" morph="a" lemma="an" func="-" parent="s27_523" dephead="s27_15" deprel="OBJP"/>
+      <node xml:id="s27_522" cat="NX" func="HD" parent="s27_523">
+       <relation type="coreferential" target="s24_517"/>
+       <word xml:id="s27_18" form="die" pos="ART" morph="asf" lemma="die" func="-" parent="s27_522" dephead="s27_19" deprel="DET"/>
+       <ne xml:id="ne_542" type="ORG">
+        <word xml:id="s27_19" form="AWO" pos="NN" morph="asf" lemma="AWO" func="HD" parent="s27_522" dephead="s27_17" deprel="PN"/>
+       </ne>
+      </node>
+     </node>
+    </node>
+   </node>
+  </node>
+  <word xml:id="s27_20" form='"' pos="$(" lemma='"' func="--" deprel="ROOT"/>
+  <word xml:id="s27_21" form="." pos="$." lemma="." func="--" deprel="ROOT"/>
+ </sentence>
+ <sentence xml:id="s28">
+  <node xml:id="s28_519" cat="SIMPX" func="--">
+   <node xml:id="s28_507" cat="VF" func="-" parent="s28_519">
+    <node xml:id="s28_506" cat="NX" func="PRED" parent="s28_507">
+     <node xml:id="s28_500" cat="NX" func="HD" parent="s28_506">
+      <word xml:id="s28_1" form="Hintergrund" pos="NN" morph="nsm" lemma="Hintergrund" func="HD" parent="s28_500" dephead="s28_8" deprel="PRED"/>
+     </node>
+     <node xml:id="s28_505" cat="NX" func="-" parent="s28_506">
+      <node xml:id="s28_502" cat="NX" func="HD" parent="s28_505">
+       <word xml:id="s28_2" form="der" pos="ART" morph="gpm" lemma="der" func="-" parent="s28_502" dephead="s28_4" deprel="DET"/>
+       <node xml:id="s28_501" cat="ADJX" func="-" parent="s28_502">
+        <word xml:id="s28_3" form="gegenseitigen" pos="ADJA" morph="gpm" lemma="gegenseitig" func="HD" parent="s28_501" dephead="s28_4" deprel="ATTR"/>
+       </node>
+       <word xml:id="s28_4" form="Vorwürfe" pos="NN" morph="gpm" lemma="Vorwurf" func="HD" parent="s28_502" dephead="s28_1" deprel="GMOD"/>
+      </node>
+      <node xml:id="s28_504" cat="PX" func="-" parent="s28_505">
+       <word xml:id="s28_5" form="in" pos="APPR" morph="d" lemma="in" func="-" parent="s28_504" dephead="s28_4" deprel="PP"/>
+       <node xml:id="s28_503" cat="NX" func="HD" parent="s28_504">
+        <relation type="coreferential" target="s27_522"/>
+        <word xml:id="s28_6" form="der" pos="ART" morph="dsf" lemma="die" func="-" parent="s28_503" dephead="s28_7" deprel="DET"/>
+        <ne xml:id="ne_551" type="ORG">
+         <word xml:id="s28_7" form="Arbeiterwohlfahrt" pos="NN" morph="dsf" lemma="Arbeiterwohlfahrt" func="HD" parent="s28_503" dephead="s28_5" deprel="PN"/>
+        </ne>
+       </node>
+      </node>
+     </node>
+    </node>
+   </node>
+   <node xml:id="s28_509" cat="LK" func="-" parent="s28_519">
+    <node xml:id="s28_508" cat="VXFIN" func="HD" parent="s28_509">
+     <word xml:id="s28_8" form="sind" pos="VAFIN" morph="3pis" lemma="sein" func="HD" parent="s28_508" deprel="ROOT"/>
+    </node>
+   </node>
+   <node xml:id="s28_518" cat="MF" func="-" parent="s28_519">
+    <node xml:id="s28_510" cat="ADVX" func="MOD" parent="s28_518">
+     <word xml:id="s28_9" form="offenbar" pos="ADV" lemma="offenbar" func="HD" parent="s28_510" dephead="s28_8" deprel="ADV"/>
+    </node>
+    <node xml:id="s28_517" cat="NX" func="ON" parent="s28_518">
+     <node xml:id="s28_512" cat="NX" func="HD" parent="s28_517">
+      <node xml:id="s28_511" cat="ADJX" func="-" parent="s28_512">
+       <word xml:id="s28_10" form="scharfe" pos="ADJA" morph="npf" lemma="scharf" func="HD" parent="s28_511" dephead="s28_11" deprel="ATTR"/>
+      </node>
+      <word xml:id="s28_11" form="Konkurrenzen" pos="NN" morph="npf" lemma="Konkurrenz" func="HD" parent="s28_512" dephead="s28_8" deprel="SUBJ"/>
+     </node>
+     <node xml:id="s28_516" cat="PX" func="-" parent="s28_517">
+      <word xml:id="s28_12" form="zwischen" pos="APPR" morph="d" lemma="zwischen" func="-" parent="s28_516" dephead="s28_11" deprel="PP"/>
+      <node xml:id="s28_515" cat="NX" func="HD" parent="s28_516">
+       <node xml:id="s28_513" cat="NX" func="KONJ" parent="s28_515">
+        <word xml:id="s28_13" form="Bremern" pos="NN" morph="dpn" lemma="Bremer" func="HD" parent="s28_513" dephead="s28_12" deprel="PN"/>
+       </node>
+       <word xml:id="s28_14" form="und" pos="KON" lemma="und" func="-" parent="s28_515" dephead="s28_13" deprel="KON"/>
+       <node xml:id="s28_514" cat="NX" func="KONJ" parent="s28_515">
+        <word xml:id="s28_15" form="Bremerhavenern" pos="NN" morph="dpn" lemma="Bremerhavener" func="HD" parent="s28_514" dephead="s28_14" deprel="CJ"/>
+       </node>
+      </node>
+     </node>
+    </node>
+   </node>
+  </node>
+  <word xml:id="s28_16" form="." pos="$." lemma="." func="--" deprel="ROOT"/>
+ </sentence>
+ <sentence xml:id="s29">
+  <node xml:id="s29_526" cat="SIMPX" func="--">
+   <node xml:id="s29_525" cat="LV" func="-" parent="s29_526">
+    <node xml:id="s29_524" cat="SIMPX" func="MOD-MOD" parent="s29_525">
+     <node xml:id="s29_500" cat="C" func="-" parent="s29_524">
+      <word xml:id="s29_1" form="Als" pos="KOUS" lemma="als" func="-" parent="s29_500" dephead="s29_14" deprel="KONJ">
+       <connective konn="als" rel1="Temporal" rel2="enable"/>
+      </word>
+     </node>
+     <node xml:id="s29_523" cat="MF" func="-" parent="s29_524">
+      <node xml:id="s29_501" cat="NX" func="ON" parent="s29_523">
+       <relation type="expletive"/>
+       <word xml:id="s29_2" form="es" pos="PPER" morph="nsn3" lemma="es" func="HD" parent="s29_501" dephead="s29_14" deprel="SUBJ"/>
+      </node>
+      <node xml:id="s29_512" cat="PX" func="V-MOD" parent="s29_523">
+       <word xml:id="s29_3" form="in" pos="APPR" morph="d" lemma="in" func="-" parent="s29_512" dephead="s29_14" deprel="PP"/>
+       <node xml:id="s29_502" cat="NX" func="HD" parent="s29_512">
+        <word xml:id="s29_4" form="dieser" pos="PDAT" morph="dsf" lemma="diese" func="-" parent="s29_502" dephead="s29_5" deprel="DET"/>
+        <word xml:id="s29_5" form="Woche" pos="NN" morph="dsf" lemma="Woche" func="HD" parent="s29_502" dephead="s29_3" deprel="PN"/>
+       </node>
+      </node>
+      <node xml:id="s29_522" cat="PX" func="OPP" parent="s29_523">
+       <word xml:id="s29_6" form="um" pos="APPR" morph="a" lemma="um" func="-" parent="s29_522" dephead="s29_14" deprel="OBJP"/>
+       <node xml:id="s29_521" cat="NX" func="HD" parent="s29_522">
+        <node xml:id="s29_503" cat="NX" func="HD" parent="s29_521">
+         <word xml:id="s29_7" form="die" pos="ART" morph="asf" lemma="die" func="-" parent="s29_503" dephead="s29_8" deprel="DET"/>
+         <word xml:id="s29_8" form="Neubesetzung" pos="NN" morph="asf" lemma="Neubesetzung" func="HD" parent="s29_503" dephead="s29_6" deprel="PN"/>
+        </node>
+        <node xml:id="s29_520" cat="NX" func="-" parent="s29_521">
+         <node xml:id="s29_513" cat="NX" func="HD" parent="s29_520">
+          <word xml:id="s29_9" form="des" pos="ART" morph="gsm" lemma="der" func="-" parent="s29_513" dephead="s29_11" deprel="DET"/>
+          <node xml:id="s29_504" cat="ADJX" func="-" parent="s29_513">
+           <word xml:id="s29_10" form="ehrenamtlichen" pos="ADJA" morph="gsm" lemma="ehrenamtlich" func="HD" parent="s29_504" dephead="s29_11" deprel="ATTR"/>
+          </node>
+          <word xml:id="s29_11" form="Geschäftsführer-Postens" pos="NN" morph="gsm" lemma="Geschäftsführer-Posten" func="HD" parent="s29_513" dephead="s29_8" deprel="GMOD"/>
+         </node>
+         <node xml:id="s29_514" cat="PX" func="-" parent="s29_520">
+          <word xml:id="s29_12" form="im" pos="APPRART" morph="dsm" lemma="in" func="-" parent="s29_514" dephead="s29_11" deprel="PP"/>
+          <node xml:id="s29_505" cat="NX" func="HD" parent="s29_514">
+           <relation type="coreferential" target="s21_507"/>
+           <word xml:id="s29_13" form="Landesverbandes" pos="NN" morph="dsm" lemma="Landesverband" func="HD" parent="s29_505" comment="Landesverband" dephead="s29_12" deprel="PN"/>
+          </node>
+         </node>
+        </node>
+       </node>
+      </node>
+     </node>
+     <node xml:id="s29_515" cat="VC" func="-" parent="s29_524">
+      <node xml:id="s29_506" cat="VXFIN" func="HD" parent="s29_515">
+       <word xml:id="s29_14" form="ging" pos="VVFIN" morph="3sit" lemma="gehen" func="HD" parent="s29_506" dephead="s29_17" deprel="NEB"/>
+      </node>
+     </node>
+    </node>
+   </node>
+   <word xml:id="s29_15" form="," pos="$," lemma="," func="--" deprel="ROOT"/>
+   <node xml:id="s29_516" cat="VF" func="-" parent="s29_526">
+    <node xml:id="s29_507" cat="ADVX" func="MOD" parent="s29_516">
+     <secEdge cat="refmod" parent="s29_524"/>
+     <word xml:id="s29_16" form="da" pos="ADV" lemma="da" func="HD" parent="s29_507" dephead="s29_17" deprel="ADV"/>
+    </node>
+   </node>
+   <node xml:id="s29_517" cat="LK" func="-" parent="s29_526">
+    <node xml:id="s29_508" cat="VXFIN" func="HD" parent="s29_517">
+     <word xml:id="s29_17" form="sind" pos="VAFIN" morph="3pis" lemma="sein%aux" func="HD" parent="s29_508" deprel="ROOT"/>
+    </node>
+   </node>
+   <node xml:id="s29_518" cat="MF" func="-" parent="s29_526">
+    <node xml:id="s29_509" cat="NX" func="ON" parent="s29_518">
+     <word xml:id="s29_18" form="diese" pos="PDAT" morph="npf" lemma="diese" func="-" parent="s29_509" dephead="s29_19" deprel="DET"/>
+     <word xml:id="s29_19" form="Differenzen" pos="NN" morph="npf" lemma="Differenz" func="HD" parent="s29_509" dephead="s29_17" deprel="SUBJ"/>
+    </node>
+    <node xml:id="s29_510" cat="ADVX" func="MOD" parent="s29_518">
+     <word xml:id="s29_20" form="wieder" pos="ADV" lemma="wieder" func="HD" parent="s29_510" dephead="s29_21" deprel="ADV"/>
+    </node>
+   </node>
+   <node xml:id="s29_519" cat="VC" func="-" parent="s29_526">
+    <node xml:id="s29_511" cat="VXINF" func="OV" parent="s29_519">
+     <word xml:id="s29_21" form="aufgebrochen" pos="VVPP" lemma="auf#brechen" func="HD" parent="s29_511" dephead="s29_17" deprel="AUX"/>
+    </node>
+   </node>
+  </node>
+  <word xml:id="s29_22" form="." pos="$." lemma="." func="--" deprel="ROOT"/>
+ </sentence>
+ <sentence xml:id="s30">
+  <node xml:id="s30_519" cat="SIMPX" func="--">
+   <node xml:id="s30_504" cat="VF" func="-" parent="s30_519">
+    <node xml:id="s30_503" cat="NX" func="ON" parent="s30_504">
+     <node xml:id="s30_500" cat="NX" func="APP" parent="s30_503">
+      <ne xml:id="ne_583" type="PER">
+       <word xml:id="s30_1" form="Lothar" pos="NE" morph="nsm" lemma="Lothar" func="-" parent="s30_500" dephead="s30_7" deprel="SUBJ"/>
+       <word xml:id="s30_2" form="Koring" pos="NE" morph="nsm" lemma="Koring" func="-" parent="s30_500" dephead="s30_1" deprel="APP"/>
+      </ne>
+     </node>
+     <word xml:id="s30_3" form="," pos="$," lemma="," func="--" deprel="ROOT"/>
+     <node xml:id="s30_502" cat="NX" func="APP" parent="s30_503">
+      <node xml:id="s30_501" cat="ADJX" func="-" parent="s30_502">
+       <word xml:id="s30_4" form="Bremerhavener" pos="ADJA" morph="***" lemma="Bremerhavener" func="HD" parent="s30_501" dephead="s30_5" deprel="ATTR"/>
+      </node>
+      <word xml:id="s30_5" form="AWO-Vorsitzender" pos="NN" morph="nsm" lemma="AWO-Vorsitzender" func="HD" parent="s30_502" dephead="s30_2" deprel="APP"/>
+     </node>
+    </node>
+   </node>
+   <word xml:id="s30_6" form="," pos="$," lemma="," func="--" deprel="ROOT"/>
+   <node xml:id="s30_506" cat="LK" func="-" parent="s30_519">
+    <node xml:id="s30_505" cat="VXFIN" func="HD" parent="s30_506">
+     <word xml:id="s30_7" form="wollte" pos="VMFIN" morph="3sit" lemma="wollen%aux" func="HD" parent="s30_505" deprel="ROOT"/>
+    </node>
+   </node>
+   <node xml:id="s30_516" cat="MF" func="-" parent="s30_519">
+    <node xml:id="s30_510" cat="NX" func="OA" parent="s30_516">
+     <relation type="coreferential" target="s17_500"/>
+     <node xml:id="s30_508" cat="NX" func="APP" parent="s30_510">
+      <word xml:id="s30_8" form="seinen" pos="PPOSAT" morph="asm" lemma="sein" func="-" parent="s30_508" dephead="s30_10" deprel="DET">
+       <relation type="anaphoric" target="s30_503"/>
+      </word>
+      <node xml:id="s30_507" cat="ADJX" func="-" parent="s30_508">
+       <word xml:id="s30_9" form="Bremerhavener" pos="ADJA" morph="***" lemma="Bremerhavener" func="HD" parent="s30_507" dephead="s30_10" deprel="ATTR"/>
+      </node>
+      <word xml:id="s30_10" form="Geschäftsführer" pos="NN" morph="asm" lemma="Geschäftsführer" func="HD" parent="s30_508" dephead="s30_18" deprel="OBJA"/>
+     </node>
+     <node xml:id="s30_509" cat="NX" func="APP" parent="s30_510">
+      <ne xml:id="ne_593" type="PER">
+       <word xml:id="s30_11" form="Volker" pos="NE" morph="asm" lemma="Volker" func="-" parent="s30_509" dephead="s30_10" deprel="APP"/>
+       <word xml:id="s30_12" form="Tegeler" pos="NE" morph="asm" lemma="Tegeler" func="-" parent="s30_509" dephead="s30_11" deprel="APP"/>
+      </ne>
+     </node>
+    </node>
+    <node xml:id="s30_511" cat="ADVX" func="MOD" parent="s30_516">
+     <word xml:id="s30_13" form="auch" pos="ADV" lemma="auch" func="HD" parent="s30_511" dephead="s30_18" deprel="ADV"/>
+    </node>
+    <node xml:id="s30_513" cat="PX" func="V-MOD" parent="s30_516">
+     <word xml:id="s30_14" form="im" pos="APPRART" morph="dsm" lemma="in" func="-" parent="s30_513" dephead="s30_18" deprel="PP"/>
+     <node xml:id="s30_512" cat="NX" func="HD" parent="s30_513">
+      <relation type="coreferential" target="s29_505"/>
+      <word xml:id="s30_15" form="Landesverband" pos="NN" morph="dsm" lemma="Landesverband" func="HD" parent="s30_512" dephead="s30_14" deprel="PN"/>
+     </node>
+    </node>
+    <node xml:id="s30_515" cat="PX" func="OPP" parent="s30_516">
+     <word xml:id="s30_16" form="zum" pos="APPRART" morph="dsm" lemma="zu" func="-" parent="s30_515" dephead="s30_18" deprel="OBJP"/>
+     <node xml:id="s30_514" cat="NX" func="HD" parent="s30_515">
+      <word xml:id="s30_17" form="Geschäftsführer" pos="NN" morph="dsm" lemma="Geschäftsführer" func="HD" parent="s30_514" dephead="s30_16" deprel="PN"/>
+     </node>
+    </node>
+   </node>
+   <node xml:id="s30_518" cat="VC" func="-" parent="s30_519">
+    <node xml:id="s30_517" cat="VXINF" func="OV" parent="s30_518">
+     <word xml:id="s30_18" form="machen" pos="VVINF" lemma="machen" func="HD" parent="s30_517" dephead="s30_7" deprel="AUX"/>
+    </node>
+   </node>
+  </node>
+  <word xml:id="s30_19" form="." pos="$." lemma="." func="--" deprel="ROOT"/>
+ </sentence>
+ <sentence xml:id="s31">
+  <node xml:id="s31_515" cat="SIMPX" func="--">
+   <node xml:id="s31_503" cat="VF" func="-" parent="s31_515">
+    <node xml:id="s31_502" cat="NX" func="ON" parent="s31_503">
+     <relation type="coreferential" target="s30_8"/>
+     <node xml:id="s31_500" cat="NX" func="HD" parent="s31_502">
+      <ne xml:id="ne_602" type="PER">
+       <word xml:id="s31_1" form="Koring" pos="NE" morph="nsm" lemma="Koring" func="HD" parent="s31_500" dephead="s31_3" deprel="SUBJ"/>
+      </ne>
+     </node>
+     <node xml:id="s31_501" cat="ADVX" func="-" parent="s31_502">
+      <word xml:id="s31_2" form="selbst" pos="ADV" lemma="selbst" func="HD" parent="s31_501" dephead="s31_1" deprel="ADV"/>
+     </node>
+    </node>
+   </node>
+   <node xml:id="s31_505" cat="LK" func="-" parent="s31_515">
+    <node xml:id="s31_504" cat="VXFIN" func="HD" parent="s31_505">
+     <word xml:id="s31_3" form="hatte" pos="VAFIN" morph="3sit" lemma="haben%aux" func="HD" parent="s31_504" deprel="ROOT"/>
+    </node>
+   </node>
+   <node xml:id="s31_512" cat="MF" func="-" parent="s31_515">
+    <node xml:id="s31_506" cat="ADVX" func="V-MOD" parent="s31_512">
+     <word xml:id="s31_4" form="früher" pos="ADV" lemma="früher" func="HD" parent="s31_506" dephead="s31_12" deprel="ADV"/>
+    </node>
+    <node xml:id="s31_507" cat="ADVX" func="MOD" parent="s31_512">
+     <word xml:id="s31_5" form="auch" pos="ADV" lemma="auch" func="HD" parent="s31_507" dephead="s31_12" deprel="ADV"/>
+    </node>
+    <node xml:id="s31_509" cat="PX" func="V-MOD" parent="s31_512">
+     <word xml:id="s31_6" form="gegen" pos="APPR" morph="a" lemma="gegen" func="-" parent="s31_509" dephead="s31_12" deprel="PP"/>
+     <node xml:id="s31_508" cat="NX" func="HD" parent="s31_509">
+      <relation type="coreferential" target="s27_512"/>
+      <ne xml:id="ne_608" type="PER">
+       <word xml:id="s31_7" form="Ute" pos="NE" morph="asf" lemma="Ute" func="-" parent="s31_508" dephead="s31_6" deprel="PN"/>
+       <word xml:id="s31_8" form="Wedemeier" pos="NE" morph="asf" lemma="Wedemeier" func="-" parent="s31_508" dephead="s31_7" deprel="APP"/>
+      </ne>
+     </node>
+    </node>
+    <node xml:id="s31_511" cat="PX" func="FOPP" parent="s31_512">
+     <word xml:id="s31_9" form="für" pos="APPR" morph="a" lemma="für" func="-" parent="s31_511" dephead="s31_12" deprel="PP"/>
+     <node xml:id="s31_510" cat="NX" func="HD" parent="s31_511">
+      <word xml:id="s31_10" form="den" pos="ART" morph="asm" lemma="der" func="-" parent="s31_510" dephead="s31_11" deprel="DET"/>
+      <word xml:id="s31_11" form="Landesvorsitz" pos="NN" morph="asm" lemma="Landesvorsitz" func="HD" parent="s31_510" dephead="s31_9" deprel="PN"/>
+     </node>
+    </node>
+   </node>
+   <node xml:id="s31_514" cat="VC" func="-" parent="s31_515">
+    <node xml:id="s31_513" cat="VXINF" func="OV" parent="s31_514">
+     <word xml:id="s31_12" form="kandidiert" pos="VVPP" lemma="kandidieren" func="HD" parent="s31_513" dephead="s31_3" deprel="AUX"/>
+    </node>
+   </node>
+  </node>
+  <word xml:id="s31_13" form="." pos="$." lemma="." func="--" deprel="ROOT"/>
+ </sentence>
+ <sentence xml:id="s32">
+  <node xml:id="s32_518" cat="SIMPX" func="--">
+   <node xml:id="s32_514" cat="VF" func="-" parent="s32_518">
+    <node xml:id="s32_508" cat="PX" func="FOPP" parent="s32_514">
+     <word xml:id="s32_1" form="Gegen" pos="APPR" morph="a" lemma="gegen" func="-" parent="s32_508" dephead="s32_3" deprel="PP"/>
+     <node xml:id="s32_500" cat="NX" func="HD" parent="s32_508">
+      <relation type="coreferential" target="s30_510"/>
+      <ne xml:id="ne_616" type="PER">
+       <word xml:id="s32_2" form="Tegeler" pos="NE" morph="asm" lemma="Tegeler" func="HD" parent="s32_500" dephead="s32_1" deprel="PN"/>
+      </ne>
+     </node>
+    </node>
+   </node>
+   <node xml:id="s32_509" cat="LK" func="-" parent="s32_518">
+    <node xml:id="s32_501" cat="VXFIN" func="HD" parent="s32_509">
+     <word xml:id="s32_3" form="sprach" pos="VVFIN" morph="3sit" lemma="sprechen" func="HD" parent="s32_501" deprel="ROOT"/>
+    </node>
+   </node>
+   <node xml:id="s32_510" cat="MF" func="-" parent="s32_518">
+    <node xml:id="s32_502" cat="ADVX" func="MOD" parent="s32_510">
+     <word xml:id="s32_4" form="allerdings" pos="ADV" lemma="allerdings" func="HD" parent="s32_502" dephead="s32_3" deprel="ADV"/>
+    </node>
+   </node>
+   <word xml:id="s32_5" form="," pos="$," lemma="," func="--" deprel="ROOT"/>
+   <node xml:id="s32_517" cat="NF" func="-" parent="s32_518">
+    <node xml:id="s32_516" cat="SIMPX" func="ON" parent="s32_517">
+     <node xml:id="s32_503" cat="C" func="-" parent="s32_516">
+      <word xml:id="s32_6" form="daß" pos="KOUS" lemma="daß" func="-" parent="s32_503" dephead="s32_13" deprel="KONJ"/>
+     </node>
+     <node xml:id="s32_515" cat="MF" func="-" parent="s32_516">
+      <node xml:id="s32_504" cat="ADVX" func="MOD" parent="s32_515">
+       <word xml:id="s32_7" form="noch" pos="ADV" lemma="noch" func="HD" parent="s32_504" dephead="s32_13" deprel="ADV"/>
+      </node>
+      <node xml:id="s32_511" cat="NX" func="ON" parent="s32_515">
+       <word xml:id="s32_8" form="ein" pos="ART" morph="nsn" lemma="ein" func="-" parent="s32_511" dephead="s32_10" deprel="DET"/>
+       <node xml:id="s32_505" cat="ADJX" func="-" parent="s32_511">
+        <word xml:id="s32_9" form="staatsanwaltschaftliches" pos="ADJA" morph="nsn" lemma="staatsanwaltschaftlich" func="HD" parent="s32_505" dephead="s32_10" deprel="ATTR"/>
+       </node>
+       <word xml:id="s32_10" form="Ermittlungsverfahren" pos="NN" morph="nsn" lemma="Ermittlungsverfahren" func="HD" parent="s32_511" dephead="s32_13" deprel="SUBJ"/>
+      </node>
+      <node xml:id="s32_512" cat="PX" func="FOPP" parent="s32_515">
+       <word xml:id="s32_11" form="gegen" pos="APPR" morph="a" lemma="gegen" func="-" parent="s32_512" dephead="s32_13" deprel="PP"/>
+       <node xml:id="s32_506" cat="NX" func="HD" parent="s32_512">
+        <relation type="anaphoric" target="s32_500"/>
+        <word xml:id="s32_12" form="ihn" pos="PPER" morph="asm3" lemma="er" func="HD" parent="s32_506" dephead="s32_11" deprel="PN"/>
+       </node>
+      </node>
+     </node>
+     <node xml:id="s32_513" cat="VC" func="-" parent="s32_516">
+      <node xml:id="s32_507" cat="VXFIN" func="HD" parent="s32_513">
+       <word xml:id="s32_13" form="läuft" pos="VVFIN" morph="3sis" lemma="laufen" func="HD" parent="s32_507" dephead="s32_3" deprel="SUBJC"/>
+      </node>
+     </node>
+    </node>
+   </node>
+  </node>
+  <word xml:id="s32_14" form="." pos="$." lemma="." func="--" deprel="ROOT"/>
+ </sentence>
+ <sentence xml:id="s33">
+  <node xml:id="s33_541" cat="SIMPX" func="--">
+   <node xml:id="s33_500" cat="KOORD" func="-" parent="s33_541">
+    <word xml:id="s33_1" form="Und" pos="KON" lemma="und" func="-" parent="s33_500" deprel="ROOT"/>
+   </node>
+   <node xml:id="s33_502" cat="VF" func="-" parent="s33_541">
+    <node xml:id="s33_501" cat="NX" func="ON" parent="s33_502">
+     <relation type="coreferential" target="s31_502"/>
+     <ne xml:id="ne_630" type="PER">
+      <word xml:id="s33_2" form="Koring" pos="NE" morph="nsm" lemma="Koring" func="HD" parent="s33_501" dephead="s33_3" deprel="SUBJ"/>
+     </ne>
+    </node>
+   </node>
+   <node xml:id="s33_504" cat="LK" func="-" parent="s33_541">
+    <node xml:id="s33_503" cat="VXFIN" func="HD" parent="s33_504">
+     <word xml:id="s33_3" form="war" pos="VAFIN" morph="3sit" lemma="sein%aux" func="HD" parent="s33_503" dephead="s33_1" deprel="CJ"/>
+    </node>
+   </node>
+   <node xml:id="s33_510" cat="MF" func="-" parent="s33_541">
+    <node xml:id="s33_505" cat="ADVX" func="V-MOD" parent="s33_510">
+     <word xml:id="s33_4" form="früher" pos="ADV" lemma="früher" func="HD" parent="s33_505" dephead="s33_9" deprel="ADV"/>
+    </node>
+    <node xml:id="s33_506" cat="ADVX" func="MOD" parent="s33_510">
+     <word xml:id="s33_5" form="einmal" pos="ADV" lemma="einmal" func="HD" parent="s33_506" dephead="s33_9" deprel="ADV"/>
+    </node>
+    <node xml:id="s33_509" cat="PX" func="OPP" parent="s33_510">
+     <word xml:id="s33_6" form="in" pos="APPR" morph="a" lemma="in" func="-" parent="s33_509" dephead="s33_9" deprel="OBJP"/>
+     <node xml:id="s33_508" cat="NX" func="HD" parent="s33_509">
+      <node xml:id="s33_507" cat="ADJX" func="-" parent="s33_508">
+       <word xml:id="s33_7" form="schiefes" pos="ADJA" morph="asn" lemma="schief" func="HD" parent="s33_507" dephead="s33_8" deprel="ATTR"/>
+      </node>
+      <word xml:id="s33_8" form="Licht" pos="NN" morph="asn" lemma="Licht" func="HD" parent="s33_508" dephead="s33_6" deprel="PN"/>
+     </node>
+    </node>
+   </node>
+   <node xml:id="s33_512" cat="VC" func="-" parent="s33_541">
+    <node xml:id="s33_511" cat="VXINF" func="OV" parent="s33_512">
+     <word xml:id="s33_9" form="geraten" pos="VVPP" lemma="geraten" func="HD" parent="s33_511" dephead="s33_3" deprel="AUX"/>
+    </node>
+   </node>
+   <word xml:id="s33_10" form="," pos="$," lemma="," func="--" deprel="ROOT"/>
+   <node xml:id="s33_540" cat="NF" func="-" parent="s33_541">
+    <node xml:id="s33_539" cat="SIMPX" func="MOD" parent="s33_540">
+     <node xml:id="s33_513" cat="C" func="-" parent="s33_539">
+      <word xml:id="s33_11" form="weil" pos="KOUS" lemma="weil" func="-" parent="s33_513" dephead="s33_18" deprel="KONJ"/>
+     </node>
+     <node xml:id="s33_519" cat="MF" func="-" parent="s33_539">
+      <node xml:id="s33_514" cat="NX" func="ON" parent="s33_519">
+       <relation type="anaphoric" target="s33_501"/>
+       <word xml:id="s33_12" form="er" pos="PPER" morph="nsm3" lemma="er" func="HD" parent="s33_514" dephead="s33_18" deprel="SUBJ"/>
+      </node>
+      <node xml:id="s33_516" cat="PX" func="V-MOD" parent="s33_519">
+       <word xml:id="s33_13" form="bei" pos="APPR" morph="d" lemma="bei" func="-" parent="s33_516" dephead="s33_18" deprel="PP"/>
+       <node xml:id="s33_515" cat="NX" func="HD" parent="s33_516">
+        <secEdge cat="refint" parent="s33_537"/>
+        <word xml:id="s33_14" form="einer" pos="ART" morph="dsf" lemma="eine" func="-" parent="s33_515" dephead="s33_15" deprel="DET"/>
+        <word xml:id="s33_15" form="Prüfgesellschaft" pos="NN" morph="dsf" lemma="Prüfgesellschaft" func="HD" parent="s33_515" dephead="s33_13" deprel="PN"/>
+       </node>
+      </node>
+      <node xml:id="s33_518" cat="PX" func="PRED" parent="s33_519">
+       <word xml:id="s33_16" form="im" pos="APPRART" morph="dsm" lemma="in" func="-" parent="s33_518" dephead="s33_18" deprel="PRED"/>
+       <node xml:id="s33_517" cat="NX" func="HD" parent="s33_518">
+        <word xml:id="s33_17" form="Vorstand" pos="NN" morph="dsm" lemma="Vorstand" func="HD" parent="s33_517" dephead="s33_16" deprel="PN"/>
+       </node>
+      </node>
+     </node>
+     <node xml:id="s33_521" cat="VC" func="-" parent="s33_539">
+      <node xml:id="s33_520" cat="VXFIN" func="HD" parent="s33_521">
+       <word xml:id="s33_18" form="war" pos="VAFIN" morph="3sit" lemma="sein" func="HD" parent="s33_520" dephead="s33_3" deprel="NEB"/>
+      </node>
+     </node>
+     <word xml:id="s33_19" form="," pos="$," lemma="," func="--" deprel="ROOT"/>
+     <node xml:id="s33_538" cat="NF" func="-" parent="s33_539">
+      <node xml:id="s33_537" cat="R-SIMPX" func="MOD" parent="s33_538">
+       <node xml:id="s33_523" cat="C" func="-" parent="s33_537">
+        <node xml:id="s33_522" cat="NX" func="ON" parent="s33_523">
+         <relation type="anaphoric" target="s33_515"/>
+         <word xml:id="s33_20" form="die" pos="PRELS" morph="nsf" lemma="die" func="HD" parent="s33_522" dephead="s33_29" deprel="SUBJ"/>
+        </node>
+       </node>
+       <node xml:id="s33_534" cat="MF" func="-" parent="s33_537">
+        <node xml:id="s33_533" cat="NX" func="OA" parent="s33_534">
+         <node xml:id="s33_524" cat="NX" func="HD" parent="s33_533">
+          <relation type="coreferential" target="s28_503"/>
+          <word xml:id="s33_21" form="die" pos="ART" morph="asf" lemma="die" func="-" parent="s33_524" dephead="s33_22" deprel="DET"/>
+          <ne xml:id="ne_650" type="ORG">
+           <word xml:id="s33_22" form="AWO" pos="NN" morph="asf" lemma="AWO" func="HD" parent="s33_524" dephead="s33_29" deprel="OBJA"/>
+          </ne>
+         </node>
+         <word xml:id="s33_23" form="," pos="$," lemma="," func="--" deprel="ROOT"/>
+         <node xml:id="s33_532" cat="R-SIMPX" func="-" parent="s33_533">
+          <node xml:id="s33_526" cat="C" func="-" parent="s33_532">
+           <node xml:id="s33_525" cat="ADVX" func="V-MOD" parent="s33_526">
+            <word xml:id="s33_24" form="wo" pos="PWAV" lemma="wo" func="HD" parent="s33_525" dephead="s33_27" deprel="ADV"/>
+           </node>
+          </node>
+          <node xml:id="s33_529" cat="MF" func="-" parent="s33_532">
+           <node xml:id="s33_527" cat="NX" func="ON" parent="s33_529">
+            <relation type="anaphoric" target="s33_514"/>
+            <word xml:id="s33_25" form="er" pos="PPER" morph="nsm3" lemma="er" func="HD" parent="s33_527" dephead="s33_27" deprel="SUBJ"/>
+           </node>
+           <node xml:id="s33_528" cat="NX" func="PRED" parent="s33_529">
+            <word xml:id="s33_26" form="Kreisvorsitzender" pos="NN" morph="nsm" lemma="Kreisvorsitzender" func="HD" parent="s33_528" dephead="s33_27" deprel="PRED"/>
+           </node>
+          </node>
+          <node xml:id="s33_531" cat="VC" func="-" parent="s33_532">
+           <node xml:id="s33_530" cat="VXFIN" func="HD" parent="s33_531">
+            <word xml:id="s33_27" form="ist" pos="VAFIN" morph="3sis" lemma="sein" func="HD" parent="s33_530" dephead="s33_22" deprel="REL"/>
+           </node>
+          </node>
+         </node>
+        </node>
+       </node>
+       <word xml:id="s33_28" form="," pos="$," lemma="," func="--" deprel="ROOT"/>
+       <node xml:id="s33_536" cat="VC" func="-" parent="s33_537">
+        <node xml:id="s33_535" cat="VXFIN" func="HD" parent="s33_536">
+         <word xml:id="s33_29" form="prüfte" pos="VVFIN" morph="3sit" lemma="prüfen" func="HD" parent="s33_535" dephead="s33_18" deprel="REL"/>
+        </node>
+       </node>
+      </node>
+     </node>
+    </node>
+   </node>
+  </node>
+  <word xml:id="s33_30" form="." pos="$." lemma="." func="--" deprel="ROOT"/>
+ </sentence>
+ <sentence xml:id="s34">
+  <node xml:id="s34_518" cat="SIMPX" func="--">
+   <node xml:id="s34_512" cat="SIMPX" func="KONJ" parent="s34_518">
+    <node xml:id="s34_504" cat="VF" func="-" parent="s34_512">
+     <node xml:id="s34_503" cat="NX" func="OA" parent="s34_504">
+      <node xml:id="s34_500" cat="NX" func="HD" parent="s34_503">
+       <word xml:id="s34_1" form="Seine" pos="PPOSAT" morph="asf" lemma="seine" func="-" parent="s34_500" dephead="s34_2" deprel="DET">
+        <relation type="anaphoric" target="s33_527"/>
+       </word>
+       <word xml:id="s34_2" form="Position" pos="NN" morph="asf" lemma="Position" func="HD" parent="s34_500" dephead="s34_9" deprel="OBJA"/>
+      </node>
+      <node xml:id="s34_502" cat="PX" func="-" parent="s34_503">
+       <word xml:id="s34_3" form="bei" pos="APPR" morph="d" lemma="bei" func="-" parent="s34_502" dephead="s34_2" deprel="PP"/>
+       <node xml:id="s34_501" cat="NX" func="HD" parent="s34_502">
+        <relation type="coreferential" target="s33_522"/>
+        <word xml:id="s34_4" form="der" pos="ART" morph="dsf" lemma="die" func="-" parent="s34_501" dephead="s34_5" deprel="DET"/>
+        <word xml:id="s34_5" form="Prüfgesellschaft" pos="NN" morph="dsf" lemma="Prüfgesellschaft" func="HD" parent="s34_501" dephead="s34_3" deprel="PN"/>
+       </node>
+      </node>
+     </node>
+    </node>
+    <node xml:id="s34_506" cat="LK" func="-" parent="s34_512">
+     <node xml:id="s34_505" cat="VXFIN" func="HD" parent="s34_506">
+      <word xml:id="s34_6" form="mußte" pos="VMFIN" morph="3sit" lemma="müssen%aux" func="HD" parent="s34_505" deprel="ROOT"/>
+     </node>
+    </node>
+    <node xml:id="s34_509" cat="MF" func="-" parent="s34_512">
+     <node xml:id="s34_507" cat="NX" func="ON" parent="s34_509">
+      <relation type="anaphoric" target="s34_1"/>
+      <word xml:id="s34_7" form="er" pos="PPER" morph="nsm3" lemma="er" func="HD" parent="s34_507" dephead="s34_6" deprel="SUBJ"/>
+     </node>
+     <node xml:id="s34_508" cat="ADVX" func="V-MOD" parent="s34_509">
+      <word xml:id="s34_8" form="damals" pos="ADV" lemma="damals" func="HD" parent="s34_508" dephead="s34_9" deprel="ADV"/>
+     </node>
+    </node>
+    <node xml:id="s34_511" cat="VC" func="-" parent="s34_512">
+     <node xml:id="s34_510" cat="VXINF" func="OV" parent="s34_511">
+      <word xml:id="s34_9" form="niederlegen" pos="VVINF" lemma="nieder#legen" func="HD" parent="s34_510" dephead="s34_6" deprel="AUX"/>
+     </node>
+    </node>
+   </node>
+   <word xml:id="s34_10" form="," pos="$," lemma="," func="--" deprel="ROOT"/>
+   <node xml:id="s34_517" cat="SIMPX" func="KONJ" parent="s34_518">
+    <node xml:id="s34_514" cat="VF" func="-" parent="s34_517">
+     <node xml:id="s34_513" cat="NX" func="OA" parent="s34_514">
+      <word xml:id="s34_11" form="den" pos="ART" morph="asm" lemma="der" func="-" parent="s34_513" dephead="s34_12" deprel="DET"/>
+      <word xml:id="s34_12" form="AWO-Posten" pos="NN" morph="asm" lemma="AWO-Posten" func="HD" parent="s34_513" dephead="s34_6" deprel="KON"/>
+     </node>
+    </node>
+    <node xml:id="s34_516" cat="MF" func="-" parent="s34_517">
+     <node xml:id="s34_515" cat="ADVX" func="MOD" parent="s34_516">
+      <word xml:id="s34_13" form="nicht" pos="PTKNEG" lemma="nicht" func="HD" parent="s34_515" dephead="s34_12" deprel="ADV"/>
+     </node>
+    </node>
+   </node>
+  </node>
+  <word xml:id="s34_14" form="." pos="$." lemma="." func="--" deprel="ROOT"/>
+ </sentence>
+ <sentence xml:id="s35">
+  <ne xml:id="ne_673" type="PER">
+   <node xml:id="s35_500" cat="NX" func="--">
+    <word xml:id="s35_1" form="K." pos="NE" morph="ns*" lemma="K." func="-" parent="s35_500" deprel="ROOT"/>
+    <word xml:id="s35_2" form="W." pos="NE" morph="ns*" lemma="W." func="-" parent="s35_500" dephead="s35_1" deprel="APP"/>
+  </node>
+ </ne>
+</sentence>
+</text>
+
+</body>
+</exml-doc>
