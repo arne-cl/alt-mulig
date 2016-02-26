@@ -1,3 +1,6 @@
+# TODO: have a look at this website, esp. "Conditional Inference Tree"
+# http://www.statmethods.net/advstats/cart.html
+
 library(rpart)
 data("kyphosis")
 fit <- rpart(Kyphosis ~ Age + Number + Start,
