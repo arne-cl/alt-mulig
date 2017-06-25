@@ -13,8 +13,7 @@ func main() {
         for input.Scan() {
             fmt.Println(input.Text())
         }
-    }
-    else {
+    } else {
         for _, filename := range os.Args[1:] {
             data, err := ioutil.ReadFile(filename)
             if err != nil {
