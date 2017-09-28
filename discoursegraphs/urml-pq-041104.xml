@@ -76,65 +76,79 @@
 <pos name="PIS" />    <!-- 305 -->
 <pos name="PRELS" />    <!-- 194 -->
 </postypes></header>
-<document id="maz3377"><info><source>Maerkische Allgemeine Zeitung 3377 09.10.2001
+
+<document id="maz3377">
+    <info>
+        <source>Maerkische Allgemeine Zeitung 3377 09.10.2001
 URL: http://www.maerkische-allgemeine.de/?loc=7_1&amp;amp;db=arc&amp;amp;ew_suche=1&amp;amp;id=3377
 &lt;SECTION&gt;09.10.2001  VOR ORT : HAVELLAND : KOMMENTAR&lt;/SECTION&gt;&lt;BIGTITLE&gt;ANDRÉ WIRSING&lt;/BIGTITLE&gt;&lt;TITLE&gt;Absicht&lt;/TITLE&gt;
-</source></info>
-<text><segment id="maz3377.0"><sign pos="NN">Absicht</sign> </segment>
-<segment id="maz3377.1"><sign pos="ADV">Erst</sign> <sign pos="VVFIN">rührt</sign> <sign pos="PRF">sich</sign> <sign pos="PIS">niemand</sign> <sign pos="APPR">unter</sign> <sign pos="ART">den</sign> <sign pos="ADJA">Dallgower</sign> <sign pos="NN">Kommunalpolitikern</sign> <sign pos="$,">,</sign> </segment>
-<segment id="maz3377.2"><sign pos="ADV">nun</sign> <sign pos="VVFIN">überschlagen</sign> <sign pos="PRF">sich</sign> <sign pos="PIS">alle</sign> <sign pos="APPR">mit</sign> <sign pos="NN">Anträgen</sign> <sign pos="APPRART">zur</sign> <sign pos="NN">Gemeindereform</sign> <sign pos="KON">und</sign> <sign pos="ART">den</sign> <sign pos="ADJA">vorausgehenden</sign> <sign pos="NN">Verhandlungen</sign> <sign pos="APPR">mit</sign> <sign pos="ART">den</sign> <sign pos="ADJA">südlichen</sign> <sign pos="NN">Nachbarn</sign> <sign pos="$.">.</sign> </segment>
-<segment id="maz3377.3"><sign pos="PTKNEG">Nicht</sign> <sign pos="ADJD">klar</sign> <sign pos="VAFIN">wird</sign> <sign pos="APPRART">zum</sign> <sign pos="ADJA">jetzigen</sign> <sign pos="NN">Zeitpunkt</sign> <sign pos="$,">,</sign> </segment>
-<segment id="maz3377.4"><sign pos="PWAT">welche</sign> <sign pos="NN">Absichten</sign> <sign pos="APPR">hinter</sign> <sign pos="ART">dem</sign> <sign pos="ADJA">plötzlichen</sign> <sign pos="NN">Aktionismus</sign> <sign pos="VVFIN">stehen</sign> <sign pos="$.">:</sign> </segment>
-<segment id="maz3377.5"><sign pos="VMFIN">Will</sign> <sign pos="ART">die</sign> <sign pos="NN">SPD-Fraktion</sign> <sign pos="$(">-</sign> <sign pos="ADV">bisher</sign> <sign pos="ADJD">völlig</sign> <sign pos="ADV">uneins</sign> <sign pos="APPR">über</sign> <sign pos="NN">Dallgows</sign> <sign pos="NN">Zukunft</sign> <sign pos="$(">-</sign> <sign pos="ADJD">wirklich</sign> <sign pos="ADJA">faire</sign> <sign pos="NN">Verhandlungen</sign> <sign pos="VVINF">anstreben</sign> <sign pos="$.">?</sign> </segment>
-<segment id="maz3377.6"><sign pos="PWAV">Warum</sign> <sign pos="VVFIN">stellt</sign> <sign pos="PPER">sie</sign> <sign pos="ADV">dann</sign> <sign pos="ADJD">schier</sign> <sign pos="ADJA">unannehmbare</sign> <sign pos="NN">Bedingungen</sign> <sign pos="$,">,</sign> <sign pos="KOUS">indem</sign> <sign pos="PPER">sie</sign> <sign pos="ART">den</sign> <sign pos="NN">Bürgermeister</sign> <sign pos="APPR">mit</sign> <sign pos="ART">einem</sign> <sign pos="PIDAT">solch</sign> <sign pos="ADJD">eng</sign> <sign pos="ADJA">geschnürten</sign> <sign pos="NN">Verhandlungsmandat</sign> <sign pos="VVPP">ausstattet</sign> <sign pos="$,">,</sign> <sign pos="KOUS">dass</sign> <sign pos="PDS">dieser</sign> <sign pos="ADV">nur</sign> <sign pos="ADV">noch</sign> <sign pos="ART">das</sign> <sign pos="PWAV">Wie</sign> <sign pos="ART">der</sign> <sign pos="NN">Eingemeindung</sign> <sign pos="VVINF">klären</sign> <sign pos="VMFIN">darf</sign> <sign pos="$.">.</sign> </segment>
-<segment id="maz3377.7"><sign pos="PWAV">Warum</sign> <sign pos="VVFIN">beharrt</sign> <sign pos="ART">die</sign> <sign pos="NE">CDU</sign> <sign pos="APPR">auf</sign> <sign pos="ART">einer</sign> <sign pos="ADJA">neuerlichen</sign> <sign pos="NN">Einwohnerversammlung</sign> <sign pos="$.">?</sign> </segment>
-<segment id="maz3377.8"><sign pos="NN">Warten</sign> <sign pos="ART">die</sign> <sign pos="NN">Christdemokraten</sign> <sign pos="ADV">nur</sign> <sign pos="PROAV">darauf</sign> <sign pos="$,">,</sign> <sign pos="PIAT">genügend</sign> <sign pos="NN">Claqueure</sign> <sign pos="VVIZU">zusammenzubekommen</sign> <sign pos="$,">,</sign> <sign pos="PRELS">die</sign> <sign pos="PPER">sie</sign> <sign pos="APPR">in</sign> <sign pos="PPOSAT">ihrer</sign> <sign pos="NN">Ablehnung</sign> <sign pos="APPR">zu</sign> <sign pos="PIDAT">jeglichen</sign> <sign pos="NN">Fusionen</sign> <sign pos="VVINF">bestätigen</sign> <sign pos="$.">?</sign> </segment>
-<segment id="maz3377.9"><sign pos="ADV">Allein</sign> <sign pos="ART">eine</sign> <sign pos="NN">Fraktion</sign> <sign pos="$,">,</sign> <sign pos="PRELS">die</sign> <sign pos="ART">der</sign> <sign pos="ADJA">Freien</sign> <sign pos="NN">Wählergemeinschaft</sign> <sign pos="$,">,</sign> <sign pos="VAFIN">ist</sign> <sign pos="ADV">bisher</sign> <sign pos="APPR">mit</sign> <sign pos="ART">einer</sign> <sign pos="ADJA">einheitlichen</sign> <sign pos="KON">und</sign> <sign pos="ADJA">nachvollziehbaren</sign> <sign pos="NN">Argumentationslinie</sign> <sign pos="VVPP">aufgetreten</sign> <sign pos="$,">,</sign> </segment>
-<segment id="maz3377.10"><sign pos="VVFIN">bekennt</sign> <sign pos="PRF">sich</sign> <sign pos="APPRART">zum</sign> <sign pos="NN">Dreierbund</sign> <sign pos="KON">und</sign> <sign pos="VVFIN">lässt</sign> <sign pos="NN">Spielraum</sign> <sign pos="APPR">für</sign> <sign pos="ART">die</sign> <sign pos="NN">Art</sign> <sign pos="ART">des</sign> <sign pos="NN">Zustandekommens</sign> <sign pos="$.">.</sign> </segment>
-<segment id="maz3377.11"><sign pos="ART">Die</sign> <sign pos="ADJA">anderen</sign> <sign pos="VAFIN">werden</sign> <sign pos="APPRART">am</sign> <sign pos="ADJA">nächsten</sign> <sign pos="NN">Mittwoch</sign> <sign pos="VVINF">beweisen</sign> <sign pos="VMINF">müssen</sign> <sign pos="$,">,</sign> <sign pos="KOUS">dass</sign> <sign pos="PPER">sie</sign> <sign pos="PPER">es</sign> <sign pos="ADJD">ehrlich</sign> <sign pos="VVFIN">meinen</sign> <sign pos="$.">.</sign> </segment>
-<segment id="maz3377.12"><sign pos="NN">R</sign> <sign pos="CARD">17</sign> </segment>
-</text><analysis>
-<info><note>
-annotiert1: David Reitter</note></info><parRelation id="maz3377.1000" type="sequence">
-<nucleus id="maz3377.1" />
-<nucleus id="maz3377.2" />
-</parRelation>
-<parRelation id="maz3377.1001" type="conjunction">
-<nucleus id="maz3377.9" />
-<nucleus id="maz3377.10" />
-</parRelation>
-<hypRelation id="maz3377.1002" type="justify">
-<satellite id="maz3377.1003" />
-<nucleus id="maz3377.11" />
-</hypRelation>
-<parRelation id="maz3377.1003" type="contrast">
-<nucleus id="maz3377.1000" />
-<nucleus id="maz3377.1004" />
-</parRelation>
-<parRelation id="maz3377.1004" type="contrast">
-<nucleus id="maz3377.1006" />
-<nucleus id="maz3377.1001" />
-</parRelation>
-<parRelation id="maz3377.1005" type="list">
-<nucleus id="maz3377.1008" />
-<nucleus id="maz3377.1009" />
-</parRelation>
-<hypRelation id="maz3377.1006" type="elaboration">
-<nucleus id="maz3377.1007" />
-<satellite id="maz3377.1005" />
-</hypRelation>
-<parRelation id="maz3377.1007" type="joint">
-<nucleus id="maz3377.3" />
-<nucleus id="maz3377.4" />
-</parRelation>
-<parRelation id="maz3377.1008" type="contrast">
-<nucleus id="maz3377.5" />
-<nucleus id="maz3377.6" />
-</parRelation>
-<parRelation id="maz3377.1009" type="contrast">
-<nucleus id="maz3377.7" />
-<nucleus id="maz3377.8" />
-</parRelation></analysis></document><document id="maz5007"><info><source>Maerkische Allgemeine Zeitung 5007 16.10.2001
+        </source>
+    </info>
+    <text>
+        <segment id="maz3377.0"><sign pos="NN">Absicht</sign> </segment>
+        <segment id="maz3377.1"><sign pos="ADV">Erst</sign> <sign pos="VVFIN">rührt</sign> <sign pos="PRF">sich</sign> <sign pos="PIS">niemand</sign> <sign pos="APPR">unter</sign> <sign pos="ART">den</sign> <sign pos="ADJA">Dallgower</sign> <sign pos="NN">Kommunalpolitikern</sign> <sign pos="$,">,</sign> </segment>
+        <segment id="maz3377.2"><sign pos="ADV">nun</sign> <sign pos="VVFIN">überschlagen</sign> <sign pos="PRF">sich</sign> <sign pos="PIS">alle</sign> <sign pos="APPR">mit</sign> <sign pos="NN">Anträgen</sign> <sign pos="APPRART">zur</sign> <sign pos="NN">Gemeindereform</sign> <sign pos="KON">und</sign> <sign pos="ART">den</sign> <sign pos="ADJA">vorausgehenden</sign> <sign pos="NN">Verhandlungen</sign> <sign pos="APPR">mit</sign> <sign pos="ART">den</sign> <sign pos="ADJA">südlichen</sign> <sign pos="NN">Nachbarn</sign> <sign pos="$.">.</sign> </segment>
+        <segment id="maz3377.3"><sign pos="PTKNEG">Nicht</sign> <sign pos="ADJD">klar</sign> <sign pos="VAFIN">wird</sign> <sign pos="APPRART">zum</sign> <sign pos="ADJA">jetzigen</sign> <sign pos="NN">Zeitpunkt</sign> <sign pos="$,">,</sign> </segment>
+        <segment id="maz3377.4"><sign pos="PWAT">welche</sign> <sign pos="NN">Absichten</sign> <sign pos="APPR">hinter</sign> <sign pos="ART">dem</sign> <sign pos="ADJA">plötzlichen</sign> <sign pos="NN">Aktionismus</sign> <sign pos="VVFIN">stehen</sign> <sign pos="$.">:</sign> </segment>
+        <segment id="maz3377.5"><sign pos="VMFIN">Will</sign> <sign pos="ART">die</sign> <sign pos="NN">SPD-Fraktion</sign> <sign pos="$(">-</sign> <sign pos="ADV">bisher</sign> <sign pos="ADJD">völlig</sign> <sign pos="ADV">uneins</sign> <sign pos="APPR">über</sign> <sign pos="NN">Dallgows</sign> <sign pos="NN">Zukunft</sign> <sign pos="$(">-</sign> <sign pos="ADJD">wirklich</sign> <sign pos="ADJA">faire</sign> <sign pos="NN">Verhandlungen</sign> <sign pos="VVINF">anstreben</sign> <sign pos="$.">?</sign> </segment>
+        <segment id="maz3377.6"><sign pos="PWAV">Warum</sign> <sign pos="VVFIN">stellt</sign> <sign pos="PPER">sie</sign> <sign pos="ADV">dann</sign> <sign pos="ADJD">schier</sign> <sign pos="ADJA">unannehmbare</sign> <sign pos="NN">Bedingungen</sign> <sign pos="$,">,</sign> <sign pos="KOUS">indem</sign> <sign pos="PPER">sie</sign> <sign pos="ART">den</sign> <sign pos="NN">Bürgermeister</sign> <sign pos="APPR">mit</sign> <sign pos="ART">einem</sign> <sign pos="PIDAT">solch</sign> <sign pos="ADJD">eng</sign> <sign pos="ADJA">geschnürten</sign> <sign pos="NN">Verhandlungsmandat</sign> <sign pos="VVPP">ausstattet</sign> <sign pos="$,">,</sign> <sign pos="KOUS">dass</sign> <sign pos="PDS">dieser</sign> <sign pos="ADV">nur</sign> <sign pos="ADV">noch</sign> <sign pos="ART">das</sign> <sign pos="PWAV">Wie</sign> <sign pos="ART">der</sign> <sign pos="NN">Eingemeindung</sign> <sign pos="VVINF">klären</sign> <sign pos="VMFIN">darf</sign> <sign pos="$.">.</sign> </segment>
+        <segment id="maz3377.7"><sign pos="PWAV">Warum</sign> <sign pos="VVFIN">beharrt</sign> <sign pos="ART">die</sign> <sign pos="NE">CDU</sign> <sign pos="APPR">auf</sign> <sign pos="ART">einer</sign> <sign pos="ADJA">neuerlichen</sign> <sign pos="NN">Einwohnerversammlung</sign> <sign pos="$.">?</sign> </segment>
+        <segment id="maz3377.8"><sign pos="NN">Warten</sign> <sign pos="ART">die</sign> <sign pos="NN">Christdemokraten</sign> <sign pos="ADV">nur</sign> <sign pos="PROAV">darauf</sign> <sign pos="$,">,</sign> <sign pos="PIAT">genügend</sign> <sign pos="NN">Claqueure</sign> <sign pos="VVIZU">zusammenzubekommen</sign> <sign pos="$,">,</sign> <sign pos="PRELS">die</sign> <sign pos="PPER">sie</sign> <sign pos="APPR">in</sign> <sign pos="PPOSAT">ihrer</sign> <sign pos="NN">Ablehnung</sign> <sign pos="APPR">zu</sign> <sign pos="PIDAT">jeglichen</sign> <sign pos="NN">Fusionen</sign> <sign pos="VVINF">bestätigen</sign> <sign pos="$.">?</sign> </segment>
+        <segment id="maz3377.9"><sign pos="ADV">Allein</sign> <sign pos="ART">eine</sign> <sign pos="NN">Fraktion</sign> <sign pos="$,">,</sign> <sign pos="PRELS">die</sign> <sign pos="ART">der</sign> <sign pos="ADJA">Freien</sign> <sign pos="NN">Wählergemeinschaft</sign> <sign pos="$,">,</sign> <sign pos="VAFIN">ist</sign> <sign pos="ADV">bisher</sign> <sign pos="APPR">mit</sign> <sign pos="ART">einer</sign> <sign pos="ADJA">einheitlichen</sign> <sign pos="KON">und</sign> <sign pos="ADJA">nachvollziehbaren</sign> <sign pos="NN">Argumentationslinie</sign> <sign pos="VVPP">aufgetreten</sign> <sign pos="$,">,</sign> </segment>
+        <segment id="maz3377.10"><sign pos="VVFIN">bekennt</sign> <sign pos="PRF">sich</sign> <sign pos="APPRART">zum</sign> <sign pos="NN">Dreierbund</sign> <sign pos="KON">und</sign> <sign pos="VVFIN">lässt</sign> <sign pos="NN">Spielraum</sign> <sign pos="APPR">für</sign> <sign pos="ART">die</sign> <sign pos="NN">Art</sign> <sign pos="ART">des</sign> <sign pos="NN">Zustandekommens</sign> <sign pos="$.">.</sign> </segment>
+        <segment id="maz3377.11"><sign pos="ART">Die</sign> <sign pos="ADJA">anderen</sign> <sign pos="VAFIN">werden</sign> <sign pos="APPRART">am</sign> <sign pos="ADJA">nächsten</sign> <sign pos="NN">Mittwoch</sign> <sign pos="VVINF">beweisen</sign> <sign pos="VMINF">müssen</sign> <sign pos="$,">,</sign> <sign pos="KOUS">dass</sign> <sign pos="PPER">sie</sign> <sign pos="PPER">es</sign> <sign pos="ADJD">ehrlich</sign> <sign pos="VVFIN">meinen</sign> <sign pos="$.">.</sign> </segment>
+        <segment id="maz3377.12"><sign pos="NN">R</sign> <sign pos="CARD">17</sign> </segment>
+    </text>
+    <analysis>
+        <info>
+            <note>annotiert1: David Reitter</note>
+        </info>
+        <parRelation id="maz3377.1000" type="sequence">
+            <nucleus id="maz3377.1" />
+            <nucleus id="maz3377.2" />
+        </parRelation>
+        <parRelation id="maz3377.1001" type="conjunction">
+            <nucleus id="maz3377.9" />
+            <nucleus id="maz3377.10" />
+        </parRelation>
+        <hypRelation id="maz3377.1002" type="justify">
+            <satellite id="maz3377.1003" />
+            <nucleus id="maz3377.11" />
+        </hypRelation>
+        <parRelation id="maz3377.1003" type="contrast">
+            <nucleus id="maz3377.1000" />
+            <nucleus id="maz3377.1004" />
+        </parRelation>
+        <parRelation id="maz3377.1004" type="contrast">
+            <nucleus id="maz3377.1006" />
+            <nucleus id="maz3377.1001" />
+        </parRelation>
+        <parRelation id="maz3377.1005" type="list">
+            <nucleus id="maz3377.1008" />
+            <nucleus id="maz3377.1009" />
+        </parRelation>
+        <hypRelation id="maz3377.1006" type="elaboration">
+            <nucleus id="maz3377.1007" />
+            <satellite id="maz3377.1005" />
+        </hypRelation>
+        <parRelation id="maz3377.1007" type="joint">
+            <nucleus id="maz3377.3" />
+            <nucleus id="maz3377.4" />
+        </parRelation>
+        <parRelation id="maz3377.1008" type="contrast">
+            <nucleus id="maz3377.5" />
+            <nucleus id="maz3377.6" />
+        </parRelation>
+        <parRelation id="maz3377.1009" type="contrast">
+            <nucleus id="maz3377.7" />
+            <nucleus id="maz3377.8" />
+        </parRelation>
+    </analysis>
+</document>
+
+
+
+<document id="maz5007"><info><source>Maerkische Allgemeine Zeitung 5007 16.10.2001
 URL: http://www.maerkische-allgemeine.de/?loc=7_1&amp;amp;db=arc&amp;amp;ew_suche=1&amp;amp;id=5007
 
 &lt;SECTION&gt;16.10.2001  VOR ORT : OBERHAVEL : KOMMENTAR&lt;/SECTION&gt;&lt;BIGTITLE&gt;BERT WITTKE&lt;/BIGTITLE&gt;&lt;TITLE&gt;Abwägen&lt;/TITLE&gt;
@@ -4189,106 +4203,124 @@ URL: http://www.maerkische-allgemeine.de/?loc=7_1&amp;amp;db=arc&amp;amp;ew_such
 <hypRelation id="maz1453.1013" type="nonvolitional-cause">
 <nucleus id="maz1453.9" />
 <satellite id="maz1453.1002" />
-</hypRelation></analysis></document><document id="maz3277"><info><source>Maerkische Allgemeine Zeitung 3277 09.10.2001
+</hypRelation></analysis></document>
+
+
+
+<document id="maz3277">
+    <info>
+        <source>Maerkische Allgemeine Zeitung 3277 09.10.2001
 URL: http://www.maerkische-allgemeine.de/?loc=7_1&amp;amp;db=arc&amp;amp;ew_suche=1&amp;amp;id=3277
 
 &lt;SECTION&gt;09.10.2001  VOR ORT : OSTPRIGNITZ-RUPPIN : KOMMENTAR&lt;/SECTION&gt;&lt;BIGTITLE&gt;WOLFGANG HÖRMANN&lt;/BIGTITLE&gt;&lt;TITLE&gt;Für und Wider&lt;/TITLE&gt;
-</source></info>
-<text><segment id="maz3277.0"><sign pos="APPR">Für</sign> <sign pos="KON">und</sign> <sign pos="NN">Wider</sign> </segment>
-<segment id="maz3277.1"><sign pos="ART">Der</sign> <sign pos="NN">Vorteil</sign> <sign pos="VAFIN">hat</sign> <sign pos="ART">einen</sign> <sign pos="NN">Namen</sign> <sign pos="$.">:</sign> </segment>
-<segment id="maz3277.2"><sign pos="NN">Verbundeinkauf</sign> <sign pos="$.">.</sign> </segment>
-<segment id="maz3277.3"><sign pos="PROAV">Damit</sign> <sign pos="VVFIN">erklärt</sign> <sign pos="ART">die</sign> <sign pos="ADJA">gelbe</sign> <sign pos="NN">Post</sign> <sign pos="$,">,</sign> </segment>
-<segment id="maz3277.4"><sign pos="PWAV">warum</sign> <sign pos="PPER">sie</sign> <sign pos="PRF">sich</sign> <sign pos="PPOSAT">ihrer</sign> <sign pos="NN">Tochter</sign> <sign pos="NE">McPaper</sign> <sign pos="ADV">quasi</sign> <sign pos="APPR">auf</sign> <sign pos="ART">den</sign> <sign pos="NN">Schoß</sign> <sign pos="VVFIN">setzt</sign> <sign pos="$.">.</sign> </segment>
-<segment id="maz3277.5"><sign pos="PIS">Alles</sign> <sign pos="APPR">an</sign> <sign pos="ART">einem</sign> <sign pos="NN">Ort</sign> <sign pos="PTKZU">zu</sign> <sign pos="VAINF">haben</sign> <sign pos="$(">-</sign> <sign pos="NN">Papierwaren</sign> <sign pos="VMFIN">kann</sign> <sign pos="PIS">man</sign> <sign pos="VVINF">kaufen</sign> <sign pos="$,">,</sign> </segment>
-<segment id="maz3277.6"><sign pos="NN">Postalisches</sign> <sign pos="VVIZU">abwickeln</sign> <sign pos="$(">-</sign> <sign pos="VAFIN">ist</sign> <sign pos="ADV">ja</sign> <sign pos="ADJD">tatsächlich</sign> <sign pos="ADJD">kundenfreundlich</sign> <sign pos="$.">.</sign> </segment>
-<segment id="maz3277.7"><sign pos="ADV">Noch</sign> <sign pos="ADV">mehr</sign> <sign pos="VVFIN">freut</sign> <sign pos="PPER">es</sign> <sign pos="ADV">natürlich</sign> <sign pos="$,">,</sign> <sign pos="KOUS">dass</sign> <sign pos="PIS">man</sign> <sign pos="PTKNEG">nicht</sign> <sign pos="PIAT">mehr</sign> <sign pos="KOKOM">wie</sign> <sign pos="ART">ein</sign> <sign pos="NN">Luchs</sign> <sign pos="APPR">auf</sign> <sign pos="ART">der</sign> <sign pos="NN">Lauer</sign> <sign pos="VVFIN">liegen</sign> <sign pos="ADV">muss</sign> <sign pos="$,">,</sign> <sign pos="KOUI">um</sign> <sign pos="ART">die</sign> <sign pos="NN">Öffnungszeiten</sign> <sign pos="ADV">auch</sign> <sign pos="VVIZU">einzuhalten</sign> <sign pos="$.">.</sign> </segment>
-<segment id="maz3277.8"><sign pos="ADV">Besonders</sign> <sign pos="NN">Berufstätige</sign> <sign pos="$,">,</sign> <sign pos="PRELS">die</sign> <sign pos="PPER">es</sign> <sign pos="APPRART">z.</sign> <sign pos="NN">B.</sign><sign pos="ADV">auch</sign> <sign pos="ADV">noch</sign> <sign pos="APPRART">am</sign> <sign pos="NN">Sonnabend</sign> <sign pos="APPR">an</sign> <sign pos="PPOSAT">ihre</sign> <sign pos="NN">Schließfächer</sign> <sign pos="VVFIN">drängt</sign> <sign pos="$,">,</sign> </segment>
-<segment id="maz3277.10"><sign pos="VMFIN">dürfen</sign> <sign pos="ADV">nun</sign> <sign pos="VVFIN">aufatmen</sign> <sign pos="$.">.</sign> </segment>
-<segment id="maz3277.11"><sign pos="APPR">Bei</sign> <sign pos="PIS">anderen</sign> <sign pos="VAFIN">wird</sign> <sign pos="PPER">es</sign> <sign pos="NN">Stoßseufzer</sign> <sign pos="VVINF">geben</sign> <sign pos="$.">.</sign> </segment>
-<segment id="maz3277.12"><sign pos="KOUS">Dass</sign> <sign pos="APPR">mit</sign> <sign pos="ART">der</sign> <sign pos="NN">Schließung</sign> <sign pos="APPR">in</sign> <sign pos="ART">der</sign> <sign pos="NN">Bahnhofstraße</sign> <sign pos="ART">eine</sign> <sign pos="APPR">über</sign> <sign pos="ADJA">einhundertjährige</sign> <sign pos="NN">Tradition</sign> <sign pos="ART">des</sign> <sign pos="ADJA">Kyritzer</sign> <sign pos="NN">Postgebäudes</sign> <sign pos="APPR">zu</sign> <sign pos="NN">Ende</sign> <sign pos="VVFIN">geht</sign> <sign pos="$,">,</sign> <sign pos="KOUS">damit</sign> <sign pos="ADV">muss</sign> <sign pos="PIS">man</sign> <sign pos="PRF">sich</sign> <sign pos="VVINF">abfinden</sign> <sign pos="$.">.</sign> </segment>
-<segment id="maz3277.13"><sign pos="ADJD">Schwerer</sign> <sign pos="VVFIN">wiegt</sign> <sign pos="ART">die</sign> <sign pos="NN">Schließung</sign> <sign pos="ART">der</sign> <sign pos="NN">Filiale</sign> <sign pos="APPRART">am</sign> <sign pos="ADJA">Rehfelder</sign> <sign pos="NN">Weg</sign> <sign pos="$.">.</sign> </segment>
-<segment id="maz3277.14"><sign pos="PPER">Sie</sign> <sign pos="VAFIN">hat</sign> <sign pos="ART">den</sign> <sign pos="NN">Leuten</sign> <sign pos="APPR">aus</sign> <sign pos="NE">Kyritz</sign> <sign pos="NE">West</sign> <sign pos="ADV">bisher</sign> <sign pos="ADJA">weite</sign> <sign pos="NN">Wege</sign> <sign pos="VVFIN">erspart</sign> <sign pos="$.">.</sign> </segment>
-<segment id="maz3277.15"><sign pos="ADV">Besonders</sign> <sign pos="ART">die</sign> <sign pos="NN">Älteren</sign> <sign pos="VMFIN">dürften</sign> <sign pos="ADJD">sauer</sign> <sign pos="VVFIN">reagieren</sign> <sign pos="APPR">auf</sign> <sign pos="ART">das</sign> <sign pos="NN">Aus</sign> <sign pos="$.">.</sign> </segment>
-<segment id="maz3277.16"><sign pos="PWS">Was</sign> <sign pos="VVFIN">nützt</sign> <sign pos="PPER">ihnen</sign> <sign pos="ART">die</sign> <sign pos="NN">Verlagerung</sign> <sign pos="APPR">an</sign> <sign pos="ART">einen</sign> <sign pos="ADJA">neuen</sign> <sign pos="NN">Standort</sign> <sign pos="APPR">mit</sign> <sign pos="ART">den</sign> <sign pos="ADJA">längeren</sign> <sign pos="NN">Öffnungszeiten</sign> <sign pos="$,">,</sign> </segment>
-<segment id="maz3277.17"><sign pos="KOUS">wenn</sign> <sign pos="PPER">sie</sign> <sign pos="ADJD">schlecht</sign> <sign pos="APPR">zu</sign> <sign pos="NN">Fuß</sign> <sign pos="VAFIN">sind</sign> <sign pos="$.">?</sign> </segment>
-<segment id="maz3277.18"><sign pos="ADV">Da</sign> <sign pos="VVFIN">bleibt</sign> <sign pos="ADV">nur</sign> <sign pos="ART">der</sign> <sign pos="NN">Hinweis</sign> <sign pos="$,">,</sign> <sign pos="PRF">sich</sign> <sign pos="ART">den</sign> <sign pos="NN">Zustellerinnen</sign> <sign pos="VVINF">zuzuwenden</sign> <sign pos="$,">,</sign> <sign pos="PRELS">die</sign> <sign pos="ADV">selber</sign> <sign pos="ADV">schon</sign> <sign pos="ADV">so</sign> <sign pos="PIAT">manche</sign> <sign pos="NN">Dienstleistung</sign> <sign pos="VVINF">übernehmen</sign> <sign pos="$.">.</sign> </segment>
-<segment id="maz3277.19"><sign pos="NN">Fragen</sign> <sign pos="VVFIN">kostet</sign> <sign pos="ADV">ja</sign> <sign pos="PIS">nichts</sign> <sign pos="$.">.</sign> </segment>
-<segment id="maz3277.20"></segment>
-</text><analysis>
-<info><editor job="annotate" date="22.02.02">Antje Sauermann</editor><note>
-überarbeitet</note></info><hypRelation id="maz3277.1000" type="evaluation">
-<nucleus id="maz3277.0" />
-<satellite id="maz3277.1014" />
-</hypRelation>
-<hypRelation id="maz3277.1001" type="evidence">
-<nucleus id="maz3277.13" />
-<satellite id="maz3277.1002" />
-</hypRelation>
-<hypRelation id="maz3277.1002" type="elaboration">
-<nucleus id="maz3277.14" />
-<satellite id="maz3277.1003" />
-</hypRelation>
-<hypRelation id="maz3277.1003" type="evidence">
-<nucleus id="maz3277.15" />
-<satellite id="maz3277.1008" />
-</hypRelation>
-<hypRelation id="maz3277.1004" type="condition">
-<nucleus id="maz3277.16" />
-<satellite id="maz3277.17" />
-</hypRelation>
-<hypRelation id="maz3277.1005" type="condition">
-<nucleus id="maz3277.18" />
-<satellite id="maz3277.19" />
-</hypRelation>
-<hypRelation id="maz3277.1006" type="volitional-result">
-<nucleus id="maz3277.2" />
-<satellite id="maz3277.1012" />
-</hypRelation>
-<hypRelation id="maz3277.1007" type="elaboration">
-<nucleus id="maz3277.8" />
-<satellite id="maz3277.10" />
-</hypRelation>
-<hypRelation id="maz3277.1008" type="evaluation">
-<nucleus id="maz3277.1004" />
-<satellite id="maz3277.1005" />
-</hypRelation>
-<hypRelation id="maz3277.1009" type="concession">
-<satellite id="maz3277.12" />
-<nucleus id="maz3277.1001" />
-</hypRelation>
-<hypRelation id="maz3277.1010" type="evidence">
-<nucleus id="maz3277.1006" />
-<satellite id="maz3277.1011" />
-</hypRelation>
-<parRelation id="maz3277.1011" type="sequence">
-<nucleus id="maz3277.1016" />
-<nucleus id="maz3277.1017" />
-</parRelation>
-<hypRelation id="maz3277.1012" type="elaboration">
-<nucleus id="maz3277.3" />
-<satellite id="maz3277.4" />
-</hypRelation>
-<hypRelation id="maz3277.1013" type="preparation">
-<satellite id="maz3277.1" />
-<nucleus id="maz3277.1010" />
-</hypRelation>
-<parRelation id="maz3277.1014" type="contrast">
-<nucleus id="maz3277.1013" />
-<nucleus id="maz3277.1015" />
-</parRelation>
-<hypRelation id="maz3277.1015" type="preparation">
-<satellite id="maz3277.11" />
-<nucleus id="maz3277.1009" />
-</hypRelation>
-<parRelation id="maz3277.1016" type="list">
-<nucleus id="maz3277.5" />
-<nucleus id="maz3277.6" />
-</parRelation>
-<hypRelation id="maz3277.1017" type="elaboration">
-<nucleus id="maz3277.7" />
-<satellite id="maz3277.1007" />
-</hypRelation>
-</parRelation></analysis></document><document id="maz10374"><info><source>Maerkische Allgemeine Zeitung 10374 13.11.2001
+        </source>
+    </info>
+    <text>
+        <segment id="maz3277.0"><sign pos="APPR">Für</sign> <sign pos="KON">und</sign> <sign pos="NN">Wider</sign> </segment>
+        <segment id="maz3277.1"><sign pos="ART">Der</sign> <sign pos="NN">Vorteil</sign> <sign pos="VAFIN">hat</sign> <sign pos="ART">einen</sign> <sign pos="NN">Namen</sign> <sign pos="$.">:</sign> </segment>
+        <segment id="maz3277.2"><sign pos="NN">Verbundeinkauf</sign> <sign pos="$.">.</sign> </segment>
+        <segment id="maz3277.3"><sign pos="PROAV">Damit</sign> <sign pos="VVFIN">erklärt</sign> <sign pos="ART">die</sign> <sign pos="ADJA">gelbe</sign> <sign pos="NN">Post</sign> <sign pos="$,">,</sign> </segment>
+        <segment id="maz3277.4"><sign pos="PWAV">warum</sign> <sign pos="PPER">sie</sign> <sign pos="PRF">sich</sign> <sign pos="PPOSAT">ihrer</sign> <sign pos="NN">Tochter</sign> <sign pos="NE">McPaper</sign> <sign pos="ADV">quasi</sign> <sign pos="APPR">auf</sign> <sign pos="ART">den</sign> <sign pos="NN">Schoß</sign> <sign pos="VVFIN">setzt</sign> <sign pos="$.">.</sign> </segment>
+        <segment id="maz3277.5"><sign pos="PIS">Alles</sign> <sign pos="APPR">an</sign> <sign pos="ART">einem</sign> <sign pos="NN">Ort</sign> <sign pos="PTKZU">zu</sign> <sign pos="VAINF">haben</sign> <sign pos="$(">-</sign> <sign pos="NN">Papierwaren</sign> <sign pos="VMFIN">kann</sign> <sign pos="PIS">man</sign> <sign pos="VVINF">kaufen</sign> <sign pos="$,">,</sign> </segment>
+        <segment id="maz3277.6"><sign pos="NN">Postalisches</sign> <sign pos="VVIZU">abwickeln</sign> <sign pos="$(">-</sign> <sign pos="VAFIN">ist</sign> <sign pos="ADV">ja</sign> <sign pos="ADJD">tatsächlich</sign> <sign pos="ADJD">kundenfreundlich</sign> <sign pos="$.">.</sign> </segment>
+        <segment id="maz3277.7"><sign pos="ADV">Noch</sign> <sign pos="ADV">mehr</sign> <sign pos="VVFIN">freut</sign> <sign pos="PPER">es</sign> <sign pos="ADV">natürlich</sign> <sign pos="$,">,</sign> <sign pos="KOUS">dass</sign> <sign pos="PIS">man</sign> <sign pos="PTKNEG">nicht</sign> <sign pos="PIAT">mehr</sign> <sign pos="KOKOM">wie</sign> <sign pos="ART">ein</sign> <sign pos="NN">Luchs</sign> <sign pos="APPR">auf</sign> <sign pos="ART">der</sign> <sign pos="NN">Lauer</sign> <sign pos="VVFIN">liegen</sign> <sign pos="ADV">muss</sign> <sign pos="$,">,</sign> <sign pos="KOUI">um</sign> <sign pos="ART">die</sign> <sign pos="NN">Öffnungszeiten</sign> <sign pos="ADV">auch</sign> <sign pos="VVIZU">einzuhalten</sign> <sign pos="$.">.</sign> </segment>
+        <segment id="maz3277.8"><sign pos="ADV">Besonders</sign> <sign pos="NN">Berufstätige</sign> <sign pos="$,">,</sign> <sign pos="PRELS">die</sign> <sign pos="PPER">es</sign> <sign pos="APPRART">z.</sign> <sign pos="NN">B.</sign><sign pos="ADV">auch</sign> <sign pos="ADV">noch</sign> <sign pos="APPRART">am</sign> <sign pos="NN">Sonnabend</sign> <sign pos="APPR">an</sign> <sign pos="PPOSAT">ihre</sign> <sign pos="NN">Schließfächer</sign> <sign pos="VVFIN">drängt</sign> <sign pos="$,">,</sign> </segment>
+        <segment id="maz3277.10"><sign pos="VMFIN">dürfen</sign> <sign pos="ADV">nun</sign> <sign pos="VVFIN">aufatmen</sign> <sign pos="$.">.</sign> </segment>
+        <segment id="maz3277.11"><sign pos="APPR">Bei</sign> <sign pos="PIS">anderen</sign> <sign pos="VAFIN">wird</sign> <sign pos="PPER">es</sign> <sign pos="NN">Stoßseufzer</sign> <sign pos="VVINF">geben</sign> <sign pos="$.">.</sign> </segment>
+        <segment id="maz3277.12"><sign pos="KOUS">Dass</sign> <sign pos="APPR">mit</sign> <sign pos="ART">der</sign> <sign pos="NN">Schließung</sign> <sign pos="APPR">in</sign> <sign pos="ART">der</sign> <sign pos="NN">Bahnhofstraße</sign> <sign pos="ART">eine</sign> <sign pos="APPR">über</sign> <sign pos="ADJA">einhundertjährige</sign> <sign pos="NN">Tradition</sign> <sign pos="ART">des</sign> <sign pos="ADJA">Kyritzer</sign> <sign pos="NN">Postgebäudes</sign> <sign pos="APPR">zu</sign> <sign pos="NN">Ende</sign> <sign pos="VVFIN">geht</sign> <sign pos="$,">,</sign> <sign pos="KOUS">damit</sign> <sign pos="ADV">muss</sign> <sign pos="PIS">man</sign> <sign pos="PRF">sich</sign> <sign pos="VVINF">abfinden</sign> <sign pos="$.">.</sign> </segment>
+        <segment id="maz3277.13"><sign pos="ADJD">Schwerer</sign> <sign pos="VVFIN">wiegt</sign> <sign pos="ART">die</sign> <sign pos="NN">Schließung</sign> <sign pos="ART">der</sign> <sign pos="NN">Filiale</sign> <sign pos="APPRART">am</sign> <sign pos="ADJA">Rehfelder</sign> <sign pos="NN">Weg</sign> <sign pos="$.">.</sign> </segment>
+        <segment id="maz3277.14"><sign pos="PPER">Sie</sign> <sign pos="VAFIN">hat</sign> <sign pos="ART">den</sign> <sign pos="NN">Leuten</sign> <sign pos="APPR">aus</sign> <sign pos="NE">Kyritz</sign> <sign pos="NE">West</sign> <sign pos="ADV">bisher</sign> <sign pos="ADJA">weite</sign> <sign pos="NN">Wege</sign> <sign pos="VVFIN">erspart</sign> <sign pos="$.">.</sign> </segment>
+        <segment id="maz3277.15"><sign pos="ADV">Besonders</sign> <sign pos="ART">die</sign> <sign pos="NN">Älteren</sign> <sign pos="VMFIN">dürften</sign> <sign pos="ADJD">sauer</sign> <sign pos="VVFIN">reagieren</sign> <sign pos="APPR">auf</sign> <sign pos="ART">das</sign> <sign pos="NN">Aus</sign> <sign pos="$.">.</sign> </segment>
+        <segment id="maz3277.16"><sign pos="PWS">Was</sign> <sign pos="VVFIN">nützt</sign> <sign pos="PPER">ihnen</sign> <sign pos="ART">die</sign> <sign pos="NN">Verlagerung</sign> <sign pos="APPR">an</sign> <sign pos="ART">einen</sign> <sign pos="ADJA">neuen</sign> <sign pos="NN">Standort</sign> <sign pos="APPR">mit</sign> <sign pos="ART">den</sign> <sign pos="ADJA">längeren</sign> <sign pos="NN">Öffnungszeiten</sign> <sign pos="$,">,</sign> </segment>
+        <segment id="maz3277.17"><sign pos="KOUS">wenn</sign> <sign pos="PPER">sie</sign> <sign pos="ADJD">schlecht</sign> <sign pos="APPR">zu</sign> <sign pos="NN">Fuß</sign> <sign pos="VAFIN">sind</sign> <sign pos="$.">?</sign> </segment>
+        <segment id="maz3277.18"><sign pos="ADV">Da</sign> <sign pos="VVFIN">bleibt</sign> <sign pos="ADV">nur</sign> <sign pos="ART">der</sign> <sign pos="NN">Hinweis</sign> <sign pos="$,">,</sign> <sign pos="PRF">sich</sign> <sign pos="ART">den</sign> <sign pos="NN">Zustellerinnen</sign> <sign pos="VVINF">zuzuwenden</sign> <sign pos="$,">,</sign> <sign pos="PRELS">die</sign> <sign pos="ADV">selber</sign> <sign pos="ADV">schon</sign> <sign pos="ADV">so</sign> <sign pos="PIAT">manche</sign> <sign pos="NN">Dienstleistung</sign> <sign pos="VVINF">übernehmen</sign> <sign pos="$.">.</sign> </segment>
+        <segment id="maz3277.19"><sign pos="NN">Fragen</sign> <sign pos="VVFIN">kostet</sign> <sign pos="ADV">ja</sign> <sign pos="PIS">nichts</sign> <sign pos="$.">.</sign> </segment>
+        <segment id="maz3277.20"></segment>
+    </text>
+    <analysis>
+        <info>
+            <editor job="annotate" date="22.02.02">Antje Sauermann</editor>
+            <note>überarbeitet</note>
+        </info>
+        <hypRelation id="maz3277.1000" type="evaluation">
+            <nucleus id="maz3277.0" />
+            <satellite id="maz3277.1014" />
+        </hypRelation>
+        <hypRelation id="maz3277.1001" type="evidence">
+            <nucleus id="maz3277.13" />
+            <satellite id="maz3277.1002" />
+        </hypRelation>
+        <hypRelation id="maz3277.1002" type="elaboration">
+            <nucleus id="maz3277.14" />
+            <satellite id="maz3277.1003" />
+        </hypRelation>
+        <hypRelation id="maz3277.1003" type="evidence">
+            <nucleus id="maz3277.15" />
+            <satellite id="maz3277.1008" />
+        </hypRelation>
+        <hypRelation id="maz3277.1004" type="condition">
+            <nucleus id="maz3277.16" />
+            <satellite id="maz3277.17" />
+        </hypRelation>
+        <hypRelation id="maz3277.1005" type="condition">
+            <nucleus id="maz3277.18" />
+            <satellite id="maz3277.19" />
+        </hypRelation>
+        <hypRelation id="maz3277.1006" type="volitional-result">
+            <nucleus id="maz3277.2" />
+            <satellite id="maz3277.1012" />
+        </hypRelation>
+        <hypRelation id="maz3277.1007" type="elaboration">
+            <nucleus id="maz3277.8" />
+            <satellite id="maz3277.10" />
+        </hypRelation>
+        <hypRelation id="maz3277.1008" type="evaluation">
+            <nucleus id="maz3277.1004" />
+            <satellite id="maz3277.1005" />
+        </hypRelation>
+        <hypRelation id="maz3277.1009" type="concession">
+            <satellite id="maz3277.12" />
+            <nucleus id="maz3277.1001" />
+        </hypRelation>
+        <hypRelation id="maz3277.1010" type="evidence">
+            <nucleus id="maz3277.1006" />
+            <satellite id="maz3277.1011" />
+        </hypRelation>
+        <parRelation id="maz3277.1011" type="sequence">
+            <nucleus id="maz3277.1016" />
+            <nucleus id="maz3277.1017" />
+        </parRelation>
+        <hypRelation id="maz3277.1012" type="elaboration">
+            <nucleus id="maz3277.3" />
+            <satellite id="maz3277.4" />
+        </hypRelation>
+        <hypRelation id="maz3277.1013" type="preparation">
+            <satellite id="maz3277.1" />
+            <nucleus id="maz3277.1010" />
+        </hypRelation>
+        <parRelation id="maz3277.1014" type="contrast">
+            <nucleus id="maz3277.1013" />
+            <nucleus id="maz3277.1015" />
+        </parRelation>
+        <hypRelation id="maz3277.1015" type="preparation">
+            <satellite id="maz3277.11" />
+            <nucleus id="maz3277.1009" />
+        </hypRelation>
+        <parRelation id="maz3277.1016" type="list">
+            <nucleus id="maz3277.5" />
+            <nucleus id="maz3277.6" />
+        </parRelation>
+        <hypRelation id="maz3277.1017" type="elaboration">
+            <nucleus id="maz3277.7" />
+            <satellite id="maz3277.1007" />
+        </hypRelation>
+    </analysis>
+</document>
+
+
+
+
+<document id="maz10374"><info><source>Maerkische Allgemeine Zeitung 10374 13.11.2001
 URL: http://www.maerkische-allgemeine.de/?loc=7_1&amp;amp;db=arc&amp;amp;ew_suche=1&amp;amp;id=10374
 
 &lt;SECTION&gt;13.11.2001  VOM TAGE : KOMMENTAR&lt;/SECTION&gt;&lt;BIGTITLE&gt;DETLEF BRAUNE&lt;/BIGTITLE&gt;&lt;TITLE&gt;Fürchtet euch nicht!&lt;/TITLE&gt;
