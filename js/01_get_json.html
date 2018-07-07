@@ -1,0 +1,25 @@
+<html>
+<head>
+    <meta charset="utf-8" /> 
+    <title>js example: get JSON</title>
+</head>
+
+<body>
+<script type="text/javascript" src = "jquery-3.2.1.min.js"></script>
+
+<h1>Description</h1>
+This example GETs JSON data from a URL and appends the pretty-printed result
+to &lt;div id="results"&gt; element.
+
+<script>
+$.getJSON('https://api.github.com/orgs/nlpbox', function(data) {
+    // replacer: null, space: 2
+    $("#results").append('<pre>\n' + JSON.stringify(data, null, 2) + '\n</pre>\n\n');    
+});
+</script>
+
+<div id="results">
+    <!-- API results go here-->
+</div>
+
+</body>

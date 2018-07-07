@@ -1,0 +1,26 @@
+<html>
+<head>
+    <meta charset="utf-8" /> 
+    <title>js example: process form with js</title>
+</head>
+
+<body>
+<script>
+function processForm(form) {
+    console.log(form);
+    alert('Customer: ' + form['customer'].value + '\nComments: ' + form['comments'].value);
+}
+</script>
+
+
+<h1>Description</h1>
+In this example, JS processes the form when the submit button is pressed.
+
+  <form method="post" onsubmit="processForm(this)">
+   <p>Customer: <input id="customer"></p>
+   <p>Comments: <textarea id="comments"></textarea></p>
+   <p><button>Submit</button></p>
+  </form>
+
+</body>
+
