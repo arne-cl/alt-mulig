@@ -1,23 +1,30 @@
 <html>
 <head>
     <meta charset="utf-8" /> 
-    <title>js example: post form with js (refactored)</title>
+    <title>rst-parser demo</title>
 </head>
+
+
 
 <body>
 <script src="jquery-3.2.1.min.js"></script>
-
 <script>
 function processForm(form) {
-    var formData = new FormData();
-    formData.append('customer', form['customer'].value);
-    formData.append('comments', form['comments'].value);
-    postForm("https://httpbin.org/post", formData, addToResults, alertOnError);
+    var formData = formToFormData(form);
+    postForm("http://localhost:9002/parse", formData, addToResults, alertOnError);
     
     // We need to return false and use that value in 'onsubmit', otherwise
     // the changes to the DOM will not be permannt.
     // cf. https://stackoverflow.com/questions/21617060/content-disappears-immediately-after-form-submitted-and-function-runs
     return false;
+}
+
+// convert the RST input form into a FormData object
+function formToFormData(form) {
+    var formData = new FormData();
+    formData.append('input', form['input'].value);
+    formData.append('output-format', form['output-format'].value);
+    return formData
 }
 
 function postForm(url, formData, successFunc, errorFunc) {
@@ -47,24 +54,30 @@ function alertOnError(e) {
 }
 
 </script>
+    
+<h1>Enter some text:</h1>
+<form id='rst' onsubmit="return processForm(this)">
+    <textarea id='input' rows="15" cols="100" value>
+Although she hated them, Alice accepted the offer.
+    </textarea><br/><br/>
 
-
-<h1>Description</h1>
-In this example, JS processes the form when the submit button is pressed,
-POSTS it to httpbin.org/post and puts the response into the
-&lt;div id="results"&gt; element.
-
-<form onsubmit="return processForm(this)">
-  <p>Customer: <input id="customer"></p>
-  <p>Comments: <textarea id="comments"></textarea></p>
-  <p><button>Submit</button></p>
+Output format:
+    <select id="output-format">
+        <option value="rs3">rs3</option>
+        <option value="original">original</option>
+    </select><br/><br/>
+    <input type='submit' value='Run RST Parsers'/>
 </form>
 
-<div id="results">
-  <!-- API results go here-->
-</div>
+    <div>
+        <h1>Parser results:</h1>
 
+        <div id="results">
+        <!-- API results go here-->
+        </div>
+    </div>
 
 </body>
 
+</html>
 
