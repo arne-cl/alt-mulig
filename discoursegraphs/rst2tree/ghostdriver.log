@@ -1,0 +1,6 @@
+Qt: Session management error: Could not open network socket
+[INFO  - 2017-12-02T22:12:08.175Z] GhostDriver - Main - running on port 47875
+[INFO  - 2017-12-02T22:12:08.825Z] Session [d69ee0e0-d7ad-11e7-ba8e-5bd035853a6d] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1"}
+[INFO  - 2017-12-02T22:12:08.825Z] Session [d69ee0e0-d7ad-11e7-ba8e-5bd035853a6d] - page.customHeaders:  - {}
+[INFO  - 2017-12-02T22:12:08.825Z] Session [d69ee0e0-d7ad-11e7-ba8e-5bd035853a6d] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"linux-unknown-64bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2017-12-02T22:12:08.825Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: d69ee0e0-d7ad-11e7-ba8e-5bd035853a6d

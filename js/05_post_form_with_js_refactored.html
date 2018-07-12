@@ -1,0 +1,70 @@
+<html>
+<head>
+    <meta charset="utf-8" /> 
+    <title>js example: post form with js (refactored)</title>
+</head>
+
+<body>
+<script src="jquery-3.2.1.min.js"></script>
+
+<script>
+function processForm(form) {
+    var formData = new FormData();
+    formData.append('customer', form['customer'].value);
+    formData.append('comments', form['comments'].value);
+    postForm("https://httpbin.org/post", formData, addToResults, alertOnError);
+    
+    // We need to return false and use that value in 'onsubmit', otherwise
+    // the changes to the DOM will not be permannt.
+    // cf. https://stackoverflow.com/questions/21617060/content-disappears-immediately-after-form-submitted-and-function-runs
+    return false;
+}
+
+function postForm(url, formData, successFunc, errorFunc) {
+    $.ajax({
+        type: "POST",
+        enctype: 'multipart/form-data',
+        url: url,
+        data: formData,
+        processData: false, // if true (default), data will be converted to application/x-www-form-urlencoded
+        contentType: false, // do not send content-type header; default: application/x-www-form-urlencoded
+        cache: false, // browser must not cache requested page
+        timeout: 600000, // 10m in ms
+        success: successFunc,
+        error: errorFunc
+    });
+}
+
+// addToResults takes a (JSON response) object and adds it pretty-printed
+// to <div id="results">.
+function addToResults(data) {
+    // replacer: null, space: 2
+    $("#results").append('<pre>\n' + JSON.stringify(data, null, 2) + '\n</pre>\n\n');
+}
+
+function alertOnError(e) {
+    alert("Error: " + JSON.stringify(e, null, 2));
+}
+
+</script>
+
+
+<h1>Description</h1>
+In this example, JS processes the form when the submit button is pressed,
+POSTS it to httpbin.org/post and puts the response into the
+&lt;div id="results"&gt; element.
+
+<form onsubmit="return processForm(this)">
+  <p>Customer: <input id="customer"></p>
+  <p>Comments: <textarea id="comments"></textarea></p>
+  <p><button>Submit</button></p>
+</form>
+
+<div id="results">
+  <!-- API results go here-->
+</div>
+
+
+</body>
+
+
