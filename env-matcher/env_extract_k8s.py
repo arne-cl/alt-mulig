@@ -27,6 +27,12 @@ def get_env_dict(deployment_doc):
     return env_dict
 
 
+def get_envs_from_yamlfile(yaml_file):
+    yaml_docs = get_docs_from_yamlfile(yaml_file)
+    deployment_doc = get_deployment_doc(yaml_docs)
+    return get_env_dict(deployment_doc)
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('k8s_file', help="Kubernetes YAML config file to extract ENVs from")
@@ -35,10 +41,7 @@ if __name__ == "__main__":
         help="Sort the ENVs alphabetically (ascending, default: False).")
 
     args = parser.parse_args(sys.argv[1:])
-
-    yaml_docs = get_docs_from_yamlfile(args.k8s_file)
-    deployment_doc = get_deployment_doc(yaml_docs)
-    env_dict = get_env_dict(deployment_doc)
+    env_dict = get_envs_from_yamlfile(args.k8s_file)
 
     if args.sort:
         for key in sorted(env_dict.keys()):
