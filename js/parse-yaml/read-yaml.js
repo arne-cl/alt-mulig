@@ -13,7 +13,9 @@ function parseYAML(filepath) {
         addToResults(jsonObject);
 
         var rstParsers = getRSTParsers(yamlObject);
-        addToResults(rstParsers);
+        for (var parser of rstParsers) {
+            addToResults(JSON.stringify(parser));
+        }
     });
 }
 
@@ -21,18 +23,26 @@ function parseYAML(filepath) {
 // representation of a docker-compose.yml file.
 function getRSTParsers(yamlObject) {
     var parsers = [];
-    for (var service of Object.keys(yamlObject.services)) {
-        serviceType = yamlObject.services[service].build.labels.type
-        if (serviceType === 'rst-parser' ) {
-            parsers.push(service);
+    for (var serviceKey of Object.keys(yamlObject.services)) {
+        service = yamlObject.services[serviceKey]
+        serviceLabel = service.build.labels
+        if (serviceLabel.type === 'rst-parser' ) {
+            parser = {
+                name: serviceLabel.name,
+                format: serviceLabel.format,
+                port: getPort(service)
+            };
+            parsers.push(parser);
         }
     }
     return parsers;
 }
 
+function getPort(service) {
+    portString = service.ports[0].split(':')[0];
+    return Number(portString);
+}
+
 function addToResults(thing) {
     $("#results").append(thing + '<br><br>\n');
 }
-
-//~ Object.keys(yamlObject['services']).forEach(addToResults)
-//~ yamlObject['services']['codra-service']['build']['labels']['type']
