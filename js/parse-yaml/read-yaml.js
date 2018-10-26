@@ -19,7 +19,7 @@ function parseYAML(filepath) {
     });
 }
 
-// getRSTParsers returns the names of all RST parsers from the object
+// getRSTParsers returns the metadata of all RST parsers from the object
 // representation of a docker-compose.yml file.
 function getRSTParsers(yamlObject) {
     var parsers = [];

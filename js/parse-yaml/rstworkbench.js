@@ -1,3 +1,5 @@
+// TODO: import jsyaml directly, so we don't need it in vanilla.html
+
 const confpath = 'docker-compose.yml';
 
 // Simplest way to create an RSTWorkbench instance:
@@ -53,3 +55,26 @@ function getPort(service) {
     return Number(portString);
 }
 
+
+class RSTParser {
+    constructor(name, format, port) {
+        this.name = name
+        this.format = format
+        this.port = port
+    }
+
+    async parse(input) {
+        const data = new FormData();
+        data.append('input', input);
+        data.append('output_format', 'original'); // FIXME: rm after cleanup of parser APIs
+
+        const options = {
+          method: 'POST',
+          body: data,
+        };
+
+        const result = await fetch(`http://localhost:${this.port}/parse`, options);
+        const output = await result.text();
+        return output
+    }
+}
