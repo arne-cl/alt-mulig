@@ -9,9 +9,16 @@
 <body>
 <script src="jquery-3.2.1.min.js"></script>
 <script>
+
+//~ var PARSER_API_ENDPOINT = "http://localhost:8000/parse";
+//~ var PARSER_API_ENDPOINT = "http://localhost:9001/parse";
+//~ var PARSER_API_ENDPOINT = "http://httpbin.org/post";
+
 function processForm(form) {
     var formData = formToFormData(form);
+    postForm("http://localhost:9001/parse", formData, addToResults, alertOnError);
     postForm("http://localhost:9002/parse", formData, addToResults, alertOnError);
+    postForm("http://httpbin.org/post", formData, addToResults, alertOnError);
     
     // We need to return false and use that value in 'onsubmit', otherwise
     // the changes to the DOM will not be permannt.
@@ -50,7 +57,7 @@ function addToResults(data) {
 }
 
 function alertOnError(e) {
-    alert("Error: " + JSON.stringify(e, null, 2));
+    $("#results").append('<pre>\nError:\n' + JSON.stringify(e, null, 2) + '\n</pre>\n\n');
 }
 
 </script>
