@@ -19,6 +19,53 @@ class RSTWorkbench {
         const rstparsers = getRSTParsers(config);
         return new RSTWorkbench(config, rstparsers);
     }
+    
+    async getParseResults(text) {
+        let results = [];
+        for (let parser of this.rstparsers) {
+            try {
+                const response = await parser.parse(text);
+                const output = await response.text();
+                addToResults(parser.name, output);
+            } catch(e) {
+                addToErrors(parser.name, e);
+            }
+        }
+    }
+}
+
+// addToElement adds a title and content to the given DOM element, e.g.
+// <div id=$elementID>
+//   <div>
+//     <h2>$title</h2>
+//     <p>$content</p>
+//   </div>
+// </div>
+function addToElement(elementID, title, content) {
+    let resultsElem = document.getElementById(elementID);
+    
+    let resultElem = document.createElement('div');
+    let titleElem = document.createElement('h2');
+    titleElem.innerText = title;
+    
+    let contentElem = document.createElement('p');
+    contentElem.innerText = content;
+    
+    resultElem.appendChild(titleElem);
+    resultElem.appendChild(contentElem);
+    resultsElem.appendChild(resultElem);
+}
+
+// addToResults adds a title (e.g. the name of a parser) and some content
+// to the results section of the page.
+function addToResults(title, content) {
+    addToElement('results', title, content);
+}
+
+// addToErrors adds a title (e.g. the name of the parser that produced
+// the error) and and error message to the  section of the page.
+function addToErrors(title, error) {
+    addToElement('errors', title, error.message);
 }
 
 // loadConfig loads a YAML config file from the given path and returns
@@ -32,16 +79,21 @@ async function loadConfig(filepath) {
 // getRSTParsers returns the metadata of all RST parsers from the object
 // representation of a docker-compose.yml file.
 function getRSTParsers(yamlObject) {
-    var parsers = [];
-    for (var serviceKey of Object.keys(yamlObject.services)) {
+    let parsers = [];
+    for (let serviceKey of Object.keys(yamlObject.services)) {
         service = yamlObject.services[serviceKey]
         serviceLabel = service.build.labels
         if (serviceLabel.type === 'rst-parser' ) {
-            parser = {
-                name: serviceLabel.name,
-                format: serviceLabel.format,
-                port: getPort(service)
-            };
+            //~ let parserConfig = {
+                //~ name: serviceLabel.name,
+                //~ format: serviceLabel.format,
+                //~ port: getPort(service)
+            //~ };
+            
+            let parser = new RSTParser(
+                serviceLabel.name,
+                serviceLabel.format,
+                getPort(service));
             parsers.push(parser);
         }
     }
@@ -63,6 +115,21 @@ class RSTParser {
         this.port = port
     }
 
+    // TODO: add GET /status to all parser APIs
+    async isRunning() {
+        let running = false;
+        
+        try {
+            const response = await fetch(`http://localhost:${this.port}/status`);
+            if (response.ok && response.status == 200) {
+                running = true;
+            }
+        } catch(e) {
+            console.log(e.message);
+        }
+        return running;
+    }
+
     async parse(input) {
         const data = new FormData();
         data.append('input', input);
@@ -73,8 +140,8 @@ class RSTParser {
           body: data,
         };
 
-        const result = await fetch(`http://localhost:${this.port}/parse`, options);
-        const output = await result.text();
+        const response = await fetch(`http://localhost:${this.port}/parse`, options);
+        const output = await response.text();
         return output
     }
 }
