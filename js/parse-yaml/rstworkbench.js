@@ -134,8 +134,12 @@ class RSTParser {
           body: data,
         };
 
-        const response = await fetch(`http://localhost:${this.port}/parse`, options);
-        const output = await response.text();
-        return output
+        try {
+            const response = await fetch(`http://localhost:${this.port}/parse`, options);
+            const output = await response.text();
+            return output
+        } catch(e) {
+            return new Error(`Parser ${this.name} produced error: ${e.message}`)
+        }
     }
 }
