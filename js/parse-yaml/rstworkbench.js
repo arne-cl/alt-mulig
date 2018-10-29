@@ -19,7 +19,7 @@ class RSTWorkbench {
         const rstparsers = getRSTParsers(config);
         return new RSTWorkbench(config, rstparsers);
     }
-    
+
     async getParseResults(text) {
         let results = [];
         for (let parser of this.rstparsers) {
@@ -43,14 +43,14 @@ class RSTWorkbench {
 // </div>
 function addToElement(elementID, title, content) {
     let resultsElem = document.getElementById(elementID);
-    
+
     let resultElem = document.createElement('div');
     let titleElem = document.createElement('h2');
     titleElem.innerText = title;
-    
+
     let contentElem = document.createElement('p');
     contentElem.innerText = content;
-    
+
     resultElem.appendChild(titleElem);
     resultElem.appendChild(contentElem);
     resultsElem.appendChild(resultElem);
@@ -82,14 +82,8 @@ function getRSTParsers(yamlObject) {
     let parsers = [];
     for (let serviceKey of Object.keys(yamlObject.services)) {
         service = yamlObject.services[serviceKey]
-        serviceLabel = service.build.labels
+        serviceLabel = service.labels
         if (serviceLabel.type === 'rst-parser' ) {
-            //~ let parserConfig = {
-                //~ name: serviceLabel.name,
-                //~ format: serviceLabel.format,
-                //~ port: getPort(service)
-            //~ };
-            
             let parser = new RSTParser(
                 serviceLabel.name,
                 serviceLabel.format,
@@ -118,7 +112,7 @@ class RSTParser {
     // TODO: add GET /status to all parser APIs
     async isRunning() {
         let running = false;
-        
+
         try {
             const response = await fetch(`http://localhost:${this.port}/status`);
             if (response.ok && response.status == 200) {
