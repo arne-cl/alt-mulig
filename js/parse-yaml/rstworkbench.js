@@ -24,8 +24,7 @@ class RSTWorkbench {
         let results = [];
         for (let parser of this.rstparsers) {
             try {
-                const response = await parser.parse(text);
-                const output = await response.text();
+                const output = await parser.parse(text);
                 addToResults(parser.name, output);
             } catch(e) {
                 addToErrors(parser.name, e);
