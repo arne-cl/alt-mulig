@@ -14,7 +14,7 @@ def get_docs_from_yamlfile(yaml_filepath):
 def get_deployment_doc(yaml_docs):
     for ydoc in yaml_docs:
         kind = ydoc.get('kind')
-        if kind == 'Deployment':
+        if kind in ('Deployment', 'DaemonSet'):
             return ydoc
     raise ValueError("No 'Deployment' doc in YAML file.")
 
