@@ -1,0 +1,1201 @@
+8
+
+Case Studies
+
+This section of the thesis presents studies of some systems which
+were written using the Erlang/OTP system. The first is the Ericsson AXD301 system—the AXD301 is a high-capacity ATM1 switch.
+The version of the AXD301 system studied here has over 1.1 million lines
+of Erlang, which makes it one of the largest programs ever to be written in
+a functional style of programming. The AXD makes extensive use of the
+OTP libraries, so it provides a good test of the functionality of the libraries.
+Following this I study a number of small products made by Bluetail
+AB or Alteon Web Systems/Nortel Networks. To avoid confusion, I might
+add that Bluetail AB was founded by most of the “Erlang people” who led
+the Ericsson CSLab (myself included) and that Bluetail was subsequently
+acquired by Alteon Web Systems, and that Nortel Networks then acquired
+Alteon. The products, however, were all developed by the same core
+group of people.
+These products include the Bluetail Mail Robustifier (BMR) and the
+“SSL2 accelerator,” made by Alteon Web Systems and sold by Nortel
+Networks. The SSL accelerator was developed in a remarkably short time
+(9 months) and rapidly became the “market leader” in the niche market for
+“embedded secure socket layer devices.” The SSL accelerator also makes
+extensive use of the Erlang/OTP system and libraries.
+These projects represent two extremes. The AXD301 was done with
+
+T
+
+1
+2
+
+Asynchronous Transfer Mode.
+Secure Socket Layer.
+
+167
+
+168
+
+CHAPTER 8. CASE STUDIES
+
+a large group of programmers; over 40 programmers have been involved
+with the code over a 4-year period. Large sodware projects are notoriously
+diecult to manage, and the resulting code is oden diecult to understand;
+so one of the matters that I am concerned with is how well (or poorly) the
+OTP design methodology supports the construction of large systems.
+The second set of projects was programmed by a much smaller group
+of programmers (5-10 depending upon the product) and was completed
+within a much shorter time frame (six months). The developers were all
+highly experienced Erlang programmers. Two of the developers, Magnus
+Fröberg and Martin Björklund, designed and programmed the original
+OTP behaviours. One of the developers, Claes Wikström was a co-author
+of the second edition of the Erlang book. Wikström was also the main
+implementor of distributed Erlang, and of the mnesia data base.
+
+8.1
+
+Methodology
+
+In the case studies, I am interested in the following:
+• Problem domain — what was the problem domain. Is this the kind
+of problem that Erlang/OTP was designed to solve?
+• Quantitative properties of the code — how many lines of code were
+written? How many modules? How was the code organised? Did
+the programmers follow the design rules? Were the design rules
+helpful? What was good? What was bad?
+• Evidence for fault-tolerance — Is the system fault-tolerant? The raison d’être for Erlang was to build fault-tolerant systems. Is there
+evidence that errors have occurred at run-time and been successfully corrected? Is the information produced when a programming
+error occurred good enough to subsequently correct the program?
+• Understanding the system — Is the system understandable? Can it
+be maintained?
+
+8.1. METHODOLOGY
+
+169
+
+Rather than ask general questions about the properties of the system
+I am looking for specific evidence that the system behaves in a desirable
+manner. In particular:
+1. Is there evidence to show that the system has crashed due to a
+programming error and that the error was corrected and that the
+system subsequently recovered from the error and behaved in a
+satisfactory manner ader error correction had occurred?
+2. Is there evidence to show that the system has run for an extended
+period of time and that sodware errors have occurred but that the
+system is still stable?
+3. Is there evidence that code in the system has been updated “on the
+fly?”
+4. Is there evidence that garbage collection etc works (ie that we have
+run a garbage-collected system for a long time without getting garbage
+collection errors?)
+5. Is there evidence that the information in the error logs is suecient
+for post-crash localization of the error?
+6. Is there evidence that the code in the system can be structured in
+such a way that the majority of programmers do not need to be
+concerned with the details of the concurrency patterns used in the
+system?
+7. Is there evidence that the supervision trees work as expected?
+8. Is the code structured in a clean/dirty style?
+Items 1, 2 and 5 above are included because we wish to test that our
+ideas about programming fault-tolerant systems work in practice.
+Item 4 tests the hypothesis that long-term garbage collection can be
+used for real-time systems which have to operate over extended periods of
+time.
+
+170
+
+CHAPTER 8. CASE STUDIES
+
+Item 6 is a measure of the abstraction power of the OTP behaviours.
+It is desirable for a number of reasons to “abstract out” details of concurrency for commonly recurring situations. The set of OTP behaviours is an
+attempt to do this. The extent to which programmers can to a first approximation ignore concurrency is an important measure of how suitable the
+OTP behaviours are for making system sodware. We can assess the extent
+to which concurrency can be ignored by observing how oden programmers are forced to use explicit message passing and process manipulation
+primitives in their code.
+Item 7 tests if the supervisor strategies work as expected.
+Item 8 tests if it is possible to program according to the rules we gave
+in Appendix B. In particular the guidelines stress the importance of structuring the system in a clean/dirty manner. “Clean” code for our purposes
+is assumed to be side-ecect free code, such code is much easier to understand than “dirty” code, ie code having side-ecects.
+Our entire system is concerned with the manipulation of hardware.
+This manipulation of hardware involves side-ecects. Our concern therefore, is not whether side-ecects can be avoided, but rather to what extent
+code with side-ecects can be restricted to a small number of modules.
+Rather than having code with side-ecects scattered in a uniform manner
+all over the system, it is desirable to have a small number of “dirty” modules with a large number of side-ecects, combined with a much larger
+number of modules which are written in a side-ecect free manner. An
+analysis of the code will reveal if such a structuring was possible.
+Also of interest is “counter evidence.” We would like to know about
+any cases where our paradigm breaks down, and if this breakdown was a
+major problem.
+
+8.2 AXD301
+The AXD301 [18] is a high-performance Asynchronous Transfer Mode
+(ATM) switch produced by Ericsson. The system is built from a number
+of scalable modules—each module provides 10 GBit/s of switching capacity
+and up to 16 modules can be connected together to form a 160 GBit/s
+
+8.3. QUANTITATIVE PROPERTIES OF THE SOFTWARE
+
+171
+
+switch.
+The AXD301 is designed for “carrier-class” non-stop operation [70].
+The system has duplicated hardware which provides hardware redundancy
+and hardware can be added or removed from the system without interrupting services. The sodware has to be able to cope with hardware and
+sodware failures. Since the system is designed for non-stop operation it
+must be possible to change the sodware without disturbing traec in the
+system.
+
+8.3
+
+Quantitative properties of the sodware
+
+Here I report the result of an analysis of a snapshot of the AXD301 sodware. The snapshot represents the state of the system as it was on 5
+December 2001.
+The analysis is only concerned with the quantitative properties of the
+Erlang code in the system. The gross properties of the system are as
+follows:
+Number of Erlang modules
+2248
+Clean modules
+1472
+Dirty modules
+776
+Number of lines of code
+1136150
+Total number of Erlang functions
+57412
+Total dumber of clean functions
+53322
+Total number of dirty functions
+4090
+Percentage of dirty functions/code lines 0.359%
+In the above table the code has been subject to a simple analysis which
+superficially classifies each module or function as “clean” or “dirty.” A
+module is considered dirty if any function in the module is dirty, otherwise
+it is clean. To simplify matters I say that a function is dirty if it sends or
+receives a message or if it calls one of the following Erlang BIFs:
+
+172
+
+CHAPTER 8. CASE STUDIES
+apply, cancel_timer, check_process_code,
+delete_module, demonitor, disconnect_node, erase,
+group_leader, halt, link, load_module, monitor_node,
+open_port, port_close, port_command, port_control,
+process_flag, processes, purge_module, put, register,
+registered, resume_process, send_nosuspend, spawn,
+spawn_link, spawn_opt, suspend_process, system_flag,
+trace, trace_info, trace_pattern, unlink, unregister,
+yield.
+
+The reason for this classification is that any code fragment which calls
+one of these BIFs is potentially dangerous.
+Notice that I have chosen a particularly simple definition of “dirty.” At
+first sight it might appear that it would be better to recursively define a
+module as being dirty if any function in the module calls a “dangerous”
+BIF or a dirty function in another module. Unfortunately with such a
+definition virtually every module in the system would be classified as dirty.
+The reason for this is that if you compute the transitive closure of all
+functions calls exported from a particular module, the transitive closure
+will include virtually every module in the system. The reason why the
+transitive closure is so large is due to “leakage” which occurs from many
+of the modules in the Erlang libraries.
+We take the simplifying view that all modules are well-written and
+tested, and that if they do contain side-ecects, that the module has been
+written in such a way so that the side ecects do not leak out from the
+module to adversely acect code which calls the module.
+With this definition 65% of all modules are clean. Since any module is
+considered dirty if it contains a single dirty function, it is more interesting
+to look at the ratio of clean/dirty functions. A function will be considered
+dirty if a single call is made to unclean BIF. Viewed at a function level 92%
+of all functions appear to be written in a side-ecect free manner.
+Note that there were a total of 4090 dirty functions contained in 1.13
+million lines of code, this is less than four dirty functions per thousand
+lines of code.
+The distribution of dirty functions is shown in Figure 8.1. The distri-
+
+8.3. QUANTITATIVE PROPERTIES OF THE SOFTWARE
+
+173
+
+200
+180
+160
+140
+120
+# Mods 100
+80
+60
+40
+20
+0
+0
+
+10
+
+20
+
+30
+40
+# dirty functions
+
+50
+
+60
+
+70
+
+Figure 8.1: Distribution of dirty functions
+bution of dirty functions is both encouraging and discouraging. The good
+news is that 95% of all dirty functions are found in slightly over 1% of the
+modules. The bad news is that there are a large number of modules with
+a very small number of impure functions. For example, there are 200
+modules with 1 dirty function, 156 with 2 dirty functions etc.
+The interesting thing about this data is that there has been no systematic ecort to make the code “pure.” The “emergent style” of programming
+seems therefore, to favour a style of programming where a small number of modules have a large number of side-ecects, together with a larger
+number of modules having very few side-ecects.
+The Erlang programming rules favour this style of programming, the
+intention is to get the more experienced programmers to write and test
+the code that has lots of side-ecects. Based on the AXD301 code it might
+be a good idea to explicitly define which modules are allowed to contain
+side-ecects and enforce this with some kind of quality control.
+If we look in detail at which primitives were called that could introduce
+side-ecects, we get the following ordering:
+put (1904), apply (1638), send (1496), receive (760), erase (336),
+process_flag (292), spawn (258), unlink (200), register (154),
+
+174
+
+CHAPTER 8. CASE STUDIES
+
+spawn_link (126), link (106), unregister (38), open_port (20),
+demonitor (14), processes (14), yield (12), halt (10),
+registered (6), spawn_opt (4), port_command (4), trace (4),
+cancel_timer (2), monitor_node (2).
+The most common primitive was put which was used 1904 times etc.
+From this we can see that some of the Erlang primitives in our “black
+list” have never been used at all. The most common primitive which introduces a side-ecect is put—depending upon how put is used this may or
+may not be dangerous. One common use of put is to assert a global property of a process which is used for debugging purposes. This is probably
+safe, though no automatic analysis program could infer this fact.
+The dangerous side-ecects are those which change the concurrency
+structure of the applications, thus modules which call the link, unlink,
+spawn or spawn_link, primitives must be carefully checked.
+Even more dangerous is code that might evaluate halt or processes—
+I would assume that such code is very carefully checked.
+
+8.3.1
+
+System Structure
+
+The AXD301 code is structured using the OTP supervision trees and the
+overall structure of the AXD301 code can be inferred primarily from the
+shape of these trees. Interior nodes in the supervision tree are themselves
+supervisor nodes, terminal nodes in the tree are OTP behaviours or more
+specialised application specific processes.
+The AXD system supervision tree had 141 nodes and used 191 instances of the OTP behaviours. The number of instances of the behaviours
+were:
+gen_server (122), gen_event (36), supervisor (20), gen_fsm (10),
+application (6).
+gen_server and to a lesser extent gen_event dominate—there being
+122 instances of the generic server. One interesting point to note is how
+few behaviours are required. The client-server abstraction (gen_server)
+is so useful that 63% of all generic objects in the system are instances of
+client-servers.
+
+8.3. QUANTITATIVE PROPERTIES OF THE SOFTWARE
+
+175
+
+In the OTP libraries a supervisor starts an application by calling a
+function in the so-called child_spec of the processes which the supervisor controls. Among other things the “child specification” contains a
+{Mod,Func,Args} tuple which is used to specify how to start the supervised process.
+This method of starting a supervised process is completely general,
+since any arbitrary function can be started by the supervisor. In the
+AXD301 case, the full generality of this method was not used, instead
+one of three dicerent startup methods was used for all supervision hierarchies. Of these three methods, one method dominated, and was used for
+all except three of the supervision trees.
+The AXD301 architects defined one master supervisor, which could be
+parameterised in a number of standardised ways. The AXD301 supervisors were packaged as conventional OTP applications, whose behaviour
+was described in so-called .app files [34]. Analysing all the AXD301 apps
+gives us a good overall idea of the static structure of the AXD sodware.
+There were a total of 141 .app files the AXD sodware. These 141 files
+represent 11 disjoint supervision trees. Most of the supervision trees are
+very flat and do not have a complex structure.
+A simple way to show this structure is to plot the trees in a simple
+ASCII display. Here, for example, is one of the eleven top-level trees,
+responsible for “Standby” services
+|-|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+chStandby
+|-- stbAts
+|
+|-- aini_sb
+|
+|-- cc_sb
+|
+|-- iisp_sb
+|
+|-- mdisp_sb
+|
+|-- pch_sb
+|
+|-- pnni_sb
+|
+|-- reh_sb
+|
+|-- saal_sb
+|
+|-- sbm_sb
+|
+|-- spvc_sb
+|
+|-- uni_sb
+|-- stbSws
+|
+|-- cecpSb
+
+Standby top application
+Standby parts of ATS Subsystem
+Protocol termination of AINI, ...
+Call Control.Standby role
+Protocol termination of IISP ...
+Message Dispatcher, standby role
+Permanent Connection Handling ...
+Protocol termination of PNNI ...
+Standby application for REH
+SAAL, standby application.
+Standby Manager, start standby role
+Soft Permanent Connection ...
+Protocol termination of UNI, ...
+Standby applications - SWS
+Circuit Emulation for AXD301, ...
+
+176
+|
+|
+
+CHAPTER 8. CASE STUDIES
+|
+|
+
+|-- cnh_sb
+|-- tecSb
+
+Connection Handling on standby node
+Tone & Echo for AXD301, SWS, ...
+
+As can be seen the tree has a very simple structure, being flat rather
+than deep. There are two main sub-nodes in the tree, and the supervisor
+structure underneath the sub-nodes is flat.
+Note that displaying the data in this manner only shows the organisation of the supervisor nodes themselves. The actual processes which
+were sub-nodes to the leafs in the tree are not shown, nor is the type of
+supervision (ie and or or supervision).
+The reason why the trees are flat rather than deep reflects experience
+gained with the AXD sodware. Put simply “Cascading restarts do not
+work.”
+Wiger [69] who was the chief sodware architect of the AXD301 found
+that restarting a failed process with the same arguments oden worked,
+but that if the simple restart procedure failed, then cascading restarts (ie
+restarting the level above) generally did not help.
+Interestingly, in 1985, Gray had observed that most hardware faults
+were transient and could be corrected by reinitialising the state of the
+hardware and retrying the operation. He conjectured that this would also
+be true for sodware:
+I conjecture that there is a similar phenomenon in sodware —
+most production faults are sod. If the program state is reinitialized and the failed operation retried, the operation will usually
+not fail the second time. — [38]
+The full generality of the model presented in this thesis, namely that of
+trying a simpler strategy in the event of failure was only partially exploited.
+This particular exploitation was accidental rather than by design—the OTP
+libraries themselves which provide interfaces to the file system and to
+system level services like sockets etc are written in such a manner as to
+protect the integrity of the system in the event of a failure. So, for example,
+files or sockets are automatically closed if the controlling processes for the
+file or socket terminates for any reason.
+
+8.3. QUANTITATIVE PROPERTIES OF THE SOFTWARE
+
+177
+
+The level of protection provided by the OTP library services automatically provides the “simpler level of service” which is implied by our model
+for fault-tolerant computing.
+
+8.3.2
+
+Evidence for fault recovery
+
+In the following sections I present evidence that the error-recovery mechanism have worked as planned. This evidence is based on an analysis of
+entries contained in the Ericsson trouble report database. When I have
+quoted from the data in the trouble report database I have not added
+anything to the entries, but I have removed irrelevant detail.
+
+8.3.3 Trouble report HD90439
+Trouble report HD90439 from 14 May 2003 has the following information:
+1
+
+1. Description
+
+2
+3
+4
+5
+6
+
+Heading: CRASH REPORT - Performance measurements on ET2 issue
+Priority: C:
+3 M, Minor fault or opinion: no traffic disturbance
+Status: FI:
+Finish
+Hot TR: NO
+
+7
+8
+
+...
+
+9
+10
+
+2. Observation
+
+Top of page
+
+11
+12
+13
+
+EFFECT:
+CRASH REPORT - Performance measurements on ET2 issue
+
+14
+15
+16
+17
+
+DESCRIPTION:
+Node: AXD305 R7D PP6
+Customer: ***************
+
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+
+=CRASH REPORT==== 14-May-2003::14:05:00 ===
+crasher:
+pid: <0.5605.0>
+registered_name: []
+error_info: {function_clause,[{etcpPrm,get_hwm_base,[ne_cv_l_ga,et2]},
+{prmMibExt,create_mep,3},
+{prmMibExt,get_counter_values,4},
+{perfCollect,collect_group,2},
+{proc_lib,init_p,5}]}
+initial_call: {perfCollect,collect_generic,
+[{observed_object_group,
+{groupCb,prmMibExt},
+1504,
+[127],
+undefined},
+63220104300]}
+
+178
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+
+CHAPTER 8. CASE STUDIES
+ancestors: [perfServer,perfSuper,omsSuper,omAxd301Super,<0.4396.0>]
+messages: []
+links: [<0.4523.0>]
+dictionary: [{{eqm_mi_apply,{em,70},if_type_to_sublayer,1},
+{intfIfDbase,if_type_to_sublayer_int}}]
+trap_exit: false
+status: running
+heap_size: 121393
+stack_size: 23
+reductions: 1332403
+neighbours:
+
+46
+47
+48
+49
+
+MEASURES:
+Performance measurements were turned off and the crash report stopped
+occurring
+
+50
+51
+
+...
+
+52
+53
+
+4. Answer
+
+54
+55
+56
+57
+
+...
+P R O B L E M & C O N S E Q U E N C E
+=========================================================
+
+58
+59
+60
+61
+
+A combination of the wildcard implementation together with a DS1
+measurement can cause the described crash. The effect is that the
+measurement fails.
+
+62
+63
+64
+65
+
+S O L U T I O N
+=========================================================
+
+66
+67
+68
+
+The fault has been detected, but it will not be released in R7D unless
+it is important for a customer.
+
+69
+70
+71
+72
+73
+
+The wildcard implementation is greatly improved in R8B where this problem
+does not exist. In R7D, we recommend to specify the PDH interfaces to be
+included
+in the DS1 measurement.
+
+Crash number 90439 is fairly typical, it illustrates the situation where a
+hardware errors occurred, is corrected and the system reverted to normal
+use. The crash report is in lines 23–27 of the error log and it contains the
+following information:
+{function_clause,
+[{etcpPrm,get_hwm_base,[ne_cv_l_ga,et2]},
+{prmMibExt,create_mep,3},
+{prmMibExt,get_counter_values,4},
+{perfCollect,collect_group,2},
+{proc_lib,init_p,5}]}
+
+8.3. QUANTITATIVE PROPERTIES OF THE SOFTWARE
+
+179
+
+When etcpPrm:get_hw_base(ne_cv_l_ga,et2) is called the function call fails with a pattern matching error. Interestingly, this error occurred on 14 April 2003, the snapshot of the system that I had access to
+is from 5 December 2001, and therefore I reasoned that the error might
+have been present in my snapshot code. To satisfy my curiosity I checked
+the code in etcpPrm. The code looked like this:
+get_hwm_base(locd_cnt, et155) ->
+?et155dpPmFm_MEPID_Frh_LOCDEvt;
+... 386 lines omitted ...
+get_hwm_base(fe_pdh2_uat_tr, et2x155ce) ->
+?et2x155cedpPmFm_MEPID_Frh_FE_E1_UAT_Tr.
+Indeed there was no pattern which would match the calling arguments,
+so clearly this error would occur if called with the arguments shown in the
+error log. I was able to clearly locate the error and understand why the
+program has failed even though I didn’t have the faintest idea what the
+error means.
+It is also encouraging to note that the programmer who wrote this code
+had not programmed in a defensive manner, ie they had not written code
+like this:
+get_hwm_base(locd_cnt, et155) ->
+?et155dpPmFm_MEPID_Frh_LOCDEvt;
+... 386 lines omitted ...
+get_hwm_base(fe_pdh2_uat_tr, et2x155ce) ->
+?et2x155cedpPmFm_MEPID_Frh_FE_E1_UAT_Tr;
+get_hw_base(X, Y) ->
+exit(....).
+Instead they had written their code exactly in the style which I recommended on page 108. Recall that the motivation for writing code in this
+manner is that a defensive style of programming is unnecessary since the
+Erlang compiler automatically adds additional information that is suitable
+for debugging the program.
+
+180
+
+CHAPTER 8. CASE STUDIES
+
+8.3.4
+
+Trouble report HD29758
+
+Crash number HD29758 is more interesting. Reading the log and the
+subsequent comments of the engineers who studied the problem we can
+see that an error occurred at run-time which must have been corrected.
+Even though an error occurs it does not acect the traec, and it is deemed
+not worthy of correction.
+Here is a section extracted from the trouble report:
+1
+
+2
+
+T R O U B L E
+
+D E S C R I P T I O N
+
+2
+3
+4
+5
+6
+
+R7D NIT test case 3.4.1.2, takeover of OM process by CH CP.
+Traffic continues to run successfully,
+but we get several ERROR REPORTS in the
+CP being blocked.
+
+7
+8
+
+Here’s an example, see enclosure for erlang log:
+
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+
+=ERROR REPORT==== 5-Apr-2002::09:03:55 ===
+error_info: {{case_clause,[]},
+[{mdispGenServ,from_plc,4},
+{mdispGenServ,handle_info,2},
+{gen_server,handle_msg,6},
+{proc_lib,init_p,5}]}
+msg_info_Tag: from_plc
+msg_info_MFA: {mdispGenServ,from_plc,
+[old_hc,
+{hcid,
+{ncs,mlgCmHcc,{97575,0}},
+msgQueue,
+undefined}]}
+msg_info_PlcResult: true
+node: ’axd301@cp1-1’
+proc_info: [{pid,{<0.20804.4>,"MDISP Server"}},
+{message_queue_len,0},
+{dictionary,[{mdispPerfPid,<0.20805.4>},
+{’$ancestors’,
+... many lines omitted ...
+
+30
+31
+32
+
+4.2 Answer Text
+
+8.3. QUANTITATIVE PROPERTIES OF THE SOFTWARE
+33
+34
+35
+
+181
+
+The fault has been solved in version R8B of block
+MDISP. No solution is planned in earlier versions
+for mainly two reasons:
+
+36
+37
+38
+
+1) The fault has not yet given any obvious negative
+effects on traffic handling.
+
+39
+40
+
+...
+
+Lines 10–28 show that an error has occurred. Line 4 and lines 37–
+38 show that despite the error the system functions without any “obvious
+negative ecects on traec handling.”
+This error is rather nice, it shows that for a certain execution path an
+error is encountered. The system detects and recovers from the error, so
+for this particular error the system behaved in a reasonable manner in the
+presence of a sodware error.
+
+8.3.5 Deficiencies in OTP structure
+One interesting area in which the Erlang model of programming did not
+work was in the handling of call setup and call termination used in the
+AXD301 sodware.
+In the section on the philosophy of COP, I argued for a 1:1 mapping
+of the problem structure onto the sodware architecture. In one important
+part of the AXD301 sodware this mapping was not possible. This part of
+the sodware had to do with the setup and termination of calls.
+In order to understand this point I must go into a little detail about
+one of the most important services ocered by the AXD301 switch. The
+AXD301 is a switching system, as such it is responsible for the maintenance
+of a large number of connections.
+At any one time, one module in the system will be handling a large
+number of virtual channels. Each channel represents a single connection.
+Typically, a single node might handle up to 50,000 connections. Connections are in one of three possible states:
+1. Setup — In this state a new connection being established. There is
+intensive signalling.
+
+182
+
+CHAPTER 8. CASE STUDIES
+
+2. Connected — In this state the connection is established. There is
+very little signalling, only monitoring of the on-going connection.
+3. Terminating — In this state the connection is terminating. There is
+some signalling between the end-points of the connection.
+The setup and termination phases of a connection are very quick, and
+typically take a few milliseconds. Termination is somewhat simpler than
+setup. In the connection phase only monitoring is involved, the connection
+phase is typically many orders of magnitude longer than the setup and
+termination phases. Connections could range from seconds to hours, or
+even years.
+At any time there might be up to 50,000 connections per node, the
+vast majority of which will be in the connected state. The system is dimensioned for a maximum of 120 calls/second—this number refers to the
+number of simultaneous calls which can be in the setup or termination
+phase, not to the number of calls which are in the connected phase.
+Modelling the natural concurrency of the problem needs about six
+concurrent processes per call setup/termination. Having six processes per
+connection during setup and (say) a couple of processes per connected call
+requires a few hundred thousand Erlang processes. Most of these processes
+do nothing and are suspended for a very long time (these are the processes
+which monitor the connected calls)—this could not be implemented for a
+number of reasons.
+Firstly, processes take space, even if they are not doing anything. Secondly, any state involved in the connected phase must be replicated across
+a physical hardware boundary. This is in order to provide for continuous
+service in the presence of a hardware failure.
+The AXD301 tries to minimise the number of active processes used for
+connection handling and uses the following strategy.
+1. During call setup six processes are created to handle each call.
+2. If the call setup succeeds, then all relevant information about the
+call is reduced to a “call record” which describes the call. The six
+processes used in call setup are destroyed and the call record which
+
+8.3. QUANTITATIVE PROPERTIES OF THE SOFTWARE
+
+183
+
+describes the call is stored locally. Finally, an asynchronous message
+containing a copy of the call record is sent to the backup node for
+the current node.
+3. At call termination, the process structure required to terminate the
+call is created and initialized from the data in the call record. Call
+termination processing occurs and all the processes involved are destroyed.
+Because the call setup process is well understood, the memory requirements for a process in the setup phase is well understood. The maximum
+stack and heap size needed by the setup processes is well known and has
+been established by a number of measurements. Using this data it is possible to initialise the six processes needed for call setup with sueciently
+large initial stacks and heaps so that no garbage collection occurs during
+call setup.
+During setup no attempt is made to replicate the state of the calls across
+a physical boundary, so if the system crashes, the call will be lost. In this
+event the client will detect the failure and merely try again. In the event of
+hardware failure the retry will be directed to a new hardware module and
+should succeed. Since call setup is so quick, this is hardly a problem.
+When the setup phase is complete, all information is reduced to a “call
+record” (this is about 1 KB/call) and the six processes used in call setup
+are destroyed. An asynchronous message containing the call record is sent
+to the backup processor. Hardware units are always configured in pairs.
+For the pair (A, B), the machine A is considered a backup machine for
+machine B and machine B is a backup for machine A.
+Signals from a particular client are arbitrated by a hardware dispatcher
+unit, which sends all signals for a particular call to the “master” unit for
+the call. If the master unit fails and the call is in the connected state then
+the arbitrator will direct signals to the backup unit.
+Call termination, or modification to the call is the inverse of call setup.
+When the system detects that some operation is to be performed on the
+call, the call record is retrieved and the process structure necessary to
+manipulate the call is created and initialized with data from the call record.
+Thereader, call processing proceeds as for call setup.
+
+184
+
+CHAPTER 8. CASE STUDIES
+
+This model minimizes the number of processes to the active set of
+processes needed to perform a particular operation. When the application
+reaches a point in time where there is little active processing of the data,
+the processes are destroyed and the relevant data needed to re-create the
+process structure is stored in a database and is asynchronously replicated
+on a backup machine.
+This approach has the advantages of having a flexible process structure
+which is needed in the complex phases of call setup or termination—but
+when the processes are inactive, storage is reclaimed by deleting the processes and storing their state data in stable storage.
+The fact that the state information is asynchronously replicated increases throughput in the system without compromising the integrity of
+the system.
+This solution fits nicely with the Erlang processes model. Since processes are light-weight, we can create and destroy them “on-demand.” Systems with heavy-weight processes could use a similar solution, where instead of destroying a process when it has finished, the process is recycled,
+and a pool of processes is maintained by the system.
+At the time when the AXD301 sodware was developed there was an
+upper limit on the total number of Erlang processes which could run at the
+same time in the system. This number, while large, was not large enough
+to allow hundreds of thousands of processes in the system. Later versions
+of the system allow hundreds of thousands of Erlang processes, though not
+millions of processes.
+Even though the designer of a system should not, at a first approximation have to worry about the total number of processes in the system, they
+should be able to crudely dimension the system and have a rough idea
+as to how many processes will be needed throughout the operation of an
+application.
+For very long-lived processes, storing the process state in a data base
+when the process is not active, is an attractive alternative. This method
+has the added advantage that by replicating the state on stable storage the
+same sodware can be made fault-tolerant.
+
+8.4. SMALLER PRODUCTS
+
+8.4
+
+185
+
+Smaller products
+
+The second case study concerns two products developed by Bluetail AB.
+The first of these products was the “Bluetail Mail Robustifier” (BMR) which
+is described in [11].
+
+8.4.1
+
+Bluetail Mail Robustifier
+Server 1
+
+Server 2
+P1
+
+P2
+
+Server 3
+
+Server 4
+
+Clients
+
+Proxy
+
+Servers
+
+The Bluetail Mail Robustifier was a product designed to increase the
+reliability of existing e-mail services. The BMR was designed as a proxy
+which was placed between the clients which wished to make use of some
+e-mail services, and a number of e-mail servers.
+As far as the clients were concerned all the servers had the same IP address (the address of the proxy)—internally the proxy had at least two physical machines (for fault-tolerance) which could intercept and relay messages
+to the back-end servers. The back-end servers were themselves machines
+running standardised mail servers. The BMR concentrated on three mail
+protocols SMTP [57], POP3 [52] and IMAP4 [27].
+The BMR was shipped to its customers as a “turn-key” system. The
+requirements [11] for the BMR were given as:
+1. Down times should be a few minutes per decade.
+2. If a mail server fails some other server should take over
+with a minimum of delay, clients should not notice that
+the server has failed.
+
+186
+
+CHAPTER 8. CASE STUDIES
+3. It should be possible to remotely manage the system. We
+would like to add or remove mail servers or take them
+out of service without interrupting the quality of service.
+4. It should be possible to upgrade the BMR sodware itself
+without stopping the system.
+5. In the event of an error in the BMR sodware it should
+be possible to revert to a previous version of the sodware
+without stopping the system.
+6. The system must work together with and improve the
+performance of existing mail systems.
+7. The system should work on existing hardware and run
+on existing operating systems.
+8. The system should be at least as eecient as a conventional imperative language implementation.
+9. The system should have a conventional Unix command
+line interface, and conventional Unix manual pages.
+10. The system should have a GUI interface.
+
+Points 1, 3 and 4 are typical requirements for a sod real-time system,
+in particular point 4 is a typical requirement for this kind of system but
+is rarely found in the requirements for a system that is only to be used
+for a short period of time. Point 5 is related to point 4—as far as possible
+we want the operation of the sodware to be entirely autonomous and to
+require minimal operator intervention. The fact that the BMR could be
+remotely managed and that upgrades and downgrades to the system could
+be handled automatically and remotely was an important factor in selling
+the product. Indeed, one of the main reasons for buying the BMR was
+to relieve the burden of manually monitoring and maintaining an e-mail
+system.
+The BMR was written using 108 Erlang modules and had 36,285 lines
+of Erlang code. It was written from scratch and delivered to the first
+customer within six months of the project start. The BMR has been in live
+
+8.4. SMALLER PRODUCTS
+
+187
+
+operation with the Swedish Telenordia ISP since 1999 and handles millions
+of emails per year.
+BMR implemented its own release management system, as an extension to the release behaviour in the OTP system. The BMR system is an
+intrinsically distributed system. It is desirable that sodware upgrade in a
+distributed system has “transaction” semantics, that is, either the sodware
+upgrade works in its entirety on all nodes of the system, or, that it fails and
+no sodware is changed on any node.
+In BMR two versions of the entire system could co-exist, a old version
+and a new version. Adding a new version of the sodware, makes the
+current version of the sodware the old version, and the added version
+becomes the new version.
+To achieve this, all BMR sodware upgrade packages were written in a
+reversible manner, ie it should be possible to not only perform a dynamic
+upgrade from an old version of the sodware to a new version, but also to
+convert from a new version back to the old version.
+Upgrading the sodware on all nodes was done in four phases.
+1. In phase one the new sodware release is distributed to all nodes—this
+always succeeds.
+2. In phase two the sodware on all nodes is changed from the old
+version to the new version. If the conversion on any node fails, then
+all nodes running new versions of the sodware are backed to run the
+old version of the sodware.
+3. In phase three all nodes in the system run the new sodware, but
+should any error occur, then all nodes are backed to run the old
+sodware. The system has not yet committed to run the new sodware.
+4. Ader the new system has run successfully for a suecient time period
+the operator can “commit” the sodware change. Committing the
+system (phase four) changes the behaviour of the system. If an error
+occurs ader a commit then the system will restart using the new
+sodware and not revert to the old sodware.
+
+188
+
+CHAPTER 8. CASE STUDIES
+
+Interestingly, almost exactly the same mechanism is used in the X2000
+system [63] developed by NASA, for their deep-space applications, where
+sodware applications also have to be upgraded without stopping the system.
+In addition the BMR upgrade system had to allow for the possibility
+that a node in the distributed system was “out-of-service” at the time when
+the sodware upgrade was being performed. In this case, when the node
+was re-introduced to the system it would learn about any changes that
+had been made to the system during the time it was unavailable, and any
+necessary sodware upgrades would be performed.
+
+8.4.2
+
+Alteon SSL accelerator
+
+The Alteon SSL3 Accelerator was the first product to be produced ader
+Bluetail AB was acquired by Alteon Web Systems. An SSL accelerator is a
+hardware appliance containing special purpose hardware for speeding up
+cryptographic computations. The SSL accelerator is marketed and sold by
+Nortel Networks. The control system for the SSL accelerator is written in
+Erlang.
+According to Infonetics Research, the Alteon SSL Accelerator is the leading SSL Accelerator appliance in the market.
+With more SSL Accelerators deployed than any other vendor,
+Nortel Networks leads the market with innovative new applications and features such as back-end encryption, integrated
+load balancing, session persistence, application address translation, Layer 7 filtering, and secure global server load balancing (GSLB). Ader winning all evaluation categories, Network
+Computing named Nortel Networks Alteon SSL Accelerator
+“King of the Hill” in their latest SSL Accelerator bake-oc, citing industry-leading performance, features, and manageability
+as distinguishing attributes. — [53]
+3
+
+Secure Socket Layer.
+
+8.4. SMALLER PRODUCTS
+
+189
+
+The SSL accelerator is produced as a hardware appliance. Interestingly
+it was produced in a very short time (less than one year) and rapidly
+became market leader having won the “best in test” awards in all categories
+awarded by “Network Computing.”
+The sodware architecture for the SSL accelerator was derived from the
+generic architecture used in the Bluetail Mail Robustifier.
+
+8.4.3
+
+Quantitative properties of the code
+
+Unfortunately, Nortel Networks would not let me analyse their source code
+in any detail, so I can only report on the grossed up properties of their
+code. This data is derived for all Bluetail/Alteon Erlang products. It does
+not distinguish the individual products:
+Number of Erlang modules
+253
+Clean modules
+122
+Dirty modules
+131
+Number of lines of code
+74440
+Total number of Erlang functions
+6876
+Total number of clean functions
+6266
+Total number of dirty functions
+610
+Percentage of dirty functions/code lines 0.82%
+The products made extensive use of the OTP behaviours using 103
+behaviours in all. Again gen_server dominated. The number of times
+the dicerent behaviours were used were:
+gen_server (56), supervisor (19), application (15), gen_event (9),
+rpc_server (2), gen_fsm (1), supervisor_bridge (1).
+There is not so much to say about these figures, apart from the fact that
+at first sight the AXD project used relatively longer functions and relatively
+fewer behaviours than the Bluetail/Alteon projects.
+I interviewed the people who had programmed the SSL accelerator.
+They told me that in practice the architecture worked well and that failures
+due to sodware unrecoverable sodware errors had not occurred, but that
+they kept no records which could confirm this observation.
+
+190
+
+CHAPTER 8. CASE STUDIES
+
+They also said that the product upgrade mechanism had evolved beyond that developed in the OTP system. Any product release increment
+had to be designed in such a way that it was totally reversible. That is,
+when planning to go from version N of the system to version N+1 they
+would not only have to write code to go from version N to version N+1 but
+also they would have to write code to go from version N+1 to version N.
+This discipline was strictly followed, it was therefore possible to “rollback” the system from its current incarnation to the very first release. For
+commercial reasons, Nortel did not wish to release any detailed information about the details of this process.
+
+8.5 Discussion
+Before I started these case studies I had a fairly clear idea as to what parameters it would be possible to measure. The ultimate test of a technology
+is ask the users of the technology the following question:
+“Does it work?”
+If you ask this question to the people at Ericsson or Nortel they shake
+their heads in amazement and say:
+“Of course it works!”
+I had hoped that they would be able to provide me with clearly documented evidence that the system does indeed work in the manner that I
+have described in this thesis. I would liked to have found evidence in the
+log files that the code upgrades had worked, that the system had crashed
+and recovered, that the system had run for thousands of hours without
+interruption etc.
+The people who I interviewed were happy to tell me that this was the
+case, that code-upgrades etc did work as expected. But they could not
+produce any collaborative evidence that this was the case (ie there were
+no records in the log files that code upgrades etc had occurred).
+The reason that there was no documentary evidence was that the system had not been instrumented in such a way as to report to the log files
+that things like code upgrade had occurred, and thus there was no lasting
+evidence. Interestingly there was no counter-evidence to suggest that the
+
+8.5. DISCUSSION
+
+191
+
+procedures had failed. I assume that if the procedures had failed then
+there would have been a lot of trouble reports etc which documented this
+fact.
+Evidence for the long-term operational stability of the system had also
+not been collected in any systematic way. For the Ericsson AXD301 the
+only information on the long-term stability of the system came from a
+power-point presentation showing some figures claiming that a major customer had run an 11 node system with a 99.9999999% reliability, though
+how these figure had been obtained was not documented.
+In the case of the BMR and the SSL accelerator there was no hard
+evidence that the system had run reliably for extended periods of time.
+The reason for this is that such information is not recorded in the log files.
+The BMR is, of course, a fault-tolerant distributed system, having several interconnected nodes. In such a system the failure of an individual
+node is not a “noteworthy event,” since the system is designed from the
+beginning to survive the crash of a single node.
+If single nodes do crash (which they obviously do, since there is anecdotal evidence that this is the case) then the performance of the system
+as a whole is slightly degraded, but not to the point where it becomes an
+operational problem.
+I am unaware of any entire system failures (where all nodes fail)—were
+this to be the case I would suspect that this is due to a massive hardware
+failure acecting all machines in the system. Such failures appear to be
+extremely rare, and even if they did occur the cause of failure has nothing
+to do with the sodware, but is an entirely dicerent hardware issue.
+In a distributed system the perception of failure, and even our language
+for talking about failure need modification. It hardly makes sense to talk
+about total system failure (since this is such an uncommon event)—instead
+we need to talk about some measure of degradation of service quality.
+The sodware systems in the case study are so reliable that the people
+operating these system are inclined to think that they are error-free. This is
+not the case, indeed sodware errors did occur at run-time but these errors
+were quickly corrected so that nobody ever noticed that the errors had
+occurred. To get accurate statistics on the long-term stability one would
+have to record all start and stopping times of the system and measure a
+
+192
+
+CHAPTER 8. CASE STUDIES
+
+number of parameters that indicated the “health” of the system. Since the
+system appears to be entirely “healthy” such statistics never seem to have
+been collected in any systematic way.
+As regards an analysis of the AXD301 code base I had hoped to find
+evidence that the programming rules were being used correctly—I would
+liked, for example, to have seen a clear separation into “clean” and “dirty”
+code. I accept that certain parts of the system will always be written
+in a suspect manner (for reasons of eeciency, or for some other reason)
+but I would have liked this code to be separated in a clear manner from
+the main body of the code, and for more stringent test procedures to be
+applied to this code etc.
+This was not the case. A majority of the code was clean, but the
+distribution of dirty code was not a pure “step” function (ie there was no
+clear division where I could say, “this code is bad, stare at it carefully” and
+“this code is good”) but rather a spread out distribution where there were
+a small number of modules which had a lot of side-ecects (this doesn’t
+worry me), but more troublesome a largish number of modules with only
+one or two calls to dirty primitives.
+Without a deeper understanding of the code than is possible here it is
+impossible to say if this is in the nature of the problem, and that these calls
+with potential side-ecects introduce problems into the system, or if they
+are harmless.
+In any case, the message is clear. Programming rules alone are insuecient to cause the system to be written in a particular way. If one wished
+to enforce the partitioning of code into clean and dirty code then tool support would have to be added and the policies would have to be enforced
+in some manner. Whether or not this is desirable is debatable—probably
+the best approach is to allow the rules to be broken and hope that the
+programmers know what they are doing when they break a programming
+rule.
+The ultimate test of a technology is, of course, the “did-it-work test.” In
+the case of the AXD301 and the Nortel SSL accelerator the answer was a
+resounding “yes.” Both these products are small niche products, but both
+of them are market leaders in their niches.

@@ -1,0 +1,1642 @@
+Making reliable
+distributed systems
+in the presence of
+sodware errors
+Final version (with corrections) — last update 20 November 2003
+
+Joe Armstrong
+A Dissertation submitted to
+the Royal Institute of Technology
+in partial fulfilment of the requirements for
+the degree of Doctor of Technology
+The Royal Institute of Technology
+Stockholm, Sweden
+December 2003
+
+Department of Microelectronics and Information Technology
+
+ii
+
+TRITA–IMIT–LECS AVH 03:09
+ISSN 1651–4076
+ISRN KTH/IMIT/LECS/AVH-03/09–SE
+and
+SICS Dissertation Series 34
+ISSN 1101–1335
+ISRN SICS–D–34–SE
+c
+Joe
+Armstrong, 2003
+Printed by Universitetsservice US-AB 2003
+
+iii
+
+To Helen, Thomas and Claire
+
+iv
+
+Abstract
+he work described in this thesis is the result of a research program
+started in 1981 to find better ways of programming Telecom applications. These applications are large programs which despite careful
+testing will probably contain many errors when the program is put into
+service. We assume that such programs do contain errors, and investigate
+methods for building reliable systems despite such errors.
+The research has resulted in the development of a new programming
+language (called Erlang), together with a design methodology, and set of
+libraries for building robust systems (called OTP). At the time of writing
+the technology described here is used in a number of major Ericsson, and
+Nortel products. A number of small companies have also been formed
+which exploit the technology.
+The central problem addressed by this thesis is the problem of constructing reliable systems from programs which may themselves contain
+errors. Constructing such systems imposes a number of requirements on
+any programming language that is to be used for the construction. I discuss
+these language requirements, and show how they are satisfied by Erlang.
+Problems can be solved in a programming language, or in the standard libraries which accompany the language. I argue how certain of the
+requirements necessary to build a fault-tolerant system are solved in the
+language, and others are solved in the standard libraries. Together these
+form a basis for building fault-tolerant sodware systems.
+No theory is complete without proof that the ideas work in practice. To
+demonstrate that these ideas work in practice I present a number of case
+studies of large commercially successful products which use this technology. At the time of writing the largest of these projects is a major Ericsson
+
+T
+
+v
+
+vi
+
+ABSTRACT
+
+product, having over a million lines of Erlang code. This product (the
+AXD301) is thought to be one of the most reliable products ever made by
+Ericsson.
+Finally, I ask if the goal of finding better ways to program Telecom
+applications was fulfilled—I also point to areas where I think the system
+could be improved.
+
+Contents
+Abstract
+
+v
+
+1 Introduction
+1.1 Background . . . . . . . . . .
+Ericsson background . . . . .
+Chronology . . . . . . . . . .
+1.2 Thesis outline . . . . . . . . .
+Chapter by chapter summary
+
+.
+.
+.
+.
+.
+
+1
+2
+2
+2
+7
+7
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+11
+12
+13
+16
+19
+21
+22
+22
+24
+25
+26
+26
+27
+28
+29
+30
+31
+32
+
+2 The
+2.1
+2.2
+2.3
+2.4
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+Architectural Model
+Definition of an architecture . . . . . . . . . . . .
+Problem domain . . . . . . . . . . . . . . . . . .
+Philosophy . . . . . . . . . . . . . . . . . . . . .
+Concurrency oriented programming . . . . . . .
+2.4.1 Programming by observing the real world
+2.4.2 Characteristics of a COPL . . . . . . . . .
+2.4.3 Process isolation . . . . . . . . . . . . . .
+2.4.4 Names of processes . . . . . . . . . . . .
+2.4.5 Message passing . . . . . . . . . . . . . .
+2.4.6 Protocols . . . . . . . . . . . . . . . . . .
+2.4.7 COP and programmer teams . . . . . . .
+2.5 System requirements . . . . . . . . . . . . . . . .
+2.6 Language requirements . . . . . . . . . . . . . . .
+2.7 Library requirements . . . . . . . . . . . . . . . .
+2.8 Application libraries . . . . . . . . . . . . . . . .
+2.9 Construction guidelines . . . . . . . . . . . . . .
+2.10 Related work . . . . . . . . . . . . . . . . . . . .
+vii
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+viii
+3 Erlang
+3.1 Overview . . . . . . . . . . . . . . . . . .
+3.2 Example . . . . . . . . . . . . . . . . . . .
+3.3 Sequential Erlang . . . . . . . . . . . . . .
+3.3.1 Data structures . . . . . . . . . . .
+3.3.2 Variables . . . . . . . . . . . . . .
+3.3.3 Terms and patterns . . . . . . . .
+3.3.4 Guards . . . . . . . . . . . . . . .
+3.3.5 Extended pattern matching . . . .
+3.3.6 Functions . . . . . . . . . . . . . .
+3.3.7 Function bodies . . . . . . . . . .
+3.3.8 Tail recursion . . . . . . . . . . .
+3.3.9 Special forms . . . . . . . . . . . .
+3.3.10 case . . . . . . . . . . . . . . . . .
+3.3.11 if . . . . . . . . . . . . . . . . . .
+3.3.12 Higher order functions . . . . . . .
+3.3.13 List comprehensions . . . . . . . .
+3.3.14 Binaries . . . . . . . . . . . . . . .
+3.3.15 The bit syntax . . . . . . . . . . .
+3.3.16 Records . . . . . . . . . . . . . . .
+3.3.17 epp . . . . . . . . . . . . . . . . .
+3.3.18 Macros . . . . . . . . . . . . . . .
+3.3.19 Include files . . . . . . . . . . . .
+3.4 Concurrent programming . . . . . . . . .
+3.4.1 register . . . . . . . . . . . . . . .
+3.5 Error handling . . . . . . . . . . . . . . .
+3.5.1 Exceptions . . . . . . . . . . . . .
+3.5.2 catch . . . . . . . . . . . . . . . .
+3.5.3 exit . . . . . . . . . . . . . . . . .
+3.5.4 throw . . . . . . . . . . . . . . . .
+3.5.5 Corrected and uncorrected errors
+3.5.6 Process links and monitors . . . .
+3.6 Distributed programming . . . . . . . . .
+3.7 Ports . . . . . . . . . . . . . . . . . . . . .
+3.8 Dynamic code change . . . . . . . . . . .
+
+ABSTRACT
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+39
+39
+41
+44
+44
+46
+47
+48
+49
+50
+52
+52
+54
+54
+55
+55
+57
+58
+60
+63
+64
+64
+66
+66
+67
+68
+69
+70
+71
+72
+72
+73
+76
+77
+78
+
+ix
+3.9 A type notation . . . . . . . . . . . . . . . . . . . . . . . .
+3.10 Discussion . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4 Programming Techniques
+4.1 Abstracting out concurrency . . . . . . . . .
+4.1.1 A fault-tolerant client-server . . . . .
+4.2 Maintaining the Erlang view of the world . .
+4.3 Error handling philosophy . . . . . . . . . .
+4.3.1 Let some other process fix the error
+4.3.2 Workers and supervisors . . . . . .
+4.4 Let it crash . . . . . . . . . . . . . . . . . .
+4.5 Intentional programming . . . . . . . . . . .
+4.6 Discussion . . . . . . . . . . . . . . . . . . .
+5 Programming Fault-tolerant Systems
+5.1 Programming fault-tolerance . . . . . . .
+5.2 Supervision hierarchies . . . . . . . . . .
+5.2.1 Diagrammatic representation . .
+5.2.2 Linear supervision . . . . . . . .
+5.2.3 And/or supervision hierarchies .
+5.3 What is an error? . . . . . . . . . . . . .
+5.3.1 Well-behaved functions . . . . .
+6 Building an Application
+6.1 Behaviours . . . . . . . . . . . . . .
+6.1.1 How behaviours are written .
+6.2 Generic server principles . . . . . . .
+6.2.1 The generic server API . . .
+6.2.2 Generic server example . . .
+6.3 Event manager principles . . . . . .
+6.3.1 The event manager API . . .
+6.3.2 Event manager example . . .
+6.4 Finite state machine principles . . . .
+6.4.1 Finite state machine API . .
+6.4.2 Finite state machine example
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+80
+82
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+85
+86
+92
+101
+104
+104
+106
+107
+109
+111
+
+.
+.
+.
+.
+.
+.
+.
+
+115
+116
+118
+120
+121
+122
+123
+126
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+129
+129
+131
+132
+132
+135
+137
+139
+141
+141
+143
+144
+
+x
+
+ABSTRACT
+6.5
+
+6.6
+
+6.7
+6.8
+
+Supervisor principles . . . .
+6.5.1 Supervisor API . . .
+6.5.2 Supervisor example
+Application principles . . .
+6.6.1 Applications API . .
+6.6.2 Application example
+Systems and releases . . . .
+Discussion . . . . . . . . . .
+
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+
+146
+146
+147
+153
+153
+154
+156
+157
+
+7 OTP
+161
+7.1 Libraries . . . . . . . . . . . . . . . . . . . . . . . . . . . 163
+8 Case Studies
+8.1 Methodology . . . . . . . . . . . . . . . .
+8.2 AXD301 . . . . . . . . . . . . . . . . . . .
+8.3 Quantitative properties of the sodware . .
+8.3.1 System Structure . . . . . . . . . .
+8.3.2 Evidence for fault recovery . . . .
+8.3.3 Trouble report HD90439 . . . . .
+8.3.4 Trouble report HD29758 . . . . .
+8.3.5 Deficiencies in OTP structure . . .
+8.4 Smaller products . . . . . . . . . . . . . .
+8.4.1 Bluetail Mail Robustifier . . . . . .
+8.4.2 Alteon SSL accelerator . . . . . .
+8.4.3 Quantitative properties of the code
+8.5 Discussion . . . . . . . . . . . . . . . . . .
+9 APIs and Protocols
+9.1 Protocols . . . . . . . . . .
+9.2 APIs or protocols? . . . . .
+9.3 Communicating components
+9.4 Discussion . . . . . . . . . .
+
+.
+.
+.
+.
+
+.
+.
+.
+.
+
+.
+.
+.
+.
+
+.
+.
+.
+.
+
+.
+.
+.
+.
+
+.
+.
+.
+.
+
+.
+.
+.
+.
+
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+167
+168
+170
+171
+174
+177
+177
+180
+181
+185
+185
+188
+189
+190
+
+.
+.
+.
+.
+
+193
+195
+197
+198
+199
+
+10 Conclusions
+201
+10.1 What has been achieved so far? . . . . . . . . . . . . . . . 201
+
+xi
+10.2 Ideas for future work . . . . . . . . . . . .
+10.2.1 Conceptual integrity . . . . . . . .
+10.2.2 Files and bang bang . . . . . . . .
+10.2.3 Distribution and bang bang . . . .
+10.2.4 Spawning and bang bang . . . . .
+10.2.5 Naming of processes . . . . . . . .
+10.2.6 Programming with bang bang . . .
+10.3 Exposing the interface - discussion . . . .
+10.4 Programming communicating components
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+202
+202
+203
+204
+205
+205
+206
+207
+208
+
+A Acknowledgments
+
+211
+
+B Programming Rules and Conventions
+
+215
+
+C UBF
+
+247
+
+D Colophon
+
+275
+
+References
+
+277
+
+xii
+
+ABSTRACT
+
+1

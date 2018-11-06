@@ -1,0 +1,1289 @@
+6
+
+Building an
+Application
+
+The previous chapter introduced a general model for programming
+fault-tolerant systems, and introduced the idea of a “supervision
+tree” which is used to monitor the behaviour of the system. This
+chapter moves from a general theory to the specific implementation of
+supervisors as implemented in the OTP system.
+To illustrate the supervision principles I build a simple OTP application. This application has a single supervisor process which manages
+three worker processes. The three worker processes are instances of the
+gen_server, gen_event and gen_fsm behaviours.
+
+T
+6.1
+
+Behaviours
+
+Applications which use the OTP sodware are built from a number of “behaviours.” Behaviours are abstractions of common programming patterns,
+which can be used as the building blocks for implementing systems in
+Erlang. The behaviours discussed in the remainder of this chapter are as
+follows:
+• gen_server — this is used to build servers which are used in clientserver models.
+• gen_event — this is used for building event handlers. Event handlers are things like error loggers, etc. An event handler is something
+129
+
+130
+
+CHAPTER 6. BUILDING AN APPLICATION
+which responds to a stream of events, it does not necessarily reply to
+the processes which send events to the handler.
+• gen_fsm — this is used for implementing finite state machines.
+• supervisor — this is used for implementing supervision trees.
+• application — this is used as a container for packaging completed
+applications.
+
+For each behaviour I will present the general principles involved, the
+specific details of the programming API and give a complete example of
+how to make an instance of the behaviour.
+In OTP systems are built in the following hierarchical manner:
+• Releases — releases are at the top of the hierarchy. A release contains
+all the information necessary to build and run a system. A release
+will consists of a sodware archive (packed in some form) and a set
+of procedures for installing the release. The process of installing a
+release can be highly complicated, since upgrade releases oden have
+to be installed without stopping the target systems. An OTP release
+packages all this complexity into a single abstract unit. Internally a
+release consists of zero or more applications.
+• Applications — applications are simpler than releases, they contain
+all the code and operating procedures necessary to run a single
+application, and not the entire system. When a release is composed
+of multiple applications then the system should have been structured
+in such a way as to ensure that the dicerent applications are largely
+independent from each other, or that that the dicerent applications
+have strictly hierarchical dependencies.
+• Supervisors — OTP applications are commonly built from a number
+of instances of supervisors.
+• Workers — OTP supervisors supervise worker nodes. Worker nodes
+are usually instances of the gen_server, gen_event or gen_fsm
+behaviours.
+
+6.1. BEHAVIOURS
+
+131
+
+Now for the application. The application is built bottom-up starting
+with the worker nodes. I will create three worker nodes (one instance
+of each of the gen_server, gen_event and gen_fsm behaviours.) The
+worker nodes are managed in a simple supervision tree, and the supervision tree is packaged into an application. I start with the worker nodes.
+
+6.1.1 How behaviours are written
+The OTP behaviours are written using a programming style which is similar to that used in the examples in section 4.1. There is however, one major
+dicerence. Instead of parameterising the behaviour with an arbitrary function, we parameterise the behaviour with the name of a module. This
+module must export a specific number of pre-defined functions. Exactly
+which functions must be exported depends upon the behaviour being defined. The complete APIs are documented in the behaviour manual pages.
+As an example, assume that xyz is an instance of the gen_server
+behaviour, then xyz.erl has to contain code like the following:
+-module(xyz).
+-behaviour(gen_server).
+-export([init/1, handle_call/3, handle_cast/2,
+handle_info/2, terminate/2, change_code/3]).
+...
+xyz.erl should export the six routines init/1 ... shown above. To
+create an instance of a gen_server we call:
+gen_server:start(ServerName, Mod, Args, Options)
+where ServerName names the server. Mod is the atom xyz. Args is
+an argument passed to xyz:init/1 and Options is an argument which
+controls the behaviour of the server itself. Options is never passed as an
+argument to the module xyz.
+The method used for parameterising a behaviour in the examples
+shown on pages 86–101 is somewhat more general than the method used
+
+132
+
+CHAPTER 6. BUILDING AN APPLICATION
+
+in the OTP system. The reasons for the dicerences are largely historical,
+the first behaviours being written before funs were added to Erlang.
+
+6.2 Generic server principles
+Chapter 4 introduced the idea of a generic server. The generic server
+provides an “empty” server, that is, a framework from which instances of
+servers can be built. The examples in Chapter 4 were deliberately short,
+and illustrated the principles involved in making a generic server.
+In the OTP system the Erlang module gen_server is used to make
+client-server modules. gen_server can be parameterised in a number of
+dicerent ways to make a range of dicerent types of servers.
+
+6.2.1
+
+The generic server API
+
+To understand the gen_server API it is helpful to see the flow of control
+between the server and the application. I will describe the subset of the
+gen_server API that I have used in the examples in this chapter.
+gen_server:start(Name1,Mod,Arg,Options) -> Result where
+Name1 = Name of server (see note 1).
+Mod = Name of callback module (see note 3).
+Arg = An argument which is passed to Mod:init/1 (see note 4).
+Options = A set of options which controls the workings of the
+server.
+Result = The result obtained by evaluating Mod:init/1 (see note
+4).
+gen_server:call(Name2,Term) -> Result where
+Name2 = Name of server (see note 2).
+
+6.2. GENERIC SERVER PRINCIPLES
+
+133
+
+Term = Argument passed to Mod:handle_call/3 (see note 4).
+Result = The result obtained by evaluating Mod:handle_call/3
+(see note 4).
+gen_server:cast(Name2,Term) -> ok where
+Name2 = Name of server (see note2).
+Term = An argument passed to Mod:handle_cast/3 (see note 4).
+Notes:
+1. Name1 is a term like {local,Name2} or {global,Name2}. Starting a local server creates a server on a single node. Starting a global
+server starts a server which can be transparently accessed from any
+node in a set of distributed Erlang nodes.
+2. Name2 is an atom.
+3. Mod should export some or all of the following functions: init/1,
+handle_call/3, handle_cast/3, terminate/2. These routines
+will be called by gen_server.
+4. Some of the arguments to the functions in gen_server appear unchanged as the argument to the functions in Mod. Similarly, some of
+the terms contained in the return values from the functions in Mod
+reappear in the return values of the functions in gen_server.
+The callback routines in Mod have the following APIs:
+Mod:init(Arg) -> {ok,State}|{stop,Reason}
+This routine attempts to start the server:
+Arg
+is the third argument supplied to gen_server:start/4.
+
+134
+
+CHAPTER 6. BUILDING AN APPLICATION
+{ok,State} means that starting the server succeeded. The internal state of the server becomes State and the original call to
+gen_server:start will return {ok, Pid} where Pid identifies the server.
+{stop,Reason}
+means starting the server failed in which case the original call
+to gen_server:start will return {error,Reason}.
+
+Mod:handle_call(Term,From,State) -> {reply,R,S1}
+This gets called when the user calls gen_server:call(Name,Term).
+Term is any term.
+From identifies the client.
+State is the current state of the server.
+{reply,R,S1} causes the return value of gen_server:call/2 to
+become R and the new state of the server to become S1.
+Mod:handle_cast(Term,State) -> {noreply, S1}|{stop,R,S1}
+This gets called when the user calls gen_server:cast(Name,Term).
+Term is any term.
+State is the current state of the server.
+{noreply,S1} causes the state of the server to change to S1.
+{stop,R,S1} causes the server to stop. It will be stopped by
+calling Mod:terminate(R,S1)
+Mod:terminate(R, S) -> Void
+This routine gets called when the server stops. The return value is
+ignored.
+R is the reason for termination.
+S is the current state of the server.
+
+6.2. GENERIC SERVER PRINCIPLES
+
+6.2.2
+
+135
+
+Generic server example
+
+This example makes a simple Key–Value server which is implemented
+using gen_server. The Key–Value server is implemented with a callback module called kv1 which is shown in figure 6.1.
+Line 2 of kv tells the compiler that this module is a call-back module
+for the gen_server behaviour. The compiler will then issue warnings if
+the module does not export the correct set of call-back routines which are
+needed by gen_server.
+kv.erl exports a number of client functions (line 4), and a number of
+callback functions (lines 6 and 7. The client functions can be called from
+anywhere within the system. The callback functions will only be called
+from within the gen_server module.
+kv:start() starts the server by calling gen_server:start_link/4.
+The first argument to gen_server:start_link/4 is the location of the
+server. In our example the location is {local,kv} which means that the
+server is a locally registered process with name kv. Several other values are
+permitted for the location. These include the value {global,Name} which
+would register the server with a global name (instead of a local name). Use
+of a global name allows the server to be accessed in a distributed Erlang
+system from any node in the system.
+The remaining arguments to gen_server:start/4 are the callback
+module name (kv), an initial argument (arg1) and a set of options controlling debugging etc ([]). Setting this to [{debug,[trace,log]}] would
+turn on debugging and tracing to a log file.
+When gen_server:start_link/4 is called it will initialise its internal
+data structures by calling kv:init(Arg) where Arg is the third argument
+that was supplied in the call to gen_server:start_link/4. For normal
+operation init/1 should return a tuple of the form {ok,State}.
+The client routines which are exported from kv in lines 18–21. store/2
+and lookup/1 are implemented with gen_server:call/2.
+Internally remote procedure calls are implemented by calling the callback routine handle_call/2. Lines 23–29 implement the callback routines necessary to implement the server-side of the remote procedure calls.
+1
+
+Line 26 of kv.erl has a deliberate error, ignore this for now.
+
+136
+1
+2
+
+CHAPTER 6. BUILDING AN APPLICATION
+
+-module(kv).
+-behaviour(gen_server).
+
+3
+4
+
+-export([start/0, stop/0, lookup/1, store/2]).
+
+5
+6
+7
+
+-export([init/1, handle_call/3, handle_cast/2,
+terminate/2]).
+
+8
+9
+10
+
+start() ->
+gen_server:start_link({local,kv},kv,arg1,[]).
+
+11
+12
+
+stop()
+
+-> gen_server:cast(kv, stop).
+
+13
+14
+15
+16
+
+init(arg1) ->
+io:format("Key-Value server starting~n"),
+{ok, dict:new()}.
+
+17
+18
+19
+
+store(Key, Val) ->
+gen_server:call(kv, {store, Key, Val}).
+
+20
+21
+
+lookup(Key) -> gen_server:call(kv, {lookup, Key}).
+
+22
+23
+24
+25
+26
+27
+28
+29
+
+handle_call({store, Key, Val}, From, Dict) ->
+Dict1 = dict:store(Key, Val, Dict),
+{reply, ack, Dict1};
+handle_call({lookup, crash}, From, Dict) ->
+1/0; %% <- deliberate error :-)
+handle_call({lookup, Key}, From, Dict) ->
+{reply, dict:find(Key, Dict), Dict}.
+
+30
+31
+
+handle_cast(stop, Dict) -> {stop, normal, Dict}.
+
+32
+33
+34
+
+terminate(Reason, Dict) ->
+io:format("K-V server terminating~n").
+
+Figure 6.1: A simple server
+
+6.3. EVENT MANAGER PRINCIPLES
+
+137
+
+The first argument to handle_call is a pattern which must match the
+second argument used in the calls to gen_server:call/2. The second
+argument is the state of the server. In normal operation handle_call
+should return a tuple of the form {reply,R,State1} where R is the return value of the remote procedure call (which will be returned to the
+client, and become the return value of gen_server:call/2) and State1
+which will become the new value of the state of the server.
+gen_server:cast(kv,stop) which is called by stop/0 in line 12 is
+used to stop the server. The second argument stop reappears as the first
+argument to handle_cast/2 in line 31, the second argument is the state
+of the server. handle_cast returns {stop,Reason,State} which will
+force the generic server to call kv:terminate(Reason,State). This is
+to give the server a chance to perform any final operations that it wishes
+to perform before exiting. When terminate/2 returns, the generic server
+will be stopped and all name registrations removed.
+In this example we have only shown a simple example of the use of
+the generic server. The manual pages for gen_server give all the options
+for the values that the various arguments to the callback functions and
+the control functions to gen_server can take. The generic server can be
+parameterised in a large number of dicerent ways, making it easy to run
+the system as a local server or as a global server in a network of distributed
+Erlang nodes.
+The generic server also has a number of in-built debugging aids which
+are automatically made available to the programmer. In the event of an
+error occurring in a server which has been built using gen_server a
+complete trace dump of what went wrong will automatically be added to
+the system error log. This information is usually suecient to allow postmortem debugging of the server.
+
+6.3
+
+Event manager principles
+
+The event manager behaviour gen_event provides a general framework
+for building application-specific event handling routines. Event managers
+can be built for tasks like:
+
+138
+
+CHAPTER 6. BUILDING AN APPLICATION
+• error logging.
+• alarm handling.
+• debugging.
+• equipment management.
+
+Event managers provide named objects to which events can be sent.
+Zero or more event handlers can be installed within a given event manager.
+When an event arrives at an event manager it will be processed by all
+the event handlers which have been installed within the event manager.
+Event managers can be manipulated at run-time. In particular we can
+install an event handler, remove an event handler or replace one event
+handler with a dicerent handler.
+We start with a few definitions:
+• Event — something which happens.
+• Event Manager — a program which coordinates processing of events
+of the same category. The event manager provides a named object
+to which events can be sent.
+• Notification — the act of sending an event to an event manager.
+• Event Handler — a function which can process events. The event
+handler must be a function of type:
+State x Event -> State’
+The event manager maintains a list of module × state 2-tuples of the
+form {M,S}. We call such a list a module – state (MS) list.
+Suppose that the internal state of the event manager is represented by
+the MS list:
+[{M1, S1}, {M2, S2}, ...]
+when an event E is received by the event manager it replaces this list
+by the list:
+
+6.3. EVENT MANAGER PRINCIPLES
+
+139
+
+[{M1, S1New}, {M2, S2New}, ...].
+where {ok, SiNew} = Mi:handle_event(E, Si}.
+The event manager can be thought of as a generalisation of a conventional finite state machine, where instead of a single state, we maintain a
+“set” of states and a set of state transition functions.
+As might be expected, there are also a number of interface functions in
+the gen_event API to allow manipulation of the {Module,State} pairs
+in the server. gen_event is more powerful than might be imagined from
+this simple introduction. The full details are best appreciated by reading
+the tutorial on event handling which is part of the OTP documentation.
+
+6.3.1
+
+The event manager API
+
+The event manager (gen_event) exports the following routines:
+gen_event:start(Name1) -> {ok, Pid}|{error,Why}
+Create a new event manager.
+Name1 is the name of the event manager (see note 1).
+{ok,Pid} means the event manager started successfully. Pid is the
+process Pid of the event manager.
+{error,Why} is returned if an event manager cannot be started.
+gen_event:add_handler(Name2,Mod,Args) -> ok | Error
+Adds a new handler to the event manager. If the old state of the
+event manager was L then if this operation succeeds the new state
+of the event manager will be [{Mod,S}|L] where S is obtained by
+evaluating Mod:init(Args).
+Name2 is the name of the event manager (see note 1).
+Mod is the name of a callback module (see note 2).
+Arg = An argument which is passed to Mod:init/1.
+
+140
+
+CHAPTER 6. BUILDING AN APPLICATION
+
+gen_event:notify(Name2,E) -> ok
+Sends an event E to the event manager. If the state of the event
+manager is a set of {Mi,Si} pairs and an event E is received then
+the state of the event manager changes to a set of {Mi,SiNew} pairs
+where {ok,SiNew}=Mi:handle_event(E, Si)
+gen_event:call(Name2,Mod,Args) -> Reply
+Perform an operation on one of the handlers in the event manager.
+If the state of the event manager contains a tuple {Mod,S} then
+Mod:handle_call(Args, S) is called. Reply is derived from the
+return value of this call.
+gen_event:stop(Name2) -> ok
+Stops the event manager.
+Notes:
+1. Event mangers follow the same naming conventions used for generic
+servers.
+2. An event handler must export some of or all the following functions:
+init/1, handle_event/2, handle_call/3, terminate/2.
+The event handler modules have the following API:
+Mod:init(Args) -> {ok,State} where
+Args comes from gen_event:add_handler/3.
+State is the initial value of the state associated with this event
+handler.
+Mod:handle_event(E,S) -> {ok,S1} where
+E comes from the second argument to gen_event:notify/2.
+S is the initial value of the state associated with this event handler.
+
+6.4. FINITE STATE MACHINE PRINCIPLES
+
+141
+
+S1 is the new value of the state associated with this event handler.
+Mod:handle_call(Args, State) -> {ok,Reply,State1} where
+Args comes from the second argument to gen_event:call/2.
+State is the initial value of the state associated with this event
+handler.
+Reply becomes the return value of gen_event:call/2
+State1 is the new value of the state associated with this event
+handler.
+Mod:terminate(Reason, State) -> Void where
+Reason tells why the event manager is being stopped.
+State is the current value of the state associated with this event
+handler.
+
+6.3.2
+
+Event manager example
+
+Figure 6.2 shows how gen_event can be used to build a simple event
+logger. The error logger keeps track of the last five error messages, and
+it can display the last five error messages in response to notification of a
+report event.
+Notice that the code in simple_logger.erl is purely sequential. At
+this point the observant reader should also have noticed the similarity
+between the forms of the arguments to gen_server and to gen_event.
+In general the arguments to routines like start, stop, handle_call etc
+in the dicerent behaviour modules are chosen to be as similar as possible.
+
+6.4
+
+Finite state machine principles
+
+Many applications (for example protocol stacks) can be modeled as finite
+state machines (FSMs). FSMs can be programmed using the finite state
+
+142
+1
+2
+
+CHAPTER 6. BUILDING AN APPLICATION
+
+-module(simple_logger).
+-behaviour(gen_event).
+
+3
+4
+
+-export([start/0, stop/0, log/1, report/0]).
+
+5
+6
+7
+
+-export([init/1, terminate/2,
+handle_event/2, handle_call/2]).
+
+8
+9
+
+-define(NAME, my_simple_event_logger).
+
+10
+11
+12
+13
+14
+15
+16
+17
+18
+
+start() ->
+case gen_event:start_link({local, ?NAME}) of
+Ret = {ok, Pid} ->
+gen_event:add_handler(?NAME,?MODULE,arg1),
+Ret;
+Other ->
+Other
+end.
+
+19
+20
+
+stop() -> gen_event:stop(?NAME).
+
+21
+22
+
+log(E) -> gen_event:notify(?NAME, {log, E}).
+
+23
+24
+25
+
+report() ->
+gen_event:call(?NAME, ?MODULE, report).
+
+26
+27
+28
+29
+
+init(arg1) ->
+io:format("Logger starting~n"),
+{ok, []}.
+
+30
+31
+
+handle_event({log, E}, S) -> {ok, trim([E|S])}.
+
+32
+33
+
+handle_call(report, S)
+
+-> {ok, S, S}.
+
+terminate(stop, _)
+
+-> true.
+
+trim([X1,X2,X3,X4,X5|_])
+trim(L)
+
+-> [X1,X2,X3,X4,X5];
+-> L.
+
+34
+35
+36
+37
+38
+
+Figure 6.2: A simple error logger
+
+6.4. FINITE STATE MACHINE PRINCIPLES
+
+143
+
+machine behaviour gen_fsm.
+A FSM can be described as a set of rules of the form:
+State(S) x Event(E) -> Actions (A) x State(S’)
+...
+Which we interpret as meaning:
+If we are in the state S and the event E occurs we should
+perform the actions A and make a transition to the state S’.
+If we choose to program a FSM using the gen_fsm behaviour then
+the state transition rules should be written as a number of Erlang functions
+which follow the following convention:
+StateName(Event, StateData) ->
+.. code for actions here ...
+{next_state, StateName’, StateData’}
+
+6.4.1
+
+Finite state machine API
+
+The finite state machine behaviour (gen_fsm) exports the following routines:
+gen_fsm:start(Name1,Mod,Arg,Options) -> Result
+This function works exactly like gen_server:start/4 which was
+discussed earlier.
+gen_fsm:send_event(Name1, Event) -> ok
+Send an event to FSM identified by Name1
+The callback module Mod must export the following functions:
+Mod:init(Arg) -> {ok,StateName,StateData}
+When a FSM starts it calls init/1 this is expected to return an
+initial state StateName and some data associated with the state
+StateData. When gen_fsm:send_event(..., Event) is next
+called the FSM will evaluate Mod:StateName(Event,StateData).
+
+144
+
+CHAPTER 6. BUILDING AN APPLICATION
+
+Mod:StateName(Event,SData) -> {nextstate,SName1,SData1}
+Step the FSM. StateName, Event and SData represent the current
+state of the FSM. The next state of the FSM should be SName1 and
+the data associated with the next state is SData1.
+
+6.4.2
+
+Finite state machine example
+
+To illustrate a typical FSM application I have written a simple packet assembler using gen_fsm. The packet assembler is in one of two states
+waiting or collecting. When it is in the waiting state it expects to
+be sent information containing a packet length, in which case it enters the
+collecting state. In the collecting state it expects to be sent a number
+of small data packets, which it has to assemble. When the length of all the
+small data packets equals the total packet length it prints the assembled
+packet and re-enters the waiting state.
+Figure 6.3 is a simple packet assembler written using gen_fsm. In
+line 11 we call gen_fsm:start_link/4 to start a local instance of the
+FSM behaviour—Note the similarity to gen_server:start_line/4 in
+Line 10 of Figure 6.1. The third argument to gen_server:start/4 reappears is passed as an argument to init/1 in line 17.
+The waiting state is modeled by the function waiting/2 (line 21)
+and the collecting state by collecting/2 (lines 24–34). The data associated with the state is stored in the second argument to these functions.
+The first argument of both these functions is provided by the second argument in the calls made to gen_fsm:send_event/2. So, for example,
+send_data/1 calls gen_fsm:send_event/2 with a second argument Len.
+This argument reappears as the first argument to waiting/2 in line 21.
+The state of the FSM is represented by a 3-tuple {Need,Len,Buff}.
+When collecting data, Need is the total number of bytes that should be
+collected, Len is the number which have actually been collected, and
+Buff is a bucer containing the bytes which have actually been collected.
+This 3-tuple appears as the second argument to collect/2 in line 24.
+We can illustrate the use of the packet assembler in a session with the
+Erlang shell:
+
+6.4. FINITE STATE MACHINE PRINCIPLES
+1
+2
+
+-module(packet_assembler).
+-behaviour(gen_fsm).
+
+3
+4
+
+-export([start/0, send_header/1, send_data/1]).
+
+5
+6
+
+-export([init/1,terminate/3,waiting/2,collecting/2]).
+
+7
+8
+
+-define(NAME, my_simple_packet_assembler).
+
+9
+10
+11
+
+start() ->
+gen_fsm:start_link({local, ?NAME},?MODULE,arg1,[]).
+
+12
+13
+
+send_header(Len) -> gen_fsm:send_event(?NAME, Len).
+
+14
+15
+
+send_data(Str)
+
+-> gen_fsm:send_event(?NAME, Str).
+
+16
+17
+18
+19
+
+init(arg1) ->
+io:format("Packet assembler starting~n"),
+{ok, waiting, nil}.
+
+20
+21
+22
+
+waiting(N, nil) ->
+{next_state, collecting, {N,0,[]}}.
+
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+
+collecting(Buff0, {Need, Len, Buff1}) ->
+L = length(Buff0),
+if
+L + Len < Need ->
+{next_state, collecting,
+{Need, Len+L, Buff1++Buff0}};
+L + Len == Need ->
+Buff = Buff1 ++ Buff0,
+io:format("Got data:~s~n", [Buff]),
+{next_state, waiting, nil}
+end.
+
+35
+36
+37
+38
+39
+
+terminate(Reason, State, Data) ->
+io:format("packet assembler terminated:"
+"~p ~n", [Reason]),
+true.
+
+Figure 6.3: A simple packet assembler
+
+145
+
+146
+
+CHAPTER 6. BUILDING AN APPLICATION
+> packet_assembler:start().
+{ok,<0.44.0>}
+> packet_assembler:send_header(9).
+ok
+> packet_assembler:send_data("Hello").
+ok
+> packet_assembler:send_data(" ").
+ok
+> packet_assembler:send_data("Joe").
+Got data:Hello Joe
+ok
+Again gen_fsm has more functionality than can be described here.
+
+6.5
+
+Supervisor principles
+
+Up to now we have concentrated on primitive behaviours which solve typical application problems, and a large part of an application can be written
+using the primitive client-server, event handling and FSM behaviours. The
+gen_sup behaviour is the first meta-behaviour which is used to glue together primitive behaviours into supervision hierarchies.
+
+6.5.1
+
+Supervisor API
+
+The supervisor API is extremely simple:
+supervisor:start_link(Name1,Mod,Arg) -> Result
+starts a supervisor but calling Mod:init(Arg)
+Mod must export init/1, where
+Mod:init(Arg) -> SupStrategy SupStrategy is a term describing
+the supervision tree.
+
+6.5. SUPERVISOR PRINCIPLES
+
+147
+
+SupStrategy is a term describing how workers in a supervision tree
+should be started, stopped or restarted. I will not describe this in any
+detail here. The example which follows contains a simple supervision tree
+which is explained here. Complete detail can be found in the supervisor
+manual pages.
+
+6.5.2
+
+Supervisor example
+
+The example in figure 6.4 monitors the three worker behaviours which
+were introduced earlier in this chapter. Recall that kv.erl included a
+deliberate error (Line 26 of figure 6.1) and that simple_logger.erl also
+had an error2 (which I didn’t mention). We will see what happens when
+these errors occur at run-time.
+The module simple_sup.erl (Figure 6.4) defines the behaviour of
+the supervisor. It starts in line 7 by calling supervisor:start_link/3
+— the calling conventions harmonise with the start and start_link
+functions exported by the other behaviours in the system. ?MODULE is a
+macro which expands to the current module name simple_sup. The final
+argument is set to nil. The supervisor method starts by calling init/1 in
+the specified callback module, with argument nil (the third argument to
+start_link/3).
+init/1 returns a data structure defining the shape of the supervision
+tree and the strategy to be used. The term {one_for_one,5,1000} (Line
+11) tell the supervisor to construct an “or” supervision tree (see page 122)—
+this is because the three activities being supervised are considered unrelated. The numbers 5 and 1000 specify a restart frequency—if the supervisor has to restart the processes which it is monitoring more than 5 times
+in 1000 seconds then it itself will fail.
+There are three objects in our supervision tree, but I will only describe
+how the packet assembler is added to the supervision tree. The other two
+behaviours follow the same principles as for the packet assembler.
+Lines 13–15 specify the behaviour of the packet assembler.
+The first item in the tuple describes how the packet assembler should
+2
+
+You did notice the error, I hope.
+
+148
+
+1
+2
+
+CHAPTER 6. BUILDING AN APPLICATION
+
+-module(simple_sup).
+-behaviour(supervisor).
+
+3
+4
+
+-export([start/0, init/1]).
+
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+
+start() ->
+supervisor:start_link({local, simple_supervisor},
+?MODULE, nil).
+init(_) ->
+{ok,
+{{one_for_one, 5, 1000},
+[
+{packet,
+{packet_assembler, start, []},
+permanent, 500, worker, [packet_assembler]},
+{server,
+{kv, start, []},
+permanent, 500, worker, [kv]},
+{logger,
+{simple_logger, start, []},
+permanent, 500, worker, [simple_logger]}]}}.
+
+Figure 6.4: A simple supervisor
+
+6.5. SUPERVISOR PRINCIPLES
+
+149
+
+be supervised. This starts on line 13. The atom packet is an arbitrary
+name (which must be unique for this instance of a supervisor) which can
+be used to refer to the node in the supervision tree.
+Because the objects which are being supervised are themselves instances of OTP behaviours then plugging them into the supervision tree
+is simple. The next argument (line 14) is a 3-tuple {M,F,A} which will be
+called by the supervisor to start the specified processes. The supervisor
+calls apply(M,F,A) when it wants to start a supervised process.
+The first argument permanent on line 15 says that the monitored process is to be a so-called “permanent” process. A permanent process will
+be automatically restarted by the supervisor if it fails.
+In addition to specifying how to start a supervised process, the supervised process itself must be written in a particular manner. It must for
+example, be possible for the supervisor to request the supervised process
+to terminate in an orderly manner. To do this the supervised processes
+must obey the so-called “Shutdown protocol.”
+To terminate a worker process the supervisor calls shutdown(P,How)
+where P is the Pid of the worker and How determines how the worker is to
+be stopped. shutdown is defined as follows:
+shutdown(Pid, brutal_kill) ->
+exit(Pid, kill);
+shutdown(Pid, infinity) ->
+exit(Pid, shutdown),
+receive
+{’EXIT’, Pid, shutdown} -> true
+end;
+shutdown(Pid, Time) ->
+exit(Pid, shutdown),
+receive
+{’EXIT’, Pid, shutdown} ->
+true
+after Time ->
+exit(Pid, kill)
+end.
+
+150
+
+CHAPTER 6. BUILDING AN APPLICATION
+
+If How is brutal_kill then the worker process is killed (see page 75).
+If How is infinity then a shutdown signal is sent to the worker process
+which should respond with an {’EXIT’,Pid,shutdown} message.
+If How is an integer T when the process is given T milliseconds to terminate. If a {’EXIT’,Pid,shutdown} is not received within T milliseconds
+then the process is unconditionally killed.
+In line 15 of figure 6.4 the integer 500 is a “shutdown time” which
+is needed in the shutdown protocol. It says that if the supervisor wishes
+to stop a supervised processe then it is to allow the process up to 500
+milliseconds to stop what it is doing.
+The worker argument means that the supervised process is a worker
+process (recall from page 119 that a supervised process can be either a
+worker or a supervisor process) and [packet_assembler] is a list of all
+modules used by this behaviour (this argument is needed for synchronising
+code change operations).
+Once everything has been defined, we can compile and run the supervisor. In the following transcript, I start a supervisor and trigger a number
+of errors in the supervised processes. The supervised processes die and
+are automatically restarted by the supervisor.
+The first example shows what happens when an error occurs in the
+packet assembler. We start the supervisor, and check the Pid of the packet
+assembler.
+1> simple_sup:start().
+Packet assembler starting
+Key-Value server starting
+Logger starting
+{ok,<0.30.0>}
+2> whereis(my_simple_packet_assembler).
+<0.31.0>
+The printout shows that the servers have started.
+Now we send a 3-byte length count, followed by 4 bytes of data:3
+3
+
+This was the second deliberate error and I’m sure you have already noticed it!
+
+6.5. SUPERVISOR PRINCIPLES
+
+151
+
+3> packet_assembler:send_header(3).
+ok
+4> packet_assembler:send_data("oops").
+packet assembler terminated:
+{if_clause,
+[{packet_assembler,collecting,2},
+{gen_fsm,handle_msg,7},
+{proc_lib,init_p,5}]}
+ok
+Packet assembler starting
+=ERROR REPORT==== 3-Jun-2003::12:38:07 ===
+** State machine my_simple_packet_assembler terminating
+** Last event in was "oops"
+** When State == collecting
+**
+Data == {3,0,[]}
+** Reason for termination =
+** {if_clause,[{packet_assembler,collecting,2},
+{gen_fsm,handle_msg,7},
+{proc_lib,init_p,5}]}
+This results in quite a lot of output. Firstly the packet assembler crashes,
+which accounts for the first error printout. Secondly, the supervisor detects
+that the packet assembler has crashed and so it restarts it—the message
+“Packet assembler starting” is printed when the process restarts. Finally there is a long and hopefully informative error message.
+The error message contains information about the state of the FSM
+at the point when it crashed. It tells us that the state of the FSM was
+collecting and that the data associated with this state was the 3-tuple
+{3,0,[]} and that the event which caused the FSM to crash was "oops".
+This information should be suecient to debug the FSM machine.
+In this case the output from the error logger is directed to standard
+output. In a production system the error logger would be configured to
+direct its output to stable storage. Analysis of the error log should be
+suecient for post-mortem debugging of the system.
+We can confirm that the supervisor has correctly restarted the packet
+
+152
+
+CHAPTER 6. BUILDING AN APPLICATION
+
+assembler; evaluating whereis(my_simple_packet_assembler) returns
+the Pid of the newly started packet assembler.
+6> whereis(my_simple_packet_assembler).
+<0.40.0>
+7> packet_assembler:send_header(6).
+ok
+8> packet_assembler:send_header("Ok now").
+Got data:Ok now
+ok
+In a similar manner we can evoke the deliberate error in the Key–Value
+server:
+12> kv:store(a,1).
+ack
+13> kv:lookup(a).
+{ok,1}
+14> spawn(fun() -> kv:lookup(crash) end).
+<0.49.0>
+K-V server terminating
+Key-Value server starting
+15>
+=ERROR REPORT==== 3-Jun-2003::12:54:10 ===
+** Generic server kv terminating
+** Last message in was {lookup,crash}
+** When Server state == {dict,1,
+16,
+16,
+... many lines removed ...
+** Reason for termination ==
+** {badarith,[{kv,handle_call,3},{proc_lib,init_p,5}]}
+15> kv:lookup(a).
+error
+
+6.6. APPLICATION PRINCIPLES
+
+153
+
+Note the kv:lookup(crash) must be evaluated in a temporary processes which is not linked to the query shell. This is because the supervisor
+was started with the call supervisor:start_link/4 and is thus linked
+to the query shell. Evaluating kv:lookup(crash) directly in the shell will
+crash the supervisor, which is probably not what was intended.4
+Note how the supervisor and pre-defined behaviours work together.
+The supervisor and the primitive behaviours were not designed in isolation, but were designed to complement each other.
+The default behaviour is to provide as much helpful information as
+possible in the error log and to put the system into a safe state.
+
+6.6
+
+Application principles
+
+We have now constructed three primitive servers and built them into a
+supervision tree; what remains is to build everything into an application.
+An application is a container for everything that is needed to deliver a
+particular application.
+The way in which applications are programmed dicers from the earlier
+behaviours. The earlier behaviours use callback modules, which must
+export a number of pre-defined functions.
+Applications do not use callback functions but instead assume a specific organisation of files, directories and sub-directories in the file system.
+The most important part of the application is contained in the application
+descriptor file (a file with extension .app) which describes all the resources
+needed by the application.
+
+6.6.1
+
+Applications API
+
+Applications are described using an application descriptor file. Application
+descriptor files have the extension .app. The MAN (4) manual page for
+an application defines the structure of a .app file to have the following
+structure:
+4
+My original attempt at this failed, but Chandrashekhar Mullaparthi on the Erlang mailing list was kind
+enough to point out why my behaviours were behaving badly.
+
+154
+
+CHAPTER 6. BUILDING AN APPLICATION
+{application, Application,
+[{description, Description},
+{vsn,
+Vsn},
+{id,
+Id},
+{modules,
+[Module1, .., ModuleN]},
+{maxT,
+MaxT},
+{registered,
+[Name1, .., NameN]},
+{applications, [Appl1, .., ApplN]},
+{included_applications, [Appl1, .., ApplN]},
+{env,
+[{Par1, Val1}, .., {ParN, ValN}]},
+{mod,
+{Module, StartArgs}},
+{start_phases,
+[{Phase1, PhaseArgs1}, ..,
+{PhaseN, PhaseArgsN}]}]}.
+
+All keys in the application association list are optional. If omitted,
+reasonable default values are used.
+
+6.6.2
+
+Application example
+
+To package our application which consists of three primitive behaviours
+and one supervisor we use the application file simple.app shown in figure 6.5.
+In our example the structure of the .app file is straight-forward.
+The main purpose of the application files is to name and describe the
+application and to list all the modules and registered process names that
+the application uses.
+In addition to the simple.app we need a main program which we use
+to “launch” the application; we can use simple.erl which in figure 6.6.
+simple.erl has a couple of calls to start and stop the application.
+Now we are ready to run the application. Assuming that all the Erlang
+files are compiled and in the same directory as the .app file then we can
+start the application, and test one of the servers as follows:
+1> application:start(simple, temporary).
+Packet assembler starting
+
+6.6. APPLICATION PRINCIPLES
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+
+{application, ’simple’,
+[{description, "A simple application"},
+{vsn,
+"1.0"},
+{modules,
+[simple,kv,packet_assembler,
+simple_sup,simple_logger]},
+{maxT,
+infinity},
+{registered,
+[kv, my_simple_event_logger,
+my_simple_packet_assembler]},
+{applications, []},
+{included_applications, []},
+{env,
+[]},
+{mod,
+{simple, go}}]}.
+
+13
+
+Figure 6.5: simple.app - a simple application
+
+1
+2
+
+-module(simple).
+-behaviour(application).
+
+3
+4
+
+-export([start/2).
+
+5
+6
+
+start(_, _) -> simple_sup:start().
+
+7
+
+Figure 6.6: simple.erl - a simple application
+
+155
+
+156
+
+CHAPTER 6. BUILDING AN APPLICATION
+Key-Value server starting
+Logger starting
+ok
+2> packet_assembler:send_header(2).
+ok
+3> packet_assembler:send_data("hi").
+ok
+Got data:hi
+Now we can stop the application:
+4> application:stop(simple).
+=INFO REPORT==== 3-Jun-2003::14:33:26 ===
+application: simple
+exited: stopped
+type: temporary
+ok
+
+Ader stopping the application all processes running within the application will be closed down in an orderly manner.
+
+6.7 Systems and releases
+The development of this chapter has been “bottom-up.” I start with simple things, combining them into larger and more complicated units. I
+started with a number of primitive servers, gen_server, gen_event and
+gen_fsm. I organised these primitive behaviours into a supervision hierarchy, and then built the supervision hierarchy into an application.
+The final stage, which is not shown here, is to build the application
+into a release. A release packages a number of dicerent applications into
+a single conceptual unit. The result is small number of files which can be
+moved to a target environment.
+Building a complete release is a complex procedure—not only must a
+release describe the current state of the system it must also know about
+previous versions of the system.
+
+6.8. DISCUSSION
+
+157
+
+Releases contain not only information about the current version of the
+sodware but also information about previous releases of the sodware. In
+particular they contain procedures for upgrading the system from an earlier
+version of the sodware to the current version of the sodware. This upgrade
+must oden be performed without stopping the system. A release must also
+handle the situation where the installation of the new sodware fails for
+some reason. If a new release fails, then the system should revert back to
+a previous stable state. All this is handled by the release management part
+of the OTP system.
+When we look at the AXD301 project in chapter 8, we will see that
+there were 122 instances of gen_server, 36 instances of gen_event and
+10 instances of gen_fsm. There were 20 supervisors and 6 applications.
+All this is packaged into one release.
+In my opinion the simplest of these behaviours is gen_server which
+also happens to be the single most used design pattern. Errors in a
+gen_server callback module should result in informative error messages
+of suecient quality to enable post-hoc debugging of the system.
+Using the above behaviours is a compromise between design and programming eeciency. It is much quicker to design and program a system
+using design patterns, but the resultant code is marginally less eecient than
+hand-written code which solves exactly the same problem.
+
+6.8
+
+Discussion
+
+• In the OTP system the generic modules which implemented the
+behaviours themselves were written by expert Erlang programmers.
+These modules are based on several years of experience and represent “best practice” in writing code for the particular problem.
+• Systems built using the OTP behaviours have a very regular structure. For example, all client-servers and supervision trees have an
+identical structure. The use of the behaviour forces a common structure in the solution of the problem. The applications programmer
+has to provide that part of the code which defines the semantics of
+
+158
+
+CHAPTER 6. BUILDING AN APPLICATION
+their particular problem. All the infrastructure is provided automatically by the behaviour.
+• It is relatively easy for a new programmer joining an existing team
+to understand behaviour-based solutions to problems. Once they
+have gained familiarity with the behaviours they can easily recognize
+situations where a particular behaviour should be used.
+• Most of the “tricky” systems programming can be hidden within the
+implementation of the behaviours (which are actually much more
+complicated than described here). It you look back to the clientserver and event handler behaviours you will see that all the code to
+do with concurrency, message passing etc is isolated in the “generic”
+part of the behaviour. The “problem specific” code only has pure
+sequential functions with well-defined types.
+This is a highly desirable state of acairs—concurrent programs which
+are “diecult” are isolated to small well-defined parts of the system.
+The vast majority of the code in the system can be written using
+sequential programs having well-defined types.
+
+In our system the behaviours solve orthogonal problems—for example,
+client–server has nothing to do with worker-supervisor. In building a real
+system we pick and mix between behaviours and combine them in many
+dicerent ways to solve problems.
+Ocering a small and fixed set of behaviours to a sodware designer has
+several benefits:
+• It focuses attention on a small set of well-proven techniques. We
+know in advance that the individual techniques work well in practice. Given totally unconstrained choice and complete freedom of
+action in a design, the designer may be tempted to produce something which is unnecessarily complex or something which cannot be
+implemented.
+• It allows the designer to structure and talk about the design in a
+precise manner. It provides a vocabulary for discourse.
+
+6.8. DISCUSSION
+
+159
+
+• It completes the feedback cycle between design and implementation.
+All the behaviours presented here work in practice. They are all
+used, for example, in the Ericsson AXD301 product.
+
+160
+
+CHAPTER 6. BUILDING AN APPLICATION

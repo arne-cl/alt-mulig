@@ -1,0 +1,319 @@
+10
+
+Conclusions
+
+Theses are never completed—at some point, however, you just give
+up... In this thesis I have presented a number of things—a new programming language and a method for programming fault-tolerant
+systems. Erlang appears to be a useful tool for programming reliable
+systems—amazingly it is being used for a large number of applications
+which are far removed from the the problem domain that Erlang was designed to be used for.
+
+T
+
+10.1
+
+What has been achieved so far?
+
+The work described in this thesis, and related work performed elsewhere
+has demonstrated a number of dicerent things, namely:
+• That Erlang and the associated technology works. This is, in itself,
+an interesting result. Many people have argued that languages like
+Erlang cannot be used for full-scale industrial sodware development.
+Work on the AXD301 and on the Nortel range of products shows
+that Erlang is an appropriate language for these types of product
+development. The fact that not only are these products successful,
+but also that they are market leaders in their respective niches is also
+significant.
+• That programming with light-weight processes and no shared memory works in practice and can be used to produce complex largescale industrial sodware.
+201
+
+202
+
+CHAPTER 10. CONCLUSIONS
+• That it is possible to construct systems that behave in a reasonable
+manner in the presence of sodware errors.
+
+10.2 Ideas for future work
+It would be a shame if the Erlang story had no future chapters, and there
+are a number of directions in which I would like to see the language
+develop.
+• Conceptual integrity — can we develop Erlang so as to reinforce the
+everything is a process view of the world? Can we make the system,
+and Erlang code more regular and easier to understand?
+• Kernel improvements — the statement on page 83 is a modified
+truth. The property of strong isolation is not strictly adhered to in
+any known implementation of Erlang. One process could acect another process in the system by allocating vast amounts of memory
+or by sending large numbers of messages to another process. A
+malicious process could destroy the entire system by creating large
+numbers of atoms and overflow the atom table etc. Current implementations of Erlang are not designed to protect the system from
+malevolent attacks. Kernel improvements are possible which would
+guard against many such attacks.
+• How can we program components — the idea of a set of communicating processes leads naturally to the idea of writing the components
+in dicerent languages. How can we do this?
+
+10.2.1
+
+Conceptual integrity
+
+How can we make the system easier to understand? The Erlang programming model is “Everything is a process.” We can emphasise this view by
+making a few minor changes to the languages. With these changes, most
+(if not all) BIFs become unnecessary. Let me assume the following:
+• Everything is a process.
+
+10.2. IDEAS FOR FUTURE WORK
+
+203
+
+• All processes have names.
+• Message passing is explicit.
+I also introduce a new infix remote procedure call operator, called
+“bang bang” and written:
+A !! B
+If A is a Pid then this is short for:
+A ! {self(), B},
+receive
+{A, Reply} ->
+Reply
+end
+In fact A can be a Pid, an atom, a string or a list of Pid’s atoms or
+strings.
+[A1,A2,A3,..]!!X returns [V1,V2,V3,...] where V1 = A1!!X and
+V2 = A2!!X, etc. All the RPCs are performed in parallel.
+
+10.2.2
+
+Files and bang bang
+
+Recall that I said earlier that everything is a process, and that all processes
+have names, thus files are processes.
+If F is a file, then F !! read reads the file, and F !! {write, Bin}
+writes the file.
+The following code fragment reads a file and copies it to a new location:
+{ok, Bin} = "/home/joe/abc" !! read,
+"/home/joe/def" !! {write, Bin}
+This example reads three files in parallel:
+
+204
+
+CHAPTER 10. CONCLUSIONS
+[A, B, C] =
+["/home/joe/foo",
+"http://www.sics.se/~joe/another_file.html",
+"ftp://www.some.where/pub/joe/a_file"] !! read
+
+With some fairly obvious syntactic sugar.
+Now suppose I am working at home, and keep a copy of my work
+on a remote host. The following code compares my local copy of the file
+with the copy on a backup machine, and if they are dicerent updates the
+backup copy:
+L = ["/home/joe/foo",
+Remote= "ftp://www.sics.se/~joe/backup/foo"],
+case L !! read of
+{X, X}
+-> true;
+{{ok,Bin},_} -> Remote !! {write, Bin};
+_ -> error
+end
+
+10.2.3
+
+Distribution and bang bang
+
+If a process name is a string of the form "erl://Node/Name" then the
+operation will be performed on a remote node instead of on the local
+node, that is:
+"erl://Node/Name" !! X
+means evaluate Name !! X on the node Node and return the result to
+the user. Thus:
+{ok,Bin} =
+"erl://joe@enfield.sics.se/home/joe/abc" !! read,
+"/home/joe/def" !! {write, Bin}
+reads a remote file and stores it on the local computer.
+
+10.2. IDEAS FOR FUTURE WORK
+
+10.2.4
+
+205
+
+Spawning and bang bang
+
+In the beginning of the universe several “magic” processes are assumed to
+exist. These have names like "/dev/..."—these processes are pre-defined
+and do magic things.
+In particular, "/dev/spawn" is a process spawning device. If you send
+"/dev/spawn" an Erlang fun it will send you back an Erlang Pid, so:
+Pid1 = "/dev/spawn" !! fun() -> looper() end),
+Pid2 = "erl://joe@bingbang.here.org/dev/spawn"
+!! fun() -> ... end
+Creates two Erlang processes, one on bingbang.here.org. and the
+other on the local node.
+Now we can throw away the Erlang primitive spawn. It is replaced by
+the spawn device.
+
+10.2.5
+
+Naming of processes
+
+I talked about "/dev/spawn", here are a few more devices in the same
+flavour:
+/dev/spawn
+/dev/stdout
+/dev/log/spool/errors
+/dev/code
+/proc/Name
+/Path/To/File
+/dev/dets
+/dev/ets
+/dev/mnesia
+http://Host/File
+erl://Node@Hist/..
+
+process spawner
+stdout
+error logger
+code server
+processes
+files
+dets tables
+ets tables
+mnesia tables
+read only files
+remote processes
+
+We also need to extend the process registration primitive, to allow us
+to register a string as a name for a process.
+
+206
+
+CHAPTER 10. CONCLUSIONS
+
+-module(vshlr4).
+-export([start/0, stop/0, handle_rpc/2, handle_cast/2]).
+-import(server1, [start/3, stop/1, rpc/2]).
+-import(dict,
+[new/0, store/3, find/2]).
+start() -> start(vshlr4, fun handle_event/2, new()).
+stop() -> stop(vshlr4).
+handle_cast({i_am_at, Who, Where}, Dict) ->
+store(Who, Where, Dict).
+handle_rpc({find, Who}, Dict) ->
+{find(Who, Dict), Dict}.
+
+Figure 10.1: A Very Simple Home Location Register (revisited)
+
+10.2.6
+
+Programming with bang bang
+
+I start with a simple example. Figure 10.1 is my old friend the home
+location register, revisited yet again. This time vshlr4 is written as a pure
+Erlang function, and no attempt is made to hide the access functions inside
+stub function. Instead we expose the interface.
+With the bang bang notation, the shell dialog shown on page 90 becomes:
+1> vshlr4:start().
+true
+2> vshlr4 !! {find, "joe"}.
+error
+3> vshlr4 ! {i_am_at, "joe", "sics"}.
+
+10.3. EXPOSING THE INTERFACE - DISCUSSION
+
+207
+
+ack
+4> vshlr4 !! {find, "joe"}.
+{ok,"sics"}
+We achieve the same results as before, but this time we have not encapsulated the remote procedure call in a stub function. Instead we have
+exposed it to the programmer.
+
+10.3
+
+Exposing the interface - discussion
+
+Should we expose the interfaces or not? Let’s imagine two ways of doing things. Suppose we have a remote file server, accessible through a
+variable F1, suppose also that the protocol between the file server and
+the client code is hidden in some module file_server.erl. Inside
+file_server.erl we find code like this:
+-module(file_server).
+-export([get_file/2]).
+...
+get_file(Fs, FileName) ->
+Fs ! {self(), {get_file, Name}},
+receive
+{Fs, Reply} ->
+Reply
+end
+The access function get_file/2 is used by client code to fetch a file
+from the file server. The statement:
+File = file_server:get_file(F1, "/home/joe/foo")
+is used to fetch a file. The code which does this is nicely hidden
+inside file_server and the user has no idea or need to know about the
+underlying protocol. In Concurrent Programming in Erlang we argued
+that hiding the details of an interface was good programming practice:
+
+208
+
+CHAPTER 10. CONCLUSIONS
+The purpose of interface functions is to create abstractions
+which hide specific details of the protocol used between the
+clients and the server. A user of a service does not need to
+know the details of the protocols used to implement the service, or the internal data structures and algorithms used in the
+server. An implementor of the service is then free to change
+any of these internal details at any time while maintaining the
+same user interface.—[5] (pages 81–82)
+
+An unfortunate consequence of this encapsulation, is that we cannot
+easily parallelise simultaneous calls to dicerent file servers, nor can we
+stream requests to a single file server.
+If we wish to perform several RPCs in parallel it might be better to
+dispatch all the requests, and then gather all the responses, but this cannot
+be done in all situations unless the interface is exposed.
+
+10.4 Programming communicating components
+Interestingly the dominant way of building Internet applications involves
+the use of:
+• Isolated components.
+• Pure message passing.
+• Informal protocols.
+In the Internet case the components really are physically isolated, for
+example, a client in Sweden might make use of the services of a server in
+Australia. Pure message passing with no shared data is the norm. This is
+possibly because just about the only way that the system builder can understand and build distributed applications involves the use of asynchronous
+
+10.4. PROGRAMMING COMMUNICATING COMPONENTS
+
+209
+
+protocols described informally by the use of RFCs.1 The problem with
+RFCs is that virtually every RFC defines its own ad hoc syntax for data
+transit, and that the allowed sequences of messages are oden never described formally, but must be guessed by the implementor.
+The use of a standard syntax for describing RFCs (for example, XML,
+lisp S-expressions or UBF terms) would be a great step forward, enabling a
+single parser to be used for all applications. The use of a contract checker
+as proposed in appendix C would also make programming Internet applications significantly easier, and hopefully would make the applications
+much more reliable.
+Interestingly, the Internet model works well even without notification
+for the reasons for failure. If we have a pathological distrust of the component we are talking to, then this might be sensible, but for normal
+applications notification of failure reason would make implementing and
+debugging applications a lot easier.
+The use of the contract checker also accurately pinpoints exactly where
+errors have occurred, this becomes increasingly important as more communicating components are added to the system.
+While the model of communicating components is widely used for
+distributed applications, it is infrequently used for structuring single-node
+applications. In the interest of eeciency, designers reject the idea of using processes as protection domains for their sodware, and favour shared
+object models.
+I believe that the model for programming single-node applications
+should be exactly the same as that used for programming distributed applications. Dicerent components should be protected from each other by
+processes. It should be impossible for the components to damage each
+other and the components should communicate using defined protocols
+which are specified by a contract and enforced by a contract checker.
+This way we can build reliable applications.
+
+1
+Requests For Comments—a set of memos describing various aspects of the Internet, including all the
+major application protocols.
+
+210
+
+CHAPTER 10. CONCLUSIONS

@@ -1,0 +1,440 @@
+Programming
+Fault-tolerant
+Systems
+
+Designers devote half the software in telephone switches to error detection and
+correction[48]
+Richard Kuhn, National Institute of Standards and Technology
+
+What is a fault-tolerant system and how can we program it? This
+question is central to this thesis and to our understanding of how
+to build fault-tolerant systems. In this chapter we define what we
+mean by “fault-tolerance” and present a specific method for programing
+fault-tolerant systems. We start with a couple of quotations:
+
+W
+
+We say a system is fault-tolerant if its programs can be properly
+executed despite the occurrence of logic faults. — [16]
+...
+To design and build a fault-tolerant system, you must understand how the system should work, how it might fail, and what
+kinds of errors can occur. Error detection is an essential component of fault tolerance. That is, if you know an error has
+occurred, you might be able to tolerate it by replacing the
+ocending component, using an alternative means of computation, or raising an exception. However, you want to avoid
+adding unnecessary complexity to enable fault tolerance because that complexity could result in a less reliable system. —
+Dugan quoted in Voas [67].
+115
+
+116 CHAPTER 5. PROGRAMMING FAULT-TOLERANT SYSTEMS
+The presentation here follows Dugan’s advice, I explain exactly what
+happens when an abnormal condition is detected and how we can make a
+sodware structure which detects and corrects errors.
+The remainder of this chapter describes:
+• A strategy for programming fault-tolerance — the strategy is to fail
+immediately if you cannot correct an error and then try to do something that is simpler to achieve.
+• Supervision hierarchies — these are hierarchical organisations of tasks.
+• Well-behaved functions — are functions which are supposed to work
+correctly. The generation of an exception in a well-behaved function
+is interpreted as a failure.
+
+5.1 Programming fault-tolerance
+To make a system fault-tolerant we organise the sodware into a hierarchy
+of tasks that must be performed. The highest level task is to run the application according to some specification. If this task cannot be performed
+then the system will try to perform some simpler task. If the simpler task
+cannot be performed then the system will try to perform an even simpler
+task and so on. If the lowest level task in the system cannot be performed
+then the system will fail.
+This method is intuitively attractive. It says if we cannot do what we
+want to do, then try to do something simpler. We also try to organise the
+sodware so that simpler tasks are performed by simpler sodware, so that
+the likelihood of success increases as the tasks become simpler.
+As the tasks become simpler, the emphasis upon what operation is
+performed changes—we become more interested in protecting the system
+against damage than in ocering full service. At all stages our goal is
+to ocer an acceptable level of service though we become less ambitious
+when things start to fail.
+When failures occur we become interested in protecting the system,
+and logging the precise reason for failure, so that we can do something
+
+5.1. PROGRAMMING FAULT-TOLERANCE
+
+117
+
+about the failure in the future. This implies that we need some kind of
+stable error log which will survive a crash. In exceptional circumstances
+our system might fail, but when this does happen we should never lose the
+information which tells us why the system failed.
+To implement our hierarchy of tasks we need some precise notion of
+what is meant by the world “failure.” Evaluating a function in Erlang can
+result in an exception. But exceptions are not the same as errors, and
+all errors do not necessarily lead to failures. So we need to discuss the
+distinction between exceptions, errors and failures.
+The distinctions between exceptions, errors and failures largely has
+to do with where in the system an abnormal event is detected, how it
+is handled and how it is interpreted. We trace what happens when an
+abnormal situation occurs in the system—this description is “bottom up” ie
+it starts at the point in time where the error is detected.
+• At the lowest level in the system the Erlang virtual machine detects
+an internal error—it detects a divide by zero condition, or a pattern
+matching error or something else. The important point about all of
+these detected conditions is that it is pointless to continue evaluating
+code in the processes where the error occurred. Since the virtual
+machine emulator cannot continue, it does the only thing possible
+and throws an exception.
+• At the next level, the exception may or may not be caught. The
+program fragment which traps the exception may or may not be
+able to correct the error which caused the exception. If the error is
+successfully corrected, then no damage is done and the process can
+resume as normal. If the error is caught, but cannot be corrected,
+yet another exception might be generated, which may or may not
+be trapped within the process where the exception occurred.
+• If there is no “catch handler” for an exception1 then the process itself
+will fail. The reason for failure will be propagated to any processes
+which are currently linked to the process which has failed.
+1
+
+ie the current function is not evaluating within the scope of a catch statement.
+
+118 CHAPTER 5. PROGRAMMING FAULT-TOLERANT SYSTEMS
+• The linked processes which receive these failure signals may or may
+not intercept and process these signals as if they were normal interprocess messages.
+Thus we see that what starts oc as an abnormal condition in the virtual
+machine emulator propagates upwards in the system. At every point in
+the upwards propagation of the error an attempt might be made to correct
+the error. This attempt might succeed or fail, thus we have very fine grain
+control over how and where we can handle errors.
+A “corrected” error, that is, a situation which has been foreseen, and
+for which corrective code has successfully been executed, is not considered
+a fault.
+So far we have just seen how abnormal conditions, lead to exceptions,
+how exceptions can be trapped, and how untrapped exceptions can lead
+to process failures, and how process failures can be detected by other
+processes in the system. These are the available mechanisms with which
+we can implement our “hierarchy of tasks.”
+
+5.2 Supervision hierarchies
+Recall that at the beginning of this chapter we talked about the idea of a
+hierarchy of tasks. The basic idea is:
+1. Try to perform a task.
+2. If you cannot perform the task, then try to perform a simpler task.
+To each task we associate an supervisor process—the supervisor will assign
+a worker to try and achieve the goals implied by the task. If the worker
+process fails with a non-normal exit then the supervisor will assume that
+the task has failed and will initiate some error recovery procedure. The
+error recovery procedure might be to restart the worker or failing this try
+to do something simpler.
+Supervisors and workers are arranged into hierarchical trees, according
+to the following:
+
+5.2. SUPERVISION HIERARCHIES
+
+119
+
+1. Supervision trees are trees of Supervisors.
+2. Supervisors monitor Workers and Supervisors.
+3. Workers are instances of Behaviours.
+4. Behaviours are parameterised by Well-behaved functions.
+5. Well-behaved functions raise exceptions when errors occur.
+Where:
+• Supervision trees are hierarchical trees of supervisors. Each node in
+the tree is responsible for monitoring errors in its child nodes.
+• Supervisors are processes which monitor other processes in the system. The things that are monitored are either supervisors or workers. Supervisors must be able to detect exceptions generated by the
+things they are monitoring, and be able to start, stop and restart the
+things they are monitoring.
+• Workers are processes which perform tasks.
+If a worker process terminates with a non-normal exit (see page 74)
+the supervisor will assume that an error has occurred and will take
+action to recover from the error.
+Workers in our model are not arbitrary processes, but are instances
+of one of a small number of generic processes (called behaviours).
+• Behaviours are generic processes whose operation is entirely characterised by a small number of callback functions. These functions
+must be instances of well-behaved functions.
+An example of a behaviour is the the gen_server behaviour which
+is used for programming a distributed fault-tolerant client-server.
+This behaviour is parameterised by a number of WBFs.
+All the programmer has to understand in order to program a faulttolerant distributed client-server is how to write a WBF. The clientserver behaviour provides a fault-tolerant framework for concurrency
+
+120 CHAPTER 5. PROGRAMMING FAULT-TOLERANT SYSTEMS
+
+T
+SSRS
+
+WBF
+
+Worker node
+Supervisor node
+
+Figure 5.1: Supervisor and worker symbols
+
+and distribution. The programmer need only be concerned with
+writing WBFs which parameterise this behaviour.
+For convenience two particular supervision hierarchies are considered,
+namely linear hierarchies and AND/OR hierarchy trees. These are shown
+diagrammatically in the following sections.
+
+5.2.1
+
+Diagrammatic representation
+
+Supervisors and workers can conveniently be represented using the notation in figure 5.1.
+Supervisors are draw as rectangles with right-angled corners. In the top
+right-hand corner there is a symbol T denoting the type of the supervisor.
+The value of T will be one of O meaning “or” supervision, or A meaning
+“and” supervision. These supervision types are described later.
+Supervisors can supervise an arbitrary number of workers or supervisors. For each entity that is supervised, the supervisor must know how to
+start, stop and restart the entity that it has to supervise. This information
+is kept in a SSRS which stands for “Start Stop and Restart Specification.”
+The figure on page 148 contains a simple SSRS which specifies how three
+dicerent behaviours are to be supervised.
+Each supervisor (apart from the topmost supervisor in a hierarchy) has
+exactly one supervisor directly above it in the hierarchy, we call this the
+Parent of the supervisor. Conversely, processes below a given supervisor
+
+5.2. SUPERVISION HIERARCHIES
+
+121
+O
+
+SSRS1
+
+WBF1
+
+SSRS2
+
+O
+
+WBF2
+
+SSRS3
+
+O
+
+WBF3
+
+Figure 5.2: A linear supervisor hierarchy
+
+in the hierarchy are referred to as the children of the supervisor. Figure 5.1
+shows a supervisor node with one parent and three children.
+Workers are drawn as rectangles with rounded corners (see Figure 5.1).
+They are parameterised by well-behaved functions (WBFs in the diagrams).
+
+5.2.2
+
+Linear supervision
+
+I start with a linear hierarchy. Figure 5.2 represents a linear hierarchy of
+three supervisors. Each supervisor has a SSRS for each of its children and
+obeys the following rules:
+• If my parent stops me then I should stop all my children.
+• If any of my children dies then I must try to restart that child.
+The system is started by starting the topmost supervisor. The top
+level supervisor is started first using the SSRS1 specification. The top level
+supervisor has two children, a worker and a supervisor. It starts the worker
+
+122 CHAPTER 5. PROGRAMMING FAULT-TOLERANT SYSTEMS
+SSRS1
+
+A
+
+SSRS2
+
+SSRS4
+
+O
+
+WBF1
+
+SSRS5
+
+A
+
+WBF2
+
+O
+
+WBF3
+
+SSRS3
+
+O
+
+WBF4
+
+WBF5
+
+Figure 5.3: An AND/OR hierarchy
+
+(which is a behaviour) parameterising it with the well-behaved function
+WBF1 and it also starts the child supervisor. The lower level supervisors
+in the hierarchy are started in a similar manner until the entire system is
+running.
+
+5.2.3 And/or supervision hierarchies
+We can extend our simple supervision hierarchy into a tree structure containing only AND or OR nodes. Figure 5.3 shows such a tree. The denotation A denotes an AND supervisor, and O denotes an OR supervisor.
+The rules for a supervisor in an AND/OR tree are as follows:
+• If my parent stops me then I should stop all my children.
+• If any child dies and I am an AND supervisor stop all my children
+and restart all my children.
+• If any child dies and I am an OR supervisor restart the child that
+died.
+AND supervision is used for dependent, or co-ordinated processes.
+In the AND tree the successful operation of the system depends upon
+the successful operation of all the children—thus if any child dies all the
+children should be stopped and then restarted.
+
+5.3. WHAT IS AN ERROR?
+
+123
+
+OR supervision can be used to co-ordinate the activities of independent
+processes. In the OR tree the activities being performed are assumed to be
+independent thus the failure of one child has no consequence for the other
+children—in the event of a child failure only that child process is restarted.
+In concrete terms our “hierarchy of tasks” is expressed in a “supervision hierarchy”.
+In our system we equate tasks with goals and goals with invariants2 —
+we will say that the goal has been achieved if the invariant associated
+with the goal is not false. In most programs the assertion of an invariant
+corresponds to the statement that evaluation of a particular designated
+function did not yield an exception.
+Similar work has been reported by Candea and Fox [22] who have
+made a system based on “recursively-restartable Java components”
+Notice that we distinguish errors into two categories, correctable and
+uncorrectable errors. Correctable errors are errors in a component which
+have been detected and corrected by the component. Uncorrectable errors
+are errors which have been detected but for which no corrective procedure
+has been specified.
+The above discussion is all rather vague, since we have never said what
+an error is, nor have we said how we can in practice distinguish between a
+correctable and an uncorrectable error.
+The situation is complicated by the fact that the vast majority of specifications only specify what should happen if all the components in a system
+work as planned—specifications rarely specify what should be done if a particular error occurs. Indeed if a specification does say exactly what to do
+if a particular error occurs, then it could be argued that this not an error
+at all but rather a desired property of the system. This is a consequence
+of the rather vague way in which the word “error” is used.
+
+5.3
+
+What is an error?
+
+When we run a program the run-time system has no idea as to what
+constitutes an error—it just runs code. The only indication that something
+2
+
+An invariant is something that is always true.
+
+124 CHAPTER 5. PROGRAMMING FAULT-TOLERANT SYSTEMS
+might have gone wrong is when an exception is generated.
+Exceptions are generated automatically by the run-time system when
+the run-time system cannot decide what to do. For example, when performing a division the run-time system might detect a “divide by zero” condition in which case it generates an exception, because it does not know
+what to do. A complete list of all the conditions which cause exceptions
+can be found in section 3.5.1.
+Exceptions do not always correspond to errors. If, for example, a
+programmer has written code which can correctly deal with a “divide by
+zero” exception then the presence of such an exception may not necessarily
+indicate an error.
+It is the programmer who decides if an exception corresponds to an
+error—in our system the programmer must explicitly say which functions
+in the system are expected to never generate exceptions.
+Schneider gives a number of definitions of fault-tolerance in his 1990
+ACM tutorial paper. In this paper he says:
+A component is considered faulty once its behaviour is no
+longer consistent with its specification — [61].
+For our purposes we will define an error as a deviation between the
+observed behaviour of a system and the desired behaviour of a system.
+The desired behaviour is “the behaviour that the specification says the
+system should have.”
+The programmer must ensure that if the system behaves in a way that
+deviates from the specification, some kind of error recovery procedure is
+initiated, and that some record of this fact is recorded in a permanent error
+log, so that it can be corrected later.
+Building real systems is complicated by the fact that we oden don’t have
+a complete specification—in this case the programmer has some general
+notion as to what constitutes a error, and what does not. In the absence of
+an explicit specification we need an implicit mechanism that corresponds
+to our intuitive idea that an error is “something that causes the program to
+crash.”
+In the OTP system the programmer is expected to write Well-behaved
+functions (WBFs)—well-behaved functions are used to parameterise the
+
+5.3. WHAT IS AN ERROR?
+
+125
+
+OTP behaviours. These functions are evaluated by the code in the OTP
+behaviours. If the evaluation of a parameterisation function generates an
+exception, then this is defined to be an error, and an error diagnostic will
+be added to the error log.
+At this point it is important to recall part of the inner loop of the
+generic server shown on page 94, it was:
+
+loop(Name, F, State) ->
+receive
+...
+{From, Query} ->
+case (catch F(Query, State)) of
+{’EXIT’, Why} ->
+log_error(Name, Query, Why),
+From ! {Name, crash},
+loop(Name, F, State);
+{Reply, State1} ->
+From ! {Name, ok, Reply},
+loop(Name, F, State1)
+end
+end.
+The callback function F is called within a catch statement. If an
+exception Why is generated, then this is assumed to be an error, and an
+error message is added to the error log.
+This is a very simple example, but it does illustrate the fundamental
+principle of error handling used in the OTP behaviours. For example, in
+the OTP gen_server behaviour, the programmer must write a callback
+module M which is used to parameterise the server. The module M must,
+among other things, export the callback function handle_call/2 (an example of this is shown in line 23–29 of figure 6.1 on page 136)—this callback
+function must be a well-behaved function.
+
+126 CHAPTER 5. PROGRAMMING FAULT-TOLERANT SYSTEMS
+
+5.3.1
+
+Well-behaved functions
+
+A well-behaved function (WBF) is a function which should not normally
+generate an exception. If an exception is generated by the WBF then the
+exception will be interpreted as an error.
+If an exception occurs while trying to evaluate the WBF the WBF
+should try to correct the condition which caused the exception. If an error
+occurs within a WBF which cannot be corrected the programmer should
+terminate the function with an explicit exit statement.
+Well-behaved functions are written according to the following rules:
+Rule: 1 — The program should be isomorphic to the specification.
+The program should faithfully follow the specification. If the specification says something silly then the program should do something
+silly. The program must faithfully reproduce any errors in the specification.
+Rule: 2 — If the specification doesn’t say what to do raise an exception.
+This is very important. Specifications oden say what is to be done
+if something happens, but omit to say what to do if something else
+happens. The answer is “raise an exception.” Unfortunately many
+programmers take this as an opportunity for creative guess-work,
+and try to guess what the designer ought to have said.
+If systems are written in this manner then the observation of an
+exception will be synonymous with a specification error.
+Rule: 3 — If the generated exceptions do not contain enough information
+to be able to isolate the error, then add additional helpful information to the exception.
+When programmers write code they should ask themselves what
+information will be written into the error log if an error occurs. If the
+information is insuecient for debugging purposes then they should
+add enough information to the exception to allow the program to
+be debugged at a later stage.
+
+5.3. WHAT IS AN ERROR?
+
+127
+
+Rule: 4 — Turn non-functional requirements into assertions (invariants)
+that can be checked at run-time. If the assertion is broken then raise
+an exception.
+An example of this might concern termination of a loop—a programming error might cause a function to enter an infinite loop causing
+the function never to return. Such an error could be detected by
+requiring that certain functions terminate within a specified time, by
+checking this time and generating an exception if the function did
+not terminate within the specified time.
+
+128 CHAPTER 5. PROGRAMMING FAULT-TOLERANT SYSTEMS

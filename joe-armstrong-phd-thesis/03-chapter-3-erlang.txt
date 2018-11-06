@@ -1,0 +1,1621 @@
+Erlang
+
+This chapter introduces Erlang. The treatment of the language is not
+intended to be complete. For fuller treatment the reader is referred
+to [5]. Developments to Erlang since [5] can be found in the OTP
+documentation [34]. A more formal treatment of Erlang can be found in
+the Erlang Specification [17] and in the core Erlang specification [23].
+Erlang belongs to the class of Message-oriented languages [4] — message oriented languages provide concurrency in the form of parallel processes. There are no shared objects in a message-oriented language. Instead all interaction between processes is achieved by sending and receiving messages.
+In this chapter, I present a subset of the language which provides
+enough detail to understand the Erlang examples in this thesis.
+
+T
+
+3.1
+
+Overview
+
+The Erlang view of the world can be summarized in the following statements:
+• Everything is a process.
+• Processes are strongly isolated.
+• Process creation and destruction is a lightweight operation.
+39
+
+40
+
+CHAPTER 3. ERLANG
+• Message passing is the only way for processes to interact.
+• Processes have unique names.
+• If you know the name of a process you can send it a message.
+• Processes share no resources.
+• Error handling is non-local.
+• Processes do what they are supposed to do or fail.
+
+The use of processes as the basic unit of abstraction is motivated by the
+desire to make a language which is suitable for writing large fault-tolerant
+sodware systems. The fundamental problem which must be solved in
+writing such sodware is that of limiting the consequences of an error—
+the process abstraction provides an abstraction boundary which stops the
+propagation of errors.
+It is, for example, precisely this inability to limit the consequences of
+errors that makes Java unsuitable for programming “safe” (sic) applications
+(see page 32 for further discussion of this point).
+If processes are truly isolated (which they must be to limit the consequences of an error) then most of the other properties of a process, like, for
+example, that the only way for processes to interact is by message passing,
+etc, follow as a natural consequence of this isolation.
+The statement about error handling is perhaps less obvious. When
+we make a fault-tolerant system we need at least two physically separated
+computers. Using a single computer will not work, if it crashes, all is
+lost. The simplest fault-tolerant system we can imagine has exactly two
+computers, if one computer crashes, then the other computer should take
+over what the first computer was doing. In this simple situation even the
+sodware for fault-recovery must be non-local; the error occurs on the first
+machine, but is corrected by sodware running on the second machine.
+The Erlang view of the world is that “everything is a process”, when
+we model our physical machines as processes we retain the idea that error
+handling should be non-local. Actually, this is a modified truth, remote
+
+3.2. EXAMPLE
+
+41
+
+error handling only occurs if a local attempt to fix the error fails. In the
+event of an exception a local process may be able to detect and correct the
+fault which caused the exception, in which case as far as any other process
+in the system is concerned, no error has occurred.
+Viewed as a concurrent language, Erlang is very simple. Since there are
+no shared data structures, no monitors or synchronised methods etc there
+is very little to learn. The bulk of the language, and possible the least
+interesting part of the language is the sequential subset of the language.
+This sequential subset can be characterised as a dynamically typed, strict
+functional programming language, which is largely free from side-ecects.
+In the sequential subset there are a few operations with side-ecects, but
+they are virtually never needed.
+The remainder of this chapter deals firstly with the sequential subset of
+the language. This is followed with sections on concurrent and distributed
+programming and error handling. Finally I describe a type notation for
+specifying Erlang data and function types.
+To jump start the description, I start with an example of sequential
+Erlang code.
+
+3.2
+
+Example
+
+Figure 3.1 has a simple Erlang program. The program has the following
+structure:
+1. The program starts with a module definition (line 1) followed by
+export and input declarations and then by a number of functions.
+2. The export declaration (line 2) says that the function areas/1 is to
+be exported from this module. The notation areas/1 means the
+function called areas which has one argument. The only functions
+which can be called from outside the module are those which are
+contained in the export list.
+3. The import declaration in line 3 says that the function map/2 can be
+found in the module lists.
+
+42
+
+CHAPTER 3. ERLANG
+
+1
+2
+3
+
+-module(math).
+-export([areas/1]).
+-import(lists, [map/2]).
+
+4
+5
+6
+7
+8
+9
+
+areas(L) ->
+lists:sum(
+map(
+fun(I) -> area(I) end,
+L)).
+
+10
+11
+12
+13
+14
+
+area({square, X}) ->
+X*X;
+area({rectangle,X,Y}) ->
+X*Y.
+
+Figure 3.1: An Erlang module
+
+3.2. EXAMPLE
+
+43
+
+4. Lines 5 to 14 have two function definitions.
+5. Line 6 is a call to the function sum in the module lists.
+6. Lines 7 to 9 are a call to the function map/2 in the module lists.
+Note the dicerence between this call to sum and the call to map - both
+these functions are in the same module; one call uses a fully qualified
+name (that is, lists:sum) whereas the other call uses an abbreviated
+call sequence (that is map(...) instead of lists:map(...)). The
+dicerence is accounted for by the import declaration in line 3, which
+says that the function map/2 is to be found in the module lists.
+7. Line 8 creates a fun which is the first argument to map.
+8. Lines 11 to 14 contain the function area/1. This function has two
+clauses. The first clause is in lines 11 to 12, the second in lines 13 to
+14, the clauses are separated by a semi-colon.
+9. Each clause has a head and a body. The head and body are separated
+from each other by a “->” symbol.
+10. A function head consists of a pattern in each argument position
+and a possible guard (See Section 3.3.4). In line 13 the pattern is
+{rectangle,X,Y}. In this pattern the curly bracket denote a tuple.
+The first argument of the tuple is an atom (namely “rectangle”)
+and the second and third arguments are variables. Variables start
+with capital letters, atoms start with small letters.
+To run this program we start an Erlang shell compile the program and
+enter some requests to evaluate functions, as shown in Figure 3.2. In this
+figure all user input is underlined. The Erlang shell prompt is the character
+“>” meaning that the system is waiting for input.
+• Line 1 in figure 3.2 starts an Erlang shell.
+• Line 5 compiles the module math.
+
+44
+
+CHAPTER 3. ERLANG
+
+1
+2
+
+$ erl
+Erlang (BEAM) emulator version 5.1 [source]
+
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+
+Eshell V5.1 (abort with ^G)
+1> c(math).
+ok,math
+2> math : areas([{rectangle, 12, 4}, {square, 6}]).
+84
+3> math : area({square, 10}).
+** exited: {undef,[{math,area,[{square,10}]},
+{erl_eval,expr,3},
+{erl_eval,exprs,4},
+{shell,eval_loop,2}]} **
+
+Figure 3.2: Compiling and running a program in the shell
+
+• Line 7 requests a function evaluation, the shell accepts the request,
+evaluates the function and prints the result in line 8.
+• In line 9 we try to evaluate a function which was not exported from
+the module math. An exception is generated and printed (lines 10
+to 13).
+
+3.3 Sequential Erlang
+3.3.1
+
+Data structures
+
+Erlang has eight primitive data types:1
+• Integers — integers are written as sequences of decimal digits, for
+example, 12, 12375 and -23427 are integers. Integer arithmetic is
+1
+
+Also called constants.
+
+3.3. SEQUENTIAL ERLANG
+
+45
+
+exact and of unlimited precision.2
+• Atoms — atoms are used within a program to denote distinguished
+values. They are written as strings of consecutive alphanumeric characters, the first character being a small letter. Atoms can obtain any
+character if they are enclosed within single quotes and an escape
+convention exists which allows any character to be used within an
+atom.
+• Floats — floating point numbers are represented as IEEE 754 [43]
+64 bit floating point numbers. Real numbers in the range ±10308
+can be represented by an Erlang float.
+• References — references are globally unique symbols whose only
+property is that they can be compared for equality. They are created
+by evaluating the Erlang primitive make_ref().
+• Binaries — a binary is a sequence of bytes. Binaries provide a
+space-eecient way of storing binary data. Erlang primitives exist for
+composing and decomposing binaries and for eecient input/output
+of binaries. For a full treatment of binaries see [34].
+• Pids — Pid is short for Process Identifier—a Pid is created by the Erlang primitive spawn(...) Pids are references to Erlang processes.
+• Ports — ports are used to communicate with the external world.
+Ports are created with the BIF3 open_port. Messages can be sent to
+and received from ports, but these message must obey the so-called
+“port protocol.”
+• Funs — Funs are function closures.4 Funs are created by expressions
+of the form: fun(...) -> ... end.
+And two compound data types:
+2
+
+The precision of integers is only limited by available memory.
+BIF is short for Built In Function.
+4
+Called lambda expressions in other languages.
+3
+
+46
+
+CHAPTER 3. ERLANG
+• Tuples — tuples are containers for a fixed number of Erlang data
+types. The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn. The arguments can be primitive data types
+or compound data types. The elements of a tuple can be accessed
+in constant time.
+• Lists — lists are containers for a variable number of Erlang data
+types. The syntax [Dh|Dt] denotes a list whose first element is
+Dh, and whose remaining elements are the list Dt. The syntax []
+denotes an empty list.
+The syntax [D1,D2,..,Dn] is short for [D1|[D2|..|[Dn|[]]]].
+The first element of a list can be accessed in constant time. The first
+element of a list is called the head of the list. The remainder of a list
+when its head has been removed is called the tail of the list.
+Two forms of syntactic sugar are provided:
+• Strings — strings are written as doubly quoted lists of characters,
+this is syntactic sugar for a list of the integer ASCII codes for the
+characters in the string, thus for example, the string "cat" is shorthand for [97,99,116].
+• Records — records provide a convenient way for associating a tag
+with each of the elements in a tuple. This allows us to refer to an
+element of a tuple by name and not by position. A pre-compiler
+takes the record definition and replaces it with the appropriate tuple
+reference.
+
+3.3.2
+
+Variables
+
+Variables in Erlang are sequences of characters starting with a upper case
+letter and followed by a sequence of letters or characters or the “_” character.
+Variables in Erlang are either unbound, meaning they have no value, or
+bound, meaning that they have a value. Once a variable has been bound
+
+3.3. SEQUENTIAL ERLANG
+
+47
+
+the value can never be changed. Such variables are called single assignment
+variables. Since variable values cannot ever be changed the programmer
+must create a new variable every time they want to simulate the ecect of
+a destructive assignment.
+Thus, for example, the Erlang equivalent of the C expression:
+x = 5;
+x = x + 10;
+is written:
+X = 5;
+X1 = X + 10;
+Where we invent a new variable X1 since we cannot change the value
+of X.
+
+3.3.3 Terms and patterns
+A Ground term is defined recursively as either a primitive data type, or a
+tuple of ground terms or a list of ground terms.
+A Pattern is defined recursively as either a primitive data type or a
+variable or a tuple of patterns or a list of patterns.
+A Primitive pattern is a pattern where all the variables are dicerent.
+Pattern matching is the act of comparing a pattern with a ground term.
+If the pattern is a primitive pattern and the ground terms are of the same
+shape, and if the constants occurring in the pattern occur in the ground
+term in the same places as in the pattern then the match will succeed,
+otherwise it will fail. Any variables occurring in the pattern will be bound
+to the corresponding data items at the same positions in the term. This
+process is called unification.
+More formally if P is a primitive pattern and T is a term, then we say
+that P matches T ic:
+• If P is a list with head Ph and tail Pt and T is a list with Th and tail
+Tt then Ph must match Th and Pt must match Tt.
+
+48
+
+CHAPTER 3. ERLANG
+• If P is a tuple with elements {P1,P2,...,Pn} and T is a tuple with
+elements {T1,T2,...,Tn} then P1 must match T1, P2 must match
+T2 and so on.
+• If P is a constant then T must be the same constant.
+• If P is a free variable V then V is bound to T.
+
+Here are some examples:
+The pattern {P,abcd} matches the term {123,abcd} creating the
+binding P 7→ 123.
+The pattern [H|T] matches the term "cat" creating the bindings H 7→
+99 and T 7→ [79,116].
+The Pattern {abc,123} does not match the term {abc,124}.
+
+3.3.4
+
+Guards
+
+Guards are expressions involving only predicates. They are written immediately ader primitive patterns and introduced with the keyword when. For
+example we call the program fragment:
+{P,abc,123} when P == G
+a guarded pattern.
+Guards are written as comma-separated sequences of guard tests, where
+each guard test is of the form:
+T1 Binop T2
+where T1 and T2 are ground terms.
+The available binary operators are:
+
+3.3. SEQUENTIAL ERLANG
+Operator
+X > Y
+X < Y
+X =< Y
+X >= Y
+X == Y
+X /= Y
+X =:= Y
+X =/= Y
+
+49
+
+Meaning
+X is greater than Y
+X is less than Y
+X is equal to or less than Y
+X is greater than or equal to Y
+X is equal to Y
+X is not equal to Y
+X is equal to Y
+X is not equal to Y
+
+When a guard is used as an expression, it will always evaluate to one
+of the atoms true or false. If the guard evaluates to true we say that
+the evaluation succeeded otherwise it failed.
+
+3.3.5 Extended pattern matching
+In a primitive pattern all variables must be dicerent. An extended pattern
+has the same syntax as a primitive pattern except that all the variables are
+not required to be dicerent.
+To perform pattern matching with extended patterns we first convert
+the extended pattern to a primitive pattern and guard and then match the
+primitive pattern.
+If the variable X is repeated in the pattern N times then rename the
+second and all subsequent occurrences of X with a fresh variables.5 F1, F2
+etc. For each fresh variable add a predicate Fi == X to the guard.
+Using these rules
+{X,a,X,[B|X]}
+is transformed into
+{X,a,F1,[B|F2]} when F1==X, F2==X
+Finally, the pattern variable ’_’ is taken to mean the “anonymous variable.” The anonymous variable matches any term and no variable binding
+is created.
+5
+
+A fresh variable is one that does not occur anywhere in the current lexical context.
+
+50
+
+CHAPTER 3. ERLANG
+
+3.3.6
+
+Functions
+
+Functions obey the following rules:
+1. A function is composed of one or more clauses which are separated
+by semi-colons.
+2. A clause has a head followed by a separator -> followed by a body.
+3. A function head is composed of an atom followed by a parenthesized
+set of patterns followed by an optional guard. The guard, if present,
+is introduced by the when keyword.
+4. A function body consists of a sequence of comma-separated expressions.
+Or,
+FunctionName(P11,...,P1N) when G11,...,G1N ->
+Body1;
+FunctionName(P21,...,P2N) when G11,...,G1N ->
+Body2;
+...
+FunctionName(PK1, PK2, ..., PKN) ->
+BodyK.
+Where P11, ..., PKN are the extended patterns described in the
+previous section.
+Here are two examples:
+factorial(0) -> 1;
+factorial(N) -> N * factorial(N-1).
+member(H, [H|T]) -> true;
+member(H, [_|T] -> member(H, T);
+member(H, [])
+-> false.
+
+3.3. SEQUENTIAL ERLANG
+
+51
+
+Function execution is as follows:
+To evaluate Fun(Arg1,Arg2,...,ArgN) we first search for a definition of the function. The corresponding definition is taken to be the first
+function whose patterns in the head of the clause match the arguments
+Arg1..Argn in the function call. If the pattern match succeeds and if any
+associated guard test succeeds then the body of the clause is evaluated.
+All free variables occurring in the patterns in the head of the clause have
+values that were obtained as a result of matching the pattern in the clause
+head with the actual arguments provided in the call. As an example we
+evaluate the expression member(dog,[cat,man,dog,ape]) showing all
+steps taken. We assume the following definition of member:
+member(H, [H1|_]) when H == H1 -> true;
+member(H, [_|T] -> member(H, T);
+member(H, [])
+-> false.
+1. Evaluate member(dog, [cat,man,dog,ape])
+2. The first clause matches with bindings {H 7→ dog, H1 7→ cat}. The
+guard test then fails.
+3. The second clause matches with {H 7→ dog, T 7→ [man,dog,ape]},
+there is no guard test so the system evaluates member(H,T) with the
+current bindings of H and T.
+4. Evaluate member(dog, [man,dog,ape])
+5. As before. This time the second clause matches with bindings
+{H 7→ dog, T 7→ [dog,ape]}
+6. Evaluate member(dog, [dog,ape])
+7. The first clause matches with bindings {H 7→ dog, H1 7→ dog}. The
+guard test in the first clause succeeds.
+8. Evaluate true which is just true.
+
+52
+
+CHAPTER 3. ERLANG
+
+Note that each time a function clause is entered a fresh set of variable
+bindings is used, so that the values of the variable H and T in step 3 above
+are distinct from those in step 5.
+
+3.3.7
+
+Function bodies
+
+Function bodies are sequences of expressions. The value of a sequence of
+expressions is obtained by sequentially evaluating each element in the sequence. The value of the body is the result of evaluating the last expression
+in the sequence.
+For example, suppose we define a function to manipulate a bank account:
+deposit(Who, Money) ->
+Old = lookup(Who),
+New = Old + Money,
+insert(Who, New),
+New.
+The body of this function consists of a sequence of four statements. If
+we evaluate the expression deposit(joe, 25) then the function will be
+entered with bindings {Who 7→ joe, Money 7→ 10}. Then lookup(Who)
+will be called. Assume this returns W. The return value (W) is matched
+against the free variable Old, the match succeeds. Ader this match we
+continue with the set of bindings {Who 7→ joe, Money 7→ 10, Old 7→ W} ...
+
+3.3.8
+
+Tail recursion
+
+A function call is tail-recursive if all the last calls in the function body are
+calls to other functions in the system.
+For example, consider the following functions:
+p() ->
+...
+q(),
+
+3.3. SEQUENTIAL ERLANG
+
+53
+
+...
+q() ->
+r(),
+s().
+At some point in the execution of p the function q is called. The final
+function call in q is a call to s. When s returns it returns a value to q, but
+q does nothing with the value and just returns this value unmodified to p.
+The call to s at the end of the function q is called a tail-call and on a
+traditional stack machine tail-calls can be compiled by merely jumping into
+the code for s. No return address has to be pushed onto the stack, since
+the return address on the stack at this point in the execution is correct and
+the function s will not return to q but to the correct place where q was
+called from in the body of p.
+A function is tail-recursive if all possible execution paths in the function
+finish with tail-calls.
+The important thing to note about tail-recursive functions is that they
+can run in loops without consuming stack space. Such function are oden
+called “iterative functions.”
+Many functions can be written in either an iterative of non-iterative
+(recursive) style. To illustrate this, the factorial function can be written in
+these two dicerent styles. Firstly the non tail-recursive way:
+factorial(0) -> 1;
+factorial(N) -> N * factorial(N-1).
+To write this in a tail-recursive manner requires the use of an additional
+function:
+factorial(N) -> factorial_1(N, 1).
+factorial_1(0, X) -> X;
+factorial_1(N, X) -> factorial_1(N-1, N*X).
+
+54
+
+CHAPTER 3. ERLANG
+
+Many non-tail recursive functions can be made tail-recursive, by introducing an auxiliary function, with an additional argument.6
+Many functions in Erlang are designed to run in infinite loops—in particular the client–server model assumes that the server will run in an infinite
+loop. Such loops must be written in a tail-recursive manner. A typical
+infinite loop in a server might be written something like:
+loop(Dict) ->
+receive
+{store, Key, Value} ->
+loop(dict:store(Key, Value, Dict));
+{From, {get, Key}} ->
+From ! dict:fetch(Key, Dict),
+loop(Dict)
+end.
+which is tail recursive.
+
+3.3.9
+
+Special forms
+
+Two special forms are used for conditional evaluation of Erlang expression
+sequences. They are the case and if statements.
+
+3.3.10
+
+case
+
+case has the following syntax:
+case Expression of
+Pattern1 -> Expr_seq1;
+Pattern2 -> Expr_seq2;
+...
+end
+6
+
+Called an accumulator.
+
+3.3. SEQUENTIAL ERLANG
+
+55
+
+case is evaluated as follows: Firstly, Expression is evaluated, assume
+this evaluates to Value. Thereader Value is matched in turn against Pattern1, Pattern2 ... etc. until a match is found. As soon as a match is found
+to some pattern Pattern[i] then the corresponding expression sequence
+Expr seq[i] is evaluated—the result of evaluating the expression sequence
+Expr seq[i] becomes the value of the case statement.
+
+3.3.11
+
+if
+
+A second conditional primitive if is also provided. The syntax:
+if
+Guard1 ->
+Expr_seq1;
+Guard2 ->
+Expr_seq2;
+...
+end
+is evaluated as follows: Firstly Guard1 is evaluated, if this evaluates to
+true then the value of if is the value obtained by evaluating the expression
+sequence Expr seq1. If Guard1 does not succeed Guard2... is evaluated
+until a match is found. At least one of the guards in the if statement must
+evaluate to true otherwise an exception will be raised. Oden the final
+guard in an if statement is the atom true which guarantees that the last
+form in the statement will be evaluated if all other guards have failed.
+
+3.3.12
+
+Higher order functions
+
+Higher order functions are functions which take functions as input arguments or produce functions as return values. An example of the former is
+the function map found in the lists module, which is defined as follows:
+map(Fun, [H|T]) -> [Fun(H)|map(Fun, T)];
+map(Fun, [])
+-> [].
+
+56
+
+CHAPTER 3. ERLANG
+
+map(F, L) produces a new list by applying the function F to every
+element of the list L, so for example:
+> lists:map(fun(I) -> 2 *I end, [1,2,3,4]).
+[2,4,6,8]
+Higher order functions can be used to create control abstractions for
+syntactic constructions that do not exist in the language.
+For example, the programming language C provides a looping construct for, which can be used as follows:
+sum = 0;
+for(i = 0; i < max; i++){
+sum += f(i)
+}
+Erlang has no for loop but we can easily make one:
+for(I, Max, F, Sum) when I < Max ->
+for(I+1, Max, F, Sum + F(I));
+for(I, Max, F, Sum) ->
+Sum.
+which could be used as follows:
+Sum0 = 0,
+Sum = for(0, Max, F, Sum0).
+Functions which return new functions can also be defined. The following example in the Erlang shell illustrates this:
+1> Adder = fun(X) -> fun(Y) -> X + Y end end.
+#Fun<erl_eval.5.123085357>
+2> Adder10 = Adder(10).
+#Fun<erl_eval.5.123085357>
+3> Adder(10).
+15
+
+3.3. SEQUENTIAL ERLANG
+
+57
+
+Here the variable Adder contains a function of X; evaluating Adder(10)
+binds X to 10 and returns the function fun(Y) -> 10 + Y end.
+With devilish ingenuity recursive functions can also be defined, for
+example, factorial:
+6> Fact = fun(X) ->
+G = fun(0,F) -> 1;
+(N, F) -> N*F(N-1,F)
+end,
+G(X, G)
+end.
+#Fun<erl_eval.5.123085357>
+7> Fact(4).
+24
+Functions can be referred to with the syntax fun Name/Arity. For
+example, the expression:
+X = fun foo/2
+is shorthand for writing:
+X = fun(I, J) -> foo(I, J) end
+where I and J are free variables which do not occur at any other place
+in the function where X is defined.
+
+3.3.13
+
+List comprehensions
+
+List comprehensions are expression which generate lists of values. They
+are written with the following syntax:
+[X || Qualifier1, Qualifier2, ...]
+X is an arbitrary expression, and each qualifier is either a generator or
+a filter.
+
+58
+
+CHAPTER 3. ERLANG
+• Generators are written as Pattern<-ListExpr where ListExpr
+must be an expression which evaluates to a list of terms.
+• Filters are either predicates or boolean expressions.
+
+As an example, the well-known quicksort algorithm can be expressed
+in terms of two list comprehensions:
+qsort([]) -> [];
+qsort([Pivot|T]) ->
+qsort([X||X<-T,X =< Pivot]) ++
+[Pivot] ++
+qsort([X||X<-T,X > Pivot]).
+Where ++ is the infix append operator.
+If you are interested in crossword puzzles and need to compute all
+permutations of a string then you could use the function perms where:
+perms([]) -> [[]];
+perms(L) -> [[H|T] || H <- L, T <- perms(L--[H])].
+Where the infix operator X--Y is a copy of the list X where any element
+of X which also occurs in Y have been removed.
+So for example:
+> perms("123").
+["123","132","213","231","312","321"]
+
+3.3.14
+
+Binaries
+
+Binaries are memory bucers designed for storing untyped data. Binaries
+are used primarily to store large quantities of unstructured data and for
+eecient I/O operations. Binaries store data in a much more space-eecient
+manner than in lists or tuples. For example, a string stored as a list needs
+eight bytes of storage per character, whereas a string stored in a binary
+needs only one byte per character plus a small constant overhead.
+
+3.3. SEQUENTIAL ERLANG
+
+59
+
+The BIF list_to_binary converts a io-list to a binary, the inverse is
+computed with binary_to_list; term_to_binary converts an arbitrary
+term to a binary, the inverse is binary_to_term.
+Note: An io-list is a list whose elements are either small integers (a
+small integer is an integer in the range 0 to 255) or binaries, or io-lists.
+The BIF list-to_binary(A) flattens the io-list and produces a binary
+constructed from this list. binary_to_list/1 returns a flat list of small
+integers. binary_to_list is only a strict inverse of list_to_binary(A)
+in the case where A is a flat list of small integers.
+Lists of binaries can be concatenated with concatenate_binaries,
+and a single binary can be split into two binary with split_binary.
+We can illustrate a number of operations on binaries, in the shell:
+1 > B1=list_to_binary([1,2,3]).
+<<1,2,3>>
+2> B2=list_to_binary([4,5,[6,7],[],[8,[9]],245]).
+<<4,5,6,7,8,9,245>>
+3 > B3=concat_binary([B1,B2]).
+<<1,2,3,4,5,6,7,8,9,245>>
+4> split_binary(B3,6).
+{<<1,2,3,4,5,6>>, <<7,8,9,245>>}
+Expression 1 converts the list [1,2,3] to a binary B1. Here the notation <<I1,I2,...>> represents the binary made from the bytes I1,I2
+...
+Expression 2 converts an io-list to a binary.
+Expression 3 combines two binaries B1 and B2 into a single binary B3,
+and expression 4 splits B4 into two binaries.
+5> B = term_to_binary({hello,"joe"}).
+<<131,104,2,100,0,5,104,101,108,108,111,107,
+0,3,106,111,101>>
+6> binary_to_term(B).
+{hello,"joe"}
+
+60
+
+CHAPTER 3. ERLANG
+
+The BIF term_to_binary converts its argument into a binary. The
+inverse function is binary_to_term which reconstructs the term from
+the binary. The binary produced by term_to_binary is stored in the
+so-called “external term format.” Terms which have been converted to
+binaries by using term_to_binary can be stored in files, sent in messages
+over a network etc and the original term from which they were made can
+be reconstructed later. This is extremely useful for storing complex data
+structures in files or sending complex data structures to remote machines.
+
+3.3.15
+
+The bit syntax
+
+The bit syntax provides a notation for constructing binaries and for pattern
+matching on the contents of binaries. To understand how binaries are
+constructed I will give a number of examples in the shell:
+1> X=1,Y1=1,Y2=255,Y3=256,Z=1.
+1
+2> <<X,Y1,Z>>.
+<<1,1,1>>
+3> <<X,Y2,Z>>.
+<<1,255,1>>
+4> <<X,Y3,Z>>.
+<<1,0,1>>
+5> <<X,Y3:16,Z>>.
+<<1,1,0,1>>
+6> <<X,Y3:32,Z>>.
+<<1,0,0,1,0,1>>
+In line 1 a few variables X, Y1..Y3 and Z and defined. Line 2 constructs
+a binary from X,Y1 and Z the result is just <<1,1,1>>.
+In Line 3 Y2 is 255 and the value of Y2 is copied unchanged to the
+second byte of the binary. When we try to create a binary from Y3 (which
+is 256) the value is truncated, since 256 will not fit into a single byte. The
+quantifier :16 added in line 5 corrects this problem.
+If we do not quantify the size of an integer it is assumed to take up 8
+bits. Line 6 shows the ecect of a 32-bit quantifier.
+
+3.3. SEQUENTIAL ERLANG
+
+61
+
+Not only can we specify the size of an integer, but also the byte order,
+so for example:
+7> <<256:32>>.
+<<0,0,1,0>>
+8> <<256:32/big>>.
+<<0,0,1,0>>
+9> <<256:32/little>>.
+<<0,1,0,0>>
+Line 7 says create a binary from the integer 32 and pack this integer
+into 32 bits. Line 8 tells the system to create a 32-bit integer with “big
+endian” byte order and line 9 says use little endian byte order.
+Bit fields can also be packed:
+10> <<1:1,2:7>>.
+<<130>>
+creates a single byte binary from a 1-bit field followed by a 7-bit field.
+Unpacking binaries is the opposite to packing them, thus:
+11> <<X:1,Y:7>> = <<130>>.
+<<130>>
+12> X.
+1
+13> Y.
+2
+is the inverse of line 10.
+The pattern machine operation on binaries was originally designed for
+processing packet data. Pattern matching is performed over a sequence of
+zero or more “segments”. Each segment is written with the syntax:
+Value:Size/TypeSpecifierList
+Here TypeSpecifierList is a hyphen-separated list of items of the
+form End-Sign-Type-Unit, where:
+
+62
+
+CHAPTER 3. ERLANG
+• End — specifies the endianess of the machine and is one of big,
+little or native.
+• Sign — is one of signed or unsigned.
+• Type — is one of integer, float, or binary.
+• Unit — is of the form unit:Int where Int is a literal integer in
+the range 1..256. The total size of the segment is Size x Int bits
+long, this size must be a multiple of eight bits.
+
+Any of the above items may be omitted and the items can occur in
+any order.
+A nice example of the use of binaries can be found in the Erlang
+Open Source Distribution [34] in the section entitled “Erlang Extensions
+Since 4.4.” This shows how to parse an IP version four datagram in a
+single pattern-matching operation.
+1
+2
+
+-define(IP_VERSION, 4).
+-define(IP_MIN_HDR_LEN, 5).
+
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+
+...
+DgramSize = size(Dgram),
+case Dgram of
+<<?IP_VERSION:4, HLen:4, SrvcType:8, TotLen:16,
+ID:16, Flgs:3, FragOff:13,
+TTL:8, Proto:8, HdrChkSum:16,
+SrcIP:32,
+DestIP:32, RestDgram/binary>> when HLen >= 5, 4*HLen =< DgramSize ->
+OptsLen = 4*(HLen - ?IP_MIN_HDR_LEN),
+<<Opts:OptsLen/binary,Data/binary>> = RestDgram,
+...
+
+Lines 7–11 match the IP datagram in a single pattern-matching expression. The pattern is complex spreading over three lines and illustrating
+how data which does not fall on byte boundaries can easily be extracted
+(for example, the Flgs and FragOff fields which are 3 and 13 bits long
+respectively).
+Having pattern matched the IP datagram, the header and data part of
+the datagram can be isolated (lines 12–13).
+
+3.3. SEQUENTIAL ERLANG
+
+3.3.16
+
+63
+
+Records
+
+Records provide a method for associating a name with a particular element
+in a tuple. The problem with tuples is that when the number of elements
+in a tuple becomes large, it is diecult to remember which element in the
+tuple means what.
+In a small tuple this is rarely a problem, so we oden see programs
+which manipulated tuples with a small number of elements in the tuple.
+As the number of elements in the tuples becomes greater it becomes
+more and more diecult to keep track of the meanings of the individual
+elements in the tuple. When the number of elements in the tuple is large,
+or if we wish to name the elements in the tuple for other purposes7 then
+we can use records instead of tuples.
+Record declarations are written with the syntax:
+-record(Name, {
+Key1 = Default1,
+Key2 = Default2,
+...
+}).
+Here Name is the name of the record. Key1, Key2 ... are the names
+of the fields in the record. Each field in a record can have a default value
+which is used if no value for this particular field is specified when the
+record is created.
+For example, we might define a person record as follows:
+-record(person, {
+firstName="",
+lastName = "",
+age}).
+Once a record has been defined, instance of the record can be created.
+For example:
+7
+
+for example, documentation.
+
+64
+
+CHAPTER 3. ERLANG
+Person = #person{firstName="Rip",
+lastname="Van Winkle",
+age=793
+}
+
+creates a “Rip Van Winkel”8 person.
+We can write functions which pattern match on the fields of a record
+and which create new records, so when Mr. Van Winkel has his birthday
+we can call:
+birthday(X=#person{age=N}) ->
+X#person{age=N+1}.
+If the clause head matches the record then X is bound to the entire
+record, and N is bound to the age field of the record. X#person{age=K}
+makes a copy of X replacing the old value of the field named age in X with
+the value K.
+
+3.3.17
+
+epp
+
+Before an Erlang module is compiled it is processed by the Erlang preprocessor epp. The Erlang pre-processor performs macro expansion and
+inserts any necessary include files.
+The output of the pre-processes can be saved in a file by giving the
+command compile:file(M, [’P’]). This compiles any code in the file
+M.erl and produces a listing in the file M.P where all macros have been
+expanded and any necessary include files have been included.
+
+3.3.18
+
+Macros
+
+Erlang macros are written:
+-define(Constant, Replacement).
+-define(Func(Var1, Var2,.., Var), Replacement).
+8
+
+Even Mr. Google did not know how old Mr. Van Winkel was, so 793 is pure guesswork.
+
+3.3. SEQUENTIAL ERLANG
+
+65
+
+Macros are expanded by the Erlang pre-processor epp when an expression of the form ?MacroName is encountered. Variables occurring in
+macro definition match complete forms in the corresponding site of the
+macro call.
+-define(macro1(X, Y), {a, X, Y}).
+foo(A) ->
+?macro1(A+10, b)
+expands into:
+foo(A) ->
+{a,A+10,b}.
+The argument in a call to a macro and the return value from a macro
+must be a complete, well-balanced expression. Thus it is not possible to
+use macros like the following:
+-define(start, {).
+-define(stop, }).
+foo(A) ->
+?start,a,?stop.
+In addition, there are a number of predefined macros which provide
+information about the current module. They are as follows:
+• ?FILE expands to the current file name.
+• ?MODULE expands to the current module name.
+• ?LINE expands to the current line number.
+
+66
+
+CHAPTER 3. ERLANG
+
+3.3.19
+
+Include files
+
+Files can be included with the syntax:
+-include(Filename).
+Conventional include files have the extension .hrl. The FileName
+should contain an absolute or relative path so that the preprocessor can
+locate the appropriate file.
+Library header files can be included with the syntax
+-include_lib(Name).
+For example:
+-include_lib("kernel/include/file.hrl").
+In which case the Erlang compiler will find the appropriate include
+files.
+
+3.4
+
+Concurrent programming
+
+In Erlang, creation of a parallel process is achieved by evaluating the spawn
+primitive. The expression:
+Pid = spawn(F)
+Where F is a fun of arity zero creates a parallel process which evaluates
+F. Spawn returns a process identifier (Pid) which can be used to access the
+newly created process.
+The syntax Pid ! Msg sends the message Msg to Pid. The message
+can be received using the receive primitive, with the following syntax:
+
+3.4. CONCURRENT PROGRAMMING
+
+67
+
+receive
+Msg1 [when Guard1] ->
+Expr_seq1;
+Msg2 [when Guard2] ->
+Expr_seq2;
+...
+MsgN [when GuardN] ->
+Expr_seqN;
+...
+[; after TimeOutTime ->
+Timeout_Expr_seq]
+end
+Msg1...MsgN are patterns. The patterns may be followed by optional
+guards. When a message arrives at a process it is put into a mailbox
+belonging to that process. The next time the process evaluates a receive
+statement the system will look in the mailbox and try to match the first item
+in the mailbox with the set of patterns contained in the current receive
+statement. If no message matches then the received message is moved
+to a temporary “save” queue and the process suspends and waits for the
+next message. If the message matches and if any guard test following the
+matching pattern also matches then the sequence of statements following
+the match are evaluated. At the same time, any saved messages are put
+back into the input mailbox of the process.
+The receive statement can have an optional timeout. If no matching
+message is received within the timeout period then the commands associated with the timeout are evaluated.
+
+3.4.1 register
+When we send a message to a process, we need to know the name of the
+process. This is very secure, but somewhat inconvenient since all processes
+which want to send a message to a given process have to somehow obtain
+the name of that process.
+The expression:
+
+68
+
+CHAPTER 3. ERLANG
+register(Name, Pid)
+
+creates a global process, and associates the atom Name with the process
+identifier Pid. Thereader, messages sent by evaluating Name!Msg are sent
+to the process Pid.
+
+3.5 Error handling
+Evaluating a function in Erlang will result in exactly one of two possible
+outcomes: either the function will return a value, or, it will generate an
+exception.
+Generating exceptions is either implicit (that is, generated by the Erlang run-time system) or is explicitly generated by evaluating the primitive
+exit(X). Implicit exceptions are described in the next section.
+Here is an example of implicit exception generation. Suppose we write:
+factorial(0) -> 1;
+factorial(N) -> N*factorial(N-1).
+Evaluating factorial(10) returns the Value 3628800, but evaluating
+factorial(abc) raises the exception {’EXIT’,{badarith,...}. Exceptions cause the program to stop what it is doing and do something
+else—that is why they are called exceptions. If we write:
+J = factorial(I)
+we expect the value of J to be the value of factorial(I) if I is an
+integer. If factorial is called with a non-integer argument the statement
+makes no sense. The program fragment:
+I = "monday",
+J = factorial(I),
+is nonsense, since we cannot compute factorial("monday"). J thus
+has no value and it is pointless to proceed.
+Many programming languages ignore the distinction between values
+and exceptions and blithely continue even though the program is nonsense.
+
+3.5. ERROR HANDLING
+
+69
+
+3.5.1 Exceptions
+Exceptions are abnormal conditions which are detected by the Erlang runtime system. Erlang programs are compiled to virtual machine instructions
+which are executed by a virtual machine emulator which is part of the
+Erlang run-time system.
+If the emulator detects a condition where it cannot decide what to do,
+it generates an exception. There are six types of exception:
+1. Value errors — these are things like “divide by zero”. Here an argument to a function has the correct type, but an incorrect value.
+2. Type errors — these are generated when an Erlang BIF is called
+with an argument which has an incorrect type. For example, the BIF
+atom_to_list(A) converts the atom A to a list of the ASCII integer
+codes which represent the atom. If A is not an atom, the run-time
+system generates an exception.
+3. Pattern-matching errors — these are generated when an attempt is
+made to match a data structure against a number of patterns and
+no matching pattern is found. This can occur in function head
+matching, or in matching the alternatives in a case, receive or
+if statement.
+4. Explicit exits — these are generated explicitly by evaluating the expression exit(Why), which generates the exception Why.
+5. Error propagation — if a process receives an exit signal it may decide
+to die and propagate the exit signal to all processes in its link set (see
+section 3.5.6).
+6. System exceptions — the run-time system might terminate a process
+if it runs out of memory or if it detects an inconsistency in some internal table. Such exceptions are outside the programmer’s control.
+
+70
+
+CHAPTER 3. ERLANG
+
+3.5.2
+
+catch
+
+Exceptions can be converted to values by using the catch primitive. We
+can illustrate this in the Erlang shell by trying to evaluate an illegal expression whose evaluation leads to the generation of an exception. We will try
+to bind the value of 1/0 to the free variable X. This is what happens:
+1> X = 1/0.
+=ERROR REPORT==== 23-Apr-2003::15:20:43 ===
+Error in process <0.23.0> with exit value:
+{badarith,[{erl_eval,eval_op,3},{erl_eval,expr,3},
+{erl_eval,exprs,4},{shell,eval_loop,2}]}
+** exited: {badarith,[{erl_eval,eval_op,3},
+{erl_eval,expr,3},
+{erl_eval,exprs,4},
+{shell,eval_loop,2}]} **
+Here entering the expression X = 1/0 in the Erlang shell caused an
+exception to be generated and an error message is printed to standard
+output. If we try to print the value of the variable X we see the following:
+2> X.
+** exited: {{unbound,’X’},[{erl_eval,expr,3}]} **
+X has, of course, no value, so another exception is generated and
+another error message printed.
+To convert the exception into a value we evaluate it within a catch
+statement, as follows:
+3> Y = (catch 1/0).
+{’EXIT’,{badarith,[{erl_eval,eval_op,3},
+{erl_eval,expr,3},
+{erl_eval,exprs,4},
+{shell,eval_loop,2}]}}
+
+3.5. ERROR HANDLING
+
+71
+
+Now Y has a value, namely a 2-element tuple whose first element is the
+atom EXIT, and whose second value is the term {badarith,...}. Y is a
+normal Erlang term, which can be freely examined and manipulated like
+any other Erlang data structure. The expression:
+Val = (catch Expr)
+evaluates Expr in some context. If the function evaluation terminates
+normally, then catch returns the value of this expression. If an exception
+occurs during the evaluation then evaluation of the function stops immediately and an exception is generated. The exception is an Erlang object
+which describes the problem, in this case the value of catch is the value
+of the exception that was generated.
+If evaluating (catch Expr) returns a term of the form {’EXIT’,W}
+then we say that the expression terminated with reason W.
+If an exception is generated anywhere inside a catch then the value
+of catch is just the value of the exception. If an exception is generated
+outside the scope of a catch then the process in which the exception was
+generated will die and the exception will be broadcast to any processes
+which are currently linked to the dying process. Links are created by
+evaluating the BIF link(Pid).
+
+3.5.3
+
+exit
+
+Explicit exceptions can be generated by calling the exit primitive. Here
+is an example:
+sqrt(X) when X < 0 ->
+exit({sqrt,X});
+sqrt(X) ->
+...
+which generates the exception {sqrt,X} if called with a negative argument X.
+
+72
+
+CHAPTER 3. ERLANG
+
+3.5.4
+
+throw
+
+The primitive throw is used to change the syntactic form of an exception.
+• If an exception is generated by calling exit(P) within the scope of
+some function F then the result of evaluating (catch F) will be a
+term of the form {’EXIT’,P}.
+• If an exception is generated by calling throw(Q) within the scope
+of some function F then the result of evaluating (catch F) will be
+the term Q.
+Throw can be used for distinguishing user-generated exceptions from
+exceptions produced by the run-time system.
+
+3.5.5
+
+Corrected and uncorrected errors
+
+Suppose we write:
+g(X) ->
+case (catch h(X)) of
+{’EXIT’, _} ->
+10;
+Val ->
+Val
+end.
+h(cat) -> exit(dog);
+h(N)
+-> 10*N.
+Evaluating h(cat) generates an exception, h(20) returns the value
+200. Evaluating g(cat) or g(dog) returns the value 10 whereas g(10)
+returns the value 100.
+When we evaluate g(cat) the following sequence of events occurs:
+1. h(cat) is evaluated.
+
+3.5. ERROR HANDLING
+
+73
+
+2. h generates an exception.
+3. The exception is caught in g.
+4. g returns a value.
+Evaluating g(dog) causes the following to occur:
+1. h(dog) is evaluated.
+2. N is bound to dog in the body of h.
+3. N*10 is evaluated where N = dog.
+4. An exception is generated in ’*’.
+5. The exception is propagated to h.
+6. The exception is caught in g.
+7. g returns a value.
+If we look at this carefully we observe that in evaluating d(dog) an
+exception was raised but was caught and corrected in g.
+Here we can say that an error did occur but that it was corrected.
+If we had evaluated h(dog) directly then an error would have occurred
+that was not caught and was not corrected.
+
+3.5.6
+
+Process links and monitors
+
+When one process in the system dies we would like other processes in the
+system to be informed; recall (page 27) that we need this in order to be
+able to program fault-tolerant systems. There are two ways of doing this.
+We can use either a process link or a process monitor.
+Process links are used to group together sets of processes in such a way
+that if an error occurs in any one of the processes then all the processes in
+the group get killed.
+Process monitors allow individual processes to monitor other processes
+in the system.
+
+74
+
+CHAPTER 3. ERLANG
+
+Process links
+The primitive catch is used to contain errors which occur within a process.
+We now ask what happens if the top-level catch in a program does not
+manage to correct an error which it has detected? The answer is that the
+processes itself terminates.
+The reason for failure is just the argument of the exception. When
+a process fails the reason for failure is broadcast to all processes which
+belong in the so-called “link set” of the failing process. A process A can
+add the process B to its link set by evaluating the BIF link(B). Links are
+symmetric, in the sense that if A is linked to B then B will also be linked to
+A.
+Links can also be created when a process is created. If the process A
+creates the process B by evaluating:
+B = spawn_link(fun() -> ... end),
+then the process B will be linked to A. This is semantically equivalent
+to evaluating spawn immediately followed by link, only the two expression are evaluated atomically, instead of sequentially. The spawn_link
+primitive was introduced to correct a rare programming error which can
+occur if a process dies immediately during the spawning process and does
+not reach the link statement.9
+If a process P dies with an uncaught exception {’EXIT’,Why} then the
+exit signal {’EXIT’,P,Why} will be sent to all processes in the link set of
+the process P.
+So far I have not mentioned signals. Signals are things which are sent
+between processes when a process terminates. The signal is a tuple of
+the form {’EXIT’,P,Why} where P is the Pid of the process which has
+terminated and Why is a term describing the reason for termination.
+Any process which receives an exit signal will die if Why is not the atom
+normal. There is one exception to this rule: if the receiving process is a
+system process, then it will not die but instead the signal will be converted
+9
+This could happen for example, if a process tries to spawn a processes which uses code in a module
+which does not yet exist.
+
+3.5. ERROR HANDLING
+
+75
+
+into a normal inter-process message and be added to the input mailbox of
+the process. By evaluating the BIF process_flag(trap_exit,true) a
+normal process can become a system process.
+A typical code fragment for a system process which can handle failures
+in other processes is something like this:
+start() -> spawn(fun go/0).
+go() ->
+process_flag(trap_exit, true),
+loop().
+loop() ->
+receive
+{’EXIT’,P,Why} ->
+... handle the error ...
+end
+One additional primitive completes the picture. exit(Pid,Why) sends
+an exit signal to the process Pid with reason Why. The process evaluating
+exit/2 does not terminate, so such a message can be used to “fake” the
+death of a process.10
+Again there is one exception to the rule that a system process will
+convert all signals into messages; evaluating exit(P,kill) sends an unstoppable exit to the process P which will be terminated with extreme
+prejudice. This use of exit/2 is needed to kill processes which refuse to
+honour requests to voluntarily terminate.
+Process links are useful for setting up groups of processes, which will
+all die if anything goes wrong in any of the processes. Usually we just link
+together all the processes which belong to an application, and let one of
+the processes assume a “supervisor” role. The supervisor process is set to
+trap exits. If anything goes wrong then the entire group will die except the
+supervisor process which can receive messages which inform it about the
+failures of the other processes in the group.
+10
+
+This is a feature, not a bug!
+
+76
+
+CHAPTER 3. ERLANG
+
+Process Monitors
+Process links are useful for entire groups of processes, but not for monitoring pairs of processes in an asymmetric sense. In a typical client-server
+model, the relationship between the client and the servers is asymmetric as
+regards error handling. Suppose that a server is involved in a number of
+long-lived sessions with a number of dicerent clients; if the server crashes,
+then we want to kill all the clients, but if an individual client crashes we do
+not wish to kill the server.
+The primitive erlang:monitor/2 can be used to set up a monitor. If
+process A evaluates:
+Ref = erlang:monitor(process, B)
+Then if B dies with exit reason Why, A will be sent a message of the
+form:
+{’DOWN’, Ref, process, B, Why}
+Neither A nor B have to be system processes in order to set up or
+receive monitor messages.
+
+3.6
+
+Distributed programming
+
+Erlang programs can be easily ported from a uni-processor to a collection
+of processors. Each complete and self-contained Erlang system is called a
+node. One or more Erlang nodes can run within a host operating system.
+Testing a distributed application is simplified by the fact that many Erlang
+nodes can be run on the same operating system. A distributed application
+can be developed and tested by running all the nodes in the application on
+a single processor. When the application works the dicerent nodes which
+were assigned to the same processor can be moved to dicerent nodes
+in a network of distributed processors. With the exception of timing all
+operations in the distributed system should work in exactly the same way
+as they worked in the single-node test system.
+Two primitives are needed for distributed processing:
+
+3.7. PORTS
+
+77
+
+• spawn(Fun,Node) — spawns a function Fun on the remote node
+Node.
+• monitor(Node) — is used for monitoring the behaviour of an entire
+node.
+monitor is analogous to link, the dicerence being that the controlled object is an entire node instead of a process.
+
+3.7
+
+Ports
+
+Ports provide a mechanism for Erlang programs to communicate with the
+outside world. Ports are created by evaluating the BIF open_port/2. Associated with each port is a so-called “controlling-process”. The controlling
+processes is said to own the port. All messages from the port are sent to
+the controlling process and only the controlling process is allowed to send
+messages to the port. The controlling process is initially the process which
+created the port, but this process can be changed.
+If P is a port, and Con is the Pid of the port’s controlling process then
+the port can be commanded to do something by evaluating the expression:
+P ! {Con, Command}
+where Command can have one of the following three possible values:
+• {command,Data} — sends Data to the external object. Data must
+be an io-list (see page 59 for a definition of io-lists). The io-list is
+flattened and the data elements in the list are sent to the external
+application.
+• close — closes the port. The port must respond by sending a
+{P,closed} message to the controlling process.
+• {connect,Pid1} — changes the controlling process to Pid. The
+port must send a {Port,connected} to the original controlling
+process, thereader all new messages are sent to the new controlling
+process.
+
+78
+
+CHAPTER 3. ERLANG
+
+All data from the external application results in {Port,{data,D}}
+messages being sent to the controlling process for the port.
+The exact format of the messages and how the messages are framed
+depends upon the details of how the port was opened. See [34] for more
+details.
+
+3.8 Dynamic code change
+Erlang supports a simple mechanism for dynamic code changes. In a running Erlang node all processes share the same code. We have to consider,
+therefore, what happens if we change the code in a running system.
+In a sequential programming language there is only one thread of
+control, so if we wish to dynamically change the code we only have to
+worry about what is happening in that single thread of control. Usually in
+a sequential system, if we wish to change the code, we stop the system,
+change the code and re-start the program.
+In a real-time control system, however, we oden do not wish to stop the
+system in order to change the code. In certain real-time control systems,
+we might never be able to turn oc the system in order to change the code
+and so these systems have to be designed so that the code can be changed
+without stopping the system. An example of such a system is the X2000
+satellite control system [2] developed by NASA.
+The Erlang system allows for two versions of code for every module. If
+the code for a particular module has been loaded then all new processes
+that call any of this code will be dynamically linked with the latest version
+of the module. If the code for a particular module is subsequently changed
+then processes which execute code in this module can choose either to
+continue executing the old code for the module, or to use the new code.
+The choice is determined by how the code is called.
+If the code is called with a fully-qualified name, that is a module name
+followed by a function name, then the latest version of the module will
+always be called, otherwise the current version will be called. For example,
+suppose we write a server loop as follows:
+-module(m).
+
+3.8. DYNAMIC CODE CHANGE
+
+79
+
+...
+loop(Data, F) ->
+receive
+{From, Q} ->
+{Reply, Data1} = F(Q, Data),
+m:loop(data1, F)
+end.
+The first time the module m is called the code for the module will be
+loaded. At the end of the loop m:loop is called. Since there is only one
+version of the module the code in the current module will be called.
+Suppose now that we change the code for the module m and we recompile and re-load the code for m. If we do this, when m:loop is called
+in the last clause of the receive statement, the code in the new version
+of m will be called. Note that it is the programmer’s responsibility to
+ensure that the new code to be called is compatible with the old code.
+It is also highly advisable that all code replacement calls are tail-calls (see
+section 3.3.8), since in a tail-call there is no old code to return to, and thus
+ader a tail-call all old code for a module can safely be deleted.
+If we want to carry on executing code in the current module and not
+change to code in the new module, then we would write the loop without
+the fully qualified call, thus:
+-module(m).
+...
+loop(Data, F) ->
+receive
+{From, Q} ->
+{Reply, Data1} = F(Q, Data),
+loop(data1, F)
+end.
+In this case code in the new version of the module will not be called.
+Judicious use of the mechanism allows processes to execute both old
+and new versions of code in dicerent modules at the same time.
+
+80
+
+CHAPTER 3. ERLANG
+
+Note there is a limit to two versions of the code. If a third attempt is
+made to re-load the module then all processes executing code in the first
+module will be killed.
+In addition to these calling conventions there are a number of BIFs
+that have to do with code replacement. These are fully described in [5].
+
+3.9
+
+A type notation
+
+If we build a sodware module, how can we describe how it is to be used?
+The conventional answer involves the use of a so-called programming API
+(Application Programming Interface). The API is usually a list of those
+functions in the module which are externally callable and the types of the
+inputs to the function and the types of the output.
+Here is an example of how the types of a number of functions can be
+specified in the Erlang type notation:
++type file:open(fileName(), read | write) ->
+{ok, fileHandle()}
+| {error, string()}.
++type file:read_line(fileHandle()) ->
+{ok, string()}
+| eof.
++type file:close(fileHandle()) ->
+true.
++deftype fileName()
+= [int()]
++deftype string()
+= [int()].
++deftype fileHandle() = pid().
+Each of the Erlang primitive data types has its own type. These primitive types are:
+• int() — is the integer type.
+
+3.9. A TYPE NOTATION
+
+81
+
+• atom() — is the atom type.
+• pid() — is the Pid type.
+• ref() — is the reference type.
+• float() — is the Erlang float type.
+• port() — is the port type.
+• bin() — is the binary type.
+List, tuple and alternation types are defined recursively:
+• {T1,T2,...,Tn} is the tuple type if T1 .. Tn are types. We say
+that {X1,X2,...,Xn} is of type {T1,T2,...,Tn} if X1 is of type
+T1 and X2 is of type T2, ... and Xn is of type Tn.
+• [T] is the list type if T is a type. We say that [X1,X2,...,Xn] is of
+type [T] if all the X’s are of type T. Note that the empty list [] is of
+type [T] for all values of T.
+• T1|T2 is the alternation type if T1 and T2 are types. We say that X
+is of type T1|T2 if X is of type T1 or if X is of type T2.
+New types are introduced with the notation:
++deftype name1() = name2() = ... = Type.
+The names name1, name2,... follow the syntax of Erlang atoms.
+Type variables are written using the syntax of Erlang variables.
+so, for example, we can define:
++deftype bool()
+= true | false.
++deftype weekday() = monday|tuesday|wednesday|
+thursday|friday.
++deftype weekend() = saturday() | sunday().
++deftype day()
+= weekday() | weekend().
+
+82
+
+CHAPTER 3. ERLANG
+Function types are written:
++type functionName(T1, T2, ..., Tn) -> T.
+
+Where all the T’s are types. If a type variable occurs more than once
+in a type definition then all the instances of the type at the position implied
+by the variable must have the same type.
+Here are some examples:
+
++deftype string() = [int()].
++deftype day()
+= number() = int().
++deftype town()
+= street() = string().
++type factorial(int()) -> int().
++type day2int(day())
+-> int().
++type address(person()) -> {town(), street(), number()}.
+Finally, function types are written:
++type fun(T1, T2, ..., Tn) -> T end
+so, for example, the type of map/2 can be written:
++type map(fun(X) -> Y end, [X]) -> [Y].
+The type notation here is a much simplified version of the notation
+developed by Wadler & Marlow [49].
+
+3.10
+
+Discussion
+
+This chapter has introduced a significant subset of Erlang—suecient, at
+least, to understand all the examples in the thesis, but I have not yet
+addressed the question “Is Erlang a suitable language for programming
+fault-tolerant systems in?” I believe the answer is “Yes.” I argued earlier
+
+3.10. DISCUSSION
+
+83
+
+that in order to program a fault-tolerant system the programming language
+used for the job had to satisfy certain properties (R1–R6 on page 27). I
+now claim that Erlang does indeed satisfy these properties, for the following
+reasons:
+• Process are fundamental to Erlang so R1 is satisfied.
+• R2 is satisfied since processes in Erlang are designed as units of error
+encapsulation. If one process terminates because of a sodware error,
+other process executing in the same Erlang node will not be acected
+(unless, of course, they have been linked to the terminating process,
+in which case the interaction is intentional).
+• Processes fail immediately if functions within the processes are called
+with incorrect arguments, or if the system BIFs are called with incorrect arguments. Immediate failure corresponds to Gray’s notion of
+fail-fast processes (page 34), to Schneider’s notion of a fail-stop processor (page 34) and to Renzel’s statement that we must detect errors
+and fail as early as possible (page 35).
+• When processes fail, the reason for failure is broadcast to the current
+link set of the process, thus satisfying R3 and R4.
+• R5 is satisfied by the code upgrade mechanism described in section 3.8.
+• R6 is not satisfied in Erlang, but it is satisfied in the Erlang libraries.
+Stable storage makes use of either dets or mnesia. dets is a single
+system disk-based storage system. If a process or node crashes then
+data stored in dets should survive the crash. For stronger data protection the data should be stored on two physically separated nodes,
+using the mnesia data base, which is one of the OTP applications.
+I also note in passing that Schneider’s “halt on failure,” “Failure status property” and “Stable storage property” (page 34) are satisfied either
+directly in Erlang itself, or in the Erlang libraries.
+
+84
+

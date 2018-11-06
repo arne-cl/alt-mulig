@@ -1,0 +1,260 @@
+9
+
+APIs and
+Protocols
+
+hen we have built a sodware module we need to describe how
+it is to be used. One such method is to define a programming
+language API for all the exported functions that are in the module.
+To do this in Erlang we could use the type system outlined on page 80.
+This method of defining API’s is widespread. The details of the type
+notation vary from language to language. The degree to which the type
+system is enforced by the underlying language implementation varies from
+system to system. If the type system is strictly enforced then the language
+is called “strongly typed,” otherwise it is called “untyped”—this point oden
+causes some confusion, since many languages which need type declarations
+have type systems which can easily be broken. Languages like Erlang,
+need no type declarations, but are “type safe,” meaning that the underlying
+system cannot be broken in such a way as to damage the system.
+Even if our language is not strongly typed, the existence of type declarations provides valuable documentation, and can be used as input to a
+dynamic type checker which can be used for run-time type checking.
+Unfortunately, API’s written in the conventional manner are not suecient to understand the operation of a program. For example, consider
+the following code fragment:
+
+W
+
+silly() ->
+{ok, H} = file:open("foo.dat", read),
+file:close(H),
+file:read_line(H).
+193
+
+194
+
+CHAPTER 9. APIS AND PROTOCOLS
+
+According to the type system and the API given in the example on
+page 80 this is a perfectly legal program and yet it is obviously total nonsense, since we cannot expect to read from a file once it has been closed.
+To remedy the above problem we could add an additional state parameter. In a fairly obvious notation, the API could be written something
+like this:
++type start x file:open(fileName(), read | write) ->
+{ok, fileHandle()} x ready
+| {error, string()} x stop.
++type ready x file:read_line(fileHandle()) ->
+{ok, string()} x ready
+| eof x atEof.
++type atEof | ready x file:close(fileHandle()) ->
+true x stop.
++type atEof | ready x file:rewind(fileHandle()) ->
+true x ready
+This model of the API uses four state variables start, ready, atEof
+and stop. The state start means the file has not been opened. The
+state ready means the file is ready to be read, atEof means that the file
+is positioned at end-of-file. The server always starts in the state start and
+stops in the state stop.
+The API now says that, for example, when we are in a state ready, that
+a file:read_line function call is legal. This will either return a string,
+in which case we stay in the state ready or it will return eof and we will
+be in the state atEof.
+In state atEof we can close or rewind the file, all other operations are
+illegal. If we choose to rewind the file, the state will change back to ready
+in which case a read_line operation becomes legal again.
+Augmenting the API with state information provides us with a method
+for determining if the sequence of allowed operation is in accordance with
+the design of a module.
+
+9.1. PROTOCOLS
+
+9.1
+
+195
+
+Protocols
+
+Having seen how we can specify sequencing in an API, there is an equivalent idea that is applicable to protocols.
+Consider two components which communicate by pure message passing, at some level of abstraction we need to be able to specify the protocol
+of the messages which can flow between the components.
+
+A
+
+B
+P
+
+The protocol P between two components A and B can be described in
+terms of a non-deterministic finite state machine.
+Assume that process B is a file server, and that A is a client program
+which makes use of the file server, assume further that sessions are connection oriented. The protocol that the file server obeys can be specified
+as follows:
++state start x {open, fileName(), read | write} ->
+{ok, fileHandle()} x ready
+| {error, string()} x stop.
++state ready x {read_line, fileHandle()} ->
+{ok, string()} x ready
+| eof x atEof.
++state ready | atEof x {close, fileHandle()}->
+true x stop.
++state ready | atEof x {rewind, fileHandle()) ->
+true x ready
+This specification says that if the file server is in the state start then
+it can receive a message of type {open, fileName(), read|write}, it
+
+196
+
+CHAPTER 9. APIS AND PROTOCOLS
+
+Q
+X
+
+{R,S}
+
+Q
+C
+
+{R,S}
+
+Y
+
+P
+Figure 9.1: Two processes and a protocol checker
+
+will then respond by sending out a message of type {ok, fileHandle()}
+and move to the state ready or it will respond by replying with the message {error, string()} and move into the state stop.
+Given a protocol which is specified in a manner similar to the above
+it is possible to write a simple “protocol checking” program which can be
+placed between any pair of processes. Figure 9.1 shows a protocol checker
+C placed between two processes X and Y.
+When X sends a message Q (a query) to Y, Y responds with a response
+R and with a new state S. The pair {R,S} can be type-checked against the
+rules in the protocol specification. The protocol checker C sits between X
+and Y and checks that all the messages between X and Y are according to
+the protocol specification.
+In order to check the protocol rules the checker needs to have access
+to the state of the server, this is because the protocol specification might
+contain productions like:
++state Sn x T1 -> T2 x S2 | T2 x S3
+In which case the observation of a reply message of type T2 is not
+suecient to distinguish between the output states S2 and S3.
+If we recall the simple generic server, shown on page 89, the main loop
+of the program was:
+loop(State, Fun) ->
+receive
+
+9.2. APIS OR PROTOCOLS?
+
+197
+
+{ReplyTo, ReplyAs, Q} ->
+{Reply, State1} = F(State, Q),
+Reply ! {ReplyAs, Reply},
+loop(State1, Fun)
+end.
+Which can easily be changed to:
+loop(State, S, Fun) ->
+receive
+{ReplyTo, ReplyAs, Q} ->
+{Reply, State1, S1} = F(State, S, Q),
+Reply ! {ReplyAs, S1, Reply},
+loop(State1, S1, Fun)
+end.
+Where S and S1 represent the state variable which was specified in the
+protocol specification. Note that the state of the interface (ie the value of
+the state variable used in the protocol specification) is not the same as the
+state of the server State.
+Given such a change, the generic server becomes re-cast in a form
+which allows a dynamic protocol checker to be inserted between the client
+and the server.
+
+9.2
+
+APIs or protocols?
+
+Up to now we have shown what are essentially two equivalent ways of
+doing the same thing. We can impose a type system on our programming
+language, or we can impose a contract checking mechanism between any
+two components in a message passing system. Of these two methods I
+prefer the use of a contract checker.
+The first reason for this has to do with how we structure systems. In our
+model of programming we assume isolated components and pure message
+passing. The components themselves are considered “black boxes.” From
+outside the black box how a computation is performed inside the black
+
+198
+
+CHAPTER 9. APIS AND PROTOCOLS
+
+box is totally irrelevant. The only thing which is important is whether or
+not the black box behaves according to its protocol specification.
+Inside the black box, it may be desirable, for reasons of eeciency or
+otherwise to program using obscure programming methods and to break
+all rules of common sense and good programming practice. This does not
+matter in the slightest, provided the external behaviour of the system is
+consistent with the protocol specification.
+By simple extension the protocol specification can be extended to specify the non-functional properties of a system. For example, we might add
+to our protocol specification language a notion of time, then we could say
+things like:
++type Si x {operation1, Arg1} ->
+value1() x Sj within T1
+| value2() x Sk after T2
+Meaning that operation1 should return a value1() type data structure within time T1 or return something of type value2() ader time T2
+etc.
+The second reason has to do with where we do things in the system.
+Placing the contract checker outside a component in no way interferes with
+the construction of the component itself, moreover it allows a flexible way
+of adding or removing introspective testing powers to the system, which
+can be checked at run-time and which can be configured in a number of
+dicerent ways.
+
+9.3
+
+Communicating components
+
+How should Erlang talk to the outside world? — this question becomes
+interesting if we want to build distributed applications where Erlang is one
+of a number of communicating components. In [35] we can read that:
+The two fundamental building blocks underlying any PLITS
+system are modules and messages. A module is a self-contained
+
+9.4. DISCUSSION
+
+199
+
+entity, something like a Simula or Smalltalk class, a SAIL process or a CLU module. It is not important for the moment
+which programming language is used to encode the body of
+the module; we wish to explicitly account for the case in which
+the various modules are coded in dicerent languages on a variety of machines — [35]
+In order to make a system of communication components we have to
+agree on a number of dicerent things. We need:
+• A transport format and a way of mapping language entities into
+entities in the transport format.
+• A system of types, built on top of the entities in the transport format.
+• A protocol description language in terms of the system of types.
+A method for doing this involving a transport format called UBF (short
+for Universal Binary Format), which was designed for rapid parsing was
+presented in [13]. A slightly revised version of the paper can be found in
+appendix C.
+
+9.4
+
+Discussion
+
+I want to return to the central question of the thesis—How can we make a
+reliable system in the presence of errors? Stepping outside the system and
+viewing the system as a set of communicating black boxes is very helpful
+here.
+If we formally describe the protocol to be obeyed on a communication
+channel between two black boxes then we can use this as a means for detecting and identifying errors, we can also say precisely which component
+has failed.
+Such an architecture satisfies requirements R1–R4 on page 27—and
+therefore, by my reasoning can be used for programming error-resilient
+systems.
+
+200
+
+CHAPTER 9. APIS AND PROTOCOLS
+
+The “try something simpler” idiom (page 116) also applies. If a blackbox implementation of a function fails to work, then we could revert to a
+simpler implementation, also implemented as a black box. The protocol
+checking mechanism could be used for making meta-level decisions as to
+which implementation should be used, choosing a simpler implementation
+if errors are observed. When the components reside on physically separated machines, the property of strong isolation is almost automatically
+enforced.

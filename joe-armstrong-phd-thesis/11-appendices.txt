@@ -1,0 +1,2295 @@
+A
+
+Acknowledgments
+
+The Erlang system, the OTP libraries, and all the applications that have
+been built in Erlang are the result of a massive amount of work done by a
+large number of people.
+It is always diecult to write the acknowledgments section, since I don’t
+want to miss out anybody who has contributed to the system, and I don’t
+want to make any errors—I shall try to be as accurate as possible, for any
+omissions or inaccuracies I apologise in advance.
+I would like to start by thanking all the “management types” who made
+this possible in the first place. Bjarne Däcker who was my boss at Ericsson
+has alway been enthusiastic about our work, and fought many battles on
+our behalf—thank you Bjarne. Torbjörn Jonsson (who was Bjarne’s boss)
+fought even more battles on Bjarne’s behalf—thanks Torbjörn I learnt a
+lot from you. Jane Walerud—(Jane was the woman behind Open Source
+Erlang), she was the managing director of Bluetail, and taught me all I
+know about running a small business.
+Now we get to the developers of Erlang which is a much longer list.
+The original Erlang team was myself, Robert Virding, and Mike Williams.
+I originally wrote the Erlang compiler, Robert wrote the libraries, and
+Mike wrote the JAM emulator. Robert and I wrote several dicerent Erlang
+emulators, mostly in Prolog. Mike re-wrote the emulator in C. Ader a couple of years Claes Wikström (Klacke) came along and added distribution
+to Erlang and Bogumil Hausman invented an improved Erlang machine,
+the BEAM.1
+1
+
+Bogdans Erlang Abstract machine.
+
+211
+
+212
+
+APPENDIX A. ACKNOWLEDGMENTS
+
+Many members of the CSLab “dropped into” the project, wrote a few
+programs in Erlang, then went on do other things. Carl Wilhelm Wellin
+wrote yecc. Klacke and Hans Nilsson wrote mnesia, and mnemosyne, and
+Tony Rogvall and Klacke added binaries to the language, and generally
+did amazing things with networks. Per Hedeland with amazing patience
+answered all my stupid question about Unix, and made sure our systems
+always worked beautifully. He also re-wrote the tricky bits in the Erlang
+emulator when nobody was looking. Magnus Fröberg wrote the debugger,
+and Torbjörn Törnkvist wrote the interface generator, so that you could
+interface Erlang with C.
+When Erlang moved out of the lab and OTP was born, the group extended and reshaped. Magnus Fröberg, Martin Björklund and I designed
+the OTP library structure and structure of the behaviours. The OTP behaviours were based on a number of ideas that had been floating around
+the lab. Klacke had written a “generic server” similar to gen_server,
+and Peter Högfelt had written a generic server, and a early version of the
+supervision tree. Many of the ideas about process supervision came from
+Peter’s work in the mobility server project.
+Ader I led Ericsson, the day-to-day maintenance, and development of
+the system moved to a new generation of programmers. Björn Gustavsson
+maintains the Emulator, and the OTP libraries are maintained by Lars
+Thorsén, Kenneth Lundin, Kent Boortz, Raimo Niskanen, Patrik Nyblom,
+Hans Bolinder, Richard Green, Håkan Mattsson, and Dan Gudmundsson.
+Now to our users—the Erlang/OTP system has been significantly improved by interaction with our faithful band of users.
+The first set of users, who built the first major product in Erlang were,
+Mats Persson, Kerstin Ödling, Peter Högfeld, Åke Rosberg, Håkan Karlsson, and Håkan, Larsson.
+In the AXD301 Ulf Wiger, Stacan Blau, did magnificent work pioneering the use of Erlang for carrier-class applications.
+Both inside Ericsson, and outside Ericsson, our users did amazing
+things. Sean Hinde in the UK became a one-man Erlang factory inside
+“one-2-one” (now T-mobile).
+Almost finally the Erlang mailing list has been a source of inspiration
+and encouragement. Today if anybody wants to know anything about Er-
+
+213
+lang they just “ask the Erlang list,” and usually get a accurate and informed
+reply within a hour or so. Thanks to all the people on the list and especially to those who I have never met, but with whom I have exchanged
+many many long and interesting e-mails.
+Finally thanks to my friends and colleagues at SICS—to Prof. Seif
+Haridi for supervising this thesis. To Per Brand for encouraging me to
+write the thesis, and for all the other members of the Distributed Systems
+Laboratory with whom I have had many stimulating discussions.
+Thanks everybody.
+
+214
+
+APPENDIX A. ACKNOWLEDGMENTS
+
+B
+
+Programming
+Rules and
+Conventions
+
+Program Development Using Erlang
+Programming Rules and Conventions.1
+K Eriksson, M Williams, J Armstrong
+13 March 1996
+
+Abstract
+This is a description of programming rules and advice for how to write
+systems using Erlang.
+
+Note
+This document is a preliminary document and is not complete.
+The requirements for the use of EBC’s “Base System” are not documented here, but must be followed at a very early design phase if the
+“Base System” is to be used. These requirements are documented in
+1/10268-AND 10406 Uen “MAP - Start and Error Recovery.”
+1
+This is a reformatted version of the Ericsson internal Document: EPK/NP 95:035—The document was
+released into the public domain as part of the Open Source Erlang distribution
+
+215
+
+216 APPENDIX B. PROGRAMMING RULES AND CONVENTIONS
+
+Contents
+1. Purpose . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 216
+2. Structure and Erlang Terminology . . . . . . . . . . . . . . . . . . . . . . . . . . 216
+3. SW Engineering Principles . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 217
+4. Error Handling . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 227
+5. Processes, Servers and Messages . . . . . . . . . . . . . . . . . . . . . . . . . . . 228
+6. Various Erlang Specific Conventions . . . . . . . . . . . . . . . . . . . . . . . . 233
+7. Specific Lexical and Stylistic Conventions . . . . . . . . . . . . . . . . . . . 237
+8. Documenting Code . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 240
+9. The Most Common Mistakes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 244
+10. Required Documents . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 245
+
+1 Purpose
+This paper lists some aspects which should be taken into consideration
+when specifying and programming sodware systems using Erlang. It does
+not attempt to give a complete description of general specification and
+design activities which are independent of the use of Erlang.
+
+2 Structure and Erlang Terminology
+Erlang systems are divided into modules. Modules are composed of
+functions and attributes. Functions are either only visible inside
+a module or they are exported i.e. they can also be called by other
+functions in other modules. Attributes begin with “-” and are placed in
+the beginning of a module.
+
+217
+The work in a system designed using Erlang is done by processes. A
+process is a job which can use functions in many modules. Processes communicate with each other by sending messages. Processes receive
+messages which are sent to them, a process can decide which messages
+it is prepared to receive. Other messages are queued until the receiving
+process is prepared to receive them.
+A process can supervise the existence of another process by setting
+up a link to it. When a process terminates, it automatically sends exit
+signals to the process to which it is linked. The default behaviour of a
+process receiving an exit signal is to terminate and to propagate the signal
+to its linked processes. A process can change this default behaviour by
+trapping exits, this causes all exit signals sent to a process to be turned
+into messages.
+A pure function is a function that returns the same value given the
+same arguments regardless of the context of the call of the function. This
+is what we normally expect from a mathematical function. A function that
+is not pure is said to have side ecects.
+Side ecects typically occur if a function a) sends a message b) receives
+a message c) calls exit d) calls any BIF which changes a process’s environment or mode of operation (e.g. get1, put2, erase1, process flag2
+etc).
+Warning: This document contains examples of bad code.
+
+3 SW Engineering Principles
+3.1 Export as few functions as possible from a module
+Modules are the basic code structuring entity in Erlang. A module can
+contain a large number of functions but only functions which are included
+in the export list of the module can be called from outside the module.
+Seen from the outside, the complexity of a module depends upon the
+number of functions which are exported from the module. A module
+which exports one or two functions is usually easier to understand than a
+module which exports dozens of functions.
+Modules where the ratio of exported/non-exported functions is low
+
+218 APPENDIX B. PROGRAMMING RULES AND CONVENTIONS
+are desirable in that a user of the module only needs to understand the
+functionality of the functions which are exported from the module.
+In addition, the writer or maintainer of the code in the module can
+change the internal structure of the module in any appropriate manner
+provided the external interface remains unchanged.
+3.2 Try to reduce intermodule dependencies
+A module which calls functions in many dicerent modules will be more
+diecult to maintain than a module which only calls functions in a few
+dicerent modules.
+This is because each time we make a change to a module interface,
+we have to check all places in the code where this module is called. Reducing the interdependencies between modules simplifies the problem of
+maintaining these modules.
+We can simplify the system structure by reducing the number of dicerent modules which are called from a given module.
+Note also that it is desirable that the inter-module calling dependencies
+form a tree and not a cyclic graph. Example:
+Module A
+
+Module B
+
+Module C
+
+Function A
+
+Function B
+
+Function C
+
+But not
+Module A
+
+Module B
+
+Module C
+
+Function A
+
+Function B
+
+Function C
+
+219
+3.3 Put commonly used code into libraries
+Commonly used code should be placed into libraries. The libraries should
+be collections of related functions. Great ecort should be made in ensuring that libraries contain functions of the same type. Thus a library such
+as lists containing only functions for manipulating lists is a good choice,
+whereas a library, lists_and_maths containing a combination of functions for manipulating lists and for mathematics is a very bad choice.
+The best library functions have no side ecects. Libraries with functions
+with side ecects limit the re-usability.
+3.4 Isolate “tricky” or “dirty” code into separate modules
+Oden a problem can be solved by using a mixture of clean and dirty code.
+Separate the clean and dirty code into separate modules.
+Dirty code is code that does dirty things. Example:
+• Uses the process dictionary.
+• Uses erlang:process_info/1 for strange purposes.
+• Does anything that you are not supposed to do (but have to do).
+Concentrate on trying to maximize the amount of clean code and
+minimize the amount of dirty code. Isolate the dirty code and clearly
+comment or otherwise document all side ecects and problems associated
+with this part of the code.
+3.5 Don’t make assumptions about what the caller will do
+with the results of a function
+Don’t make assumptions about why a function has been called or about
+what the caller of a function wishes to do with the results.
+For example, suppose we call a routine with certain arguments which
+may be invalid. The implementer of the routine should not make any
+assumptions about what the caller of the function wishes to happen when
+the arguments are invalid.
+
+220 APPENDIX B. PROGRAMMING RULES AND CONVENTIONS
+Thus we should not write code like:
+do_something(Args) ->
+case check_args(Args) of
+ok ->
+{ok, do_it(Args)};
+{error, What} ->
+String = format_the_error(What),
+%% Don’t do this
+io:format("* error:~s\n", [String]),
+error
+end.
+Instead write something like:
+do_something(Args) ->
+case check_args(Args) of
+ok ->
+{ok, do_it(Args)};
+{error, What} ->
+{error, What}
+end.
+error_report({error, What}) ->
+format_the_error(What).
+In the former case the error string is always printed on standard output,
+in the latter case an error descriptor is returned to the application. The
+application can now decide what to do with this error descriptor.
+By calling error_report/1 the application can convert the error descriptor to a printable string and print it if so required. But this may not
+be the desired behaviour - in any case the decision as to what to do with
+the result is led to the caller.
+
+221
+3.6 Abstract out common patterns of code or behaviour
+Whenever you have the same pattern of code in two or more places in the
+code try to isolate this in a common function and call this function instead
+of having the code in two dicerent places. Copied code requires much
+ecort to maintain.
+If you see similar patterns of code (i.e. almost identical) in two or more
+places in the code it is worth taking some time to see if one cannot change
+the problem slightly to make the dicerent cases the same and then write
+a small amount of additional code to describe the dicerences between the
+two.
+Avoid “copy” and “paste” programming, use functions!
+3.7 Top-down
+Write your program using the top-down fashion, not bottom-up (starting
+with details). Top-down is a nice way of successively approaching details
+of the implementation, ending up with defining primitive functions. The
+code will be independent of representation since the representation is not
+known when the higher levels of code are designed.
+3.8 Don’t optimize code
+Don’t optimize your code at the first stage. First make it right, then (if
+necessary) make it fast (while keeping it right).
+3.9 Use the principle of “least astonishment”
+The system should always respond in a manner which causes the “least
+astonishment” to the user - i.e. a user should be able to predict what will
+happen when they do something and not be astonished by the result.
+This has to do with consistency, a consistent system where dicerent
+modules do things in a similar manner will be much easier to understand
+than a system where each module does things in a dicerent manner.
+If you get astonished by what a function does, either your function
+solves the wrong problem or it has a wrong name.
+
+222 APPENDIX B. PROGRAMMING RULES AND CONVENTIONS
+3.10 Try to eliminate side ecects
+Erlang has several primitives which have side ecects. Functions which use
+these cannot be easily re-used since they cause permanent changes to their
+environment and you have to know the exact state of the process before
+calling such routines.
+Write as much as possible of the code with side-ecect free code.
+Maximize the number of pure functions.
+Collect together the functions which have side ecects and clearly document all the side ecects.
+With a little care most code can be written in a side-ecect free manner
+- this will make the system a lot easier to maintain, test and understand.
+3.11 Don’t allow private data structure to “leak” out of a
+module
+This is best illustrated by a simple example. We define a simple module
+called queue - to implement queues:
+-module(queue).
+-export([add/2, fetch/1]).
+add(Item, Q) ->
+lists:append(Q, [Item]).
+fetch([H|T]) ->
+{ok, H, T};
+fetch([]) ->
+empty.
+This implements a queue as a list, but unfortunately to use this the user
+must know that the queue is represented as a list. A typical program to
+use this might contain the following code fragment:
+NewQ = [], % Don’t do this
+Queue1 = queue:add(joe, NewQ),
+Queue2 = queue:add(mike, Queue1), ....
+
+223
+This is bad - since the user a) needs to know that the queue is represented as a list and b) the implementer cannot change the internal representation of the queue (they might want to do this later to provide a better
+version of the module).
+Better is:
+-module(queue).
+-export([new/0, add/2, fetch/1]).
+new() ->
+[].
+add(Item, Q) ->
+lists:append(Q, [Item]).
+fetch([H|T]) ->
+{ok, H, T};
+fetch([]) ->
+empty.
+Now we can write:
+NewQ = queue:new(),
+Queue1 = queue:add(joe, NewQ),
+Queue2 = queue:add(mike, Queue1), ...
+Which is much better and corrects this problem. Now suppose the user
+needs to know the length of the queue, they might be tempted to write:
+Len = length(Queue) % Don’t do this
+since they know that the queue is represented as a list. This is bad
+programming practice which leads to code which is very diecult to maintain and understand. If they need to know the length of the queue then a
+length function must be added to the module, thus:
+
+224 APPENDIX B. PROGRAMMING RULES AND CONVENTIONS
+-module(queue).
+-export([new/0, add/2, fetch/1, len/1]).
+new() -> [].
+add(Item, Q) ->
+lists:append(Q, [Item]).
+fetch([H|T]) ->
+{ok, H, T};
+fetch([]) ->
+empty.
+len(Q) ->
+length(Q).
+Now the user can call queue:len(Queue) instead.
+Here we say that we have “abstracted out” all the details of the queue
+(the queue is in fact what is called an “abstract data type”).
+Why do we go to all this trouble? The practice of abstracting out internal details of the implementation allows us to change the implementation
+without changing the code of the modules which call the functions in the
+module we have changed. So, for example, a better implementation of the
+queue is as follows:
+-module(queue).
+-export([new/0, add/2, fetch/1, len/1]).
+new() ->
+{[],[]}.
+add(Item, {X,Y}) -> % Faster addition of elements
+{[Item|X], Y}.
+
+225
+fetch({X, [H|T]}) ->
+{ok, H, {X,T}};
+fetch({[], []) ->
+empty;
+fetch({X, []) ->
+% Perform this heavy computation only sometimes.
+fetch({[],lists:reverse(X)}).
+len({X,Y}) ->
+length(X) + length(Y).
+3.12 Make code as deterministic as possible
+A deterministic program is one which will always run in the same manner no matter how many times the program is run. A non-deterministic
+program may deliver dicerent results each time it is run. For debugging
+purposes it is a good idea to make things as deterministic as possible. This
+helps make errors reproducible.
+For example, suppose one process has to start five parallel processes
+and then check that they have started correctly, suppose further that the
+order in which these five are started does not matter.
+We could then choose to either start all five in parallel and then check
+that they have all started correctly but it would be better to start them one
+at a time and check that each one has started correctly before starting the
+next one.
+3.13 Do not program “defensively”
+A defensive program is one where the programmer does not “trust” the
+input data to the part of the system they are programming. In general one
+should not test input data to functions for correctness. Most of the code
+in the system should be written with the assumption that the input data to
+the function in question is correct. Only a small part of the code should
+
+226 APPENDIX B. PROGRAMMING RULES AND CONVENTIONS
+actually perform any checking of the data. This is usually done when data
+“enters” the system for the first time, so once data has been checked as it
+enters the system it should thereader be assumed correct.
+Example:
+%% Args: Option is all | normal
+get_server_usage_info(Option, AsciiPid) ->
+Pid = list_to_pid(AsciiPid),
+case Option of
+all -> get_all_info(Pid);
+normal -> get_normal_info(Pid)
+end.
+The function will crash if Option neither normal nor all, and it
+should do that. The caller is responsible for supplying correct input.
+3.14 Isolate hardware interfaces with a device driver
+Hardware should be isolated from the system through the use of device
+drivers. The device drivers should implement hardware interfaces which
+make the hardware appear as if they were Erlang processes. Hardware
+should be made to look and behave like normal Erlang processes. Hardware should appear to receive and send normal Erlang messages and
+should respond in the conventional manner when errors occur.
+3.15 Do and undo things in the same function
+Suppose we have a program which opens a file, does something with it
+and closes it later. This should be coded as:
+do_something_with(File) ->
+case file:open(File, read) of,
+{ok, Stream} ->
+doit(Stream),
+file:close(Stream) % The correct solution
+Error -> Error
+end.
+
+227
+Note how we open the file (file:open)and close it (file:close) in
+the same routine. The solution below is much harder to follow and it is
+not obvious which file is closed. Don’t program it like this:
+do_something_with(File) ->
+case file:open(File, read) of,
+{ok, Stream} ->
+doit(Stream)
+Error -> Error
+end.
+doit(Stream) ->
+....,
+func234(...,Stream,...).
+...
+func234(..., Stream, ...) ->
+...,
+file:close(Stream) %% Don’t do this
+
+4 Error Handling
+4.1 Separate error handling and normal case code
+Don’t clutter code for the “normal case” with code designed to handle
+exceptions. As far as possible you should only program the normal case.
+If the code for the normal case fails, your process should report the error
+and crash as soon as possible. Don’t try to fix up the error and continue.
+The error should be handled in a dicerent process. (See “Each process
+should only have one role” on page 229).
+Clean separation of error recovery code and normal case code should
+greatly simplify the overall system design.
+The error logs which are generated when a sodware or hardware error
+is detected will be used at a later stage to diagnose and correct the error.
+A permanent record should be kept of any information that will be helpful
+in this process.
+
+228 APPENDIX B. PROGRAMMING RULES AND CONVENTIONS
+4.2 Identify the error kernel
+One of the basic elements of system design is identifying which part of the
+system has to be correct and which part of the system does not have to be
+correct.
+In conventional operating system design the kernel of the system is
+assumed to be, and must be, correct, whereas all user application programs
+do not necessarily have to be correct. If a user application program fails
+this will only concern the application where the failure occurred but should
+not acect the integrity of the system as a whole.
+The first part of the system design must be to identify that part of the
+system which must be correct; we call this the error kernel. Oden the
+error kernel has some kind of real-time memory resident data base which
+stores the state of the hardware.
+
+5 Processes, Servers and Messages
+5.1 Implement a process in one module
+Code for implementing a single process should be contained in one module. A process can call functions in any library routines but the code for
+the “top loop” of the process should be contained in a single module. The
+code for the top loop of a process should not be split into several modules this would make the flow of control extremely diecult to understand. This
+does not mean that one should not make use of generic server libraries,
+these are for helping structuring the control flow.
+Conversely, code for no more than one kind of process should be
+implemented in a single module. Modules containing code for several
+dicerent processes can be extremely diecult to understand. The code for
+each individual process should be broken out into a separate module.
+5.2 Use processes for structuring the system
+Processes are the basic system structuring elements. But don’t use processes and message passing when a function call can be used instead.
+
+229
+5.3 Registered processes
+Registered processes should be registered with the same name as the module. This makes it easy to find the code for a process.
+Only register processes that should live a long time.
+5.4 Assign exactly one parallel process to each true concurrent activity in the system
+When deciding whether to implement things using sequential or parallel
+processes then the structure implied by the intrinsic structure of the problem should be used. The main rule is:
+“Use one parallel process to model each truly concurrent activity in the
+real world.”
+If there is a one-to-one mapping between the number of parallel processes and the number of truly parallel activities in the real world, the
+program will be easy to understand.
+5.5 Each process should only have one “role”
+Processes can have dicerent roles in the system, for example in the clientserver model.
+As far as possible a process should only have one role, i.e. it can be a
+client or a server but should not combine these roles.
+Other roles which processes might have are:
+Supervisor watches other processes and restarts them if they fail.
+Worker a normal work process (can have errors).
+Trusted Worker not allowed to have errors.
+5.6 Use generic functions for servers and protocol handlers
+wherever possible
+In many circumstances it is a good idea to use generic server programs
+such as the generic server implemented in the standard libraries. Con-
+
+230 APPENDIX B. PROGRAMMING RULES AND CONVENTIONS
+sistent use of a small set of generic servers will greatly simplify the total
+system structure.
+The same is possible for most of the protocol handling sodware in the
+system.
+5.7 Tag messages
+All messages should be tagged. This makes the order in the receive statement less important and the implementation of new messages easier.
+Don’t program like this:
+loop(State) ->
+receive
+...
+{Mod, Funcs, Args} -> % Don’t do this
+apply(Mod, Funcs, Args},
+loop(State);
+...
+end.
+The new message {get_status_info, From, Option} will introduce a conflict if it is placed below the {Mod, Func, Args} message.
+If messages are synchronous, the return message should be tagged
+with a new atom, describing the returned message. Example: if the incoming message is tagged get_status_info, the returned message could be
+tagged status_info. One reason for choosing dicerent tags is to make
+debugging easier.
+This is a good solution:
+loop(State) ->
+receive
+...
+% Use a tagged message.
+{execute, Mod, Funcs, Args} ->
+apply(Mod, Funcs, Args},
+
+231
+loop(State);
+{get_status_info, From, Option} ->
+From ! {status_info,
+get_status_info(Option, State)},
+loop(State);
+...
+end.
+5.8 Flush unknown messages
+Every server should have an Other alternative in at least one receive
+statement. This is to avoid filling up message queues. Example:
+main_loop() ->
+receive
+{msg1, Msg1} ->
+...,
+main_loop();
+{msg2, Msg2} ->
+...,
+main_loop();
+Other -> % Flushes the message queue.
+error_logger:error_msg(
+"Error: Process ~w got unknown msg ~w~n.",
+[self(), Other]),
+main_loop()
+end.
+5.9 Write tail-recursive servers
+All servers must be tail-recursive, otherwise the server will consume memory until the system runs out of it.
+Don’t program like this:
+loop() ->
+receive
+
+232 APPENDIX B. PROGRAMMING RULES AND CONVENTIONS
+{msg1, Msg1} ->
+...,
+loop();
+stop ->
+true;
+Other ->
+error_logger:log({error, {process_got_other,
+self(), Other}}),
+loop()
+end,
+% Don’t do this!
+% This is NOT tail-recursive
+io:format("Server going down").
+This is a correct solution:
+loop() ->
+receive
+{msg1, Msg1} ->
+...,
+loop();
+stop ->
+io:format("Server going down");
+Other ->
+error_logger:log({error, {process_got_other,
+self(), Other}}),
+loop()
+end. % This is tail-recursive
+If you use some kind of server library, for example generic, you
+automatically avoid doing this mistake.
+5.10 Interface functions
+Use functions for interfaces whenever possible, avoid sending messages
+directly. Encapsulate message passing into interface functions. There are
+
+233
+cases where you can’t do this.
+The message protocol is internal information and should be hidden to
+other modules.
+Example of interface function:
+-module(fileserver).
+-export([start/0, stop/0, open_file/1, ...]).
+open_file(FileName) ->
+fileserver ! {open_file_request, FileName},
+receive
+{open_file_response, Result} -> Result
+end.
+...<code>...
+
+5.11 Time-outs
+Be careful when using after in receive statements. Make sure that
+you handle the case when the message arrives later (See “Flush unknown
+messages” on page 231).
+5.12 Trapping exits
+As few processes as possible should trap exit signals. Processes should
+either trap exits or they should not. It is usually very bad practice for a
+process to “toggle” trapping exits.
+
+6 Various Erlang Specific Conventions
+6.1 Use records as the principle data structure
+Use records as the principle data structure. A record is a tagged tuple and
+was introduced in Erlang version 4.3 and thereader (see EPK/NP 95:034).
+It is similar to struct in C or record in Pascal.
+
+234 APPENDIX B. PROGRAMMING RULES AND CONVENTIONS
+If the record is to be used in several modules, its definition should be
+placed in a header file (with suex .hrl) that is included from the modules.
+If the record is only used from within one module, the definition of the
+record should be in the beginning of the file where the module is defined.
+The record features of Erlang can be used to ensure cross module
+consistency of data structures and should therefore be used by interface
+functions when passing data structures between modules.
+6.2 Use selectors and constructors
+Use selectors and constructors provided by the record feature for managing
+instances of records. Don’t use matching that explicitly assumes that the
+record is a tuple. Example:
+demo() ->
+P = #person{name = "Joe", age = 29},
+#person{name = Name1} = P,% Use matching, or...
+Name2 = P#person.name.
+% like this.
+Don’t program like this:
+demo() ->
+P = #person{name = "Joe", age = 29},
+% Don’t do this
+{person, Name, _Age, _Phone, _Misc} = P.
+6.3 Use tagged return values
+Use tagged return values.
+Don’t program like this:
+keysearch(Key, [{Key, Value}|_Tail]) ->
+Value; %% Don’t return untagged values!
+keysearch(Key, [{_WrongKey,_WrongValue}|Tail]) ->
+keysearch(Key, Tail);
+keysearch(Key, []) ->
+false.
+
+235
+Then the Key, Value cannot contain the false value. This is the correct
+solution:
+keysearch(Key, [{Key, Value}|_Tail]) ->
+{value, Value}; %% Correct. Returns tagged value.
+keysearch(Key, [{_WrongKey, _WrongValue}|Tail]) ->
+keysearch(Key, Tail);
+keysearch(Key, []) ->
+false.
+6.4 Use catch and throw with extreme care
+Do not use catch and throw unless you know exactly what you are doing!
+Use catch and throw as little as possible.
+Catch and throw can be useful when the program handles complicated and unreliable input (from the outside world, not from your own
+reliable program) that may cause errors in many places deeply within the
+code. One example is a compiler.
+6.5 Use the process dictionary with extreme care
+Do not use get and put etc. unless you know exactly what you are doing!
+Use get and put etc. as little as possible.
+A function that uses the process dictionary can be rewritten by introducing a new argument.
+Example:
+Don’t program like this:
+tokenize([H|T]) ->
+...;
+tokenize([]) ->
+% Don’t use get/1 (like this)
+case get_characters_from_device(get(device)) of
+eof -> [];
+{value, Chars} ->
+
+236 APPENDIX B. PROGRAMMING RULES AND CONVENTIONS
+tokenize(Chars)
+end.
+The correct solution:
+tokenize(_Device, [H|T]) ->
+...;
+tokenize(Device, []) ->
+% This is better
+case get_characters_from_device(Device) of
+eof -> [];
+{value, Chars} ->
+tokenize(Device, Chars)
+end.
+The use of get and put might cause a function to behave dicerently
+when called with the same input arguments. This makes the code hard
+to read since it is non-deterministic. Debugging will be more complicated
+since a function using get and put is a function of not only of its input
+arguments, but also of the process dictionary. Many of the run time errors
+in Erlang (for example bad_match) include the arguments to a function,
+but never the process dictionary.
+6.6 Don’t use import
+Don’t use -import, using it makes the code harder to read since you
+cannot directly see in what module a function is defined. Use exref
+(Cross Reference Tool) to find module dependencies.
+6.7 Exporting functions
+Make a distinction of why a function is exported. A function can be
+exported for the following reasons (for example):
+• It is a user interface to the module.
+
+237
+• It is an interface function for other modules.
+• It is called from apply, spawn etc. but only from within its module.
+Use dicerent -export groupings and comment them accordingly. Example:
+%% user interface
+-export([help/0, start/0, stop/0, info/1]).
+%% intermodule exports
+-export([make_pid/1, make_pid/3]).
+-export([process_abbrevs/0, print_info/5]).
+%% exports for use within module only
+-export([init/1, info_log_impl/1]).
+
+7 Specific Lexical and Stylistic Conventions
+7.1 Don’t write deeply nested code
+Nested code is code containing case/if/receive statements within other
+case/if/receive statements. It is bad programming style to write deeply
+nested code - the code has a tendency to drid across the page to the
+right and soon becomes unreadable. Try to limit most of your code to a
+maximum of two levels of indentation. This can be achieved by dividing
+the code into shorter functions.
+7.2 Don’t write very large modules
+A module should not contain more than 400 lines of source code. It is
+better to have several small modules than one large one.
+
+238 APPENDIX B. PROGRAMMING RULES AND CONVENTIONS
+7.3 Don’t write very long functions
+Don’t write functions with more than 15 to 20 lines of code. Split large
+functions into several smaller ones. Don’t solve the problem by writing
+long lines.
+7.4 Don’t write very long lines
+Don’t write very long lines. A line should not have more than 80 characters. (It will for example fit into an A4 page.)
+In Erlang 4.3 and thereader string constants will be automatically concatenated. Example:
+io:format("Name: ~s, Age: ~w, Phone: ~w ~n"
+"Dictionary: ~w.~n", [Name, Age, Phone, Dict])
+7.5 Variable names
+Choose meaningful variable names - this is very diecult.
+If a variable name consists of several words, use “ ” or a capitalized
+letter to separate them. Example: My_variable or MyVariable.
+Avoid using “ ” as don’t care variable, use variables beginning with
+“ ” instead. Example: _Name. If at a later stage you need the value of
+the variable, you just remove the leading underscore. You will have no
+problem finding what underscore to replace and the code will be easier to
+read.
+7.6 Function names
+The function name must agree exactly with what the function does. It
+should return the kind of arguments implied by the function name. It
+should not surprise the reader. Use conventional names for conventional
+functions ( start, stop, init, main_loop).
+Functions in dicerent modules that solve the same problem should
+have the same name. Example: Module:module_info().
+
+239
+Bad function names are one of the most common programming errors
+- good choice of names is very diecult!
+Some kind of naming convention is very useful when writing lots of
+dicerent functions. For example, the name prefix “is_” could be used to
+signify that the function in question returns the atom true or false.
+is_...() -> true | false
+check_...() -> {ok, ...} | {error, ...}
+7.7 Module names
+Erlang has a flat module structure (i.e. there are no modules within modules). Oden, however, we might like to simulate the ecect of a hierarchical
+module structure. This can be done with sets of related modules having
+the same module prefix.
+If, for example, an ISDN handler is implemented using five dicerent
+and related modules. These module should be given names such as:
+isdn_init
+isdn_partb
+isdn_...
+7.8 Format programs in a consistent manner
+A consistent programming style will help you, and other people, to understand your code. Dicerent people have dicerent styles concerning indentation, usage of spaces etc.
+For example you might like to write tuples with a single comma between the elements:
+{12,23,45}
+Other people might use a comma followed by a blank:
+{12, 23, 45}
+Once you have adopted style - stick to it.
+Within a larger project, the same style should be used in all parts.
+
+240 APPENDIX B. PROGRAMMING RULES AND CONVENTIONS
+
+8 Documenting Code
+8.1 Attribute code
+You must always correctly attribute all code in the module header. Say
+where all ideas contributing to the module came from - if your code was
+derived from some other code say where you got this code from and who
+wrote it.
+Never steal code - stealing code is taking code from some other module
+editing it and forgetting to say who wrote the original.
+Examples of useful attributes are:
+-revision(’Revision: 1.14 ’).
+-created(’Date: 1995/01/01 11:21:11 ’).
+-created_by(’eklas@erlang’).
+-modified(’Date: 1995/01/05 13:04:07 ’).
+-modified_by(’mbj@erlang’).
+8.2 Provide references in the code to the specifications
+Provide cross references in the code to any documents relevant to the
+understanding of the code. For example, if the code implements some
+communication protocol or hardware interface give an exact reference
+with document and page number to the documents that were used to
+write the code.
+8.3 Document all the errors
+All errors should be listed together with an English description of what
+they mean in a separate document (See “Error Messages” on page 246.)
+By errors we mean errors which have been detected by the system.
+At a point in your program where you detect a logical error call the
+error logger thus:
+error_logger:error_msg(Format,
+{Descriptor, Arg1, ....})
+
+241
+And make sure that the line {Descriptor,
+the error message documents.
+
+Arg1,...} is added to
+
+8.4 Document all the principle data structures in messages
+Use tagged tuples as the principle data structure when sending messages
+between dicerent parts of the system.
+The record features of Erlang (introduced in Erlang versions 4.3 and
+thereader) can be used to ensure cross module consistency of data structures.
+An English description of all these data structure should be documented (See “Message Descriptions” on page 246.)
+8.5 Comments
+Comments should be clear and concise and avoid unnecessary wordiness.
+Make sure that comments are kept up to date with the code. Check that
+comments add to the understanding of the code. Comments should be
+written in English.
+Comments about the module should not be indented and should start
+with three percent characters (%%%), (See “File Header, description” on
+page 243).
+Comments about a function should not be indented and start with two
+percent characters (%%), (See “Comment each function” on page 242).
+Comments within Erlang code should start with one percent character
+(%). If a line only contains a comment, it should be indented as Erlang
+code. This kind of comment should be placed above the statement it
+refers to. If the comment can be placed on the same line as the statement,
+this is preferred.
+%% Comment about function
+some_useful_functions(UsefulArgugument) ->
+another_functions(UsefulArgugument),
+% Comment at end of line
+% Comment about complicated_stmnt at the same level of indentation
+complicated_stmnt,
+......
+
+242 APPENDIX B. PROGRAMMING RULES AND CONVENTIONS
+8.6 Comment each function
+The important things to document are:
+• The purpose of the function.
+• The domain of valid inputs to the function. That is, data structures
+of the arguments to the functions together with their meaning.
+• The domain of the output of the function. That is, all possible data
+structures of the return value together with their meaning.
+• If the function implements a complicated algorithm, describe it.
+• The possible causes of failure and exit signals which may be generated by exit/1, throw/1 or any non-obvious run time errors. Note
+the dicerence between failure and returning an error.
+• Any side ecect of the function.
+Example:
+%%---------------------------------------------------------------------%% Function: get_server_statistics/2
+%% Purpose: Get various information from a process.
+%% Args:
+Option is normal|all.
+%% Returns: A list of {Key, Value}
+%%
+or {error, Reason} (if the process is dead)
+%%---------------------------------------------------------------------get_server_statistics(Option, Pid) when pid(Pid) ->
+......
+
+8.7 Data structures
+The record should be defined together with a plain text description. Example:
+%% File: my_data_structures.h
+%%--------------------------------------------------------------------%% Data Type: person
+%% where:
+%%
+name: A string (default is undefined).
+%%
+age: An integer (default is undefined).
+%%
+phone: A list of integers (default is []).
+%%
+dict:
+A dictionary containing various information about the person.
+%%
+A {Key, Value} list (default is the empty list).
+%%----------------------------------------------------------------------record(person, {name, age, phone = [], dict = []}).
+
+243
+8.8 File headers, copyright
+Each file of source code must start with copyright information, for example:
+%%%--------------------------------------------------------------------%%% Copyright Ericsson Telecom AB 1996
+%%%
+%%% All rights reserved. No part of this computer programs(s) may be
+%%% used, reproduced,stored in any retrieval system, or transmitted,
+%%% in any form or by any means, electronic, mechanical, photocopying,
+%%% recording, or otherwise without prior written permission of
+%%% Ericsson Telecom AB.
+%%%---------------------------------------------------------------------
+
+8.9 File headers, revision history
+Each file of source code must be documented with its revision history
+which shows who has been working with the files and what they have
+done to it.
+%%%--------------------------------------------------------------------%%% Revision History
+%%%--------------------------------------------------------------------%%% Rev PA1 Date 960230 Author Fred Bloggs (ETXXXXX)
+%%% Initial pre release. Functions for adding and deleting foobars
+%%% are incomplete
+%%%--------------------------------------------------------------------%%% Rev A Date 960230 Author Johanna Johansson (ETXYYY)
+%%% Added functions for adding and deleting foobars and changed
+%%% data structures of foobars to allow for the needs of the Baz
+%%% signalling system
+%%%---------------------------------------------------------------------
+
+8.10 File Header, description
+Each file must start with a short description of the module contained in
+the file and a brief description of all exported functions.
+%%%--------------------------------------------------------------------%%% Description module foobar_data_manipulation
+%%%--------------------------------------------------------------------%%% Foobars are the basic elements in the Baz signalling system. The
+%%% functions below are for manipulating that data of foobars and for
+%%% etc etc etc
+%%%--------------------------------------------------------------------%%% Exports
+%%%--------------------------------------------------------------------%%% create_foobar(Parent, Type)
+%%%
+returns a new foobar object
+%%%
+etc etc etc
+%%%---------------------------------------------------------------------
+
+244 APPENDIX B. PROGRAMMING RULES AND CONVENTIONS
+If you know of any weakness, bugs, badly tested features, make a note of them in a special comment, don’t
+try to hide them. If any part of the module is incomplete,
+add a special comment. Add comments about anything which will
+be of help to future maintainers of the module. If the product of which the
+module you are writing is a success, it may still be changed and improved
+in ten years time by someone you may never meet.
+8.11 Do not comment out old code - remove it
+Add a comment in the revision history to that ecect. Remember the source
+code control system will help you!
+8.12 Use a source code control system
+All non trivial projects must use a source code control system such as RCS,
+CVS or Clearcase to keep track of all modules.
+
+9 The Most Common Mistakes
+• Writing functions which span many pages (See “Don’t write very
+long functions” on page 238).
+• Writing functions with deeply nested ifs receives, cases etc (See
+“Don’t write deeply nested code” on page 237).
+• Writing badly typed functions (See “Use tagged return values” on
+page 234).
+• Function names which do not reflect what the functions do (See
+“Function names” on page 238).
+• Variable names which are meaningless (See “Variable names” on
+page 238).
+
+245
+• Using processes when they are not needed (See “Assign exactly one
+parallel process to each true concurrent activity in the system” on
+page 229).
+• Badly chosen data structures (Bad representations).
+• Bad comments or no comments at all (always document arguments
+and return value).
+• Unindented code.
+• Using put/get (See “Use the process dictionary with extreme care”
+on page 235).
+• No control of the message queues (See “Flush unknown messages”
+on page 231 and “Time-outs” on page 233).
+
+10 Required Documents
+This section describes some of the system level documents which are necessary for designing and maintaining system programmed using Erlang.
+10.1 Module Descriptions
+One chapter per module. Contains description of each module, and all
+exported functions as follows:
+• the meaning and data structures of the arguments to the functions
+• the meaning and data structure of the return value
+• the purpose of the function
+• the possible causes of failure and exit signals which may be generated by explicit calls to exit/1.
+Format of document to be defined later:
+
+246 APPENDIX B. PROGRAMMING RULES AND CONVENTIONS
+10.2 Message Descriptions
+The format of all inter-process messages except those defined inside one
+module.
+Format of document to be defined later:
+10.3 Process
+Description of all registered servers in the system and their interface and
+purpose.
+Description of the dynamic processes and their interfaces.
+Format of document to be defined later:
+10.4 Error Messages
+Description of error messages
+Format of document to be defined later:
+
+C
+
+UBF
+
+Getting Erlang to talk to the outside
+world.1
+Joe Armstrong
+7 May 2002
+Abstract
+How should Erlang talk to the outside world? — This question becomes
+interesting if we want to build distributed applications where Erlang is one
+of a number of communicating components.
+We assume these components interact by exchanging messages - at this
+level of abstraction, details of programming language, operating system
+and host architecture are irrelevant. What is important is the ease with
+which we can construct such systems, and the precision with which we
+can isolate faulty components in such a system. Also of importance is the
+eeciency (both in terms of CPU and bandwidth requirements) with which
+we can send and receive messages in the system.
+One widely adopted solution to this problem involves the XML family
+of standards (XML, XML-schemas, SOAP and WSDL) - we argue that
+1
+This is a reformatted and slightly revised version of the the paper presented at the ACM SIGPLAN
+Erlang Workshop—2002 Pittsburg, PA USA[13].
+
+247
+
+248
+
+APPENDIX C. UBF
+C
+B
+
+B
+C
+
+C
+B
+
+B
+
+C
+B
+
+Figure C.1: Black boxes and Contract Checkers
+this is ineecient and overly complex and propose basing our system on a
+simpler binary scheme called UBF (Universal Binary Format). The UBF
+scheme has the expressive power of the XML set of standards - but is
+considerably simpler.
+UBF has been prototyped in Erlang - the entire scheme (equivalent in
+semantic power to the XML series of standards) was implemented in a
+mere 1100 lines of Erlang. UBF encoding of terms is also shown to be
+more space eecient than the existing “Erlang term format”. For example,
+UBF encoded parse trees of Erlang programs are on average about 60% of
+the size of the equivalent ETS format encoding which is used in the open
+source Erlang distribution.
+
+Categories and Subject Descriptors
+C.2.2 [Computer Communications]: Network Protocols; D.1 [Sodware]: Programming Techniques; D.1 [Sodware]: Programming Languages
+
+1 Introduction
+We are interested in building reliable distributed systems out of asynchronously communicating components. We assume that the components
+are written in dicerent programming languages, run on dicerent operating
+systems and operate anywhere in the network. For example, some components may be written in Erlang, others in Java, others in C; the components
+might run on Unix, or Windows or Solaris.
+
+249
+We ask the questions “How should such systems interact?” and “Can
+we create a convenient language-neutral transport layer to allow such applications to be easily constructed?”
+Suppose further that we have several dicerent components and that
+they collaborate to solve some problem - each individual component has
+been tested and is assumed to work, and yet the system as a whole does
+not work. Which component is in error?
+There are a number of conventional methods for solving parts of this
+problem, for example, we could use an interface description language (like
+Sun XDR [62] or ASN.1 [44]) or we could use a more complex framework
+like Corba [56]. All these methods have associated problems - many of
+these methods are supposedly language neutral but in practice are heavily
+biased to languages like C or C++ and to 32-bit word length processor
+architectures. The more complex frameworks (like Corba) are diecult
+to implement and are inappropriate for simple applications. Proprietary
+solutions for component interaction (like Microsod’s COM and DCOM)
+are not considered, since they are both complex and, more damagingly,
+not available on all platforms.
+Out of this mess a single universal panacea has emerged - XML. The
+XML series of standards, notably XML[20], XML-schemas[32], [65] with
+SOAP[54], [39], [40] and WSDL[25] has emerged as the universal solution
+to this problem.
+The XML solution involves three layers:
+• A transport layer - XML provides a simple transport layer. XML
+encoded terms can be used to encode complex structured objects.
+• A type system - XML schemas provides a type schema for describing
+the type of the content of a particular XML tag.
+• A protocol description language - SOAP defines how simple remote
+procedure calls can be encoded as XML terms. More complex
+interactions between components can be described using the Web
+Service Description Language (WSDL).
+The above architectural layering is desirable, in so much as it separates transport of data (XML), the types of the data (XML-schemas) and
+
+250
+
+APPENDIX C. UBF
+
+the semantics of interactions between dicerent components in the network
+(SOAP and WDSL).
+Unfortunately, while the architecture is essentially correct, the details
+leave much to be desired. The individual components sucer from a number of significant problems.
+We argue in the next section of the paper that XML is overly complex
+and overly verbose. Following this section we propose a simpler and more
+eecient but equally expressive binary format, which could be used as a
+complement to XML.
+Our proposed schema has been implemented fully in Erlang and partially in Java and C - we present some preliminary results in the final section
+of the paper.
+Our type system has an expressive power similar to that of the expressive power of XML-schemas, though we believe our scheme to be much
+simpler. Our contract language has many similarities to WSDL but again
+we believe it to be simpler and more expressive.
+Our architecture also has many similarities to the .NET architecture,
+though we believe our architecture to be simpler and more powerful.
+The remainder of the paper describes the system in detail, gives some
+performance figures and describes our initial experience with the system.
+
+2 Problems with XML
+2.1 Complexity
+XML, XML-schemas, SOAP and WDSL are a complex set of inter-related
+standards. A full implementation of the above standards requires many
+tens of thousands of lines of code and the implementation of a number of
+minor standards (like XML-name-spaces and XML-path) etc.
+The XML standard itself has a grammar of 89 productions and requires
+many pages of explanatory text - entire text books have been written just
+to explain the (simple) standard. Having implemented three XML parsers
+in Erlang I am in the position to say that XML is decidedly not simple to
+implement - amazingly, most of the complexity occurs in the implementation of a number of features which the vast majority of programmers will
+
+251
+never use (these are antediluvian hang-backs to SGML).
+The original design of XML had a notion of structure (described by
+a regular grammar) but no notion of type. Structure was described using
+DTDs (Data Type Descriptions) - but the DTD’s did not themselves have
+an XML syntax. This was viewed by some as a disadvantage - XMLschemas came to the rescue - using XML-schemas XML structures could
+be described in XML itself, and a rich set of types was added.
+What was been described by the XML DTD[26]
+<!ELEMENT ROOT (A?,B+,C*)>
+became in XML-schemas:
+<element name="ROOT">
+<complexType content="elementOnly">
+<choice>
+<element ref="t:A">
+<sequence>
+<element ref="t:B">
+<element ref="t:C">
+</sequence>
+</choice>
+</complexType>
+</element>
+The notation for saying that the content of a tag should be of a particular type is equally verbose.
+XML-schemas has 19 built-in (or primitive) types and three type constructors The net result of this is that, if you want to express types you
+have to use XML-schemas. Unfortunately, the verbosity of the specification makes the schemas diecult to read.
+In retrospect, a much simpler alternative would have been to extend
+XML with a small number of primitive data types.
+For example, XML has a construct like:
+<!ELEMENT xxx (#PCDATA)>
+
+252
+
+APPENDIX C. UBF
+it would have been easy to extend this with expressions like:
+<!ELEMENT xxx (#INTEGER32)>
+
+Meaning that xxx is a 32 bit integer.
+Such an extension would have provided a succinct and readable alternative to XML schemas.
+2.2 Verbosity
+XML encodings are incredibly verbose. The designers of XML excuse
+themselves with the words: “Terseness in XML markup is of minimal
+importance.”[20] Unfortunately, the very verbosity of XML makes eecient
+parsing impossible, since at the very least the parser must examine every
+single input character. This property limits the usefulness of XML as a
+transport format for mobile devices with limited bandwidth.
+Interestingly, one of the most common XML applications designed for
+such devices, namely WAP, uses an ad hoc method [50] to compress XML
+WAP programs, providing striking evidence that raw XML is inappropriate
+as a universal format for low-bandwidth devices.
+Another strange property of XML is that binary data must be encoded
+prior to transmission. For example, a JPEG image must first be base64
+encoded. Base64 encoding processes data in 24 bit groups, replacing each
+3 byte sequence on input with a 4 byte sequence on output, lines are
+limited to 76 characters and only printable characters are transmitted.
+This is all very strange and highly ineecient (especially considering
+that SOAP uses TCP/IP for data transport and TCP/IP itself is designed
+for eecient transport of binary data) - the bit about 76 characters probably
+has something to do with punched cards, and the restriction to printable
+characters has something to do with transmission systems that may only
+pass seven bits of a byte in a transparent manner.
+Unfortunately the weird quoting rules of SGML apply to XML - you
+might naively think that binary data could be transmitted “as is” - unfortunately you can’t just quote binary data in XML - if the binary data
+just happened to contain a valid XML end tag then chaos would ensue.
+
+253
+
+X
+
+X
+
+Client
+
+Server
+(M,S1) (M,S1)
+Figure C.2: Client/server with contract checker
+
+Most programming languages have quoting conventions which allow an
+arbitrary sequence of characters to be quoted, XML does not; thus, for
+example, any data can be placed within a CDATA block except data containing the string ]]> - this fact severely limits the usefulness of CDATA
+section, making it impossible to (say) quote an arbitrary XML program since it itself might contain a CDATA section. One wonders why such a
+convention was adopted.
+
+3. Our architecture
+
+Our architecture is shown in Figures D.1 and D.2. Figure D.1 shows
+a number of communicating components. The components are assumed
+to be black boxes, at any particular time a component might behave as a
+client or as a server. Between the components we place an entity which
+we call a contract checker (shown in the diagram as a black blob), the
+contact checker checks the legality of the flow of messages between the
+components.
+We assume the contract checker starts in state S (see Figure D.2); the
+client sends a message X intended for the server, the contract checker
+checks that X is of the correct type and that it is expected in state S, if so
+it is sent to the server. The server responds with a Message × State tuple
+{M, S1} the contract checker checks that this message is an expected
+response in the current state, if so {M, S1} is sent to the client and the
+
+254
+
+APPENDIX C. UBF
+
+state of the contract checker updated to S1.2
+The contract checker is parameterised with a contract that specifies the
+ordering and types of the allowed message sequences between the client
+and the server.
+The contract is written using a simple non-deterministic finite state
+machine and a simple type language.
+The contract is modeled as a set of four tuples of the form:
+{Sin , Tin , Tout , Sout }
+This means that if the server is in state Sin and it receives a message
+of type Tin then it may possibly respond with a message of type Tout and
+change its state to Sout .
+The contract checker assumes that the start state of the server is start
+which is assigned to the state variable S.
+If the client sends the server a message X the contract checker checks
+that there are some rules in the contract where S = Sin and typeof(X) =
+Tin - if there are any such rules then the client is said to follow the contract
+and the message X can be safely sent to the server. If no such rules match,
+then the client is said to have broken the contract and both client and
+server are informed about this.
+If the client has sent a valid message then the set of expected output
+responses of the server is pruned to a set of two tuples
+{Tout , Sout }
+being the allowed set of Type × State tuples that the server can respond
+with.
+The server must respond with a {Msg, State} tuple - the contract
+manager checks if there is a tuple in the response set where State = Sout
+and typeof(Msg) = Tout .
+If there is such a tuple then the response is accepted and Msg is sent
+back to the client and the global value of the state S is updated to State.
+2
+Note that this is unlike the convention RPC mechanism, where a server responds with a message in
+response to a particular query, and the next state of the server (if it is statefull) is implied by the protocol.
+
+255
+Note that the contract checker operates transparently in normal operation. In the case where both the client and server follow the contract no
+changes are made to the messages passed between the client and server the only possible dicerence between client/server interaction using a contract checker and not using a contract checker is a slight timing dicerence.
+
+4. UBF - a universal binary format
+Contracts are written in a language we call UBF which has two components:
+• UBF(A) is a data transport format, roughly equivalent to wellformed XML.
+• UBF(B) is a programming language for describing types in UBF(A)
+and protocols between clients and servers. UBF(B) is roughly equivalent to verified XML, XML-schemas, SOAP and WDSL.
+While the XML series of languages had the goal of having a human
+readable format the UBF languages take the opposite view and provide a
+“machine friendly” format.
+UBF is designed to be easy to implement. As a proof of concept —
+UBF drivers for Erlang, Oz, Java and TCL can be found at the author’s
+web site [6]. Implementors are welcome to add new languages.
+UBF is designed to be “language neutral” — UBF(A) defines a language
+neutral binary format for transporting data across a network. UBF(B) is a
+type system for describing client/server interactions which use UBF(A).
+
+5. UBF(A) - a binary transport format
+UBF(A) is a transport format, it is designed to be easy to parse and to be
+easy to manipulate with a text editor. UBF(A) is based on a byte encoded
+virtual machine, 26 byte codes are reserved. Instead of allocating the byte
+codes from 0 we use the printable character codes to make the format easy
+to read and edit.
+
+256
+
+APPENDIX C. UBF
+
+Simplicity is the goal, so we define a minimal set of primitive types
+(four, compared with XML-schemas which have 19) and two types of
+“glue” for building complex types from more simple types.
+5.1 Primitive types
+UBF(A) has four primitive types. When a primitive tag is recognized it is
+pushed onto the “recognition stack” in our decoder. The primitive types
+are:
+Integers - integers are written as sequences of bytes described by the
+regular expression [-][0-9]+. That is, an optional minus (to denote
+a negative integer) followed by a sequence of one or more digits. No
+restrictions are made as to the precision of the integer, precision
+issues are be dealt with in UBF(B).
+Strings — strings are written enclosed in double quotes, thus:
+"...."
+Within a string two quoting conventions are observed, " must be
+written \" and \ must be written \\ - no other quotings are allowed
+(this is so we can write a double quote within a string).
+Binary Data — binary data is encoded, thus:
+Int ~....~
+First an integer, representing the length of the binary data is encoded, followed by a tilde, the data itself, which must be exactly the
+length given in the integer, and than a closing tilde. The closing tilde
+has no significance and is retained for readability. White space can
+be added between the integer length and the data for readability.
+Constants — constants are encoded as strings, only using a single quote
+instead of a double quote.
+
+257
+Constants are commonly found in symbolic languages like Lisp, Prolog or Erlang. In C they would be represented by hashed strings.
+The essential property of a constant is that two constants can be
+compared for equality in constant time.
+In addition any item can be followed by a semantic tag written ‘...‘.
+This tag has no meaning in UBF(A) but might have a meaning in UBF(B).
+For example:
+12456 ~....~ ‘jpg‘
+Represents 12456 bytes of raw data with the semantic tag “jpg.” UBF(A)
+does not know what “jpg” means - this is passed on to UBF(B) which might
+know what it means - finally the end application is expected to know what
+to do with an object of type “jpg,” it might for example know that this
+represents an image. UBF(A) will just encode the tag, UBF(B) will type
+check the tag, and the application should be able to understand the tag.
+5.2 Compound types
+Having defined our four simple types we define two type of “glue” for
+making compound objects.
+Structs — structures are written:
+{ Obj1 Obj2 ... Objn }
+Where Obj1..Objn are arbitrary UBF(A) objects and the byte codes
+for { and } are used to delimit a structure. The decoder and encoder
+must map UBF(A) objects onto an appropriate representation in the
+application programming language (for example structs in C, arrays
+in Java, tuples in Erlang etc.).
+Structs are used to represent Fixed numbers of objects
+Lists —lists are used to represent variable numbers of objects. They are
+written with the syntax:
+
+258
+
+APPENDIX C. UBF
+# ObjN & ObjN-1 & ... & Obj2 & Obj1
+This represents a list of objects - the first object in the list is Obj1
+the second Obj2 etc.- Note that the objects are presented in reverse
+order. Lisp programmers will recognize # as an operator that pushes
+NIL (or end of list) onto the recognition stack and & as an operator
+that takes the top two items on the recognition stack and replaces
+them by a list cell.
+
+Finally we need to know when an object has finished. The operator
+$ signifies end of object. When $ is encountered there should be only one
+item on the recognition stack.
+5.3 White space
+For convenience, blank, carriage return, line feed, tab and comma are
+treated as white space. Comments can be included in UBF(A) with the
+syntax %...% the usual quoting convention applies.
+5.4 Caching optimizations
+So far we have used exactly 26 control characters, namely:
+%"~’‘{}#&\s\n\t\r,-01234567890
+This leaves us with 230 unallocated byte codes. These are used as
+follows: The byte code sequence
+>C
+Where C is not one of the reserved byte codes or > means store the
+top of the recognition stack in the register reg[C] and pop the recognition
+stack.
+Subsequent reuse of the single character C means “push reg[C] onto
+the recognition stack.”
+
+259
+Client
+
+Contract
+checker
+
+UBF Driver
+
+Java
+
+UBF driver
+
+Server
+Erlang
+
+UBF(B)
+Contract
+Java
+objects
+
+UBF(A)
+objects
+
+UBF(A)
+objects
+
+Erlang terms
+
+Figure C.3: Client and Server in dicerent languages with a contract
+checker.
+
+6. Programming by Contract
+Central to UBF is the idea of a contract. The contract regulates the set
+of legal conversations that can take place between a client and a server.
+A sodware component (the contract checker) is placed between a client
+and server and it checks that all interactions between the client and server
+are legal.
+The contract is written using types - the contract says (in a formal
+language) something like:
+“If I am in state S and you send me a message of type T1 then
+I will reply with a message type T2 and move to state S1, or,
+I will reply with a message of type T3 and move to state S2 ...
+etc.”
+The contract checker dynamically checks that both sides involved in a
+transaction obey the contract. Our contracts are expressing in a language
+we call UBF(B).
+UBF(B) has:
+A type system - for describing the types of UBF(A) objects.
+A protocol description language - for describing client-server interaction in terms of a non-deterministic finite state machine.
+An LALR(1) grammar for UBF can be found in appendix A.
+
+260
+
+APPENDIX C. UBF
+
+6.1 The type system
+The type system used here to describe the type of UFB(A) encoded objects
+is a simplified version of the type system used to describe Erlang terms[8].
+The notation:
+• int() Means a UBF(A) integer.
+• string() Means a UBF(A) string.
+• constant() Means a UBF(A) constant.
+• bin() Means a UBF(A) binary data item.
+• X() Means an Object of type X
+UBF(A) literals are written as follows:
+• "..." - denotes a UBF(A) string.
+• [a-z][a-zA-Z0-9_]* - denotes a UBF(A) constant.
+• [-][0-9]+ - denotes a UBF(A) integer.
+Complex types are defined recursively:
+{T1, T2, ..., Tn} Is the tuple type if T1 .. Tn are types. We say that
+{X1, X2, ..., Xn} is of type
+{T1, T2, ..., Tn} if X1 is of type T1, X2 is of type T2, ... and Xn
+is of type Tn.
+[T ]
+
+Is the list type if T is a type. We say that
+# Xn & Xn-1 & ... X2 & X1 is of type [T] if all Xi are of type T.
+
+T 1|T 2 Is the alternation type if T1 and T2 are types. We say that X is of
+type T1 | T2 if X is of type T1 or if X is of type T2.
+
+261
+6.2 New types
+New types are introduced in UBF(B) with the notation:
++TYPES X() = Type1; Type2; ...
+Where Type1, Type2, ... are simple types, literal types or complex
+types.
+Examples of types are:
++TYPES
+person()
+
+= {person,
+firstname(),
+lastname(),
+sex(),
+age()};
+firstname() = string();
+lastname() = string();
+age()
+= int();
+sex()
+= male | female;
+people()
+= [person()].
+
+This type schema defines a number of dicerent types. For example, it
+is easily seen that:
+’person’ >p
+# {p "jim" "smith" ’male’ 10} &
+{p "susan" "jones" ’female’ 14} & $
+Is of type people().
+Note that unlike XML UBF(A) encoded terms do not contain any tag
+information. To make this clearer, suppose we had made an XML data
+structure to represent the same information, this might be something like:
+<people>
+<person>
+
+262
+
+APPENDIX C. UBF
+<firstname>jim</firstname>
+<lastname>smith</lastname>
+<sex>male</sex>
+<age>10</age>
+</person>
+<person>
+<firstname>susan</firstname>
+<lastname>jones</lastname>
+<sex>female</sex>
+<age>14</age>
+</person>
+</people>
+
+The XML data structure contains a large number of redundant tags whereas our representation omits all the tags The sizes of the first representation is 65 bytes and the second 215 (ignoring white space which is
+redundant) - we might thus expect that parsing the UBF expression would
+be at least three times as fast as parsing the XML expression.
+Note that UBF(B) type is a language independent type schema. It defines
+the types of messages ader encoding, and is thus universally applicable to
+any programming language which produces UBF encoded data.
+Language independent type schemas are the basis of Contracts between
+clients are servers.
+6.3 The Contract Language
+We start with a simple example:
++NAME("file_server").
++VSN("ubf1.0").
++TYPES
+info()
+description()
+services()
+
+= info;
+= description;
+= services;
+
+263
+contract()
+
+= contract;
+
+file()
+ls()
+files()
+getFile()
+noSuchFile()
+
+=
+=
+=
+=
+=
+
+string();
+ls;
+{files, [file()]};
+{get, file()};
+noSuchFile.
+
++STATE start
+ls()
+=> files()
+& start;
+getFile() => binary()
+& start
+| noSuchFile() & stop.
++ANYSTATE
+info()
+=> string();
+description() => string();
+contract()
+=> term().
+The program starts with a sequence of type definitions (they follow the
+TYPES keyword) - these define the types of the message that are visible
+across the interface to the component.
+Here, for example we see type getFile() is defined as {get,file()}
+where file() is of type string().
+Given this definition it can easily be seen that the UBF(A) sequence of
+characters {’get’ "image.jpg"}$ belongs to this type.
+Reading further (in the STATE part of the program) we see the rule:
++STATE start
+ls()
+=> files()
+& start;
+getFile() => bin()
+& start
+| noSuchFile() & stop.
+In English, this rule means:
+If the system is in the state start and if it receives a message
+of type ls() then respond with a message of type files()
+
+264
+
+APPENDIX C. UBF
+and move into the start state, otherwise, if a message of type
+getFile() is received then either respond with a message of
+type bin() and move to the state start, or respond with a
+message of type noSuchFile() and move to the state stop.
+
+To continue with our example, we requested a file named image.jpg
+the valid responses are of type bin() or
+noSuchFile() which corresponds to UBF(A) encoded sequences like
+NNN~ ... ~$ or ’noSuchFile’$.
+Note that it might not always be possible for a component to distinguish
+between two dicerent state transitions on the basis of the response alone.
+Consider the following fragment of a contract:
++TYPES running() = string();
+error()
+= string().
++STATE running
+request() => ok() & running;
+| error() & stopping.
+If we knew a component was in the state running and we sent it
+a message of type request() then we would expect it to respond with
+one of the types ok() or error() - unfortunately these types are indistinguishable, since both are represented as strings in UBF(A). For this reason
+we require that the server responds with a State X Message pair, not
+just a message. The server explicitly reveals its next state to the contract
+checker.
+
+7. Implementation details
+The entire UBF system has been prototyped in Erlang. The entire system
+is about 1100 lines of commented Erlang code.
+• UBF encoding/decoding 391 lines.
+• Contract parsing 270 lines.
+
+265
+• Contract checker and type checker - 301 lines.
+• Run-time infrastructure and support libraries - 130 lines.
+This compares favourably with the complexity of an XML implementation. As an example an incomplete implementation of XML which I wrote
+two years ago has 2765 lines of Erlang code. This should be compared
+with the 391 lines of code in the UBF implementation.
+
+8. Performance
+So far, the system has been implemented entirely in Erlang and no thought
+given to embedding the UBF encoding/decoding sodware and the type
+checking sodware into the Erlang run-time system.
+The only measure of performance we give here concerns the packing
+density of UBF encoded Erlang terms.
+As a simple check we compared the size of the encoding of the parse
+tree of a number of Erlang modules, with the size of the a binary produced
+by evaluating the expression:
+size(term_to_binary(epp:parse_file(F, [], [])))
+The algorithm used to serialize the term representing the parse tree
+was a simple two-pass optimizer which cached the most frequently used
+constants which occurred in the program.
+Based on a sample of 24 files we observed that on average the UBF(A)
+encoded data was 59% of the size of the corresponding data when encoded
+in the Erlang external term format. In applications where bandwidth is expensive and communication relatively slow (for example, communication
+using mobile devices and GPRS) such a reduction in data volume would
+have considerable benefit.
+
+9. Future work
+Our system of contracts uses only a very simple type system. It is easy
+to envisage extensions to allow more complex types and extensions to
+describe non-functional properties of the system.
+
+266
+
+APPENDIX C. UBF
+
+The non-functional properties of the system are of particular interest.
+An example of these might be to add simple timing constraints, allowing
+rules such as:
++STATE S1
+T1 => T2 & S2 before Time1
+| T3 & S3 after Time2
+...
+meaning that if a component is in state S1 and receives a message of
+type T1 then it might respond with a message of type T2 and change to
+state S2 within Time1 or, respond with a message of type T3 and change
+state to a state S3 ader a time Time2.
+Stricter contracts with timing constraints could be very useful in designing real-time systems of interacting components.
+Other extensions could be imagined which would allow us to define
+contracts like subroutines - so that one contract could use a sub-contract to
+perform a specific task.
+
+10. Running the system
+Since our system essentially exchanges characters, we can use telnet to
+observe a session and test the behaviour of the system. Here is an example
+of commands issued in a telnet session where the client is talking directly
+to the file server specified by the file_server contract given above:
+’info’$
+{"I am a mini file server",’start’}$
+Recall that the system starts in the state start and that the contract
+says that the info command can be sent in any state. The response
+should be a string, and the new state (in this case start since the state is
+not changed by an ANYSTATE rule).
+The application returns a two tuple, containing a descriptive string and
+the new state. This is converted by the application driver to the UBF tuple
+{"I am ... ", ’start’}$.
+
+267
+’ls’$
+{{’files’,
+#
+"ubf.erl"&
+"client.erl"&
+"Makefile"& ...}
+’start’}$
+Here the client sends a message of type ls() - the server responds
+with tuple {{’files’,#..., ’start’}$ message. This first element in
+the tuple is of type files().
+Finally we ask the system to describe itself:
+’contract’$
+{’contract’,
+{{’name’,"file_server"},
+{’info’,"I am a mini file server"},
+{’description’,"
+Commands:
+’ls’$ List files
+{’get’ File} => Length ~ ... ~
+| noSuchFile
+"},
+{’services’,#},
+{’states’,
+#{’start’,
+#{’input’,{’tuple’,#{’prim’,’file’}&
+{’constant’,’get’}&},
+#{’output’,{’constant’,’noSuchFile’},’stop’}&
+{’output’,{’prim’,’binary’},’start’}&}&
+{’input’,{’constant’,’ls’},
+#{’output’,
+{’tuple’,
+
+268
+
+APPENDIX C. UBF
+
+#{’list’,{’prim’,’string’}}&
+{’constant’,’files’}&},’start’}&}&}&},
+{’types’,
+#{’file’,{’prim’,’string’}}&}}}$
+The system responds to a message of type info() with a parse tree
+representing the contract itself.
+In the contract itself we used the generic type term() to describe the
+contract. The contract itself is a well typed term in UBF, but a discussion
+of the abstracted form of the contract itself is not relevant to this paper.
+The example is given to illustrate the introspective power of the system.
+Not only can we run the system, we can also ask the system to describe itself. We believe this to be a desirable property of a distributed component
+in a system of communicating components.
+
+11. A larger contract
+Our previous examples showed the basic syntax of a contract. We finish
+with a more complex example. The contract below describes an IRC[46]
+like protocol.
++NAME("irc").
++VSN("ubf1.0").
+
++TYPES
+info()
+description()
+contract()
+
+= info;
+= description;
+= contract;
+
+bool()
+nick()
+oldnick()
+
+= true | false;
+= string();
+= string();
+
+269
+newnick()
+= string();
+group()
+= string();
+logon()
+= logon;
+proceed()
+= {ok, nick()}
+listGroups()
+= groups;
+groups()
+= [group()];
+joinGroup()
+= {join, group()}
+leaveGroup()
+= {leave, group()};
+ok()
+= ok;
+changeNick()
+= {nick, nick()}
+%%
+send a message to a group";
+msg()
+= {msg, group(), string()}
+msgEvent()
+= {msg, nick(), group(), string()};
+joinEvent()
+= {joins, nick(), group()};
+leaveEvent()
+= {leaves, nick(), group()};
+changeNameEvent() = {changesName,
+oldnick(),newnick(), group()}.
+%% I am assigned an initial (random) nick
++STATE start logon() => proceed() & active.
++STATE active
+listGroups()
+joinGroup()
+leaveGroup()
+changeNick()
+%%
+msg()
+EVENT
+EVENT
+EVENT
+EVENT
+
+=>
+=>
+=>
+=>
+
+=>
+=>
+=>
+=>
+
+groups() & active;
+ok() & active;
+ok() & active;
+bool() & active;
+false if not in group
+=> bool() & active;
+
+msgEvent();
+joinEvent();
+leaveEvent();
+changeNameEvent().
+
+%
+%
+%
+%
+
+Message from group
+Nick joins group
+Nick leaves group
+Nick changes name
+
+270
+
+APPENDIX C. UBF
+
++ANYSTATE
+info()
+=> string();
+description() => string();
+contract()
+=> term().
+This example introduces a new keyword EVENT. The syntax:
++STATE S1
+...
+EVENT => T2;
+...
+means that the server can spontaneously send a message of type T2
+to the client. Normally, messages are sent to the client in response to
+requests, EVENT is used for asynchronous single messages from the server
+to the client. Since the server cannot be sure that the client has received
+such a message no change of state in the server is allowed.
+
+12. Experience
+The initial version of UBF was completed in about three weeks of intensive programming - the system design changed many times and was
+re-designed, implemented and re-implemented several times.
+Once the basic infrastructure was running, a simple interface to Oz was
+implemented - and following this an interface to Java. The Oz and Java
+implementation only concerned UBF(A) and not the contract language or
+checker.
+The first non-toy application (IRC) was implemented to test the system
+on a non-trivial example. I started by writing the contract and then made
+an Erlang client and server which followed the contract.
+Interestingly the contract checker proved extremely helpful in developing the IRC system - I oden develop systems by writing a client and server
+in the same time frame, shiding attention between the client and server as
+necessary. Using the contract checker proved helpful in rapidly identifying
+
+271
+which of the two components was in error in the event of an error. Also,
+since the intermediate communication has a fairly readable ASCII subset I
+was able to test the server by typing simple text queries in a telnet session
+- in this way I was able to immediately test the server (and the interaction
+between the client and server) using telnet, rather than my Erlang code
+(which at some stages was only partially complete).
+Interestingly the contract checker oden complained about contract violations that I did not believe, so I erroneously assumed that the code
+for checking the contracts was incorrect. Almost invariably the contract
+checker was right and I was wrong. I think we have a tendency to believe
+what we had expected to see - and not that which was actually present the contract checker had no such biases.
+Concentration on the contact itself caused an interesting psychological
+shid of perspective and forced me to think about the system in metalevel terms considering the client and server as only stupid black boxes
+which did what they were told. Trying to write the contracts in a clear
+manner was also an exercise which resulted in a clearer understanding of
+the problem by forcing me to think in terms of what messages are sent
+between the client and server - and nothing else.
+The contract proved also a valuable and easy-to-understand specification of the problem. Having implemented an Erlang client and server and
+a graphic based Erlang client we decided to add a Java client.
+The Java client was developed independently by Luke Gorrie using
+only the UBF specification and the irc contract. When it came to testing
+the contract checker could provide extremely precise error diagnostics - of
+the form:
+I was in state S and I expected you to send me a message of
+type T but you sent me the message M which is wrong.
+Armed with such precise diagnostics it was easy to debug the Java
+program. Needless to say when the Java client talked to the Erlang server
+the system worked first time. Testing both the Java client and the Erlang
+server could be done independently using only a modified form of the
+contract checker and the contract concerned.
+
+272
+
+APPENDIX C. UBF
+
+Having developed the system we have a high degree of confidence in
+its correctness - and if it should fail we’ll immediately know which component is broken.
+
+13. Acknowledgments
+I would like to thank Seif Haridi, Per Brand, Thomas Arts, and Luke
+Gorrie for their helpful discussions - particular thanks go to Luke for implementing the Java client.
+
+APPENDIX
+UBF grammar
+form
+form
+form
+form
+form
+
+->
+->
+->
+->
+->
+
+’+’
+’+’
+’+’
+’+’
+’+’
+
+’NAME ’(’ string ’)’ dot.
+’VSN’ ’(’ string ’)’ dot.
+’TYPES’ types dot.
+’STATE’ atom transitions dot.
+’ANYSTATE’anyrules dot.
+
+types -> typeDef ’;’ types.
+types -> typeDef.
+typeDef -> atom ’(’ ’)’ ’=’ type annotation.
+annotation -> string.
+annotation -> ’$empty’.
+type ->
+type ->
+
+primType ’|’ type.
+primType.
+
+primType
+primType
+primType
+primType
+
+->
+->
+->
+->
+
+’int’
+’string’
+’constant’
+’bin’
+
+’(’
+’(’
+’(’
+’(’
+
+’)’.
+’)’.
+’)’.
+’)’.
+
+273
+primType
+primType
+primType
+primType
+primType
+primType
+primType
+
+->
+->
+->
+->
+->
+->
+->
+
+atom
+’(’ ’)’.
+’{’ typeSeq ’}’.
+’[’ type ’]’.
+atom.
+integer.
+integer ’.’ ’.’ integer.
+string.
+
+typeSeq -> type.
+typeSeq -> type ’,’ typeSeq.
+typeRef -> atom ’(’ ’)’.
+transitions -> transition ’;’ transitions.
+transitions -> transition.
+transition -> typeRef ’=>’ outputs.
+transition -> ’EVENT’ ’=>’ typeRef.
+outputs -> responseAndState ’|’ outputs.
+outputs -> responseAndState.
+responseAndState -> typeRef ’&’ atom.
+anyrules -> anyrule ’;’ anyrules.
+anyrules -> anyrule.
+anyrule -> typeRef ’=>’ typeRef.
+strings -> string ’,’ strings.
+strings -> string.
+strings -> ’$empty’.
+
+274
+
+APPENDIX C. UBF
+
+D
+
+Colophon
+
+t had been my intention to write a new typesetting system in order to
+typeset this thesis—I therefore started work on Erlguten [7] which has
+been described elsewhere.
+Having read Knuth’s masterwork digital typography I realised that producing a high quality type-setting system would delay the work on the thesis by several years (in my estimate about five years) and so I have decided,
+reluctantly to use LATEX.
+It turns out that with a little tweaking even pdfLATEX can be persuaded
+to produce almost readable text.
+This thesis was produced for A4 paper in 14 pt FSBaskerville, reduced
+by 81% to fit onto A5 paper. The drop capitals and chapter numbers are
+set in Old English and all computer programs, shell dialogs, and references
+to code in the text are set in Computer Modern.
+John Baskerville (1706–1775) was an English calligrapher, stonecutter,
+type designer, and printer. In 1750 he started a printing business, but being
+a perfectionist his first work was delayed until 1757. His work was much
+admired by Fournier, Bodoni, and Benjamin Franklin.
+I chose the Baskerville typeface because it has heavily weighted hairlines1 and thus is well suited for documents that are produced on a low
+quality laser printer or for photocopying.
+Text using typefaces (like Garamond) which have delicate serifs, and
+lightly weighted hairlines tends to fade when printed with a poor quality
+printer on poor quality paper. This fading reduces the legibility of the text.
+
+I
+
+1
+
+Hairlines are the thinnest lines used in a letterform.
+
+275
+
+276
+
+APPENDIX D. COLOPHON
+
+I have also tried using the micro-typographic extensions developed by
+Hàn Thê Thành in his doctoral thesis [64], which reintroduced the original
+practice used in the Gutenberg 42 line bible of allowing punctuation at the
+end of lines to slightly protrude into the right-hand margin. This practice
+improves the optical alignment of the led-hand margin and produces better
+line breaks.
+Unfortunately I abandoned this approach, since the sodware for margin
+kerning did not always work correctly with multiple typefaces on the same
+line. For this reason alone further work on Erlguten seems motivated.
+Finally, I would like to thank the small army of people who have read
+and commented on this thesis. My wife, Helen, proof read the entire thesis
+and found an embarrassing number of small mistakes in the text. Peter
+Van Roy, and Ulf Wiger found some spelling mistakes that even Helen had
+missed and Richard O’Keefe found some formatting errors that everybody
+missed.
+
+Bibliography
+[1] Ingemar Ahlberg, John-Olof Bauner, and Anders Danne. Prototyping
+cordless using declarative programming. XIV International Switching
+Symposium, October 1992.
+[2] Leon Alkalai and Ann T. Tai. Long-life deep-space applications. IEEE
+Computer, 31:37–38, April 1998.
+[3] Marie Alpman. Svenskt internetbolag köps för 1,4 miljarder. Ny
+Teknik, August 2000.
+[4] Gregory R. Andrews and Fred B. Schneider. Concepts and notations for concurrent programming. ACM Computing Surveys (CSUR),
+15(1):3–43, 1983.
+[5] J. Armstrong, M. Williams, C. Wikström, and R. Virding. Concurrent
+Programming in Erlang. Prentice-Hall, Englewood Clics, N.J., 1996.
+[6] J. L. Armstrong.
+Ubf
+http://www.sics.se/ joe/ubf. 2002.
+
+-
+
+universal
+
+binary
+
+format,
+
+[7] J. L. Armstrong. Erlguten. 2003. http://www.sics.se/ joe/erlguten.html.
+[8] J. L. Armstrong and T. Arts. A practical type system for erlang. Erlang
+User Conference, 2002.
+[9] J. L. Armstrong, B. O. Däcker, S. R. Virding, and M. C. Williams. Implementing a functional language for highly parallel real-time applications. In Sodware Engineering for Telecommunication Switching Systems,
+April 92.
+[10] J. L. Armstrong, S. R. Virding, and M. C. Williams. Use of Prolog for Developing a New Programming Language. In C. Moss and
+277
+
+278
+
+APPENDIX D. COLOPHON
+K. Bowen, editors, Proc. 1st Conf. on The Practical Application of Prolog,
+London, England, 1992. Association for Logic Programming.
+
+[11] Joe Armstrong. Increasing the reliability of email services. In Proceedings of the 2000 ACM symposium on Applied Computing, pages 627–632.
+ACM Press, 2000.
+[12] Joe Armstrong. Concurrency oriented programming. Lightweight
+Languages Workshop (LL2), November 2002.
+[13] Joe Armstrong. Getting erlang to talk to the outside world. In Proceedings of the 2002 ACM SIGPLAN workshop on Erlang, pages 64–72.
+ACM Press, 2002.
+[14] Joe Armstrong. Concurrency oriented programming in erlang.
+GUUG 2003, March 2003.
+[15] Joe Armstrong. A webserver daemon. 2003. This is available at
+http://www.sics.se/~joe/tutorials/web_server/web_server.html.
+[16] A. Avienis. Design of fault-tolerant computers. In Proceedings of the
+1967 Fall Joint Computer Conference. AFIPS Conf. Proc., Vol. 31, Thompson Books, Washington, D.C., 1967, pp. 733-743, pages 733–743, 1967.
+[17] Jonas Barklund. Erlang 5.0 specification.
+http//www.bluetail.com/~rv.
+
+2000.
+
+available from
+
+[18] Stacan Blau and Jan Rooth. Axd 301 – a new generation of atm
+switching. Ericsson Review, (1), 1998.
+[19] Grady Booch, James Rumbaugh, and Ivar Jacobson. The Unified
+Modeling Language user guide. Addison Wesley Longman Publishing
+Co., Inc., 1999.
+[20] T. Bray, J. Paoli, C. M. Sperberg-McQueen, and E. Maler (Eds). Extensible markup language (xml) 1.0 (second edition). october 2000,
+http://www.w3.org/tr/2000/rec-xml-20001006. 2000.
+
+279
+[21] Ciaràn Bryce and Chrislain Razafimahefa. An approach to safe object
+sharing. In Proceedings of the conference on Object-oriented programming,
+systems, languages, and applications, pages 367–381. ACM Press, 2000.
+[22] George Candea and Armando Fox. Crash only sodware. In Proceedings of the 9th workshop on Hot Topics in Operating Systems (TotOS-IX),
+May 2003.
+[23] Richard Carlsson, Thomas Lindgren, Björn Gustavsson, Sven-Olof
+Nyström, Robert Virding, Erik Johansson, and Mikael Pettersson.
+Core erlang 1.0. November 2001.
+[24] J. D. Case, M. S. Fedor, M. L. Schocstall, and C. Davin. Simple network management protocol (SNMP). RFC 1157, Internet Engineering
+Task Force, May 1990.
+[25] E. Christensen, F. Curbera, G. Meredith, and S. Weerawarana.
+Web services description language (wsdl) 1.1, march 2001,
+http://www.w3.org/tr/2001/note-wsdl-20010315/. 2001.
+[26] Dan Connolly, Bert Bos, Yuichi Koike, and Mary Holstege.
+http://www.w3.org/2000/04/schema_hack/. 2000.
+[27] M. R. Crispin. Internet message access protocol - version 4. RFC
+1730, Internet Engineering Task Force, December 1994.
+[28] Grzegorz Czajkowski and Laurent Daynès. Multitasking without comprimise: a virtual machine evolution. In Proceedings of the OOPSLA
+’01 conference on Object Oriented Programming Systems Languages and
+Applications, pages 125–138. ACM Press, 2001.
+[29] Bjarne Däcker. Datalogilaboratoriet - de första 10 åren. March 1994.
+[30] Bjarne Däcker. Concurrent functional programming for telecommunications: A case study of technology introduction. November 2000.
+Licentiate Thesis.
+
+280
+
+APPENDIX D. COLOPHON
+
+[31] A. Dahlin, M. Froberg, J. Grebeno, J.Walerud, and P. Winroth. Eddie:
+A robust and scalable internet server. May 1998.
+[32] D. C. Fallside (Ed). Xml schema part 0: Primer. may 2002.
+http://www.w3.org/tr/2001/rec-xmlschema-0-20010502/. 2002.
+[33] Dick Eriksson, Mats Persson, and Kerstin Ödling. A switching sodware architecture prototype using real time declarative language. XIV
+International Switching Symposium, October 1992.
+[34] Open source erlang distribution. 1999.
+[35] J. A. Feldman, J. R. Low, and P. D. Rovner. Programming distributed
+systems. In Proceedings of the 1978 ACM Computer Science Conference,
+pages 310–316, 1978.
+[36] R. Fielding, J. Gettys, J. Mogul, H. Frystyk, L. Masinter,
+P. Leach, and T. Berners-Lee. Hypertext transfer protocol –
+HTTP/1.1. RFC 2616, The Internet Society, June 1999. See
+http://www.ietf.org/rfc/rfc2616.txt.
+[37] Ian Foster and Stephen Taylor. Strand: new concepts in parallel programming. Prentice-Hall, Inc., 1990.
+[38] Jim Gray. Why do computers stop and what can be done about it?
+Technical Report 85.7, Tandem Computers, 1985.
+[39] M. Gudgin, M. Hadley, J-J. Moreau, and H. F. Nielsen. Soap
+version 1.2 part 1: Messaging framework, december 2001,
+http://www.w3.org/tr/2001/wd-soap12-part1-20011217. 2001.
+[40] M. Gudgin, M. Hadley, J-J. Moreau, and H. F. Nielsen. Soap version
+1.2 part 2: Adjuncts, december 2001, http://www.w3.org/tr/2001/wdsoap12-part2-20011217. 2001.
+[41] Bogumil Hausman. Turbo erlang. International Logic Programming
+Symposium, October 1993.
+
+281
+[42] Bogumil Hausman. Turbo erlang: Approaching the speed of c. In
+Evan Tick and Giancarlo Succi, editors, Implementations of Logic Programming Systems, pages 119–135. Kluwer Academic Publishers, 1994.
+[43] American National Standards Institute, Institute of Electrical, and
+Electronic Engineers. IEEE standard for binary floating-point arithmetic. ANSI/IEEE Standard, Std 754-1985, New York, 1985.
+[44] ISO/IEC. Osi networking and system aspects - abstract syntax notation one (asn.1). ITU-T Rec. X.680 — ISO/IEC 8824-11, ISO/IEC,
+1997.
+[45] ITU. Recommendation Z.100 – specification and description language
+(sdl). ITU-T Z.100, International Telecommunication Union, 1994.
+[46] D. Reed J. Oikarinen. RFC 1459: Internet relay chat protocol. May
+1993.
+[47] Erik Johansson, Sven-Olof Nyström, Mikael Pettersson, and Konstantinos Sagonas. Hipe: High performance erlang.
+[48] D. Richard Kuhn. Sources of failure in the public switched telephone
+network. IEEE Computer, 30(4):31–36, 1997.
+[49] Simon Marlow and Philip Wadler. A practical subtyping system for
+Erlang. In International Conference on Functional Programming, pages
+136–149. ACM, June 1997.
+[50] B. Martin and B. Jano (Eds). Wap binary xml content format, june
+1999, http://www.w3.org/tr/wbxml. 1999.
+[51] Håkan Millroth. Private communication. 2003.
+[52] J. Myers and M. P. Rose. Post oece protocol - version 3. RFC 1939,
+Internet Engineering Task Force, May 1996.
+[53] Nortel Networks. Alteon ssl accelerator product brief. September
+2002.
+
+282
+
+APPENDIX D. COLOPHON
+
+[54] (Ed) Nilo Mitra. Soap version 1.2 part 0: Primer. december 2001,
+http://www.w3.org/tr/2001/wd-soap12-part0-20011217. 2001.
+[55] Hans Olsson. Ericsson lägger ner utveckling. Dagens Nyheter, December 1995.
+[56] OMG. Common Object Request Broker Architecture (CORBA)—v2.6.1
+Manual. The Object Management Group, Needham, U.S.A, 2002.
+[57] J. B. Postel. Simple mail transfer protocol. RFC 821, Internet Engineering Task Force, August 1982.
+[58] K. Renzel. Error handling for business information systems. 2003.
+[59] Richard D. Schlichting and Fred B. Schneider. Fail-stop processors:
+An approach to designing fault-tolerant computing systems. Computer
+Systems, 1(3):222–238, 1983.
+[60] Fred B. Schneider. Byzantine generals in action: implementing
+fail-stop processors. ACM Transactions on Computer Systems (TOCS),
+2(2):145–154, 1984.
+[61] Fred B. Schneider. Implementing fault-tolerant services using the
+state machine approach: a tutorial. ACM Computing Surveys (CSUR),
+22(4):299–319, 1990.
+[62] R. Srinivasan. RFC 1832: XDR: External data representation standard. August 1995.
+[63] Ann T. Tai, Kam S. Tso, Leon Alkalai, Savio N. Chau, and William H.
+Sanders. On the ecectiveness of a message-driven confidence-driven
+protocol for guarded sodware upgrading. Performance Evaluation,
+44(1-4):211–236, 2001.
+[64] Hàn Thê Thành. Micro-typographic extensions to the tex typesetting
+system. Masaryk University Brno, 2000.
+
+283
+[65] H. S. Thompson, D. Beech, M. Maloney, and N. Mendelsohn (Eds).
+Xml schema part 1: Structures. w3c recommendation, may 2001.
+http://www.w3.org/tr/2001/rec-xmlschema-1-20010502/. 2001.
+[66] Seved Torstendahl. Open telecom platform. Ericsson Review, (1),
+1997.
+[67] Jecrey Voas. Fault tolerance. IEEE Sodware, pages 54–57, July–
+August 2001.
+[68] David H.D. Warren. An abstract Prolog instruction set. Tecnical Note
+309, SRI International, Menlo Park, California, October 1983.
+[69] Ulf Wiger. Private communication.
+[70] Ulf Wiger, Gösta Ask, and Kent Boortz. World-class product certification using erlang. In Proceedings of the 2002 ACM SIGPLAN workshop
+on Erlang, pages 24–33. ACM Press, 2002.
+[71] Weider D. Yu. A sodware fault prevention approach in coding and
+root cause analysis. Bell Labs Technical Journal, 3(2), 1998.
+
+
