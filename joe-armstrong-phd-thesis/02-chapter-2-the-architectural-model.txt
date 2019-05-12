@@ -1,8 +1,25 @@
-CHAPTER 2. THE ARCHITECTURAL MODEL
+2. The Architectural Model
 
-2.1
+There is no standard, universally-accepted definition of the term, for software
+architecture is a field in its infancy, ... While there is no standard definition,
+there is also no shortage of them ...
 
-Definition of an architecture
+The Carnegie Mellon Institute of Software Engineers
+
+This chapter presents an architecture for building fault-tolerant systems. While everybody has a vague idea of what the word architecture means, there are few widely accepted definitions, which leads to many misunderstandings. The following definition captures the general
+idea of what is meant by a sodware architecture:
+
+An architecture is the set of significant decisions about the organization of a sodware system, the selection of the structural elements
+and their interfaces by which the system is composed, together with
+their behaviour as specified in the collaborations among those elements, the composition of these structural and behavioural elements
+into progressively larger subsystems, and the architectural style that
+guides this organization—these elements and their interfaces, their
+collaborations, and their composition.
+
+Booch, Rumbaugh, and Jacobson [19]
+
+
+2.1 Definition of an architecture
 
 At the highest level of abstraction an architecture is “a way of thinking
 about the world.” To be useful, however, we have to turn our way of
