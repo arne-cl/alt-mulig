@@ -1,0 +1,16 @@
+{% extends "wiki/base_wiki.html" %}
+
+{% block title %}Wiki{% endblock %}
+ 
+{% block content_title %}Wiki{% endblock %}
+
+{% block content %}
+  <ul>
+    {% for article in object_list %}
+    <li><a href="{{ url_for('wiki.detail', name=article.name) }}">{{ article.name }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+
+  {% include "includes/pagination.html" %}
+{% endblock %}

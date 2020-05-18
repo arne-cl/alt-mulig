@@ -1,0 +1,34 @@
+{% extends "reader/base_reader.html" %}
+
+{% block title %}{{ article.name }}{% endblock %}
+ 
+{% block content_title %}{{ article.name }}{% endblock %}
+
+{% block content %}
+  <div class="article">
+    {% if article.id %}
+      {{ article.content|wikify|markdown }}
+    {% else %}
+      <p>It appears this article does not exist!</p>
+    {% endif %}
+  </div>
+
+  <div class="edit" style="display: none;">
+    <form method="post" action="">
+      {% for field in form %}
+        <p>{{ field.label }} {{ field }}</p>
+      {% endfor %}
+      <p><button type="submit">Save</button> or <a href="{{ url_for('wiki.index') }}">cancel</a></p>
+    </form>
+  </div>
+{% endblock %}
+
+{% block sidebar %}
+  <h3>Page</h3>
+  <ul>
+    <li><a href="javascript:void(0);" onclick="$('div.edit').toggle(); $('div.article').toggle();">Edit</a></li>
+    {% if article.id %}
+      <li><a href="{{ url_for('wiki.delete', name=article.name) }}">Delete</a></li>
+    {% endif %}
+  </ul>
+{% endblock %}
