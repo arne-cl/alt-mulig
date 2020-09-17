@@ -1,16 +1,23 @@
 import datetime
 import re
 
-from flask import request, redirect, url_for, render_template, Blueprint, flash, Markup
+from flask import Flask, request, redirect, url_for, render_template, Blueprint, flash, Markup
 from peewee import *
 from wtfpeewee.orm import model_form
 
-from flaskext.rest import RestResource
-from flaskext.utils import get_object_or_404, object_list
+from flask_peewee.rest import RestResource
+from flask_peewee.utils import get_object_or_404, object_list
+from flask_peewee.db import Database
 
-from api import api
-from app import app, db
-from auth import auth
+# ~ from api import api
+# ~ from app import app, db
+# ~ from auth import auth
+
+app = Flask(__name__)
+# ~ app.config.from_object('config.Configuration')
+
+db = Database(app)
+
 
 
 wikify_re = re.compile(r'\b(([A-Z]+[a-z]+){2,})\b')
