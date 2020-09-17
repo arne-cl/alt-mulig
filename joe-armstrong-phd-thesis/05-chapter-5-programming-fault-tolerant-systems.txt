@@ -15,13 +15,13 @@ fault-tolerant systems. We start with a couple of quotations:
 W
 
 We say a system is fault-tolerant if its programs can be properly
-executed despite the occurrence of logic faults. — [16]
+executed despite the occurrence of logic faults. -- [16]
 ...
 To design and build a fault-tolerant system, you must understand how the system should work, how it might fail, and what
 kinds of errors can occur. Error detection is an essential component of fault tolerance. That is, if you know an error has
 occurred, you might be able to tolerate it by replacing the
 ocending component, using an alternative means of computation, or raising an exception. However, you want to avoid
-adding unnecessary complexity to enable fault tolerance because that complexity could result in a less reliable system. —
+adding unnecessary complexity to enable fault tolerance because that complexity could result in a less reliable system. --
 Dugan quoted in Voas [67].
 115
 
@@ -30,10 +30,10 @@ The presentation here follows Dugan’s advice, I explain exactly what
 happens when an abnormal condition is detected and how we can make a
 software structure which detects and corrects errors.
 The remainder of this chapter describes:
-• A strategy for programming fault-tolerance — the strategy is to fail
+• A strategy for programming fault-tolerance -- the strategy is to fail
 immediately if you cannot correct an error and then try to do something that is simpler to achieve.
-• Supervision hierarchies — these are hierarchical organisations of tasks.
-• Well-behaved functions — are functions which are supposed to work
+• Supervision hierarchies -- these are hierarchical organisations of tasks.
+• Well-behaved functions -- are functions which are supposed to work
 correctly. The generation of an exception in a well-behaved function
 is interpreted as a failure.
 
@@ -49,7 +49,7 @@ want to do, then try to do something simpler. We also try to organise the
 software so that simpler tasks are performed by simpler software, so that
 the likelihood of success increases as the tasks become simpler.
 As the tasks become simpler, the emphasis upon what operation is
-performed changes—we become more interested in protecting the system
+performed changes--we become more interested in protecting the system
 against damage than in ocering full service. At all stages our goal is
 to ocer an acceptable level of service though we become less ambitious
 when things start to fail.
@@ -72,10 +72,10 @@ distinction between exceptions, errors and failures.
 The distinctions between exceptions, errors and failures largely has
 to do with where in the system an abnormal event is detected, how it
 is handled and how it is interpreted. We trace what happens when an
-abnormal situation occurs in the system—this description is “bottom up” ie
+abnormal situation occurs in the system--this description is “bottom up” ie
 it starts at the point in time where the error is detected.
 • At the lowest level in the system the Erlang virtual machine detects
-an internal error—it detects a divide by zero condition, or a pattern
+an internal error--it detects a divide by zero condition, or a pattern
 matching error or something else. The important point about all of
 these detected conditions is that it is pointless to continue evaluating
 code in the processes where the error occurred. Since the virtual
@@ -117,7 +117,7 @@ Recall that at the beginning of this chapter we talked about the idea of a
 hierarchy of tasks. The basic idea is:
 1. Try to perform a task.
 2. If you cannot perform the task, then try to perform a simpler task.
-To each task we associate an supervisor process—the supervisor will assign
+To each task we associate an supervisor process--the supervisor will assign
 a worker to try and achieve the goals implied by the task. If the worker
 process fails with a non-normal exit then the supervisor will assume that
 the task has failed and will initiate some error recovery procedure. The
@@ -279,7 +279,7 @@ and restart all my children.
 died.
 AND supervision is used for dependent, or co-ordinated processes.
 In the AND tree the successful operation of the system depends upon
-the successful operation of all the children—thus if any child dies all the
+the successful operation of all the children--thus if any child dies all the
 children should be stopped and then restarted.
 
 5.3. WHAT IS AN ERROR?
@@ -289,9 +289,9 @@ children should be stopped and then restarted.
 OR supervision can be used to co-ordinate the activities of independent
 processes. In the OR tree the activities being performed are assumed to be
 independent thus the failure of one child has no consequence for the other
-children—in the event of a child failure only that child process is restarted.
+children--in the event of a child failure only that child process is restarted.
 In concrete terms our “hierarchy of tasks” is expressed in a “supervision hierarchy”.
-In our system we equate tasks with goals and goals with invariants2 —
+In our system we equate tasks with goals and goals with invariants2 --
 we will say that the goal has been achieved if the invariant associated
 with the goal is not false. In most programs the assertion of an invariant
 corresponds to the statement that evaluation of a particular designated
@@ -307,7 +307,7 @@ The above discussion is all rather vague, since we have never said what
 an error is, nor have we said how we can in practice distinguish between a
 correctable and an uncorrectable error.
 The situation is complicated by the fact that the vast majority of specifications only specify what should happen if all the components in a system
-work as planned—specifications rarely specify what should be done if a particular error occurs. Indeed if a specification does say exactly what to do
+work as planned--specifications rarely specify what should be done if a particular error occurs. Indeed if a specification does say exactly what to do
 if a particular error occurs, then it could be argued that this not an error
 at all but rather a desired property of the system. This is a consequence
 of the rather vague way in which the word “error” is used.
@@ -317,7 +317,7 @@ of the rather vague way in which the word “error” is used.
 What is an error?
 
 When we run a program the run-time system has no idea as to what
-constitutes an error—it just runs code. The only indication that something
+constitutes an error--it just runs code. The only indication that something
 2
 
 An invariant is something that is always true.
@@ -333,12 +333,12 @@ programmer has written code which can correctly deal with a “divide by
 zero” exception then the presence of such an exception may not necessarily
 indicate an error.
 It is the programmer who decides if an exception corresponds to an
-error—in our system the programmer must explicitly say which functions
+error--in our system the programmer must explicitly say which functions
 in the system are expected to never generate exceptions.
 Schneider gives a number of definitions of fault-tolerance in his 1990
 ACM tutorial paper. In this paper he says:
 A component is considered faulty once its behaviour is no
-longer consistent with its specification — [61].
+longer consistent with its specification -- [61].
 For our purposes we will define an error as a deviation between the
 observed behaviour of a system and the desired behaviour of a system.
 The desired behaviour is “the behaviour that the specification says the
@@ -348,13 +348,13 @@ deviates from the specification, some kind of error recovery procedure is
 initiated, and that some record of this fact is recorded in a permanent error
 log, so that it can be corrected later.
 Building real systems is complicated by the fact that we oden don’t have
-a complete specification—in this case the programmer has some general
+a complete specification--in this case the programmer has some general
 notion as to what constitutes a error, and what does not. In the absence of
 an explicit specification we need an implicit mechanism that corresponds
 to our intuitive idea that an error is “something that causes the program to
 crash.”
 In the OTP system the programmer is expected to write Well-behaved
-functions (WBFs)—well-behaved functions are used to parameterise the
+functions (WBFs)--well-behaved functions are used to parameterise the
 
 5.3. WHAT IS AN ERROR?
 
@@ -388,7 +388,7 @@ This is a very simple example, but it does illustrate the fundamental
 principle of error handling used in the OTP behaviours. For example, in
 the OTP gen_server behaviour, the programmer must write a callback
 module M which is used to parameterise the server. The module M must,
-among other things, export the callback function handle_call/2 (an example of this is shown in line 23–29 of figure 6.1 on page 136)—this callback
+among other things, export the callback function handle_call/2 (an example of this is shown in line 23–29 of figure 6.1 on page 136)--this callback
 function must be a well-behaved function.
 
 126 CHAPTER 5. PROGRAMMING FAULT-TOLERANT SYSTEMS
@@ -405,10 +405,10 @@ should try to correct the condition which caused the exception. If an error
 occurs within a WBF which cannot be corrected the programmer should
 terminate the function with an explicit exit statement.
 Well-behaved functions are written according to the following rules:
-Rule: 1 — The program should be isomorphic to the specification.
+Rule: 1 -- The program should be isomorphic to the specification.
 The program should faithfully follow the specification. If the specification says something silly then the program should do something
 silly. The program must faithfully reproduce any errors in the specification.
-Rule: 2 — If the specification doesn’t say what to do raise an exception.
+Rule: 2 -- If the specification doesn’t say what to do raise an exception.
 This is very important. Specifications oden say what is to be done
 if something happens, but omit to say what to do if something else
 happens. The answer is “raise an exception.” Unfortunately many
@@ -416,7 +416,7 @@ programmers take this as an opportunity for creative guess-work,
 and try to guess what the designer ought to have said.
 If systems are written in this manner then the observation of an
 exception will be synonymous with a specification error.
-Rule: 3 — If the generated exceptions do not contain enough information
+Rule: 3 -- If the generated exceptions do not contain enough information
 to be able to isolate the error, then add additional helpful information to the exception.
 When programmers write code they should ask themselves what
 information will be written into the error log if an error occurs. If the
@@ -428,10 +428,10 @@ be debugged at a later stage.
 
 127
 
-Rule: 4 — Turn non-functional requirements into assertions (invariants)
+Rule: 4 -- Turn non-functional requirements into assertions (invariants)
 that can be checked at run-time. If the assertion is broken then raise
 an exception.
-An example of this might concern termination of a loop—a programming error might cause a function to enter an infinite loop causing
+An example of this might concern termination of a loop--a programming error might cause a function to enter an infinite loop causing
 the function never to return. Such an error could be detected by
 requiring that certain functions terminate within a specified time, by
 checking this time and generating an exception if the function did

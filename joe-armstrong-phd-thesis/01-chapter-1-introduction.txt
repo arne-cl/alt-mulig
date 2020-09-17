@@ -22,19 +22,19 @@ of programming errors.
 
 Having said what my thesis is about, I should also say what it is not
 about. The thesis does not cover in detail many of the algorithms used
-as building blocks for construction fault-tolerant systems—it is not the algorithms themselves which are the concern of this thesis, but rather the
+as building blocks for construction fault-tolerant systems--it is not the algorithms themselves which are the concern of this thesis, but rather the
 programming language in which such algorithms are expressed. I am also
 not concerned with hardware aspects of building fault-tolerant systems, nor
 with the software engineering aspects of fault-tolerance.
 
 The concern is with the language, libraries and operating system requirements for software fault-tolerance. Erlang belongs to the family of
-pure message passing languages—it is a concurrent process-based language
+pure message passing languages--it is a concurrent process-based language
 having strong isolation between concurrent processes. Our programming
 model makes extensive use of fail-fast processes. Such techniques are common in hardware platforms for building fault-tolerant systems but are not
 commonly used in software solutions. This is mainly because conventional languages do not permit dicerent software modules to co-exist in
 such a way that there is no interference between modules. The commonly
 used threads model of programming, where resources are shared, makes
-it extremely diecult to isolate components from each other—errors in one
+it extremely diecult to isolate components from each other--errors in one
 component can propagate to another component and damage the internal
 consistency of the system.
 
@@ -57,25 +57,25 @@ possible.
 
 The chronology of this work is as follows:
 
-• 1981 — The Ericsson CSLab was formed. One goal of this laboratory was “to suggest new architectures, concepts and structures for future
+• 1981 -- The Ericsson CSLab was formed. One goal of this laboratory was “to suggest new architectures, concepts and structures for future
 processing systems developments” [29].
 
-• 1986 — I start work on the language that was to become Erlang,
+• 1986 -- I start work on the language that was to become Erlang,
 though at the time the language had no name. The language started
-as an experiment to add concurrent processes to Prolog—this work
+as an experiment to add concurrent processes to Prolog--this work
 is described in [10]. At this stage I did not intend to design a new
 programming language, I was interested in how to program POTS
-(Plain Old Telephony Service)—at the time the best method for programming POTS appeared to be a variant of Prolog augmented with
+(Plain Old Telephony Service)--at the time the best method for programming POTS appeared to be a variant of Prolog augmented with
 parallel processes.
 
-• 1987 — First mention of Erlang. By 1987 the term Erlang had been
+• 1987 -- First mention of Erlang. By 1987 the term Erlang had been
 coined (probably by the head of the CSLab Bjarne Däcker). By the
 end of the year a Prolog implementation of Erlang was available.
 This version of Erlang was embedded in Prolog using Prolog infix
 operators and did not yet have its own syntax.
 
 Towards the end of 1987 the first major experiment with Erlang
-started—a group of Ericsson engineers at Bollmora, led by Kerstin
+started--a group of Ericsson engineers at Bollmora, led by Kerstin
 Ödling, started work on a prototyping project. They chose Erlang to
 prototype something called “ACS/Dunder.” ACS was an architecture
 which was designed for implementing the Ericsson MD110 private
@@ -91,8 +91,8 @@ taken in PLEX.1
 Many of the ideas found in the current Erlang/OTP system can be
 traced back to this project.
 
-• 1988 — Some time during 1988 it became clear that Erlang was
-suitable for programming Telecoms systems—so while the Bollmora
+• 1988 -- Some time during 1988 it became clear that Erlang was
+suitable for programming Telecoms systems--so while the Bollmora
 group wrote applications in Erlang the CSLab group now augmented
 by Robert Virding and Mike Williams worked on improving the Erlang system.
 
@@ -104,13 +104,13 @@ a factor of six and the project was viewed as a dismal failure.2
 
 2 A fact not recorded in the Strand book!.
 
-• 1989 — The ACS/Dunder project began to produce results. The
+• 1989 -- The ACS/Dunder project began to produce results. The
 Bollmora group showed that using ACS/Dunder with Erlang lead
 to an improvement in design efficiency of a factor of somewhere
 between 9 and 22 times less than the corresponding effort in PLEX.
 
 This was result was based on the experience of prototyping some
-10% of the functionality of the Ericsson MD 110—these figures were
+10% of the functionality of the Ericsson MD 110--these figures were
 hotly debated (depending on whether you believed in Erlang or not).
 
 The Bollmora group estimated that they would need a factor seventy
@@ -135,30 +135,30 @@ evaluate approximately 4 reductions per second, but it was suecient
 to evaluate and test the virtual machine and to allow the Erlang
 compiler to be written in Erlang itself.
 
-Once the design of the JAM was complete I started a C implementation of the virtual machine—which was soon abandoned after Mike
-Williams read some of my C code—after which I worked on the compiler. Mike Williams wrote the virtual machine emulator and Robert
+Once the design of the JAM was complete I started a C implementation of the virtual machine--which was soon abandoned after Mike
+Williams read some of my C code--after which I worked on the compiler. Mike Williams wrote the virtual machine emulator and Robert
 Virding worked on the Erlang libraries.
 
-• 1990 — By 1990 the JAM machine was working well and had surpassed the original goal of being seventy times faster than the original Prolog interpreter. Erlang now had its own syntax (up to now it
+• 1990 -- By 1990 the JAM machine was working well and had surpassed the original goal of being seventy times faster than the original Prolog interpreter. Erlang now had its own syntax (up to now it
 could be regarded as a dialect of Prolog) and could be regarded as
 a language in its own right, rather than as a dialect of Prolog.
 
-• 1991 — Claes Wikström added distribution to Erlang. The JAM machine was now stable and had replaced the Prolog implementation
+• 1991 -- Claes Wikström added distribution to Erlang. The JAM machine was now stable and had replaced the Prolog implementation
 of Erlang.
 
-• 1992 — A decision was made at Ericsson Business Systems (EBC)
+• 1992 -- A decision was made at Ericsson Business Systems (EBC)
 to develop a product based on ACS/Dunder. This product was
-called the Mobility Server—Ericsson presented Erlang developments
+called the Mobility Server--Ericsson presented Erlang developments
 [1, 33], at The XIV International Switching Symposium in Yokohama, Japan.
 
-• 1993 — Ericsson starts a wholly owned subsidiary company called
+• 1993 -- Ericsson starts a wholly owned subsidiary company called
 Erlang Systems AB. The purpose of this company was to market
 and sell Erlang to external customers and to provide training and
 consulting services to both internal and external customers. Support
 for Erlang itself was performed by the Ericsson Computer Science
 Laboratory. The first commercial version of Erlang was released.
 
-• 1995 — The Ericsson AXE-N project collapsed [55]. The AXE-N
+• 1995 -- The Ericsson AXE-N project collapsed [55]. The AXE-N
 project was a project to build a “next generation switch” to replace
 the Ericsson AXE-10. This extremely large project ran from 1987-95.
 
@@ -171,14 +171,14 @@ project. For this reason a new group was started to provide support
 to the AXD project. The Erlang libraries were renamed OTP (The
 Open Telecom Platform) and a new group was created.
 
-• 1996 — In order to provide Erlang users with a stable software base
+• 1996 -- In order to provide Erlang users with a stable software base
 a project called OTP (The Open Telecom Platform) was started.
 OTP was to be used primarily in the newly started AXD project; all
 existing projects were to migrate to OTP. The OTP project consolidated a number of ideas derived from experience with Erlang and
 in particular from a earlier set of libraries developed for use in the
 Mobility Server.
 
-• 1997 — The OTP project turned into the OTP product unit which
+• 1997 -- The OTP project turned into the OTP product unit which
 was started in order to take over formal responsibility for Erlang.
 Prior to that, the CSLab had formally been responsible for Erlang.
 I moved from the CSLab to the OTP group where I worked as
@@ -186,31 +186,31 @@ the chief technical co-ordinator. During the period 1996–1997 a
 three-person group (myself, Magnus Fröberg and Martin Björklund)
 redesigned and implemented the OTP core libraries.
 
-• 1998 — Ericsson delivered the first AXD301. The AXD301 is the
+• 1998 -- Ericsson delivered the first AXD301. The AXD301 is the
 subject of one of our case studies in Chapter 8. At the time of
 writing (2003) the AXD301 has over 1.7 million lines of Erlang code
 which probably makes it the largest system ever to be written in a
 functional style of programming.
 
-In February 1998 Erlang was banned for new product development within Ericsson—the main reason for the ban was that Ericsson wanted to be a consumer of software technologies rather than a producer.
+In February 1998 Erlang was banned for new product development within Ericsson--the main reason for the ban was that Ericsson wanted to be a consumer of software technologies rather than a producer.
 
 In December 1998 Erlang and the OTP libraries were released subject to an Open Source License. Since that date it has been freely available for download from http://www.erlang.org/
 
 In 1998 I led Ericsson together with a number of the original Erlang
-group to found a new company Bluetail AB—in all 15 people left
+group to found a new company Bluetail AB--in all 15 people left
 Ericsson. The idea behind Bluetail was to use the Erlang technology
 to program products which make Internet services more reliable.
 
-• 1999 — Bluetail produced two products written in Erlang. The Mail
+• 1999 -- Bluetail produced two products written in Erlang. The Mail
 Robustifier [11] and the Web Prioritizer. Ericsson produced a number
 of Erlang products (including the AXD301 and GPRS systems).
 
-• 2000 — Bluetail is acquired by Alteon Web Systems [3] and subsequently Alteon is acquired by Nortel Networks.
+• 2000 -- Bluetail is acquired by Alteon Web Systems [3] and subsequently Alteon is acquired by Nortel Networks.
 
-• > 2001 — The Erlang/OTP technology is well established. By now
+• > 2001 -- The Erlang/OTP technology is well established. By now
 there are so many projects that nobody knows the exact number.
 Erlang products developed by Nortel are selling for “Hundreds of
-millions of kronor per year” [51]—The Ericsson AXD301 is one of
+millions of kronor per year” [51]--The Ericsson AXD301 is one of
 Ericsson’s most successful new products and there are a dozen or so
 small companies using Erlang for product development.
 
@@ -252,7 +252,7 @@ handles errors.
 • Chapter 5 gets to the central question of the thesis. It is concerned
 with how to program systems which behave in a reasonable manner
 even in the presence of errors. Central to the idea of fault tolerance
-is the notion of an error—I describe what is meant by an error and
+is the notion of an error--I describe what is meant by an error and
 what I mean when I talk about a “fault-tolerant” system. I describe a
 strategy based on the idea of “Supervision trees” which can be used
 for writing fault-tolerant software.

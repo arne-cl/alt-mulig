@@ -5,7 +5,7 @@ intended to be complete. For fuller treatment the reader is referred
 to [5]. Developments to Erlang since [5] can be found in the OTP
 documentation [34]. A more formal treatment of Erlang can be found in
 the Erlang Specification [17] and in the core Erlang specification [23].
-Erlang belongs to the class of Message-oriented languages [4] — message oriented languages provide concurrency in the form of parallel processes. There are no shared objects in a message-oriented language. Instead all interaction between processes is achieved by sending and receiving messages.
+Erlang belongs to the class of Message-oriented languages [4] -- message oriented languages provide concurrency in the form of parallel processes. There are no shared objects in a message-oriented language. Instead all interaction between processes is achieved by sending and receiving messages.
 In this chapter, I present a subset of the language which provides
 enough detail to understand the Erlang examples in this thesis.
 
@@ -34,7 +34,7 @@ CHAPTER 3. ERLANG
 The use of processes as the basic unit of abstraction is motivated by the
 desire to make a language which is suitable for writing large fault-tolerant
 software systems. The fundamental problem which must be solved in
-writing such software is that of limiting the consequences of an error—
+writing such software is that of limiting the consequences of an error--
 the process abstraction provides an abstraction boundary which stops the
 propagation of errors.
 It is, for example, precisely this inability to limit the consequences of
@@ -211,7 +211,7 @@ to 13).
 Data structures
 
 Erlang has eight primitive data types:1
-• Integers — integers are written as sequences of decimal digits, for
+• Integers -- integers are written as sequences of decimal digits, for
 example, 12, 12375 and -23427 are integers. Integer arithmetic is
 1
 
@@ -222,27 +222,27 @@ Also called constants.
 45
 
 exact and of unlimited precision.2
-• Atoms — atoms are used within a program to denote distinguished
+• Atoms -- atoms are used within a program to denote distinguished
 values. They are written as strings of consecutive alphanumeric characters, the first character being a small letter. Atoms can obtain any
 character if they are enclosed within single quotes and an escape
 convention exists which allows any character to be used within an
 atom.
-• Floats — floating point numbers are represented as IEEE 754 [43]
+• Floats -- floating point numbers are represented as IEEE 754 [43]
 64 bit floating point numbers. Real numbers in the range ±10308
 can be represented by an Erlang float.
-• References — references are globally unique symbols whose only
+• References -- references are globally unique symbols whose only
 property is that they can be compared for equality. They are created
 by evaluating the Erlang primitive make_ref().
-• Binaries — a binary is a sequence of bytes. Binaries provide a
+• Binaries -- a binary is a sequence of bytes. Binaries provide a
 space-eecient way of storing binary data. Erlang primitives exist for
 composing and decomposing binaries and for eecient input/output
 of binaries. For a full treatment of binaries see [34].
-• Pids — Pid is short for Process Identifier—a Pid is created by the Erlang primitive spawn(...) Pids are references to Erlang processes.
-• Ports — ports are used to communicate with the external world.
+• Pids -- Pid is short for Process Identifier--a Pid is created by the Erlang primitive spawn(...) Pids are references to Erlang processes.
+• Ports -- ports are used to communicate with the external world.
 Ports are created with the BIF3 open_port. Messages can be sent to
 and received from ports, but these message must obey the so-called
 “port protocol.”
-• Funs — Funs are function closures.4 Funs are created by expressions
+• Funs -- Funs are function closures.4 Funs are created by expressions
 of the form: fun(...) -> ... end.
 And two compound data types:
 2
@@ -256,11 +256,11 @@ Called lambda expressions in other languages.
 46
 
 CHAPTER 3. ERLANG
-• Tuples — tuples are containers for a fixed number of Erlang data
+• Tuples -- tuples are containers for a fixed number of Erlang data
 types. The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn. The arguments can be primitive data types
 or compound data types. The elements of a tuple can be accessed
 in constant time.
-• Lists — lists are containers for a variable number of Erlang data
+• Lists -- lists are containers for a variable number of Erlang data
 types. The syntax [Dh|Dt] denotes a list whose first element is
 Dh, and whose remaining elements are the list Dt. The syntax []
 denotes an empty list.
@@ -269,10 +269,10 @@ The first element of a list can be accessed in constant time. The first
 element of a list is called the head of the list. The remainder of a list
 when its head has been removed is called the tail of the list.
 Two forms of syntactic sugar are provided:
-• Strings — strings are written as doubly quoted lists of characters,
+• Strings -- strings are written as doubly quoted lists of characters,
 this is syntactic sugar for a list of the integer ASCII codes for the
 characters in the string, thus for example, the string "cat" is shorthand for [97,99,116].
-• Records — records provide a convenient way for associating a tag
+• Records -- records provide a convenient way for associating a tag
 with each of the elements in a tuple. This allows us to refer to an
 element of a tuple by name and not by position. A pre-compiler
 takes the record definition and replaces it with the appropriate tuple
@@ -542,7 +542,7 @@ factorial_1(N, X) -> factorial_1(N-1, N*X).
 CHAPTER 3. ERLANG
 
 Many non-tail recursive functions can be made tail-recursive, by introducing an auxiliary function, with an additional argument.6
-Many functions in Erlang are designed to run in infinite loops—in particular the client–server model assumes that the server will run in an infinite
+Many functions in Erlang are designed to run in infinite loops--in particular the client–server model assumes that the server will run in an infinite
 loop. Such loops must be written in a tail-recursive manner. A typical
 infinite loop in a server might be written something like:
 loop(Dict) ->
@@ -583,7 +583,7 @@ Called an accumulator.
 case is evaluated as follows: Firstly, Expression is evaluated, assume
 this evaluates to Value. Thereader Value is matched in turn against Pattern1, Pattern2 ... etc. until a match is found. As soon as a match is found
 to some pattern Pattern[i] then the corresponding expression sequence
-Expr seq[i] is evaluated—the result of evaluating the expression sequence
+Expr seq[i] is evaluated--the result of evaluating the expression sequence
 Expr seq[i] becomes the value of the case statement.
 
 3.3.11
@@ -831,11 +831,11 @@ form End-Sign-Type-Unit, where:
 62
 
 CHAPTER 3. ERLANG
-• End — specifies the endianess of the machine and is one of big,
+• End -- specifies the endianess of the machine and is one of big,
 little or native.
-• Sign — is one of signed or unsigned.
-• Type — is one of integer, float, or binary.
-• Unit — is of the form unit:Int where Int is a literal integer in
+• Sign -- is one of signed or unsigned.
+• Type -- is one of integer, float, or binary.
+• Unit -- is of the form unit:Int where Int is a literal integer in
 the range 1..256. The total size of the segment is Size x Int bits
 long, this size must be a multiple of eight bits.
 
@@ -1080,7 +1080,7 @@ factorial(0) -> 1;
 factorial(N) -> N*factorial(N-1).
 Evaluating factorial(10) returns the Value 3628800, but evaluating
 factorial(abc) raises the exception {’EXIT’,{badarith,...}. Exceptions cause the program to stop what it is doing and do something
-else—that is why they are called exceptions. If we write:
+else--that is why they are called exceptions. If we write:
 J = factorial(I)
 we expect the value of J to be the value of factorial(I) if I is an
 integer. If factorial is called with a non-integer argument the statement
@@ -1102,22 +1102,22 @@ which are executed by a virtual machine emulator which is part of the
 Erlang run-time system.
 If the emulator detects a condition where it cannot decide what to do,
 it generates an exception. There are six types of exception:
-1. Value errors — these are things like “divide by zero”. Here an argument to a function has the correct type, but an incorrect value.
-2. Type errors — these are generated when an Erlang BIF is called
+1. Value errors -- these are things like “divide by zero”. Here an argument to a function has the correct type, but an incorrect value.
+2. Type errors -- these are generated when an Erlang BIF is called
 with an argument which has an incorrect type. For example, the BIF
 atom_to_list(A) converts the atom A to a list of the ASCII integer
 codes which represent the atom. If A is not an atom, the run-time
 system generates an exception.
-3. Pattern-matching errors — these are generated when an attempt is
+3. Pattern-matching errors -- these are generated when an attempt is
 made to match a data structure against a number of patterns and
 no matching pattern is found. This can occur in function head
 matching, or in matching the alternatives in a case, receive or
 if statement.
-4. Explicit exits — these are generated explicitly by evaluating the expression exit(Why), which generates the exception Why.
-5. Error propagation — if a process receives an exit signal it may decide
+4. Explicit exits -- these are generated explicitly by evaluating the expression exit(Why), which generates the exception Why.
+5. Error propagation -- if a process receives an exit signal it may decide
 to die and propagate the exit signal to all processes in its link set (see
 section 3.5.6).
-6. System exceptions — the run-time system might terminate a process
+6. System exceptions -- the run-time system might terminate a process
 if it runs out of memory or if it detects an inconsistency in some internal table. Such exceptions are outside the programmer’s control.
 
 70
@@ -1379,9 +1379,9 @@ Two primitives are needed for distributed processing:
 
 77
 
-• spawn(Fun,Node) — spawns a function Fun on the remote node
+• spawn(Fun,Node) -- spawns a function Fun on the remote node
 Node.
-• monitor(Node) — is used for monitoring the behaviour of an entire
+• monitor(Node) -- is used for monitoring the behaviour of an entire
 node.
 monitor is analogous to link, the dicerence being that the controlled object is an entire node instead of a process.
 
@@ -1399,13 +1399,13 @@ If P is a port, and Con is the Pid of the port’s controlling process then
 the port can be commanded to do something by evaluating the expression:
 P ! {Con, Command}
 where Command can have one of the following three possible values:
-• {command,Data} — sends Data to the external object. Data must
+• {command,Data} -- sends Data to the external object. Data must
 be an io-list (see page 59 for a definition of io-lists). The io-list is
 flattened and the data elements in the list are sent to the external
 application.
-• close — closes the port. The port must respond by sending a
+• close -- closes the port. The port must respond by sending a
 {P,closed} message to the controlling process.
-• {connect,Pid1} — changes the controlling process to Pid. The
+• {connect,Pid1} -- changes the controlling process to Pid. The
 port must send a {Port,connected} to the original controlling
 process, thereader all new messages are sent to the new controlling
 process.
@@ -1518,18 +1518,18 @@ true.
 = [int()].
 +deftype fileHandle() = pid().
 Each of the Erlang primitive data types has its own type. These primitive types are:
-• int() — is the integer type.
+• int() -- is the integer type.
 
 3.9. A TYPE NOTATION
 
 81
 
-• atom() — is the atom type.
-• pid() — is the Pid type.
-• ref() — is the reference type.
-• float() — is the Erlang float type.
-• port() — is the port type.
-• bin() — is the binary type.
+• atom() -- is the atom type.
+• pid() -- is the Pid type.
+• ref() -- is the reference type.
+• float() -- is the Erlang float type.
+• port() -- is the port type.
+• bin() -- is the binary type.
 List, tuple and alternation types are defined recursively:
 • {T1,T2,...,Tn} is the tuple type if T1 .. Tn are types. We say
 that {X1,X2,...,Xn} is of type {T1,T2,...,Tn} if X1 is of type
@@ -1583,7 +1583,7 @@ developed by Wadler & Marlow [49].
 
 Discussion
 
-This chapter has introduced a significant subset of Erlang—suecient, at
+This chapter has introduced a significant subset of Erlang--suecient, at
 least, to understand all the examples in the thesis, but I have not yet
 addressed the question “Is Erlang a suitable language for programming
 fault-tolerant systems in?” I believe the answer is “Yes.” I argued earlier

@@ -76,7 +76,7 @@ run-time system for memory management, input/output, process management, and gar
 
 The Erlang run-time system ocers many of the services which are traditionally ocered by an operating system, so by comparison with the runtime support needed for a purely sequential language the run-time system
 is fairly complex. All Erlang processes are managed by the Erlang run-time
-system—even when there are several tens of thousands of Erlang processes
+system--even when there are several tens of thousands of Erlang processes
 running under control of the Erlang run-time system the host operating
 system will only think that there is one process running, that being the
 Erlang run-time system itself.
@@ -92,39 +92,39 @@ Libraries
 
 The OTP release contains a large set of libraries, all of which for release
 purposes are considered instances of OTP applications. Release R9B contains the following applications:
-• appmon — a graphical utility to observe and manipulate supervision
+• appmon -- a graphical utility to observe and manipulate supervision
 trees.
-• asn1 — a compiler and run-time support for decoding and encoding
+• asn1 -- a compiler and run-time support for decoding and encoding
 packets defined in ASN.1.
-• compiler — the Erlang compiler.
-• crypto — a set of functions for encrypting and decrypting data and
+• compiler -- the Erlang compiler.
+• crypto -- a set of functions for encrypting and decrypting data and
 for computing message digests.
-• debugger — an Erlang source code debugger.
-• erl_interface — a set of libraries for communicating with distributed Erlang nodes.
+• debugger -- an Erlang source code debugger.
+• erl_interface -- a set of libraries for communicating with distributed Erlang nodes.
 
 164
 
 CHAPTER 7. OTP
-• erts — the Erlang run-time system.
-• et — the event tracer and tools to record and give a graphical presentation of event data.
-• eva — the “event and alarm” handling application.
-• gs — a graphics system. A set of graphics routines for building GUIs.
-• ic — Erlang IDL compiler.
-• inets — an HTTP server and an FTP client.
-• jinterface — a tool to create Java to Erlang interfaces.
-• kernel — one of the two basic libraries needed to run the system
+• erts -- the Erlang run-time system.
+• et -- the event tracer and tools to record and give a graphical presentation of event data.
+• eva -- the “event and alarm” handling application.
+• gs -- a graphics system. A set of graphics routines for building GUIs.
+• ic -- Erlang IDL compiler.
+• inets -- an HTTP server and an FTP client.
+• jinterface -- a tool to create Java to Erlang interfaces.
+• kernel -- one of the two basic libraries needed to run the system
 (the other is stdlib). kernel contains code for file servers, code
 servers etc.
-• megaco — libraries for the Megaco2 /H248 protocols.
-• mnemosyne — a database query language for mnesia.
-• mnesia — a distributed DBMS with sod real-time properties for Erlang.
-• observer — tools for tracing and observing the behaviour of a distributed system.
-• odbc — an Erlang interface ODBC interface to SQL databases.
-• orber — an Erlang implementation of a CORBA object request
+• megaco -- libraries for the Megaco2 /H248 protocols.
+• mnemosyne -- a database query language for mnesia.
+• mnesia -- a distributed DBMS with sod real-time properties for Erlang.
+• observer -- tools for tracing and observing the behaviour of a distributed system.
+• odbc -- an Erlang interface ODBC interface to SQL databases.
+• orber -- an Erlang implementation of a CORBA object request
 broker. Note: there are also separate applications to provide access
 to various CORBA services, such as the events, notifications, file
 transfers etc.
-• os_mon — a tool to monitor resource usage in the external operating
+• os_mon -- a tool to monitor resource usage in the external operating
 system.
 
 2
@@ -135,26 +135,26 @@ Media Gateway Control.
 
 165
 
-• parsetools — tools for parsing Erlang. Includes yecc an LALR(1)
+• parsetools -- tools for parsing Erlang. Includes yecc an LALR(1)
 parser generator.
-• pman — a graphic tool to inspect the state of the system. Pman can
+• pman -- a graphic tool to inspect the state of the system. Pman can
 be used to observe local or remote Erlang nodes.
-• runtime_tools — miscellaneous small routines needed in the runtime system.
-• sasl — short for “System Architecture Support Libraries.” This
+• runtime_tools -- miscellaneous small routines needed in the runtime system.
+• sasl -- short for “System Architecture Support Libraries.” This
 application contains support for alarm handling, managing releases
 etc.
-• snmp — an Erlang implementation of the Simple Network Management Protocol [24]. This application includes a MIB compilers and
+• snmp -- an Erlang implementation of the Simple Network Management Protocol [24]. This application includes a MIB compilers and
 tools for building MIBs etc.
-• ssl — an Erlang interface to the secure sockets layer.
-• stdlib — the “pure” Erlang libraries needed to run the system. The
+• ssl -- an Erlang interface to the secure sockets layer.
+• stdlib -- the “pure” Erlang libraries needed to run the system. The
 other obligatory application is kernel.
-• toolbar — a graphical toolbar from which applications can be
+• toolbar -- a graphical toolbar from which applications can be
 started.
-• tools — a package of stand-alone applications for analysing and
+• tools -- a package of stand-alone applications for analysing and
 monitoring Erlang programs. This includes tools for profiling, coverage analysis, cross reference analysis etc.
-• tv — a “table viewer.” The table viewer is a graphic application to
+• tv -- a “table viewer.” The table viewer is a graphic application to
 allow graphic browsing of tables in the mnesia database.
-• webtool — a system for managing web-based tools (such as inets).
+• webtool -- a system for managing web-based tools (such as inets).
 The OTP libraries provide a highly sophisticated tool set and are a
 good starting point for any commercial product, they are however, fairly
 complex.
@@ -168,5 +168,5 @@ of five behaviours (gen_server, gen_event, gen_fsm, supervisor and
 application) and a complete explanation of any one of these behaviours
 is outside the scope of this thesis. The principles behind one of these
 behaviours (gen_server) was the subject of pages 86–101.
-stdlib in release R9B has some 71 modules—four of them have been
+stdlib in release R9B has some 71 modules--four of them have been
 described here.

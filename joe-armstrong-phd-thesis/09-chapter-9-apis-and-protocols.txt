@@ -11,7 +11,7 @@ This method of defining API’s is widespread. The details of the type
 notation vary from language to language. The degree to which the type
 system is enforced by the underlying language implementation varies from
 system to system. If the type system is strictly enforced then the language
-is called “strongly typed,” otherwise it is called “untyped”—this point oden
+is called “strongly typed,” otherwise it is called “untyped”--this point oden
 causes some confusion, since many languages which need type declarations
 have type systems which can easily be broken. Languages like Erlang,
 need no type declarations, but are “type safe,” meaning that the underlying
@@ -208,7 +208,7 @@ dicerent ways.
 
 Communicating components
 
-How should Erlang talk to the outside world? — this question becomes
+How should Erlang talk to the outside world? -- this question becomes
 interesting if we want to build distributed applications where Erlang is one
 of a number of communicating components. In [35] we can read that:
 The two fundamental building blocks underlying any PLITS
@@ -221,7 +221,7 @@ system are modules and messages. A module is a self-contained
 entity, something like a Simula or Smalltalk class, a SAIL process or a CLU module. It is not important for the moment
 which programming language is used to encode the body of
 the module; we wish to explicitly account for the case in which
-the various modules are coded in dicerent languages on a variety of machines — [35]
+the various modules are coded in dicerent languages on a variety of machines -- [35]
 In order to make a system of communication components we have to
 agree on a number of dicerent things. We need:
 • A transport format and a way of mapping language entities into
@@ -237,14 +237,14 @@ appendix C.
 
 Discussion
 
-I want to return to the central question of the thesis—How can we make a
+I want to return to the central question of the thesis--How can we make a
 reliable system in the presence of errors? Stepping outside the system and
 viewing the system as a set of communicating black boxes is very helpful
 here.
 If we formally describe the protocol to be obeyed on a communication
 channel between two black boxes then we can use this as a means for detecting and identifying errors, we can also say precisely which component
 has failed.
-Such an architecture satisfies requirements R1–R4 on page 27—and
+Such an architecture satisfies requirements R1–R4 on page 27--and
 therefore, by my reasoning can be used for programming error-resilient
 systems.
 

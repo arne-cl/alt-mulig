@@ -6,19 +6,19 @@ Techniques
 
 he previous chapter was about Erlang, but not about how to program in Erlang. This chapter is about Erlang programming techniques. The programming techniques are concerned with:
 
-• Abstracting out concurrency — concurrent programs are, in some
+• Abstracting out concurrency -- concurrent programs are, in some
 sense, more diecult to write than sequential programs. Instead of
 writing one module which has both concurrent and sequential code
 I show how to structure the code into two modules, one of which
 has all the concurrent code, the other having only purely sequential
 code.
-• Maintaining the Erlang view of the world — in Erlang terms everything is a process. To help maintain this view I introduce the idea
+• Maintaining the Erlang view of the world -- in Erlang terms everything is a process. To help maintain this view I introduce the idea
 of a protocol converter, which helps the programmer maintain the
 illusion that everything is an Erlang process.
-• The Erlang view of errors — the treatment of how errors are handled in Erlang is radically dicerent from most other programming
+• The Erlang view of errors -- the treatment of how errors are handled in Erlang is radically dicerent from most other programming
 languages, I show how error situations should be programmed in
 Erlang.
-• Intentional programming — this is a programming style where the
+• Intentional programming -- this is a programming style where the
 programmer can easily see from the code exactly what the programmer intended, rather than by guessing at the meaning from
 a superficial analysis of the code.
 85
@@ -42,7 +42,7 @@ The generic component should hide details of concurrency and mechanisms for faul
 using only sequential code with well-defined types.
 In the following I show how to structure a client-server into a generic
 component and a number of plugins.
-Structuring a system into generic component and plugins is a common programming technique—what is unusual in our approach is that the
+Structuring a system into generic component and plugins is a common programming technique--what is unusual in our approach is that the
 generic component can provide a rich environment in which to execute
 the plugin. The plugin code itself can have errors, and the code in the
 plug-in can be dynamically modified, the entire component can be moved
@@ -196,19 +196,19 @@ garbage collector. loop/3 is said therefore to run in constant space, apart,
 that is, from the local storage (stored in the variable State) which is
 needed to store the state of the server itself. server1.erl exports three
 routines:
-• start(Name, Fun, State) — starts a server with name Name.
+• start(Name, Fun, State) -- starts a server with name Name.
 The initial state of the server is State, Fun is a function which
 completely characterises the behaviour of the server.
-• stop(Name) — stops the server Name.
-• rpc(Name, Q) — perform a remote procedure call on the server
+• stop(Name) -- stops the server Name.
+• rpc(Name, Q) -- perform a remote procedure call on the server
 called Name.
 We can use this server to implement a very simple “Home Location
 Register1 ” which we call VSHLR (Very Simple HLR). Our VSHLR has
 the following interface:
-• start() — starts the HLR.
-• stop() — stops the HLR.
-• i_am_at(Person,Loc) — tells the HLR that Person is at the location Loc.
-• find(Person) -> {ok, Loc} | error — tries to find the position
+• start() -- starts the HLR.
+• stop() -- stops the HLR.
+• i_am_at(Person,Loc) -- tells the HLR that Person is at the location Loc.
+• find(Person) -> {ok, Loc} | error -- tries to find the position
 of Person in the HLR. The HLR responds with {ok, Loc} where
 Loc is the last reported location, or, error if it doesn’t know where
 the person is.
@@ -265,7 +265,7 @@ in vshlr1.erl.
 • The code in vshlr1.erl makes no use of any of the Erlang concurrency primitives. The programmer who writes this module needs to
 know nothing about concurrency or fault-handling.
 The second point is very important. This is an example of factoring
-out concurrency—since writing concurrent programs is generally perceived
+out concurrency--since writing concurrent programs is generally perceived
 as being diecult and since most programmers are more experienced in
 writing sequential code then being able to factor out the concurrency is a
 distinct advantage.
@@ -309,7 +309,7 @@ loop(Name, F, State1)
 end
 Looking at these changes in more detail we observe that if evaluating the function in the server loop raises an exception then three things
 happen:
-1. The exception is logged—in this case we just print out the exception
+1. The exception is logged--in this case we just print out the exception
 but in a more sophisticated system we would log it on non-volatile
 storage.
 
@@ -501,7 +501,7 @@ anything about how server3 was implemented nor that the code in the
 server could be dynamically changed without taking the server out of
 service.
 The ability to change software in a server without stopping the server
-partially fulfils requirement 8 on page 14—namely to upgrade the software
+partially fulfils requirement 8 on page 14--namely to upgrade the software
 in a system without stopping the system.
 If we return once again to the code for server3 in figures 4.5 (the
 server) and vshlr2 in figure 4.6 (the application), we observe the following:
@@ -518,7 +518,7 @@ exception handling mechanisms.
 CHAPTER 4. PROGRAMMING TECHNIQUES
 
 4. To write the application, the programmer only has to understand
-how to write a simple sequential program—they need to know nothing about concurrency or error handling.
+how to write a simple sequential program--they need to know nothing about concurrency or error handling.
 5. We can imagine using the same application code in a succession of
 progressively more sophisticated servers. I have shown three such
 servers but we can imagine adding more and more functions to the
@@ -774,7 +774,7 @@ handling.
 4. It oden turns out that the error correcting code is generic, that is,
 generally applicable to many applications, whereas the worker code
 is more oden application specific.
-Point three is crucial—given that Erlang satisfies requirements R3 and
+Point three is crucial--given that Erlang satisfies requirements R3 and
 R4 (see page 27) then we can run worker and supervisor processes on
 dicerent physical machines, and thus make a system which tolerates hardware errors where entire processes fail.
 
@@ -809,7 +809,7 @@ a store operation should result in opcode 2. The programmer turns this
 specification into code like:
 asm(load) -> 1;
 asm(store) -> 2.
-Now suppose that the system tries to evaluate asm(jump)—what should
+Now suppose that the system tries to evaluate asm(jump)--what should
 happen? Suppose you are the programmer and you are used to writing
 defensive code then you might write:
 asm(load) -> 1;
@@ -838,7 +838,7 @@ asm(store) -> 2;
 asm(X)
 -> exit({bad_arg, asm, X}).
 The defensive code detracts from the pure case and confuses the
-reader—the diagnostic is oden no better than the diagnostic which the
+reader--the diagnostic is oden no better than the diagnostic which the
 compiler supplies automatically.
 
 4.5
@@ -854,13 +854,13 @@ In the early days of Erlang the library module dict exported a function
 lookup/2 which had the following interface:
 lookup(Key, Dict) -> {ok, Value} | notfound
 Given this definition lookup was used in three dicerent contexts:
-1. For data retrieval—the programmer would write:
+1. For data retrieval--the programmer would write:
 {ok, Value} = lookup(Key, Dict)
 here lookup is used for to extract an item with a known key from
 the dictionary. Key should be in the dictionary, it is a programming
 error if this is not the case, so an exception in generated if the key is
 not found.
-2. For searching—the code fragment:
+2. For searching--the code fragment:
 case lookup(Key, Dict) of
 {ok, Val} ->
 
@@ -872,9 +872,9 @@ not_found ->
 ... do something else ...
 end.
 searches the dictionary and we do not know if Key is present or
-not—it is not a programming error if the key is not in the dictionary.
+not--it is not a programming error if the key is not in the dictionary.
 
-3. For testing the presence of a key—the code fragment:
+3. For testing the presence of a key--the code fragment:
 case lookup(Key, Dict) of
 {ok, _} ->
 ... do something ...
@@ -883,7 +883,7 @@ not_found ->
 end.
 tests to see if a specific key Key is in the dictionary.
 When reading thousands of lines of code like this we begin to worry
-about intentionality—we ask ourselves the question “what did the programmer intend by this line of code?”—by analysing the above three usages of
+about intentionality--we ask ourselves the question “what did the programmer intend by this line of code?”--by analysing the above three usages of
 the code we arrive at one of the answers data retrieval, a search or a test.
 There are a number of dicerent contexts in which keys can be looked
 up in a dictionary. In one situation a programmer knows that a specific
@@ -902,7 +902,7 @@ dict:is_key(Key, Dict) = Boolean
 
 111
 
-Which precisely expresses the intention of the programmer—here no
+Which precisely expresses the intention of the programmer--here no
 guesswork or program analysis is involved, we clearly read what was intended.
 It might be noted that fetch can be implemented in terms of search
 and vice versa. If fetch is assumed primitive we can write:
@@ -956,7 +956,7 @@ In most programming languages it is easy2 to write a pure function,
 whose value depends in a deterministic manner on the inputs to the function, but it is much more diecult, and sometimes impossible, to do things
 like changing the code in the system, or handling errors in a generic manner, or protecting one programmer’s code from failures in another part of
 the system. For this reason the programmer makes use of services ocered
-by the operating system—the operating system provides protection zones,
+by the operating system--the operating system provides protection zones,
 concurrency etc usually in the guise of processes.
 There is a sense in which the operating system provides “what the
 programming language designer forgot.” In a language like Erlang an

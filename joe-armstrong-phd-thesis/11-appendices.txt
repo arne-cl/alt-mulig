@@ -7,14 +7,14 @@ been built in Erlang are the result of a massive amount of work done by a
 large number of people.
 It is always diecult to write the acknowledgments section, since I don’t
 want to miss out anybody who has contributed to the system, and I don’t
-want to make any errors—I shall try to be as accurate as possible, for any
+want to make any errors--I shall try to be as accurate as possible, for any
 omissions or inaccuracies I apologise in advance.
 I would like to start by thanking all the “management types” who made
 this possible in the first place. Bjarne Däcker who was my boss at Ericsson
 has alway been enthusiastic about our work, and fought many battles on
-our behalf—thank you Bjarne. Torbjörn Jonsson (who was Bjarne’s boss)
-fought even more battles on Bjarne’s behalf—thanks Torbjörn I learnt a
-lot from you. Jane Walerud—(Jane was the woman behind Open Source
+our behalf--thank you Bjarne. Torbjörn Jonsson (who was Bjarne’s boss)
+fought even more battles on Bjarne’s behalf--thanks Torbjörn I learnt a
+lot from you. Jane Walerud--(Jane was the woman behind Open Source
 Erlang), she was the managing director of Bluetail, and taught me all I
 know about running a small business.
 Now we get to the developers of Erlang which is a much longer list.
@@ -55,7 +55,7 @@ the system moved to a new generation of programmers. Björn Gustavsson
 maintains the Emulator, and the OTP libraries are maintained by Lars
 Thorsén, Kenneth Lundin, Kent Boortz, Raimo Niskanen, Patrik Nyblom,
 Hans Bolinder, Richard Green, Håkan Mattsson, and Dan Gudmundsson.
-Now to our users—the Erlang/OTP system has been significantly improved by interaction with our faithful band of users.
+Now to our users--the Erlang/OTP system has been significantly improved by interaction with our faithful band of users.
 The first set of users, who built the first major product in Erlang were,
 Mats Persson, Kerstin Ödling, Peter Högfeld, Åke Rosberg, Håkan Karlsson, and Håkan, Larsson.
 In the AXD301 Ulf Wiger, Stacan Blau, did magnificent work pioneering the use of Erlang for carrier-class applications.
@@ -69,7 +69,7 @@ and encouragement. Today if anybody wants to know anything about Er-
 lang they just “ask the Erlang list,” and usually get a accurate and informed
 reply within a hour or so. Thanks to all the people on the list and especially to those who I have never met, but with whom I have exchanged
 many many long and interesting e-mails.
-Finally thanks to my friends and colleagues at SICS—to Prof. Seif
+Finally thanks to my friends and colleagues at SICS--to Prof. Seif
 Haridi for supervising this thesis. To Per Brand for encouraging me to
 write the thesis, and for all the other members of the Distributed Systems
 Laboratory with whom I have had many stimulating discussions.
@@ -100,7 +100,7 @@ The requirements for the use of EBC’s “Base System” are not documented her
 “Base System” is to be used. These requirements are documented in
 1/10268-AND 10406 Uen “MAP - Start and Error Recovery.”
 1
-This is a reformatted version of the Ericsson internal Document: EPK/NP 95:035—The document was
+This is a reformatted version of the Ericsson internal Document: EPK/NP 95:035--The document was
 released into the public domain as part of the Open Source Erlang distribution
 
 215
@@ -1031,7 +1031,7 @@ world.1
 Joe Armstrong
 7 May 2002
 Abstract
-How should Erlang talk to the outside world? — This question becomes
+How should Erlang talk to the outside world? -- This question becomes
 interesting if we want to build distributed applications where Erlang is one
 of a number of communicating components.
 We assume these components interact by exchanging messages - at this
@@ -1045,7 +1045,7 @@ One widely adopted solution to this problem involves the XML family
 of standards (XML, XML-schemas, SOAP and WSDL) - we argue that
 1
 This is a reformatted and slightly revised version of the the paper presented at the ACM SIGPLAN
-Erlang Workshop—2002 Pittsburg, PA USA[13].
+Erlang Workshop--2002 Pittsburg, PA USA[13].
 
 247
 
@@ -1301,10 +1301,10 @@ and protocols between clients and servers. UBF(B) is roughly equivalent to verif
 While the XML series of languages had the goal of having a human
 readable format the UBF languages take the opposite view and provide a
 “machine friendly” format.
-UBF is designed to be easy to implement. As a proof of concept —
+UBF is designed to be easy to implement. As a proof of concept --
 UBF drivers for Erlang, Oz, Java and TCL can be found at the author’s
 web site [6]. Implementors are welcome to add new languages.
-UBF is designed to be “language neutral” — UBF(A) defines a language
+UBF is designed to be “language neutral” -- UBF(A) defines a language
 neutral binary format for transporting data across a network. UBF(B) is a
 type system for describing client/server interactions which use UBF(A).
 
@@ -1331,18 +1331,18 @@ regular expression [-][0-9]+. That is, an optional minus (to denote
 a negative integer) followed by a sequence of one or more digits. No
 restrictions are made as to the precision of the integer, precision
 issues are be dealt with in UBF(B).
-Strings — strings are written enclosed in double quotes, thus:
+Strings -- strings are written enclosed in double quotes, thus:
 "...."
 Within a string two quoting conventions are observed, " must be
 written \" and \ must be written \\ - no other quotings are allowed
 (this is so we can write a double quote within a string).
-Binary Data — binary data is encoded, thus:
+Binary Data -- binary data is encoded, thus:
 Int ~....~
 First an integer, representing the length of the binary data is encoded, followed by a tilde, the data itself, which must be exactly the
 length given in the integer, and than a closing tilde. The closing tilde
 has no significance and is retained for readability. White space can
 be added between the integer length and the data for readability.
-Constants — constants are encoded as strings, only using a single quote
+Constants -- constants are encoded as strings, only using a single quote
 instead of a double quote.
 
 257
@@ -1362,7 +1362,7 @@ check the tag, and the application should be able to understand the tag.
 5.2 Compound types
 Having defined our four simple types we define two type of “glue” for
 making compound objects.
-Structs — structures are written:
+Structs -- structures are written:
 { Obj1 Obj2 ... Objn }
 Where Obj1..Objn are arbitrary UBF(A) objects and the byte codes
 for { and } are used to delimit a structure. The decoder and encoder
@@ -1370,7 +1370,7 @@ must map UBF(A) objects onto an appropriate representation in the
 application programming language (for example structs in C, arrays
 in Java, tuples in Erlang etc.).
 Structs are used to represent Fixed numbers of objects
-Lists —lists are used to represent variable numbers of objects. They are
+Lists --lists are used to represent variable numbers of objects. They are
 written with the syntax:
 
 258
@@ -2056,7 +2056,7 @@ APPENDIX C. UBF
 Colophon
 
 t had been my intention to write a new typesetting system in order to
-typeset this thesis—I therefore started work on Erlguten [7] which has
+typeset this thesis--I therefore started work on Erlguten [7] which has
 been described elsewhere.
 Having read Knuth’s masterwork digital typography I realised that producing a high quality type-setting system would delay the work on the thesis by several years (in my estimate about five years) and so I have decided,
 reluctantly to use LATEX.
@@ -2228,7 +2228,7 @@ Symposium, October 1993.
 Evan Tick and Giancarlo Succi, editors, Implementations of Logic Programming Systems, pages 119–135. Kluwer Academic Publishers, 1994.
 [43] American National Standards Institute, Institute of Electrical, and
 Electronic Engineers. IEEE standard for binary floating-point arithmetic. ANSI/IEEE Standard, Std 754-1985, New York, 1985.
-[44] ISO/IEC. Osi networking and system aspects - abstract syntax notation one (asn.1). ITU-T Rec. X.680 — ISO/IEC 8824-11, ISO/IEC,
+[44] ISO/IEC. Osi networking and system aspects - abstract syntax notation one (asn.1). ITU-T Rec. X.680 -- ISO/IEC 8824-11, ISO/IEC,
 1997.
 [45] ITU. Recommendation Z.100 – specification and description language
 (sdl). ITU-T Z.100, International Telecommunication Union, 1994.
@@ -2255,7 +2255,7 @@ APPENDIX D. COLOPHON
 [54] (Ed) Nilo Mitra. Soap version 1.2 part 0: Primer. december 2001,
 http://www.w3.org/tr/2001/wd-soap12-part0-20011217. 2001.
 [55] Hans Olsson. Ericsson lägger ner utveckling. Dagens Nyheter, December 1995.
-[56] OMG. Common Object Request Broker Architecture (CORBA)—v2.6.1
+[56] OMG. Common Object Request Broker Architecture (CORBA)--v2.6.1
 Manual. The Object Management Group, Needham, U.S.A, 2002.
 [57] J. B. Postel. Simple mail transfer protocol. RFC 821, Internet Engineering Task Force, August 1982.
 [58] K. Renzel. Error handling for business information systems. 2003.

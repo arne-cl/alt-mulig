@@ -2,10 +2,10 @@
 
 Conclusions
 
-Theses are never completed—at some point, however, you just give
-up... In this thesis I have presented a number of things—a new programming language and a method for programming fault-tolerant
+Theses are never completed--at some point, however, you just give
+up... In this thesis I have presented a number of things--a new programming language and a method for programming fault-tolerant
 systems. Erlang appears to be a useful tool for programming reliable
-systems—amazingly it is being used for a large number of applications
+systems--amazingly it is being used for a large number of applications
 which are far removed from the the problem domain that Erlang was designed to be used for.
 
 T
@@ -37,10 +37,10 @@ manner in the presence of software errors.
 It would be a shame if the Erlang story had no future chapters, and there
 are a number of directions in which I would like to see the language
 develop.
-• Conceptual integrity — can we develop Erlang so as to reinforce the
+• Conceptual integrity -- can we develop Erlang so as to reinforce the
 everything is a process view of the world? Can we make the system,
 and Erlang code more regular and easier to understand?
-• Kernel improvements — the statement on page 83 is a modified
+• Kernel improvements -- the statement on page 83 is a modified
 truth. The property of strong isolation is not strictly adhered to in
 any known implementation of Erlang. One process could acect another process in the system by allocating vast amounts of memory
 or by sending large numbers of messages to another process. A
@@ -48,7 +48,7 @@ malicious process could destroy the entire system by creating large
 numbers of atoms and overflow the atom table etc. Current implementations of Erlang are not designed to protect the system from
 malevolent attacks. Kernel improvements are possible which would
 guard against many such attacks.
-• How can we program components — the idea of a set of communicating processes leads naturally to the idea of writing the components
+• How can we program components -- the idea of a set of communicating processes leads naturally to the idea of writing the components
 in dicerent languages. How can we do this?
 
 10.2.1
@@ -139,7 +139,7 @@ reads a remote file and stores it on the local computer.
 Spawning and bang bang
 
 In the beginning of the universe several “magic” processes are assumed to
-exist. These have names like "/dev/..."—these processes are pre-defined
+exist. These have names like "/dev/..."--these processes are pre-defined
 and do magic things.
 In particular, "/dev/spawn" is a process spawning device. If you send
 "/dev/spawn" an Erlang fun it will send you back an Erlang Pid, so:
@@ -261,7 +261,7 @@ clients and the server. A user of a service does not need to
 know the details of the protocols used to implement the service, or the internal data structures and algorithms used in the
 server. An implementor of the service is then free to change
 any of these internal details at any time while maintaining the
-same user interface.—[5] (pages 81–82)
+same user interface.--[5] (pages 81–82)
 
 An unfortunate consequence of this encapsulation, is that we cannot
 easily parallelise simultaneous calls to dicerent file servers, nor can we
@@ -311,7 +311,7 @@ which are specified by a contract and enforced by a contract checker.
 This way we can build reliable applications.
 
 1
-Requests For Comments—a set of memos describing various aspects of the Internet, including all the
+Requests For Comments--a set of memos describing various aspects of the Internet, including all the
 major application protocols.
 
 210

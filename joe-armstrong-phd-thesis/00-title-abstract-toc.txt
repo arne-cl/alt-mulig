@@ -2,7 +2,7 @@ Making reliable
 distributed systems
 in the presence of
 software errors
-Final version (with corrections) — last update 20 November 2003
+Final version (with corrections) -- last update 20 November 2003
 
 Joe Armstrong
 A Dissertation submitted to
@@ -71,7 +71,7 @@ product, having over a million lines of Erlang code. This product (the
 AXD301) is thought to be one of the most reliable products ever made by
 Ericsson.
 Finally, I ask if the goal of finding better ways to program Telecom
-applications was fulfilled—I also point to areas where I think the system
+applications was fulfilled--I also point to areas where I think the system
 could be improved.
 
 Contents

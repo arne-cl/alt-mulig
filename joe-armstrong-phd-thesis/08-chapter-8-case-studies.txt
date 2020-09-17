@@ -3,7 +3,7 @@
 Case Studies
 
 This section of the thesis presents studies of some systems which
-were written using the Erlang/OTP system. The first is the Ericsson AXD301 system—the AXD301 is a high-capacity ATM1 switch.
+were written using the Erlang/OTP system. The first is the Ericsson AXD301 system--the AXD301 is a high-capacity ATM1 switch.
 The version of the AXD301 system studied here has over 1.1 million lines
 of Erlang, which makes it one of the largest programs ever to be written in
 a functional style of programming. The AXD makes extensive use of the
@@ -56,16 +56,16 @@ implementor of distributed Erlang, and of the mnesia data base.
 Methodology
 
 In the case studies, I am interested in the following:
-• Problem domain — what was the problem domain. Is this the kind
+• Problem domain -- what was the problem domain. Is this the kind
 of problem that Erlang/OTP was designed to solve?
-• Quantitative properties of the code — how many lines of code were
+• Quantitative properties of the code -- how many lines of code were
 written? How many modules? How was the code organised? Did
 the programmers follow the design rules? Were the design rules
 helpful? What was good? What was bad?
-• Evidence for fault-tolerance — Is the system fault-tolerant? The raison d’être for Erlang was to build fault-tolerant systems. Is there
+• Evidence for fault-tolerance -- Is the system fault-tolerant? The raison d’être for Erlang was to build fault-tolerant systems. Is there
 evidence that errors have occurred at run-time and been successfully corrected? Is the information produced when a programming
 error occurred good enough to subsequently correct the program?
-• Understanding the system — Is the system understandable? Can it
+• Understanding the system -- Is the system understandable? Can it
 be maintained?
 
 8.1. METHODOLOGY
@@ -129,7 +129,7 @@ major problem.
 8.2 AXD301
 The AXD301 [18] is a high-performance Asynchronous Transfer Mode
 (ATM) switch produced by Ericsson. The system is built from a number
-of scalable modules—each module provides 10 GBit/s of switching capacity
+of scalable modules--each module provides 10 GBit/s of switching capacity
 and up to 16 modules can be connected together to form a 160 GBit/s
 
 8.3. QUANTITATIVE PROPERTIES OF THE SOFTWARE
@@ -273,13 +273,13 @@ registered (6), spawn_opt (4), port_command (4), trace (4),
 cancel_timer (2), monitor_node (2).
 The most common primitive was put which was used 1904 times etc.
 From this we can see that some of the Erlang primitives in our “black
-list” have never been used at all. The most common primitive which introduces a side-ecect is put—depending upon how put is used this may or
+list” have never been used at all. The most common primitive which introduces a side-ecect is put--depending upon how put is used this may or
 may not be dangerous. One common use of put is to assert a global property of a process which is used for debugging purposes. This is probably
 safe, though no automatic analysis program could infer this fact.
 The dangerous side-ecects are those which change the concurrency
 structure of the applications, thus modules which call the link, unlink,
 spawn or spawn_link, primitives must be carefully checked.
-Even more dangerous is code that might evaluate halt or processes—
+Even more dangerous is code that might evaluate halt or processes--
 I would assume that such code is very carefully checked.
 
 8.3.1
@@ -295,7 +295,7 @@ The AXD system supervision tree had 141 nodes and used 191 instances of the OTP 
 were:
 gen_server (122), gen_event (36), supervisor (20), gen_fsm (10),
 application (6).
-gen_server and to a lesser extent gen_event dominate—there being
+gen_server and to a lesser extent gen_event dominate--there being
 122 instances of the generic server. One interesting point to note is how
 few behaviours are required. The client-server abstraction (gen_server)
 is so useful that 63% of all generic objects in the system are instances of
@@ -413,12 +413,12 @@ Interestingly, in 1985, Gray had observed that most hardware faults
 were transient and could be corrected by reinitialising the state of the
 hardware and retrying the operation. He conjectured that this would also
 be true for software:
-I conjecture that there is a similar phenomenon in software —
+I conjecture that there is a similar phenomenon in software --
 most production faults are sod. If the program state is reinitialized and the failed operation retried, the operation will usually
-not fail the second time. — [38]
+not fail the second time. -- [38]
 The full generality of the model presented in this thesis, namely that of
 trying a simpler strategy in the event of failure was only partially exploited.
-This particular exploitation was accidental rather than by design—the OTP
+This particular exploitation was accidental rather than by design--the OTP
 libraries themselves which provide interfaces to the file system and to
 system level services like sockets etc are written in such a manner as to
 protect the integrity of the system in the event of a failure. So, for example,
@@ -789,16 +789,16 @@ of a large number of connections.
 At any one time, one module in the system will be handling a large
 number of virtual channels. Each channel represents a single connection.
 Typically, a single node might handle up to 50,000 connections. Connections are in one of three possible states:
-1. Setup — In this state a new connection being established. There is
+1. Setup -- In this state a new connection being established. There is
 intensive signalling.
 
 182
 
 CHAPTER 8. CASE STUDIES
 
-2. Connected — In this state the connection is established. There is
+2. Connected -- In this state the connection is established. There is
 very little signalling, only monitoring of the on-going connection.
-3. Terminating — In this state the connection is terminating. There is
+3. Terminating -- In this state the connection is terminating. There is
 some signalling between the end-points of the connection.
 The setup and termination phases of a connection are very quick, and
 typically take a few milliseconds. Termination is somewhat simpler than
@@ -807,7 +807,7 @@ phase is typically many orders of magnitude longer than the setup and
 termination phases. Connections could range from seconds to hours, or
 even years.
 At any time there might be up to 50,000 connections per node, the
-vast majority of which will be in the connected state. The system is dimensioned for a maximum of 120 calls/second—this number refers to the
+vast majority of which will be in the connected state. The system is dimensioned for a maximum of 120 calls/second--this number refers to the
 number of simultaneous calls which can be in the setup or termination
 phase, not to the number of calls which are in the connected phase.
 Modelling the natural concurrency of the problem needs about six
@@ -815,7 +815,7 @@ concurrent processes per call setup/termination. Having six processes per
 connection during setup and (say) a couple of processes per connected call
 requires a few hundred thousand Erlang processes. Most of these processes
 do nothing and are suspended for a very long time (these are the processes
-which monitor the connected calls)—this could not be implemented for a
+which monitor the connected calls)--this could not be implemented for a
 number of reasons.
 Firstly, processes take space, even if they are not doing anything. Secondly, any state involved in the connected phase must be replicated across
 a physical hardware boundary. This is in order to provide for continuous
@@ -874,7 +874,7 @@ the processes are destroyed and the relevant data needed to re-create the
 process structure is stored in a database and is asynchronously replicated
 on a backup machine.
 This approach has the advantages of having a flexible process structure
-which is needed in the complex phases of call setup or termination—but
+which is needed in the complex phases of call setup or termination--but
 when the processes are inactive, storage is reclaimed by deleting the processes and storing their state data in stable storage.
 The fact that the state information is asynchronously replicated increases throughput in the system without compromising the integrity of
 the system.
@@ -931,7 +931,7 @@ The Bluetail Mail Robustifier was a product designed to increase the
 reliability of existing e-mail services. The BMR was designed as a proxy
 which was placed between the clients which wished to make use of some
 e-mail services, and a number of e-mail servers.
-As far as the clients were concerned all the servers had the same IP address (the address of the proxy)—internally the proxy had at least two physical machines (for fault-tolerance) which could intercept and relay messages
+As far as the clients were concerned all the servers had the same IP address (the address of the proxy)--internally the proxy had at least two physical machines (for fault-tolerance) which could intercept and relay messages
 to the back-end servers. The back-end servers were themselves machines
 running standardised mail servers. The BMR concentrated on three mail
 protocols SMTP [57], POP3 [52] and IMAP4 [27].
@@ -965,7 +965,7 @@ line interface, and conventional Unix manual pages.
 Points 1, 3 and 4 are typical requirements for a sod real-time system,
 in particular point 4 is a typical requirement for this kind of system but
 is rarely found in the requirements for a system that is only to be used
-for a short period of time. Point 5 is related to point 4—as far as possible
+for a short period of time. Point 5 is related to point 4--as far as possible
 we want the operation of the software to be entirely autonomous and to
 require minimal operator intervention. The fact that the BMR could be
 remotely managed and that upgrades and downgrades to the system could
@@ -997,7 +997,7 @@ reversible manner, ie it should be possible to not only perform a dynamic
 upgrade from an old version of the software to a new version, but also to
 convert from a new version back to the old version.
 Upgrading the software on all nodes was done in four phases.
-1. In phase one the new software release is distributed to all nodes—this
+1. In phase one the new software release is distributed to all nodes--this
 always succeeds.
 2. In phase two the software on all nodes is changed from the old
 version to the new version. If the conversion on any node fails, then
@@ -1042,7 +1042,7 @@ Nortel Networks leads the market with innovative new applications and features s
 load balancing, session persistence, application address translation, Layer 7 filtering, and secure global server load balancing (GSLB). Ader winning all evaluation categories, Network
 Computing named Nortel Networks Alteon SSL Accelerator
 “King of the Hill” in their latest SSL Accelerator bake-oc, citing industry-leading performance, features, and manageability
-as distinguishing attributes. — [53]
+as distinguishing attributes. -- [53]
 3
 
 Secure Socket Layer.
@@ -1147,14 +1147,14 @@ beginning to survive the crash of a single node.
 If single nodes do crash (which they obviously do, since there is anecdotal evidence that this is the case) then the performance of the system
 as a whole is slightly degraded, but not to the point where it becomes an
 operational problem.
-I am unaware of any entire system failures (where all nodes fail)—were
+I am unaware of any entire system failures (where all nodes fail)--were
 this to be the case I would suspect that this is due to a massive hardware
 failure acecting all machines in the system. Such failures appear to be
 extremely rare, and even if they did occur the cause of failure has nothing
 to do with the software, but is an entirely dicerent hardware issue.
 In a distributed system the perception of failure, and even our language
 for talking about failure need modification. It hardly makes sense to talk
-about total system failure (since this is such an uncommon event)—instead
+about total system failure (since this is such an uncommon event)--instead
 we need to talk about some measure of degradation of service quality.
 The software systems in the case study are so reliable that the people
 operating these system are inclined to think that they are error-free. This is
@@ -1171,7 +1171,7 @@ number of parameters that indicated the “health” of the system. Since the
 system appears to be entirely “healthy” such statistics never seem to have
 been collected in any systematic way.
 As regards an analysis of the AXD301 code base I had hoped to find
-evidence that the programming rules were being used correctly—I would
+evidence that the programming rules were being used correctly--I would
 liked, for example, to have seen a clear separation into “clean” and “dirty”
 code. I accept that certain parts of the system will always be written
 in a suspect manner (for reasons of eeciency, or for some other reason)
@@ -1191,7 +1191,7 @@ with potential side-ecects introduce problems into the system, or if they
 are harmless.
 In any case, the message is clear. Programming rules alone are insuecient to cause the system to be written in a particular way. If one wished
 to enforce the partitioning of code into clean and dirty code then tool support would have to be added and the policies would have to be enforced
-in some manner. Whether or not this is desirable is debatable—probably
+in some manner. Whether or not this is desirable is debatable--probably
 the best approach is to allow the rules to be broken and hope that the
 programmers know what they are doing when they break a programming
 rule.

@@ -21,8 +21,8 @@ Applications which use the OTP software are built from a number of “behaviours
 which can be used as the building blocks for implementing systems in
 Erlang. The behaviours discussed in the remainder of this chapter are as
 follows:
-• gen_server — this is used to build servers which are used in clientserver models.
-• gen_event — this is used for building event handlers. Event handlers are things like error loggers, etc. An event handler is something
+• gen_server -- this is used to build servers which are used in clientserver models.
+• gen_event -- this is used for building event handlers. Event handlers are things like error loggers, etc. An event handler is something
 129
 
 130
@@ -30,16 +30,16 @@ follows:
 CHAPTER 6. BUILDING AN APPLICATION
 which responds to a stream of events, it does not necessarily reply to
 the processes which send events to the handler.
-• gen_fsm — this is used for implementing finite state machines.
-• supervisor — this is used for implementing supervision trees.
-• application — this is used as a container for packaging completed
+• gen_fsm -- this is used for implementing finite state machines.
+• supervisor -- this is used for implementing supervision trees.
+• application -- this is used as a container for packaging completed
 applications.
 
 For each behaviour I will present the general principles involved, the
 specific details of the programming API and give a complete example of
 how to make an instance of the behaviour.
 In OTP systems are built in the following hierarchical manner:
-• Releases — releases are at the top of the hierarchy. A release contains
+• Releases -- releases are at the top of the hierarchy. A release contains
 all the information necessary to build and run a system. A release
 will consists of a software archive (packed in some form) and a set
 of procedures for installing the release. The process of installing a
@@ -47,16 +47,16 @@ release can be highly complicated, since upgrade releases oden have
 to be installed without stopping the target systems. An OTP release
 packages all this complexity into a single abstract unit. Internally a
 release consists of zero or more applications.
-• Applications — applications are simpler than releases, they contain
+• Applications -- applications are simpler than releases, they contain
 all the code and operating procedures necessary to run a single
 application, and not the entire system. When a release is composed
 of multiple applications then the system should have been structured
 in such a way as to ensure that the dicerent applications are largely
 independent from each other, or that that the dicerent applications
 have strictly hierarchical dependencies.
-• Supervisors — OTP applications are commonly built from a number
+• Supervisors -- OTP applications are commonly built from a number
 of instances of supervisors.
-• Workers — OTP supervisors supervise worker nodes. Worker nodes
+• Workers -- OTP supervisors supervise worker nodes. Worker nodes
 are usually instances of the gen_server, gen_event or gen_fsm
 behaviours.
 
@@ -363,12 +363,12 @@ Event managers can be manipulated at run-time. In particular we can
 install an event handler, remove an event handler or replace one event
 handler with a dicerent handler.
 We start with a few definitions:
-• Event — something which happens.
-• Event Manager — a program which coordinates processing of events
+• Event -- something which happens.
+• Event Manager -- a program which coordinates processing of events
 of the same category. The event manager provides a named object
 to which events can be sent.
-• Notification — the act of sending an event to an event manager.
-• Event Handler — a function which can process events. The event
+• Notification -- the act of sending an event to an event manager.
+• Event Handler -- a function which can process events. The event
 handler must be a function of type:
 State x Event -> State’
 The event manager maintains a list of module × state 2-tuples of the
@@ -639,7 +639,7 @@ small data packets equals the total packet length it prints the assembled
 packet and re-enters the waiting state.
 Figure 6.3 is a simple packet assembler written using gen_fsm. In
 line 11 we call gen_fsm:start_link/4 to start a local instance of the
-FSM behaviour—Note the similarity to gen_server:start_line/4 in
+FSM behaviour--Note the similarity to gen_server:start_line/4 in
 Line 10 of Figure 6.1. The third argument to gen_server:start/4 reappears is passed as an argument to init/1 in line 17.
 The waiting state is modeled by the function waiting/2 (line 21)
 and the collecting state by collecting/2 (lines 24–34). The data associated with the state is stored in the second argument to these functions.
@@ -807,7 +807,7 @@ had an error2 (which I didn’t mention). We will see what happens when
 these errors occur at run-time.
 The module simple_sup.erl (Figure 6.4) defines the behaviour of
 the supervisor. It starts in line 7 by calling supervisor:start_link/3
-— the calling conventions harmonise with the start and start_link
+-- the calling conventions harmonise with the start and start_link
 functions exported by the other behaviours in the system. ?MODULE is a
 macro which expands to the current module name simple_sup. The final
 argument is set to nil. The supervisor method starts by calling init/1 in
@@ -815,8 +815,8 @@ the specified callback module, with argument nil (the third argument to
 start_link/3).
 init/1 returns a data structure defining the shape of the supervision
 tree and the strategy to be used. The term {one_for_one,5,1000} (Line
-11) tell the supervisor to construct an “or” supervision tree (see page 122)—
-this is because the three activities being supervised are considered unrelated. The numbers 5 and 1000 specify a restart frequency—if the supervisor has to restart the processes which it is monitoring more than 5 times
+11) tell the supervisor to construct an “or” supervision tree (see page 122)--
+this is because the three activities being supervised are considered unrelated. The numbers 5 and 1000 specify a restart frequency--if the supervisor has to restart the processes which it is monitoring more than 5 times
 in 1000 seconds then it itself will fail.
 There are three objects in our supervision tree, but I will only describe
 how the packet assembler is added to the supervision tree. The other two
@@ -978,7 +978,7 @@ Data == {3,0,[]}
 {proc_lib,init_p,5}]}
 This results in quite a lot of output. Firstly the packet assembler crashes,
 which accounts for the first error printout. Secondly, the supervisor detects
-that the packet assembler has crashed and so it restarts it—the message
+that the packet assembler has crashed and so it restarts it--the message
 “Packet assembler starting” is printed when the process restarts. Finally there is a long and hopefully informative error message.
 The error message contains information about the state of the FSM
 at the point when it crashed. It tells us that the state of the FSM was
@@ -1204,7 +1204,7 @@ The final stage, which is not shown here, is to build the application
 into a release. A release packages a number of dicerent applications into
 a single conceptual unit. The result is small number of files which can be
 moved to a target environment.
-Building a complete release is a complex procedure—not only must a
+Building a complete release is a complex procedure--not only must a
 release describe the current state of the system it must also know about
 previous versions of the system.
 
@@ -1258,12 +1258,12 @@ complicated than described here). It you look back to the clientserver and event
 do with concurrency, message passing etc is isolated in the “generic”
 part of the behaviour. The “problem specific” code only has pure
 sequential functions with well-defined types.
-This is a highly desirable state of acairs—concurrent programs which
+This is a highly desirable state of acairs--concurrent programs which
 are “diecult” are isolated to small well-defined parts of the system.
 The vast majority of the code in the system can be written using
 sequential programs having well-defined types.
 
-In our system the behaviours solve orthogonal problems—for example,
+In our system the behaviours solve orthogonal problems--for example,
 client–server has nothing to do with worker-supervisor. In building a real
 system we pick and mix between behaviours and combine them in many
 dicerent ways to solve problems.

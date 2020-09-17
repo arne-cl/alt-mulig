@@ -17,7 +17,7 @@ software system, the selection of the structural elements and their interfaces
 by which the system is composed, together with their behaviour as specified in
 the collaborations among those elements, the composition of these structural
 and behavioural elements into progressively larger subsystems, and the
-architectural style that guides this organization—these elements and their
+architectural style that guides this organization--these elements and their
 interfaces, their collaborations, and their composition.
 
 Booch, Rumbaugh, and Jacobson [19]
@@ -31,19 +31,19 @@ thinking about the world into a practical rulebook, and a set of procedures,
 that tells us how to construct a particular system using our particular way
 of looking at the world.
 Our software architecture is characterised by descriptions of the following things:
-1. A problem domain — What type of problem is the architecture designed to solve? Sodware architectures are not general purpose but
+1. A problem domain -- What type of problem is the architecture designed to solve? Sodware architectures are not general purpose but
 are designed for solving specific problems. No description of an architecture is complete without describing the type of problem that is
 supposed to be solved using the architecture.
-2. A philosophy — What is the reasoning behind the method of software
+2. A philosophy -- What is the reasoning behind the method of software
 construction? What are the central ideas in the architecture?
-3. A set of construction guidelines — How do we program a system?
+3. A set of construction guidelines -- How do we program a system?
 We need an explicit set of construction guidelines. Our systems
-will be written and maintained by teams of programmers—it is important that all the programmers, and system designers, understand
+will be written and maintained by teams of programmers--it is important that all the programmers, and system designers, understand
 the system architecture, and its underlying philosophy. For practical
 reasons this knowledge is conveniently maintained in the form of
 construction guidelines. The full set of guidelines, includes sets of
 programming rules, and examples, course material etc.
-4. A set of pre-defined components — Design by “choosing from a set
+4. A set of pre-defined components -- Design by “choosing from a set
 of pre-defined components” is far easier than “design from scratch.”
 The Erlang OTP libraries contain a complete set of pre-defined components (called behaviours) with which commonly used system components can be built. Some examples of these are the gen_server
 behaviour which can be used to build client-server systems, or the
@@ -57,14 +57,14 @@ grams. The pre-defined components will be discussed more fully in
 section 6.1.
 Section 6.2.2 gives a simple example of how to program a server
 using the gen_sever behaviour.
-5. A way of describing things — How can we describe the interfaces
+5. A way of describing things -- How can we describe the interfaces
 to a component? How can we describe a communication protocol
 between two components in our system? How can we describe
 the static and dynamic structure of our system? To answer these
 questions we will introduce a number of dicerent, and specialised
 notations. Some for describing program APIs, and other notations
 for describing protocols, and system structure.
-6. A way of configuring things — How can we start, stop, and configure, the system. How can we re-configure the system while it is in
+6. A way of configuring things -- How can we start, stop, and configure, the system. How can we re-configure the system while it is in
 operation?
 
 2.2
@@ -95,18 +95,18 @@ without stopping the system.
 10. Fault tolerance both to hardware failures, and software errors, must
 be provided.
 We can motivate these requirements as follows:
-• Concurrency — switching systems are inherently concurrent since in
+• Concurrency -- switching systems are inherently concurrent since in
 a typical switch many tens of thousands of people may simultaneously interact with the switch. This implies that the system should
 be able to eeciently handle many tens of thousands of concurrent
 activities.
-• Sod real-time — in a telecommunications system many operations
+• Sod real-time -- in a telecommunications system many operations
 have to be performed within a specific time. Some of these timed
 operations are strictly enforced, in the sense that if a given operation
 does not succeed within a given time interval then the entire operation will be aborted. Other operations are merely monitored with
 some form of timer, the operation being repeated if the timer event
 triggers before the operation has completed.
 Programming such systems requires manipulating many tens of thousands of timers in an eecient manner.
-• Distributed — switching systems are inherently distributed, so our
+• Distributed -- switching systems are inherently distributed, so our
 system should structured in such a way that it is easy to go from a
 single-node system to a multi-node distributed system.
 
@@ -114,26 +114,26 @@ single-node system to a multi-node distributed system.
 
 15
 
-• Hardware interaction — Switching systems have large amounts of
+• Hardware interaction -- Switching systems have large amounts of
 peripheral hardware which must be controlled and monitored. This
 implies that it should be possible to write eecient device drivers,
 and that context switching between dicerent device drivers should
 be eecient.
-• Large software systems — switching systems are large, for example,
+• Large software systems -- switching systems are large, for example,
 the Ericsson AXE10, and the AT&T 5ESS switch, have several million lines of program code [71]. This means that our software systems
 must work with millions of lines of source code.
-• Complex functionality — switching systems have complex functionality. Market pressure encourages the development, and deployment
+• Complex functionality -- switching systems have complex functionality. Market pressure encourages the development, and deployment
 of systems with large numbers of complex features. Oden systems
 are deployed before the interaction between such features is well
 understood. During the lifetime of a system the feature set will probably be changed and extended in many ways. Feature, and software
 upgrade must be performed “in place,” that is, without stopping the
 system.
-• Continuous operation — telecommunications systems are designed
+• Continuous operation -- telecommunications systems are designed
 for many years of continuous operation. This implies that operations like software, and hardware maintenance, must be performed
 without stopping the system.
-• Quality requirements — switching systems should run with an acceptable level of service even in the presence of errors. Telephone
+• Quality requirements -- switching systems should run with an acceptable level of service even in the presence of errors. Telephone
 exchanges are expected to be extremely reliable.1
-• Fault tolerance — switching systems should be “fault tolerant.” This
+• Fault tolerance -- switching systems should be “fault tolerant.” This
 means that from the outset we know that faults will occur, and that
 we must design a software and hardware infrastructure that can deal
 with these faults, and provide an acceptable level of service even in
@@ -205,7 +205,7 @@ depends upon the design characteristics of the operating system.
 In our system processes, and concurrency, are part of the programming
 language and are not provided by the host operating system. This has a
 number of advantages over using operating system processes:
-• Concurrent programs run identically on dicerent OSs—we are not
+• Concurrent programs run identically on dicerent OSs--we are not
 limited by how processes are implemented on any particular operating system. The only observable dicerence when moving between
 OS’s, and processors should be due to dicerent CPU speeds and
 memory sizes etc. All issues of synchronization, and inter-process
@@ -224,17 +224,17 @@ systems.
 
 Our applications are structured using large numbers of communicating
 parallel processes. We take this approach because:
-1. It provides an architectural infrastructure — we can organize our system as a set of communicating processes. By enumerating all the
+1. It provides an architectural infrastructure -- we can organize our system as a set of communicating processes. By enumerating all the
 processes in our system, and defining the message passing channels
 between the processes we can conveniently partition the system into
 a number of well-defined sub-components which can be independently implemented, and tested. This is the methodology implied
 by the top level of the SDL [45] system design methodology.
-2. Potential eeciency — a system which is designed to be implemented
+2. Potential eeciency -- a system which is designed to be implemented
 as a number of independent concurrent processes can be implemented on a multi-processor or run on a distributed network of
 processors. Note that the eeciency is only potential, and works best
 when the application can be partitioned into a number of truly independent tasks. If there are strong data dependencies between the
 tasks this might not always be possible.
-3. Fault isolation — concurrent processes with no data sharing provide
+3. Fault isolation -- concurrent processes with no data sharing provide
 a strong measure of fault isolation. A software error in a concurrent
 process should not influence processing in the other processes in the
 system.
@@ -404,11 +404,11 @@ said that message passing is inherently unreliable.) The only way to
 know if a message has been correctly sent is to send a confirmation
 message back.
 Programming a system of processes subject to the above rules may
-appear at first sight to be diecult—ader all most concurrency extensions to
+appear at first sight to be diecult--ader all most concurrency extensions to
 sequential programming languages provide facilities for almost exactly the
 opposite providing things like locks, and semaphores, and provision for
 shared data, and reliable message passing. Fortunately, the opposite turns
-out to be true—programming such a system turns out to be surprisingly
+out to be true--programming such a system turns out to be surprisingly
 
 24
 
@@ -445,7 +445,7 @@ name of a process. If we do not know the name of a process we cannot
 interact with it in any way, thus the system is secure. Once the names of
 processes become widely know the system becomes less secure. We call
 the process of revealing names to other processes in a controlled manner
-the name distribution problem— the key to security lies in the name distribution problem. When we reveal a Pid to another process we will say that
+the name distribution problem-- the key to security lies in the name distribution problem. When we reveal a Pid to another process we will say that
 we have published the name of the process. If a name is never published
 there are no security problems.
 Thus knowing the name of a process is the key element of security.
@@ -472,7 +472,7 @@ Message passing obeys the following rules:
 between any pair of processes then the messages will be received in
 the same order they were sent.
 3. Messages should not contain pointers to data structures contained
-within processes—they should only contain constants and/or Pids.
+within processes--they should only contain constants and/or Pids.
 Note that point two is a design decision, and does not reflect any underlying semantics in the network used to transmit messages. The underlying
 network might reorder the messages, but between any pair of processes
 these messages can be bucered, and re-assembled into the correct order
@@ -541,32 +541,32 @@ System requirements
 
 To support a CO style of programming, and to make a system that can
 satisfy the requirements of a telecoms system we arrive at a set of requirements for the essential characteristics of a system. These requirements are
-for the system as a whole—here I am not interested in whether these requirements are satisfied in a programming language or in the libraries, and
+for the system as a whole--here I am not interested in whether these requirements are satisfied in a programming language or in the libraries, and
 construction methods, which accompany the language.
 There are six essential requirements on the underlying operating system, and programming languages.
-R1. Concurrency — Our system must support concurrency. The
+R1. Concurrency -- Our system must support concurrency. The
 computational ecort needed to create or destroy a concurrent
 process should be very small, and there should be no penalty
 for creating large numbers of concurrent processes.
-R2. Error encapsulation — Errors occurring in one process must
+R2. Error encapsulation -- Errors occurring in one process must
 not be able to damage other processes in the system.
-R3. Fault detection — It must be possible to detect exceptions both
+R3. Fault detection -- It must be possible to detect exceptions both
 locally (in the processes where the exception occurred,) and
 remotely (we should be able to detect that an exception has
 occurred in a non-local process).
-R4. Fault identification — We should be able to identify why an
+R4. Fault identification -- We should be able to identify why an
 exception occurred.
-R5. Code upgrade — there should exist mechanisms to change
+R5. Code upgrade -- there should exist mechanisms to change
 code as it is executing, and without stopping the system.
 
 28
 
 CHAPTER 2. THE ARCHITECTURAL MODEL
 
-R6. Stable storage — we need to store data in a manner which
+R6. Stable storage -- we need to store data in a manner which
 survives a system crash.
 It is also important that systems satisfying the above requirements are
-eeciently implemented—concurrency is not much use if we cannot reliably
+eeciently implemented--concurrency is not much use if we cannot reliably
 create many tens of thousands of processes. Fault identification is not much
 use if it does not contain enough information to allow us to correct the
 error at a later date.
@@ -582,25 +582,25 @@ Language requirements
 
 The programming language which we use to program the system must
 have:
-• Encapsulation primitives — there must be a number of mechanisms
+• Encapsulation primitives -- there must be a number of mechanisms
 for limiting the consequences of an error. It should be possible to
 isolate processes so that they cannot damage each other.
-• Concurrency — the language must support a lightweight mechanism
+• Concurrency -- the language must support a lightweight mechanism
 to create parallel process, and to send messages between the processes. Context switching between process, and message passing,
 should be eecient. Concurrent processes must also time-share the
 CPU in some reasonable manner, so that CPU bound processes do
 not monopolise the CPU, and prevent progress of other processes
 which are “ready to run.”
-• Fault detection primitives — which allow one process to observe another process, and to detect if the observed process has terminated
+• Fault detection primitives -- which allow one process to observe another process, and to detect if the observed process has terminated
 for any reason.
 
 2.7. LIBRARY REQUIREMENTS
 
 29
 
-• Location transparency — If we know the Pid of a process then we
+• Location transparency -- If we know the Pid of a process then we
 should be able to send a message to the process.
-• Dynamic code upgrade — It should be possible to dynamically
+• Dynamic code upgrade -- It should be possible to dynamically
 change code in a running system. Note that since many processes
 will be running the same code, we need a mechanism to allow existing processes to run “old” code, and for “new” processes to run the
 modified code at the same time.
@@ -623,9 +623,9 @@ application program which solves the problem.
 
 Library requirements
 
-Language is not everything—a number of things are provided in the accompanying system libraries. The essential set of libraries routines must
+Language is not everything--a number of things are provided in the accompanying system libraries. The essential set of libraries routines must
 provide:
-• Stable storage — this is storage which survives a crash.
+• Stable storage -- this is storage which survives a crash.
 3
 
 Assuming 10 processes per session.
@@ -633,9 +633,9 @@ Assuming 10 processes per session.
 30
 
 CHAPTER 2. THE ARCHITECTURAL MODEL
-• Device drivers — these must provide a mechanism for communication with the outside world.
-• Code upgrade — this allows us to upgrade code in a running system.
-• Infrastructure — for starting, and stopping the system, logging errors
+• Device drivers -- these must provide a mechanism for communication with the outside world.
+• Code upgrade -- this allows us to upgrade code in a running system.
+• Infrastructure -- for starting, and stopping the system, logging errors
 etc.
 
 Observe that our library routines, which are mostly written in Erlang,
@@ -657,16 +657,16 @@ The OTP libraries provide us with a complete set of design patterns
 (called behaviours) for building fault-tolerant applications. In this thesis I
 will talk about a minimal set of behaviours, which can be used for building
 fault-tolerant applications. These are:
-• supervisor — a supervision model.
-• gen_server — a behaviour for implementing client-server applications.
+• supervisor -- a supervision model.
+• gen_server -- a behaviour for implementing client-server applications.
 
 2.9. CONSTRUCTION GUIDELINES
 
 31
 
-• gen_event — a behaviour used for implementing event handling
+• gen_event -- a behaviour used for implementing event handling
 software.
-• gen_fsm — a behaviour used for implementing finite state machines.
+• gen_fsm -- a behaviour used for implementing finite state machines.
 Of these, the central component that is used for programming faulttolerant applications is the supervision model.
 
 2.9
@@ -703,7 +703,7 @@ reason why many popular programming languages cannot be used for
 making robust system software.
 It is essential for security to be able to isolate mistrusting programs from one another, and to protect the host platform from
 such programs. Isolation is diecult in object-oriented systems
-because objects can easily become aliased.4 —Bryce [21]
+because objects can easily become aliased.4 --Bryce [21]
 Bryce goes on to say that object aliasing is diecult if not impossible to
 detect in practice, and recommends the use of protection domains (akin to
 OS processes) to solve this problem.
@@ -718,7 +718,7 @@ the language can ocer are thus reduced mainly to portability
 and improved programmer productivity. Granted these are
 important, but the full potential of language-provided safety is
 not realized. Instead there exists a curious distinction between
-“language safety,” and “real safety”. — [28]
+“language safety,” and “real safety”. -- [28]
 In this paper they introduce the MVM (an extension to the JVM) where
 their goal is:
 ... to turn the JVM into an execution environment akin to
@@ -746,7 +746,7 @@ module does not propagate beyond the module.
 ...
 The process achieves fault containment by sharing no state
 with other processes; its only contact with other processes is
-via messages carried by a kernel message system. — [38]
+via messages carried by a kernel message system. -- [38]
 Language which support this style of programming (parallel processes,
 no shared data, pure message passing) are what Andrews and Schneider
 [4] refer to as a “Message oriented languages.” The language with the
@@ -766,19 +766,19 @@ CHAPTER 2. THE ARCHITECTURAL MODEL
 data structures. All communication between user and server
 messages is through messages which are routed by the Aleph
 kernel. This message discipline has proved to be very flexible
-and reliable. — [35]
+and reliable. -- [35]
 
 Turning away from language for a while, we ask what properties should
 an individual process have?
 Schneider [60, 59] answered this question by giving three properties
 that he thought a hardware system should have in order to be suitable for
 programming a fault-tolerant system. These properties Schneider called:
-1. Halt on failure — in the event of an error a processor should halt
+1. Halt on failure -- in the event of an error a processor should halt
 instead of performing a possibly erroneous operation.
-2. Failure status property — when a processor fails, other processors
+2. Failure status property -- when a processor fails, other processors
 in the system must be informed. The reason for failure must be
 communicated.
-3. Stable Storage Property — the storage of a processor should be partitioned into stable storage (which survives a processor crash,) and
+3. Stable Storage Property -- the storage of a processor should be partitioned into stable storage (which survives a processor crash,) and
 volatile storage which is lost if a processor crashes.
 A processor having these properties Schneider called a fail-stop processor. The idea is that if a failure7 occurs it is pointless to continue. The
 process should halt instead of continuing and possibly causing more damage. In a fault-stop processor, state is stored in either volatile or stable
@@ -801,7 +801,7 @@ Processes are made fail-fast by defensive programming. They
 check all their inputs, intermediate results and data structures
 as a matter of course. If any error is detected, they signal
 a failure and stop. In the terminology of [Cristian], fail-fast
-software has small fault detection latency. — [38]
+software has small fault detection latency. -- [38]
 Both Schneider, and Gray, have the same essential idea; one is talking
 about hardware, the other about software but the underlying principles are
 the same.
@@ -811,9 +811,9 @@ A fault in a software system can cause one or more errors.
 The latency time which is the interval between the existence
 of the fault and the occurrence of the error can be very high,
 which complicates the backwards analysis of an error ...
-For an ecective error handling we must detect errors and failures as early as possible — [58]
+For an ecective error handling we must detect errors and failures as early as possible -- [58]
 Bearing in mind these arguments, and our original requirements I advocate a system with the following properties:
-1. Processes are the units of error encapsulation — errors occurring in
+1. Processes are the units of error encapsulation -- errors occurring in
 a process will not acect other processes in the system. We call this
 property strong isolation.
 2. Processes do what they are supposed to do or fail as soon as possible.
@@ -826,7 +826,7 @@ how these properties are satisfied by Erlang, and the Erlang libraries.
 
 CHAPTER 2. THE ARCHITECTURAL MODEL
 
-Many of the ideas in this thesis are not new—the fundamental principles
+Many of the ideas in this thesis are not new--the fundamental principles
 for making a fault-tolerant system are described in Gray’s [38] paper.
 Many of the features of the Tandem computer bear a striking similarity to the design principles in the OTP system, and to the fundamental
 principles of Concurrency Oriented Programming which where discussed
@@ -860,21 +860,21 @@ and failure.
 Although compiler checking and exception handling provided
 by programming languages are real assets, history seems to
 have favored the run-time checks plus the process approach to
-fault-containment. It has the virtue of simplicity—if a process or
+fault-containment. It has the virtue of simplicity--if a process or
 its processor misbehaves, stop it. The process provides a clean
 unit of modularity, service, fault containment and failure.
 Fault containment through fail-fast software modules.
 The process achieves fault containment by sharing no state
 with other processes; its only contact with other processes is
-via messages carried by a kernel message system. — [38]
+via messages carried by a kernel message system. -- [38]
 If we compare this to our current Erlang system we see many striking
-similarities. There are certain dicerence—in Erlang “defensive programming” is not recommended since the compiler adds the necessary checks
+similarities. There are certain dicerence--in Erlang “defensive programming” is not recommended since the compiler adds the necessary checks
 to make this style of programming unnecessary. Gray’s “transaction mechanism” is provides by the mnesia data base.8 The containment and processing of errors is managed by the “supervision tree” behaviours in the
 OTP libraries.
 The idea of “fail-fast” modules is mirrored in our guidelines for programming where we say that processes should only do when they are supposed to do according to the specification, otherwise they should crash.
 The supervision hierarchies in our system correspond to the hierarchies of
 modules that Gray refers to. This idea can also be found in the work of
-Candea and Fox [22] who talked about “crash-only software”—they argue
+Candea and Fox [22] who talked about “crash-only software”--they argue
 that allowing components to crash and then restart leads to a simpler fault
 model and more reliable code.
 More modern work with object-oriented systems has also recognised
