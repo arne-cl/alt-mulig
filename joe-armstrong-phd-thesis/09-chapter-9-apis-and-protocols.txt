@@ -202,7 +202,7 @@ Placing the contract checker outside a component in no way interferes with
 the construction of the component itself, moreover it allows a flexible way
 of adding or removing introspective testing powers to the system, which
 can be checked at run-time and which can be configured in a number of
-dicerent ways.
+different ways.
 
 9.3
 
@@ -221,9 +221,9 @@ system are modules and messages. A module is a self-contained
 entity, something like a Simula or Smalltalk class, a SAIL process or a CLU module. It is not important for the moment
 which programming language is used to encode the body of
 the module; we wish to explicitly account for the case in which
-the various modules are coded in dicerent languages on a variety of machines -- [35]
+the various modules are coded in different languages on a variety of machines -- [35]
 In order to make a system of communication components we have to
-agree on a number of dicerent things. We need:
+agree on a number of different things. We need:
 • A transport format and a way of mapping language entities into
 entities in the transport format.
 • A system of types, built on top of the entities in the transport format.

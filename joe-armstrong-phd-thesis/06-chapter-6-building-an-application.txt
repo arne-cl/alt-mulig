@@ -51,8 +51,8 @@ release consists of zero or more applications.
 all the code and operating procedures necessary to run a single
 application, and not the entire system. When a release is composed
 of multiple applications then the system should have been structured
-in such a way as to ensure that the dicerent applications are largely
-independent from each other, or that that the dicerent applications
+in such a way as to ensure that the different applications are largely
+independent from each other, or that that the different applications
 have strictly hierarchical dependencies.
 • Supervisors -- OTP applications are commonly built from a number
 of instances of supervisors.
@@ -105,7 +105,7 @@ servers can be built. The examples in Chapter 4 were deliberately short,
 and illustrated the principles involved in making a generic server.
 In the OTP system the Erlang module gen_server is used to make
 client-server modules. gen_server can be parameterised in a number of
-dicerent ways to make a range of dicerent types of servers.
+different ways to make a range of different types of servers.
 
 6.2.1
 
@@ -330,7 +330,7 @@ In this example we have only shown a simple example of the use of
 the generic server. The manual pages for gen_server give all the options
 for the values that the various arguments to the callback functions and
 the control functions to gen_server can take. The generic server can be
-parameterised in a large number of dicerent ways, making it easy to run
+parameterised in a large number of different ways, making it easy to run
 the system as a local server or as a global server in a network of distributed
 Erlang nodes.
 The generic server also has a number of in-built debugging aids which
@@ -361,7 +361,7 @@ When an event arrives at an event manager it will be processed by all
 the event handlers which have been installed within the event manager.
 Event managers can be manipulated at run-time. In particular we can
 install an event handler, remove an event handler or replace one event
-handler with a dicerent handler.
+handler with a different handler.
 We start with a few definitions:
 • Event -- something which happens.
 • Event Manager -- a program which coordinates processing of events
@@ -472,7 +472,7 @@ Notice that the code in simple_logger.erl is purely sequential. At
 this point the observant reader should also have noticed the similarity
 between the forms of the arguments to gen_server and to gen_event.
 In general the arguments to routines like start, stop, handle_call etc
-in the dicerent behaviour modules are chosen to be as similar as possible.
+in the different behaviour modules are chosen to be as similar as possible.
 
 6.4
 
@@ -1201,7 +1201,7 @@ The development of this chapter has been “bottom-up.” I start with simple th
 started with a number of primitive servers, gen_server, gen_event and
 gen_fsm. I organised these primitive behaviours into a supervision hierarchy, and then built the supervision hierarchy into an application.
 The final stage, which is not shown here, is to build the application
-into a release. A release packages a number of dicerent applications into
+into a release. A release packages a number of different applications into
 a single conceptual unit. The result is small number of files which can be
 moved to a target environment.
 Building a complete release is a complex procedure--not only must a
@@ -1266,7 +1266,7 @@ sequential programs having well-defined types.
 In our system the behaviours solve orthogonal problems--for example,
 client–server has nothing to do with worker-supervisor. In building a real
 system we pick and mix between behaviours and combine them in many
-dicerent ways to solve problems.
+different ways to solve problems.
 Ocering a small and fixed set of behaviours to a software designer has
 several benefits:
 • It focuses attention on a small set of well-proven techniques. We

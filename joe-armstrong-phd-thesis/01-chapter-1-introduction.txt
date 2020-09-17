@@ -35,7 +35,7 @@ passing languages--it is a concurrent process-based language having strong
 isolation between concurrent processes. Our programming model makes extensive
 use of fail-fast processes. Such techniques are common in hardware platforms
 for building fault-tolerant systems but are not commonly used in software
-solutions. This is mainly because conventional languages do not permit dicerent
+solutions. This is mainly because conventional languages do not permit different
 software modules to co-exist in such a way that there is no interference
 between modules. The commonly used threads model of programming, where
 resources are shared, makes it extremely diecult to isolate components from

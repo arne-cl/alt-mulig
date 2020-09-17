@@ -185,7 +185,7 @@ Supervisors can supervise an arbitrary number of workers or supervisors. For eac
 start, stop and restart the entity that it has to supervise. This information
 is kept in a SSRS which stands for “Start Stop and Restart Specification.”
 The figure on page 148 contains a simple SSRS which specifies how three
-dicerent behaviours are to be supervised.
+different behaviours are to be supervised.
 Each supervisor (apart from the topmost supervisor in a hierarchy) has
 exactly one supervisor directly above it in the hierarchy, we call this the
 Parent of the supervisor. Conversely, processes below a given supervisor

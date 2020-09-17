@@ -311,7 +311,7 @@ function in the so-called child_spec of the processes which the supervisor contr
 This method of starting a supervised process is completely general,
 since any arbitrary function can be started by the supervisor. In the
 AXD301 case, the full generality of this method was not used, instead
-one of three dicerent startup methods was used for all supervision hierarchies. Of these three methods, one method dominated, and was used for
+one of three different startup methods was used for all supervision hierarchies. Of these three methods, one method dominated, and was used for
 all except three of the supervision trees.
 The AXD301 architects defined one master supervisor, which could be
 parameterised in a number of standardised ways. The AXD301 supervisors were packaged as conventional OTP applications, whose behaviour
@@ -1083,7 +1083,7 @@ Total number of dirty functions
 Percentage of dirty functions/code lines 0.82%
 The products made extensive use of the OTP behaviours using 103
 behaviours in all. Again gen_server dominated. The number of times
-the dicerent behaviours were used were:
+the different behaviours were used were:
 gen_server (56), supervisor (19), application (15), gen_event (9),
 rpc_server (2), gen_fsm (1), supervisor_bridge (1).
 There is not so much to say about these figures, apart from the fact that
@@ -1151,7 +1151,7 @@ I am unaware of any entire system failures (where all nodes fail)--were
 this to be the case I would suspect that this is due to a massive hardware
 failure acecting all machines in the system. Such failures appear to be
 extremely rare, and even if they did occur the cause of failure has nothing
-to do with the software, but is an entirely dicerent hardware issue.
+to do with the software, but is an entirely different hardware issue.
 In a distributed system the perception of failure, and even our language
 for talking about failure need modification. It hardly makes sense to talk
 about total system failure (since this is such an uncommon event)--instead

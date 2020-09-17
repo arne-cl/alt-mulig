@@ -14,7 +14,7 @@ Included in the OTP release are the following components:
 T
 
 1. Compilers and development tools for Erlang.
-2. Erlang run-time systems for a number of dicerent target environments.
+2. Erlang run-time systems for a number of different target environments.
 3. Libraries for a wide range of common applications.
 4. A set of design patterns for implementing common behavioural patterns.
 5. Educational material for learning how to use the system.
@@ -52,7 +52,7 @@ Commercial Operating System and computer hardware
 
 Figure 7.1: The OTP system architecture
 
-OTP has been ported to a number of dicerent operating systems, these
+OTP has been ported to a number of different operating systems, these
 include all the major Unix-like systems (Linux, FreeBSD, Solaris, OS-X ..),
 most of the Windows operating systems (Windows 95, 98, NT, ...) and a
 number of embedded operating systems like VxWorks.

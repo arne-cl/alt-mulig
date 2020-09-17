@@ -15,7 +15,7 @@ code.
 • Maintaining the Erlang view of the world -- in Erlang terms everything is a process. To help maintain this view I introduce the idea
 of a protocol converter, which helps the programmer maintain the
 illusion that everything is an Erlang process.
-• The Erlang view of errors -- the treatment of how errors are handled in Erlang is radically dicerent from most other programming
+• The Erlang view of errors -- the treatment of how errors are handled in Erlang is radically different from most other programming
 languages, I show how error situations should be programmed in
 Erlang.
 • Intentional programming -- this is a programming style where the
@@ -97,7 +97,7 @@ Server
 
 Figure 4.2: Client server
 
-clients. The client server model is generally used for resource management operations. We assume that several dicerent clients want to share
+clients. The client server model is generally used for resource management operations. We assume that several different clients want to share
 a common resource and that the server is responsible for managing the
 resource.
 If we ignore how the server is started and stopped and ignore all error
@@ -257,7 +257,7 @@ ack
 Even though our VSHLR program is extremely simple, it illustrates
 and provides simple solutions to a number of design problems. The reader
 should note the following:
-• There is a total separation of functionality into two dicerent modules.
+• There is a total separation of functionality into two different modules.
 All the code that has to do with spawning processes, sending and
 receiving messages etc is contained in server1.erl. All the code
 that has to do with the implementation of the VSHLR is contained
@@ -505,7 +505,7 @@ partially fulfils requirement 8 on page 14--namely to upgrade the software
 in a system without stopping the system.
 If we return once again to the code for server3 in figures 4.5 (the
 server) and vshlr2 in figure 4.6 (the application), we observe the following:
-1. The code in the server can be re-used to build many dicerent clientserver applications.
+1. The code in the server can be re-used to build many different clientserver applications.
 2. The application code is much simpler than the server code.
 3. To write the server code the programmer must understand all the
 details of Erlang’s concurrency model. This involves name registration, process spawning, untrappable exits to a process, and sending
@@ -523,10 +523,10 @@ how to write a simple sequential program--they need to know nothing about concur
 progressively more sophisticated servers. I have shown three such
 servers but we can imagine adding more and more functions to the
 server while keeping the server/application interface unchanged.
-6. The dicerent servers (server1, server2 etc) imbue the application
-with dicerent non-functional characteristics. The functional characteristics for all servers are the same (that it, given correctly typed
+6. The different servers (server1, server2 etc) imbue the application
+with different non-functional characteristics. The functional characteristics for all servers are the same (that it, given correctly typed
 arguments all programs will eventually produce identical results);
-but the non-functional characteristics are dicerent.
+but the non-functional characteristics are different.
 7. The code which implements the non-functional parts of the system
 is limited to the server (by non-function we mean things like how the
 system behaves in the presence of errors, how long time function
@@ -540,7 +540,7 @@ The division of the total server functionality into a non-functional part
 and a functional part is good programming practice and gives the system
 several desirable properties, some of which are:
 1. Concurrent programming is oden perceived as being diecult. In
-a large programming group, where the programmers have dicerent
+a large programming group, where the programmers have different
 skill levels the expert programmers should write the generic server
 
 4.2. MAINTAINING THE ERLANG VIEW OF THE WORLD
@@ -555,14 +555,14 @@ system reduces to the problem of proving properties of sequential
 programs.
 3. In a system with a large number of client-servers all the servers can
 be written with the same generic server. This makes it easier for
-a programmer to understand and maintain several dicerent servers.
+a programmer to understand and maintain several different servers.
 In section 8.3.1 we will investigate this claim when we analyse a large
 system with many servers.
 4. The generic servers and applications can be tested separately and
 independently. If the interface remains constant over a long period
 of time then both can be independently improved.
-5. The application code can be “plugged into” a number of dicerent
-generic servers, where these servers have dicerent non-functional
+5. The application code can be “plugged into” a number of different
+generic servers, where these servers have different non-functional
 characteristics. Special servers, with the same interface, could provide an enhanced debugging environment etc. Other servers could
 provide clustering, hot standby etc. This has been done in a number
 of projects, for example Eddie [31] provided clustering and the Bluetail mail robustifier [11] provided a server with hot standby facilities.
@@ -679,7 +679,7 @@ The entire code for the web-server is not shown here but can be downloaded from 
 
 Error handling philosophy
 
-Error handling in Erlang is radically dicerent to error handing in most
+Error handling in Erlang is radically different to error handing in most
 other programming languages. The Erlang philosophy for handling errors
 can be expressed in a number of slogans:
 • Let some other process do the error recovery.
@@ -722,7 +722,7 @@ exit message {’EXIT’,Pid1,machine_died} will be delivered to Pid2.
 This message appears to have come from Pid1, but in fact comes from
 the run-time system of the node where Pid2 was executing.
 The reason for coercing the hardware error to make it look like a
-software error is that we don’t want to have two dicerent methods for
+software error is that we don’t want to have two different methods for
 dealing with errors, one for software errors and the other for hardware errors. For reasons of conceptual integrity we want one uniform mechanism.
 This, combined with the extreme case of hardware error, and the failure
 of entire processors, leads to the idea of handling errors, not where they
@@ -735,7 +735,7 @@ error.”
 
 CHAPTER 4. PROGRAMMING TECHNIQUES
 
-This philosophy is completely dicerent to that used in a sequential
+This philosophy is completely different to that used in a sequential
 programming language where there is no alternative but to try and handle
 all errors in the thread of control where the error occurs. In a sequential
 language with exceptions, the programmer encloses any code that is likely
@@ -743,7 +743,7 @@ to fail within an exception handling construct and tries to contain all errors
 that can occur within this construct.
 Remote handling of error has several advantages:
 1. The error-handling code and the code which has the error execute
-within dicerent threads of control.
+within different threads of control.
 2. The code which solves the problem is not cluttered up with the code
 which handles the exception.
 3. The method works in a distributed system and so porting code from
@@ -770,13 +770,13 @@ handling.
 
 2. We can have special processes which are only concerned with error
 handling.
-3. We can run the workers and supervisors on dicerent physical machines.
+3. We can run the workers and supervisors on different physical machines.
 4. It oden turns out that the error correcting code is generic, that is,
 generally applicable to many applications, whereas the worker code
 is more oden application specific.
 Point three is crucial--given that Erlang satisfies requirements R3 and
 R4 (see page 27) then we can run worker and supervisor processes on
-dicerent physical machines, and thus make a system which tolerates hardware errors where entire processes fail.
+different physical machines, and thus make a system which tolerates hardware errors where entire processes fail.
 
 4.4
 
@@ -853,7 +853,7 @@ the code. This is best explained by an example:
 In the early days of Erlang the library module dict exported a function
 lookup/2 which had the following interface:
 lookup(Key, Dict) -> {ok, Value} | notfound
-Given this definition lookup was used in three dicerent contexts:
+Given this definition lookup was used in three different contexts:
 1. For data retrieval--the programmer would write:
 {ok, Value} = lookup(Key, Dict)
 here lookup is used for to extract an item with a known key from
@@ -885,7 +885,7 @@ tests to see if a specific key Key is in the dictionary.
 When reading thousands of lines of code like this we begin to worry
 about intentionality--we ask ourselves the question “what did the programmer intend by this line of code?”--by analysing the above three usages of
 the code we arrive at one of the answers data retrieval, a search or a test.
-There are a number of dicerent contexts in which keys can be looked
+There are a number of different contexts in which keys can be looked
 up in a dictionary. In one situation a programmer knows that a specific
 key should be present in the dictionary and it is a programming error if
 the key is not in the dictionary and the program should terminate. In

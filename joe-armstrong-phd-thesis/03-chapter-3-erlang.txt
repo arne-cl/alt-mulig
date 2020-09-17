@@ -309,7 +309,7 @@ A Ground term is defined recursively as either a primitive data type, or a
 tuple of ground terms or a list of ground terms.
 A Pattern is defined recursively as either a primitive data type or a
 variable or a tuple of patterns or a list of patterns.
-A Primitive pattern is a pattern where all the variables are dicerent.
+A Primitive pattern is a pattern where all the variables are different.
 Pattern matching is the act of comparing a pattern with a ground term.
 If the pattern is a primitive pattern and the ground terms are of the same
 shape, and if the constants occurring in the pattern occur in the ground
@@ -380,9 +380,9 @@ of the atoms true or false. If the guard evaluates to true we say that
 the evaluation succeeded otherwise it failed.
 
 3.3.5 Extended pattern matching
-In a primitive pattern all variables must be dicerent. An extended pattern
+In a primitive pattern all variables must be different. An extended pattern
 has the same syntax as a primitive pattern except that all the variables are
-not required to be dicerent.
+not required to be different.
 To perform pattern matching with extended patterns we first convert
 the extended pattern to a primitive pattern and guard and then match the
 primitive pattern.
@@ -528,7 +528,7 @@ can run in loops without consuming stack space. Such function are oden
 called “iterative functions.”
 Many functions can be written in either an iterative of non-iterative
 (recursive) style. To illustrate this, the factorial function can be written in
-these two dicerent styles. Firstly the non tail-recursive way:
+these two different styles. Firstly the non tail-recursive way:
 factorial(0) -> 1;
 factorial(N) -> N * factorial(N-1).
 To write this in a tail-recursive manner requires the use of an additional
@@ -1346,7 +1346,7 @@ Process Monitors
 Process links are useful for entire groups of processes, but not for monitoring pairs of processes in an asymmetric sense. In a typical client-server
 model, the relationship between the client and the servers is asymmetric as
 regards error handling. Suppose that a server is involved in a number of
-long-lived sessions with a number of dicerent clients; if the server crashes,
+long-lived sessions with a number of different clients; if the server crashes,
 then we want to kill all the clients, but if an individual client crashes we do
 not wish to kill the server.
 The primitive erlang:monitor/2 can be used to set up a monitor. If
@@ -1368,8 +1368,8 @@ node. One or more Erlang nodes can run within a host operating system.
 Testing a distributed application is simplified by the fact that many Erlang
 nodes can be run on the same operating system. A distributed application
 can be developed and tested by running all the nodes in the application on
-a single processor. When the application works the dicerent nodes which
-were assigned to the same processor can be moved to dicerent nodes
+a single processor. When the application works the different nodes which
+were assigned to the same processor can be moved to different nodes
 in a network of distributed processors. With the exception of timing all
 operations in the distributed system should work in exactly the same way
 as they worked in the single-node test system.
@@ -1481,7 +1481,7 @@ loop(data1, F)
 end.
 In this case code in the new version of the module will not be called.
 Judicious use of the mechanism allows processes to execute both old
-and new versions of code in dicerent modules at the same time.
+and new versions of code in different modules at the same time.
 
 80
 

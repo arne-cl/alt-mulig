@@ -61,7 +61,7 @@ using the gen_sever behaviour.
 to a component? How can we describe a communication protocol
 between two components in our system? How can we describe
 the static and dynamic structure of our system? To answer these
-questions we will introduce a number of dicerent, and specialised
+questions we will introduce a number of different, and specialised
 notations. Some for describing program APIs, and other notations
 for describing protocols, and system structure.
 6. A way of configuring things -- How can we start, stop, and configure, the system. How can we re-configure the system while it is in
@@ -117,7 +117,7 @@ single-node system to a multi-node distributed system.
 • Hardware interaction -- Switching systems have large amounts of
 peripheral hardware which must be controlled and monitored. This
 implies that it should be possible to write eecient device drivers,
-and that context switching between dicerent device drivers should
+and that context switching between different device drivers should
 be eecient.
 • Large software systems -- switching systems are large, for example,
 the Ericsson AXE10, and the AT&T 5ESS switch, have several million lines of program code [71]. This means that our software systems
@@ -190,11 +190,11 @@ we do not want a software error occurring in one part of the system to
 propagate to another part of the system.
 The essential problem that must be solved in making a fault-tolerant
 software system is therefore that of fault-isolation. Dicerent programmers
-will write dicerent modules, some modules will be correct, others will have
+will write different modules, some modules will be correct, others will have
 errors. We do not want the errors in one module to adversely acect the
 behaviour of a module which does not have any errors.
 To provide fault-isolation we use the traditional operating system notion of a process. Processes provide protection domains, so that an error in
-one process cannot acect the operation of other processes. Dicerent programmers write dicerent applications which are run in dicerent processes;
+one process cannot acect the operation of other processes. Dicerent programmers write different applications which are run in different processes;
 errors in one application should not have a negative influence on the other
 applications running in the system.
 This is, of course, only true to a first approximation. Since all processes
@@ -205,9 +205,9 @@ depends upon the design characteristics of the operating system.
 In our system processes, and concurrency, are part of the programming
 language and are not provided by the host operating system. This has a
 number of advantages over using operating system processes:
-• Concurrent programs run identically on dicerent OSs--we are not
+• Concurrent programs run identically on different OSs--we are not
 limited by how processes are implemented on any particular operating system. The only observable dicerence when moving between
-OS’s, and processors should be due to dicerent CPU speeds and
+OS’s, and processors should be due to different CPU speeds and
 memory sizes etc. All issues of synchronization, and inter-process
 interaction should be the same irrespective of the properties of the
 host operating system.
@@ -268,7 +268,7 @@ the program should follow the concurrent structure of the application. It
 is particularly suited to programming applications which model or interact
 with the real world.
 Concurrency Oriented Programming also provides the two major advantages commonly associated with object-oriented programming. These
-are polymorphism and the use of defined protocols having the same message passing interface between instances of dicerent process types.
+are polymorphism and the use of defined protocols having the same message passing interface between instances of different process types.
 When we partition a problem into a number of concurrent processes
 we can arrange that all the processes respond to the same messages (ie
 2
@@ -325,7 +325,7 @@ world. Writing such a program in a COPL is easy. Firstly, we perform an
 analysis which is a three-step process:
 1. We identify all the truly concurrent activities in our real world activity.
 2. We identify all message channels between the concurrent activities.
-3. We write down all the messages which can flow on the dicerent
+3. We write down all the messages which can flow on the different
 message channels.
 Now we write the program. The structure of the program should
 exactly follow the structure of the problem. Each real world concurrent
@@ -530,7 +530,7 @@ a day-to-day basis, the groups communicate by message-passing (e-mail
 27
 
 or phone) but do not regularly meet. In some cases the groups work in
-dicerent countries, and never meet. It is amusing to note that not only
+different countries, and never meet. It is amusing to note that not only
 is the organisation of a software system into isolated components which
 communicate by pure message passing desirable for a number of reasons,
 but also that it is the way that large programming groups are organised.

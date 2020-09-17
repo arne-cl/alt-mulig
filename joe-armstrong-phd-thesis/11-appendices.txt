@@ -20,7 +20,7 @@ know about running a small business.
 Now we get to the developers of Erlang which is a much longer list.
 The original Erlang team was myself, Robert Virding, and Mike Williams.
 I originally wrote the Erlang compiler, Robert wrote the libraries, and
-Mike wrote the JAM emulator. Robert and I wrote several dicerent Erlang
+Mike wrote the JAM emulator. Robert and I wrote several different Erlang
 emulators, mostly in Prolog. Mike re-wrote the emulator in C. Ader a couple of years Claes Wikström (Klacke) came along and added distribution
 to Erlang and Bogumil Hausman invented an improved Erlang machine,
 the BEAM.1
@@ -172,13 +172,13 @@ In addition, the writer or maintainer of the code in the module can
 change the internal structure of the module in any appropriate manner
 provided the external interface remains unchanged.
 3.2 Try to reduce intermodule dependencies
-A module which calls functions in many dicerent modules will be more
+A module which calls functions in many different modules will be more
 diecult to maintain than a module which only calls functions in a few
-dicerent modules.
+different modules.
 This is because each time we make a change to a module interface,
 we have to check all places in the code where this module is called. Reducing the interdependencies between modules simplifies the problem of
 maintaining these modules.
-We can simplify the system structure by reducing the number of dicerent modules which are called from a given module.
+We can simplify the system structure by reducing the number of different modules which are called from a given module.
 Note also that it is desirable that the inter-module calling dependencies
 form a tree and not a cyclic graph. Example:
 Module A
@@ -267,11 +267,11 @@ the result is led to the caller.
 3.6 Abstract out common patterns of code or behaviour
 Whenever you have the same pattern of code in two or more places in the
 code try to isolate this in a common function and call this function instead
-of having the code in two dicerent places. Copied code requires much
+of having the code in two different places. Copied code requires much
 ecort to maintain.
 If you see similar patterns of code (i.e. almost identical) in two or more
 places in the code it is worth taking some time to see if one cannot change
-the problem slightly to make the dicerent cases the same and then write
+the problem slightly to make the different cases the same and then write
 a small amount of additional code to describe the dicerences between the
 two.
 Avoid “copy” and “paste” programming, use functions!
@@ -288,9 +288,9 @@ necessary) make it fast (while keeping it right).
 The system should always respond in a manner which causes the “least
 astonishment” to the user - i.e. a user should be able to predict what will
 happen when they do something and not be astonished by the result.
-This has to do with consistency, a consistent system where dicerent
+This has to do with consistency, a consistent system where different
 modules do things in a similar manner will be much easier to understand
-than a system where each module does things in a dicerent manner.
+than a system where each module does things in a different manner.
 If you get astonished by what a function does, either your function
 solves the wrong problem or it has a wrong name.
 
@@ -387,7 +387,7 @@ len({X,Y}) ->
 length(X) + length(Y).
 3.12 Make code as deterministic as possible
 A deterministic program is one which will always run in the same manner no matter how many times the program is run. A non-deterministic
-program may deliver dicerent results each time it is run. For debugging
+program may deliver different results each time it is run. For debugging
 purposes it is a good idea to make things as deterministic as possible. This
 helps make errors reproducible.
 For example, suppose one process has to start five parallel processes
@@ -459,7 +459,7 @@ Don’t clutter code for the “normal case” with code designed to handle
 exceptions. As far as possible you should only program the normal case.
 If the code for the normal case fails, your process should report the error
 and crash as soon as possible. Don’t try to fix up the error and continue.
-The error should be handled in a dicerent process. (See “Each process
+The error should be handled in a different process. (See “Each process
 should only have one role” on page 229).
 Clean separation of error recovery code and normal case code should
 greatly simplify the overall system design.
@@ -492,7 +492,7 @@ does not mean that one should not make use of generic server libraries,
 these are for helping structuring the control flow.
 Conversely, code for no more than one kind of process should be
 implemented in a single module. Modules containing code for several
-dicerent processes can be extremely diecult to understand. The code for
+different processes can be extremely diecult to understand. The code for
 each individual process should be broken out into a separate module.
 5.2 Use processes for structuring the system
 Processes are the basic system structuring elements. But don’t use processes and message passing when a function call can be used instead.
@@ -509,7 +509,7 @@ real world.”
 If there is a one-to-one mapping between the number of parallel processes and the number of truly parallel activities in the real world, the
 program will be easy to understand.
 5.5 Each process should only have one “role”
-Processes can have dicerent roles in the system, for example in the clientserver model.
+Processes can have different roles in the system, for example in the clientserver model.
 As far as possible a process should only have one role, i.e. it can be a
 client or a server but should not combine these roles.
 Other roles which processes might have are:
@@ -540,7 +540,7 @@ end.
 The new message {get_status_info, From, Option} will introduce a conflict if it is placed below the {Mod, Func, Args} message.
 If messages are synchronous, the return message should be tagged
 with a new atom, describing the returned message. Example: if the incoming message is tagged get_status_info, the returned message could be
-tagged status_info. One reason for choosing dicerent tags is to make
+tagged status_info. One reason for choosing different tags is to make
 debugging easier.
 This is a good solution:
 loop(State) ->
@@ -717,7 +717,7 @@ eof -> [];
 {value, Chars} ->
 tokenize(Device, Chars)
 end.
-The use of get and put might cause a function to behave dicerently
+The use of get and put might cause a function to behave differently
 when called with the same input arguments. This makes the code hard
 to read since it is non-deterministic. Debugging will be more complicated
 since a function using get and put is a function of not only of its input
@@ -736,7 +736,7 @@ exported for the following reasons (for example):
 237
 • It is an interface function for other modules.
 • It is called from apply, spawn etc. but only from within its module.
-Use dicerent -export groupings and comment them accordingly. Example:
+Use different -export groupings and comment them accordingly. Example:
 %% user interface
 -export([help/0, start/0, stop/0, info/1]).
 %% intermodule exports
@@ -781,14 +781,14 @@ The function name must agree exactly with what the function does. It
 should return the kind of arguments implied by the function name. It
 should not surprise the reader. Use conventional names for conventional
 functions ( start, stop, init, main_loop).
-Functions in dicerent modules that solve the same problem should
+Functions in different modules that solve the same problem should
 have the same name. Example: Module:module_info().
 
 239
 Bad function names are one of the most common programming errors
 - good choice of names is very diecult!
 Some kind of naming convention is very useful when writing lots of
-dicerent functions. For example, the name prefix “is_” could be used to
+different functions. For example, the name prefix “is_” could be used to
 signify that the function in question returns the atom true or false.
 is_...() -> true | false
 check_...() -> {ok, ...} | {error, ...}
@@ -796,13 +796,13 @@ check_...() -> {ok, ...} | {error, ...}
 Erlang has a flat module structure (i.e. there are no modules within modules). Oden, however, we might like to simulate the ecect of a hierarchical
 module structure. This can be done with sets of related modules having
 the same module prefix.
-If, for example, an ISDN handler is implemented using five dicerent
+If, for example, an ISDN handler is implemented using five different
 and related modules. These module should be given names such as:
 isdn_init
 isdn_partb
 isdn_...
 7.8 Format programs in a consistent manner
-A consistent programming style will help you, and other people, to understand your code. Dicerent people have dicerent styles concerning indentation, usage of spaces etc.
+A consistent programming style will help you, and other people, to understand your code. Dicerent people have different styles concerning indentation, usage of spaces etc.
 For example you might like to write tuples with a single comma between the elements:
 {12,23,45}
 Other people might use a comma followed by a blank:
@@ -849,7 +849,7 @@ Arg1,...} is added to
 
 8.4 Document all the principle data structures in messages
 Use tagged tuples as the principle data structure when sending messages
-between dicerent parts of the system.
+between different parts of the system.
 The record features of Erlang (introduced in Erlang versions 4.3 and
 thereader) can be used to ensure cross module consistency of data structures.
 An English description of all these data structure should be documented (See “Message Descriptions” on page 246.)
@@ -1084,14 +1084,14 @@ C.2.2 [Computer Communications]: Network Protocols; D.1 [Sodware]: Programming T
 
 1 Introduction
 We are interested in building reliable distributed systems out of asynchronously communicating components. We assume that the components
-are written in dicerent programming languages, run on dicerent operating
+are written in different programming languages, run on different operating
 systems and operate anywhere in the network. For example, some components may be written in Erlang, others in Java, others in C; the components
 might run on Unix, or Windows or Solaris.
 
 249
 We ask the questions “How should such systems interact?” and “Can
 we create a convenient language-neutral transport layer to allow such applications to be easily constructed?”
-Suppose further that we have several dicerent components and that
+Suppose further that we have several different components and that
 they collaborate to solve some problem - each individual component has
 been tested and is assumed to work, and yet the system as a whole does
 not work. Which component is in error?
@@ -1125,7 +1125,7 @@ The above architectural layering is desirable, in so much as it separates transp
 
 APPENDIX C. UBF
 
-the semantics of interactions between dicerent components in the network
+the semantics of interactions between different components in the network
 (SOAP and WDSL).
 Unfortunately, while the architecture is essentially correct, the details
 leave much to be desired. The individual components sucer from a number of significant problems.
@@ -1431,7 +1431,7 @@ objects
 
 Erlang terms
 
-Figure C.3: Client and Server in dicerent languages with a contract
+Figure C.3: Client and Server in different languages with a contract
 checker.
 
 6. Programming by Contract
@@ -1508,7 +1508,7 @@ sex()
 people()
 = [person()].
 
-This type schema defines a number of dicerent types. For example, it
+This type schema defines a number of different types. For example, it
 is easily seen that:
 ’person’ >p
 # {p "jim" "smith" ’male’ 10} &
@@ -1625,7 +1625,7 @@ the valid responses are of type bin() or
 noSuchFile() which corresponds to UBF(A) encoded sequences like
 NNN~ ... ~$ or ’noSuchFile’$.
 Note that it might not always be possible for a component to distinguish
-between two dicerent state transitions on the basis of the response alone.
+between two different state transitions on the basis of the response alone.
 Consider the following fragment of a contract:
 +TYPES running() = string();
 error()
