@@ -3,7 +3,7 @@
 APIs and
 Protocols
 
-hen we have built a sodware module we need to describe how
+hen we have built a software module we need to describe how
 it is to be used. One such method is to define a programming
 language API for all the exported functions that are in the module.
 To do this in Erlang we could use the type system outlined on page 80.

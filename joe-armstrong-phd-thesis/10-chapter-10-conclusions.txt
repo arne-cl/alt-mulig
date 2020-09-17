@@ -18,20 +18,20 @@ The work described in this thesis, and related work performed elsewhere
 has demonstrated a number of dicerent things, namely:
 • That Erlang and the associated technology works. This is, in itself,
 an interesting result. Many people have argued that languages like
-Erlang cannot be used for full-scale industrial sodware development.
+Erlang cannot be used for full-scale industrial software development.
 Work on the AXD301 and on the Nortel range of products shows
 that Erlang is an appropriate language for these types of product
 development. The fact that not only are these products successful,
 but also that they are market leaders in their respective niches is also
 significant.
-• That programming with light-weight processes and no shared memory works in practice and can be used to produce complex largescale industrial sodware.
+• That programming with light-weight processes and no shared memory works in practice and can be used to produce complex largescale industrial software.
 201
 
 202
 
 CHAPTER 10. CONCLUSIONS
 • That it is possible to construct systems that behave in a reasonable
-manner in the presence of sodware errors.
+manner in the presence of software errors.
 
 10.2 Ideas for future work
 It would be a shame if the Erlang story had no future chapters, and there
@@ -301,7 +301,7 @@ The use of the contract checker also accurately pinpoints exactly where
 errors have occurred, this becomes increasingly important as more communicating components are added to the system.
 While the model of communicating components is widely used for
 distributed applications, it is infrequently used for structuring single-node
-applications. In the interest of eeciency, designers reject the idea of using processes as protection domains for their sodware, and favour shared
+applications. In the interest of eeciency, designers reject the idea of using processes as protection domains for their software, and favour shared
 object models.
 I believe that the model for programming single-node applications
 should be exactly the same as that used for programming distributed applications. Dicerent components should be protected from each other by

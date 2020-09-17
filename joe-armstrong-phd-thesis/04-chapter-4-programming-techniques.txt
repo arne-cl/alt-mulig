@@ -53,7 +53,7 @@ plugin code.
 
 87
 
-Abstracting out concurrency is one of the most powerful means available for structuring large sodware systems. Despite the ease with which
+Abstracting out concurrency is one of the most powerful means available for structuring large software systems. Despite the ease with which
 concurrent programs can be written in Erlang it is still desirable to restrict
 code which explicitly handles concurrency to as few modules as possible.
 The reason for this is that concurrent code cannot be written in a sideecect free manner, and as such, is more diecult to understand and analyse
@@ -372,7 +372,7 @@ after 10000 ->
 exit(timeout)
 end.
 This solution, while it solves one problem, introduces another problem: What value should we choose for the timeout?. A better solution,
-which I will not elaborate here, makes use of applications and supervision trees. Server failures, should be detected not by client sodware, but
+which I will not elaborate here, makes use of applications and supervision trees. Server failures, should be detected not by client software, but
 by special supervisor processes which are responsible for correcting the
 errors introduced by the failure of a server.
 We can now run this server parameterised with a version of VSHLR
@@ -500,8 +500,8 @@ The programmer who wrote the code in vshlr3 did not need to know
 anything about how server3 was implemented nor that the code in the
 server could be dynamically changed without taking the server out of
 service.
-The ability to change sodware in a server without stopping the server
-partially fulfils requirement 8 on page 14—namely to upgrade the sodware
+The ability to change software in a server without stopping the server
+partially fulfils requirement 8 on page 14—namely to upgrade the software
 in a system without stopping the system.
 If we return once again to the code for server3 in figures 4.5 (the
 server) and vshlr2 in figure 4.6 (the application), we observe the following:
@@ -534,7 +534,7 @@ evaluation takes, etc) and is hidden from the application programmer.
 8. The details of how the remote procedure call is implemented are
 hidden inside the server module. This means that the implementation could be changed at a later stage without changing the client
 code, should this become necessary. For example, we could change
-the details of how rpc/2 is implemented in figure 4.5 without having to change any of the client sodware which calls the functions in
+the details of how rpc/2 is implemented in figure 4.5 without having to change any of the client software which calls the functions in
 server2.
 The division of the total server functionality into a non-functional part
 and a functional part is good programming practice and gives the system
@@ -579,7 +579,7 @@ processes can only interact by exchanging messages.
 
 CHAPTER 4. PROGRAMMING TECHNIQUES
 
-When we interface Erlang programs to external sodware it is oden
+When we interface Erlang programs to external software it is oden
 convenient to write an interface program which maintains the illusion that
 “everything is a process.”
 As an example of this, we consider how to implement a web-server.
@@ -722,8 +722,8 @@ exit message {’EXIT’,Pid1,machine_died} will be delivered to Pid2.
 This message appears to have come from Pid1, but in fact comes from
 the run-time system of the node where Pid2 was executing.
 The reason for coercing the hardware error to make it look like a
-sodware error is that we don’t want to have two dicerent methods for
-dealing with errors, one for sodware errors and the other for hardware errors. For reasons of conceptual integrity we want one uniform mechanism.
+software error is that we don’t want to have two dicerent methods for
+dealing with errors, one for software errors and the other for hardware errors. For reasons of conceptual integrity we want one uniform mechanism.
 This, combined with the extreme case of hardware error, and the failure
 of entire processors, leads to the idea of handling errors, not where they
 occurred, but at some other place in the system.

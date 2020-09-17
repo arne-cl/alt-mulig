@@ -33,8 +33,8 @@ CHAPTER 3. ERLANG
 
 The use of processes as the basic unit of abstraction is motivated by the
 desire to make a language which is suitable for writing large fault-tolerant
-sodware systems. The fundamental problem which must be solved in
-writing such sodware is that of limiting the consequences of an error—
+software systems. The fundamental problem which must be solved in
+writing such software is that of limiting the consequences of an error—
 the process abstraction provides an abstraction boundary which stops the
 propagation of errors.
 It is, for example, precisely this inability to limit the consequences of
@@ -49,8 +49,8 @@ computers. Using a single computer will not work, if it crashes, all is
 lost. The simplest fault-tolerant system we can imagine has exactly two
 computers, if one computer crashes, then the other computer should take
 over what the first computer was doing. In this simple situation even the
-sodware for fault-recovery must be non-local; the error occurs on the first
-machine, but is corrected by sodware running on the second machine.
+software for fault-recovery must be non-local; the error occurs on the first
+machine, but is corrected by software running on the second machine.
 The Erlang view of the world is that “everything is a process”, when
 we model our physical machines as processes we retain the idea that error
 handling should be non-local. Actually, this is a modified truth, remote
@@ -1497,7 +1497,7 @@ that have to do with code replacement. These are fully described in [5].
 
 A type notation
 
-If we build a sodware module, how can we describe how it is to be used?
+If we build a software module, how can we describe how it is to be used?
 The conventional answer involves the use of a so-called programming API
 (Application Programming Interface). The API is usually a list of those
 functions in the module which are externally callable and the types of the
@@ -1598,7 +1598,7 @@ now claim that Erlang does indeed satisfy these properties, for the following
 reasons:
 • Process are fundamental to Erlang so R1 is satisfied.
 • R2 is satisfied since processes in Erlang are designed as units of error
-encapsulation. If one process terminates because of a sodware error,
+encapsulation. If one process terminates because of a software error,
 other process executing in the same Erlang node will not be acected
 (unless, of course, they have been linked to the terminating process,
 in which case the interaction is intentional).

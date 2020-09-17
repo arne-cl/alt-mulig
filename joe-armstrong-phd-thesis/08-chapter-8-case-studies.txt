@@ -38,7 +38,7 @@ Secure Socket Layer.
 CHAPTER 8. CASE STUDIES
 
 a large group of programmers; over 40 programmers have been involved
-with the code over a 4-year period. Large sodware projects are notoriously
+with the code over a 4-year period. Large software projects are notoriously
 diecult to manage, and the resulting code is oden diecult to understand;
 so one of the matters that I am concerned with is how well (or poorly) the
 OTP design methodology supports the construction of large systems.
@@ -80,7 +80,7 @@ programming error and that the error was corrected and that the
 system subsequently recovered from the error and behaved in a
 satisfactory manner ader error correction had occurred?
 2. Is there evidence to show that the system has run for an extended
-period of time and that sodware errors have occurred but that the
+period of time and that software errors have occurred but that the
 system is still stable?
 3. Is there evidence that code in the system has been updated “on the
 fly?”
@@ -108,7 +108,7 @@ CHAPTER 8. CASE STUDIES
 Item 6 is a measure of the abstraction power of the OTP behaviours.
 It is desirable for a number of reasons to “abstract out” details of concurrency for commonly recurring situations. The set of OTP behaviours is an
 attempt to do this. The extent to which programmers can to a first approximation ignore concurrency is an important measure of how suitable the
-OTP behaviours are for making system sodware. We can assess the extent
+OTP behaviours are for making system software. We can assess the extent
 to which concurrency can be ignored by observing how oden programmers are forced to use explicit message passing and process manipulation
 primitives in their code.
 Item 7 tests if the supervisor strategies work as expected.
@@ -139,16 +139,16 @@ and up to 16 modules can be connected together to form a 160 GBit/s
 switch.
 The AXD301 is designed for “carrier-class” non-stop operation [70].
 The system has duplicated hardware which provides hardware redundancy
-and hardware can be added or removed from the system without interrupting services. The sodware has to be able to cope with hardware and
-sodware failures. Since the system is designed for non-stop operation it
-must be possible to change the sodware without disturbing traec in the
+and hardware can be added or removed from the system without interrupting services. The software has to be able to cope with hardware and
+software failures. Since the system is designed for non-stop operation it
+must be possible to change the software without disturbing traec in the
 system.
 
 8.3
 
-Quantitative properties of the sodware
+Quantitative properties of the software
 
-Here I report the result of an analysis of a snapshot of the AXD301 sodware. The snapshot represents the state of the system as it was on 5
+Here I report the result of an analysis of a snapshot of the AXD301 software. The snapshot represents the state of the system as it was on 5
 December 2001.
 The analysis is only concerned with the quantitative properties of the
 Erlang code in the system. The gross properties of the system are as
@@ -316,8 +316,8 @@ all except three of the supervision trees.
 The AXD301 architects defined one master supervisor, which could be
 parameterised in a number of standardised ways. The AXD301 supervisors were packaged as conventional OTP applications, whose behaviour
 was described in so-called .app files [34]. Analysing all the AXD301 apps
-gives us a good overall idea of the static structure of the AXD sodware.
-There were a total of 141 .app files the AXD sodware. These 141 files
+gives us a good overall idea of the static structure of the AXD software.
+There were a total of 141 .app files the AXD software. These 141 files
 represent 11 disjoint supervision trees. Most of the supervision trees are
 very flat and do not have a complex structure.
 A simple way to show this structure is to plot the trees in a simple
@@ -403,17 +403,17 @@ Note that displaying the data in this manner only shows the organisation of the 
 were sub-nodes to the leafs in the tree are not shown, nor is the type of
 supervision (ie and or or supervision).
 The reason why the trees are flat rather than deep reflects experience
-gained with the AXD sodware. Put simply “Cascading restarts do not
+gained with the AXD software. Put simply “Cascading restarts do not
 work.”
-Wiger [69] who was the chief sodware architect of the AXD301 found
+Wiger [69] who was the chief software architect of the AXD301 found
 that restarting a failed process with the same arguments oden worked,
 but that if the simple restart procedure failed, then cascading restarts (ie
 restarting the level above) generally did not help.
 Interestingly, in 1985, Gray had observed that most hardware faults
 were transient and could be corrected by reinitialising the state of the
 hardware and retrying the operation. He conjectured that this would also
-be true for sodware:
-I conjecture that there is a similar phenomenon in sodware —
+be true for software:
+I conjecture that there is a similar phenomenon in software —
 most production faults are sod. If the program state is reinitialized and the failed operation retried, the operation will usually
 not fail the second time. — [38]
 The full generality of the model presented in this thesis, namely that of
@@ -772,16 +772,16 @@ negative ecects on traec handling.”
 This error is rather nice, it shows that for a certain execution path an
 error is encountered. The system detects and recovers from the error, so
 for this particular error the system behaved in a reasonable manner in the
-presence of a sodware error.
+presence of a software error.
 
 8.3.5 Deficiencies in OTP structure
 One interesting area in which the Erlang model of programming did not
 work was in the handling of call setup and call termination used in the
-AXD301 sodware.
+AXD301 software.
 In the section on the philosophy of COP, I argued for a 1:1 mapping
-of the problem structure onto the sodware architecture. In one important
-part of the AXD301 sodware this mapping was not possible. This part of
-the sodware had to do with the setup and termination of calls.
+of the problem structure onto the software architecture. In one important
+part of the AXD301 software this mapping was not possible. This part of
+the software had to do with the setup and termination of calls.
 In order to understand this point I must go into a little detail about
 one of the most important services ocered by the AXD301 switch. The
 AXD301 is a switching system, as such it is responsible for the maintenance
@@ -880,7 +880,7 @@ The fact that the state information is asynchronously replicated increases throu
 the system.
 This solution fits nicely with the Erlang processes model. Since processes are light-weight, we can create and destroy them “on-demand.” Systems with heavy-weight processes could use a similar solution, where instead of destroying a process when it has finished, the process is recycled,
 and a pool of processes is maintained by the system.
-At the time when the AXD301 sodware was developed there was an
+At the time when the AXD301 software was developed there was an
 upper limit on the total number of Erlang processes which could run at the
 same time in the system. This number, while large, was not large enough
 to allow hundreds of thousands of processes in the system. Later versions
@@ -893,7 +893,7 @@ application.
 For very long-lived processes, storing the process state in a data base
 when the process is not active, is an attractive alternative. This method
 has the added advantage that by replicating the state on stable storage the
-same sodware can be made fault-tolerant.
+same software can be made fault-tolerant.
 
 8.4. SMALLER PRODUCTS
 
@@ -948,10 +948,10 @@ CHAPTER 8. CASE STUDIES
 3. It should be possible to remotely manage the system. We
 would like to add or remove mail servers or take them
 out of service without interrupting the quality of service.
-4. It should be possible to upgrade the BMR sodware itself
+4. It should be possible to upgrade the BMR software itself
 without stopping the system.
-5. In the event of an error in the BMR sodware it should
-be possible to revert to a previous version of the sodware
+5. In the event of an error in the BMR software it should
+be possible to revert to a previous version of the software
 without stopping the system.
 6. The system must work together with and improve the
 performance of existing mail systems.
@@ -966,7 +966,7 @@ Points 1, 3 and 4 are typical requirements for a sod real-time system,
 in particular point 4 is a typical requirement for this kind of system but
 is rarely found in the requirements for a system that is only to be used
 for a short period of time. Point 5 is related to point 4—as far as possible
-we want the operation of the sodware to be entirely autonomous and to
+we want the operation of the software to be entirely autonomous and to
 require minimal operator intervention. The fact that the BMR could be
 remotely managed and that upgrades and downgrades to the system could
 be handled automatically and remotely was an important factor in selling
@@ -984,33 +984,33 @@ customer within six months of the project start. The BMR has been in live
 operation with the Swedish Telenordia ISP since 1999 and handles millions
 of emails per year.
 BMR implemented its own release management system, as an extension to the release behaviour in the OTP system. The BMR system is an
-intrinsically distributed system. It is desirable that sodware upgrade in a
-distributed system has “transaction” semantics, that is, either the sodware
+intrinsically distributed system. It is desirable that software upgrade in a
+distributed system has “transaction” semantics, that is, either the software
 upgrade works in its entirety on all nodes of the system, or, that it fails and
-no sodware is changed on any node.
+no software is changed on any node.
 In BMR two versions of the entire system could co-exist, a old version
-and a new version. Adding a new version of the sodware, makes the
-current version of the sodware the old version, and the added version
+and a new version. Adding a new version of the software, makes the
+current version of the software the old version, and the added version
 becomes the new version.
-To achieve this, all BMR sodware upgrade packages were written in a
+To achieve this, all BMR software upgrade packages were written in a
 reversible manner, ie it should be possible to not only perform a dynamic
-upgrade from an old version of the sodware to a new version, but also to
+upgrade from an old version of the software to a new version, but also to
 convert from a new version back to the old version.
-Upgrading the sodware on all nodes was done in four phases.
-1. In phase one the new sodware release is distributed to all nodes—this
+Upgrading the software on all nodes was done in four phases.
+1. In phase one the new software release is distributed to all nodes—this
 always succeeds.
-2. In phase two the sodware on all nodes is changed from the old
+2. In phase two the software on all nodes is changed from the old
 version to the new version. If the conversion on any node fails, then
-all nodes running new versions of the sodware are backed to run the
-old version of the sodware.
-3. In phase three all nodes in the system run the new sodware, but
+all nodes running new versions of the software are backed to run the
+old version of the software.
+3. In phase three all nodes in the system run the new software, but
 should any error occur, then all nodes are backed to run the old
-sodware. The system has not yet committed to run the new sodware.
+software. The system has not yet committed to run the new software.
 4. Ader the new system has run successfully for a suecient time period
-the operator can “commit” the sodware change. Committing the
+the operator can “commit” the software change. Committing the
 system (phase four) changes the behaviour of the system. If an error
 occurs ader a commit then the system will restart using the new
-sodware and not revert to the old sodware.
+software and not revert to the old software.
 
 188
 
@@ -1018,13 +1018,13 @@ CHAPTER 8. CASE STUDIES
 
 Interestingly, almost exactly the same mechanism is used in the X2000
 system [63] developed by NASA, for their deep-space applications, where
-sodware applications also have to be upgraded without stopping the system.
+software applications also have to be upgraded without stopping the system.
 In addition the BMR upgrade system had to allow for the possibility
 that a node in the distributed system was “out-of-service” at the time when
-the sodware upgrade was being performed. In this case, when the node
+the software upgrade was being performed. In this case, when the node
 was re-introduced to the system it would learn about any changes that
 had been made to the system during the time it was unavailable, and any
-necessary sodware upgrades would be performed.
+necessary software upgrades would be performed.
 
 8.4.2
 
@@ -1055,7 +1055,7 @@ The SSL accelerator is produced as a hardware appliance. Interestingly
 it was produced in a very short time (less than one year) and rapidly
 became market leader having won the “best in test” awards in all categories
 awarded by “Network Computing.”
-The sodware architecture for the SSL accelerator was derived from the
+The software architecture for the SSL accelerator was derived from the
 generic architecture used in the Bluetail Mail Robustifier.
 
 8.4.3
@@ -1091,7 +1091,7 @@ at first sight the AXD project used relatively longer functions and relatively
 fewer behaviours than the Bluetail/Alteon projects.
 I interviewed the people who had programmed the SSL accelerator.
 They told me that in practice the architecture worked well and that failures
-due to sodware unrecoverable sodware errors had not occurred, but that
+due to software unrecoverable software errors had not occurred, but that
 they kept no records which could confirm this observation.
 
 190
@@ -1151,14 +1151,14 @@ I am unaware of any entire system failures (where all nodes fail)—were
 this to be the case I would suspect that this is due to a massive hardware
 failure acecting all machines in the system. Such failures appear to be
 extremely rare, and even if they did occur the cause of failure has nothing
-to do with the sodware, but is an entirely dicerent hardware issue.
+to do with the software, but is an entirely dicerent hardware issue.
 In a distributed system the perception of failure, and even our language
 for talking about failure need modification. It hardly makes sense to talk
 about total system failure (since this is such an uncommon event)—instead
 we need to talk about some measure of degradation of service quality.
-The sodware systems in the case study are so reliable that the people
+The software systems in the case study are so reliable that the people
 operating these system are inclined to think that they are error-free. This is
-not the case, indeed sodware errors did occur at run-time but these errors
+not the case, indeed software errors did occur at run-time but these errors
 were quickly corrected so that nobody ever noticed that the errors had
 occurred. To get accurate statistics on the long-term stability one would
 have to record all start and stopping times of the system and measure a

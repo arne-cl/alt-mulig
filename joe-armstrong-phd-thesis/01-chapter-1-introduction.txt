@@ -1,9 +1,9 @@
 1. Introduction
 
 How can we program systems which behave in a reasonable manner
-in the presence of sodware errors? This is the central question
+in the presence of software errors? This is the central question
 that I hope to answer in this thesis. Large systems will probably
-always be delivered containing a number of errors in the sodware,
+always be delivered containing a number of errors in the software,
 nevertheless such systems are expected to behave in a reasonable manner.
 
 To make a reliable system from faulty components places certain requirements on the system. The requirements can be satisfied, either in
@@ -12,12 +12,12 @@ standard libraries which are called by the application programs to solve
 the problem.
 
 In this thesis I identify the essential characteristics which I believe are
-necessary to build fault-tolerant sodware systems. I also show how these
+necessary to build fault-tolerant software systems. I also show how these
 characteristics are satisfied in our system.
 
 Some of the essential characteristics are satisfied in our programming
 language (Erlang), others are satisfied in library modules written in Erlang.
-Together the language and libraries form a basis for building reliable sodware systems which function in an adequate manner even in the presence
+Together the language and libraries form a basis for building reliable software systems which function in an adequate manner even in the presence
 of programming errors.
 
 Having said what my thesis is about, I should also say what it is not
@@ -25,13 +25,13 @@ about. The thesis does not cover in detail many of the algorithms used
 as building blocks for construction fault-tolerant systems—it is not the algorithms themselves which are the concern of this thesis, but rather the
 programming language in which such algorithms are expressed. I am also
 not concerned with hardware aspects of building fault-tolerant systems, nor
-with the sodware engineering aspects of fault-tolerance.
+with the software engineering aspects of fault-tolerance.
 
-The concern is with the language, libraries and operating system requirements for sodware fault-tolerance. Erlang belongs to the family of
+The concern is with the language, libraries and operating system requirements for software fault-tolerance. Erlang belongs to the family of
 pure message passing languages—it is a concurrent process-based language
 having strong isolation between concurrent processes. Our programming
 model makes extensive use of fail-fast processes. Such techniques are common in hardware platforms for building fault-tolerant systems but are not
-commonly used in sodware solutions. This is mainly because conventional languages do not permit dicerent sodware modules to co-exist in
+commonly used in software solutions. This is mainly because conventional languages do not permit dicerent software modules to co-exist in
 such a way that there is no interference between modules. The commonly
 used threads model of programming, where resources are shared, makes
 it extremely diecult to isolate components from each other—errors in one
@@ -171,7 +171,7 @@ project. For this reason a new group was started to provide support
 to the AXD project. The Erlang libraries were renamed OTP (The
 Open Telecom Platform) and a new group was created.
 
-• 1996 — In order to provide Erlang users with a stable sodware base
+• 1996 — In order to provide Erlang users with a stable software base
 a project called OTP (The Open Telecom Platform) was started.
 OTP was to be used primarily in the newly started AXD project; all
 existing projects were to migrate to OTP. The OTP project consolidated a number of ideas derived from experience with Erlang and
@@ -192,7 +192,7 @@ writing (2003) the AXD301 has over 1.7 million lines of Erlang code
 which probably makes it the largest system ever to be written in a
 functional style of programming.
 
-In February 1998 Erlang was banned for new product development within Ericsson—the main reason for the ban was that Ericsson wanted to be a consumer of sodware technologies rather than a producer.
+In February 1998 Erlang was banned for new product development within Ericsson—the main reason for the ban was that Ericsson wanted to be a consumer of software technologies rather than a producer.
 
 In December 1998 Erlang and the OTP libraries were released subject to an Open Source License. Since that date it has been freely available for download from http://www.erlang.org/
 
@@ -255,12 +255,12 @@ even in the presence of errors. Central to the idea of fault tolerance
 is the notion of an error—I describe what is meant by an error and
 what I mean when I talk about a “fault-tolerant” system. I describe a
 strategy based on the idea of “Supervision trees” which can be used
-for writing fault-tolerant sodware.
+for writing fault-tolerant software.
 
 • Chapter 6 links the general principles of programming a fault-tolerant
 system, developed in the previous chapter, to a number of specific
 programming patterns developed for programming fault-tolerant systems. These programming patterns are central to the understanding
-of the OTP system, and of how to build fault-tolerant sodware in
+of the OTP system, and of how to build fault-tolerant software in
 Erlang.
 
 I give a complete example, involving the use of a client–server
@@ -283,7 +283,7 @@ details of the main components in the system.
 practice? In this chapter I analyse a number of large commercially
 successful products that make use of OTP. The intention of this
 chapter is to see if we have achieved our goals of programming a
-system which functions reliably in the presence of sodware errors.
+system which functions reliably in the presence of software errors.
 
 One of the projects studied in this chapter is the Ericsson AXD301,
 a high-performance highly-reliable ATM switch. This project is interesting in its own right, since it is one of the largest programs ever

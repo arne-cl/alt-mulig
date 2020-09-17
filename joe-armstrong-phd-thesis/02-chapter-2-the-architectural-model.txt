@@ -1,20 +1,24 @@
 2. The Architectural Model
 
 There is no standard, universally-accepted definition of the term, for software
-architecture is a field in its infancy, ... While there is no standard definition,
-there is also no shortage of them ...
+architecture is a field in its infancy, ... While there is no standard
+definition, there is also no shortage of them ...
 
 The Carnegie Mellon Institute of Software Engineers
 
-This chapter presents an architecture for building fault-tolerant systems. While everybody has a vague idea of what the word architecture means, there are few widely accepted definitions, which leads to many misunderstandings. The following definition captures the general
-idea of what is meant by a sodware architecture:
+This chapter presents an architecture for building fault-tolerant systems.
+While everybody has a vague idea of what the word architecture means, there are
+few widely accepted definitions, which leads to many misunderstandings. The
+following definition captures the general idea of what is meant by a software
+architecture:
 
-An architecture is the set of significant decisions about the organization of a sodware system, the selection of the structural elements
-and their interfaces by which the system is composed, together with
-their behaviour as specified in the collaborations among those elements, the composition of these structural and behavioural elements
-into progressively larger subsystems, and the architectural style that
-guides this organization—these elements and their interfaces, their
-collaborations, and their composition.
+An architecture is the set of significant decisions about the organization of a
+software system, the selection of the structural elements and their interfaces
+by which the system is composed, together with their behaviour as specified in
+the collaborations among those elements, the composition of these structural
+and behavioural elements into progressively larger subsystems, and the
+architectural style that guides this organization—these elements and their
+interfaces, their collaborations, and their composition.
 
 Booch, Rumbaugh, and Jacobson [19]
 
@@ -26,11 +30,11 @@ about the world.” To be useful, however, we have to turn our way of
 thinking about the world into a practical rulebook, and a set of procedures,
 that tells us how to construct a particular system using our particular way
 of looking at the world.
-Our sodware architecture is characterised by descriptions of the following things:
+Our software architecture is characterised by descriptions of the following things:
 1. A problem domain — What type of problem is the architecture designed to solve? Sodware architectures are not general purpose but
 are designed for solving specific problems. No description of an architecture is complete without describing the type of problem that is
 supposed to be solved using the architecture.
-2. A philosophy — What is the reasoning behind the method of sodware
+2. A philosophy — What is the reasoning behind the method of software
 construction? What are the central ideas in the architecture?
 3. A set of construction guidelines — How do we program a system?
 We need an explicit set of construction guidelines. Our systems
@@ -69,7 +73,7 @@ Problem domain
 
 Our system was originally designed for building telecoms switching systems. Telecoms switching systems have demanding requirements in terms
 of reliability, fault-tolerance etc. Telecoms systems are expected to operate
-“forever,” they should exhibit sod real-time behaviour, and they should behave reasonably in the presence of sodware and hardware errors. Däcker
+“forever,” they should exhibit sod real-time behaviour, and they should behave reasonably in the presence of software and hardware errors. Däcker
 [30], gave ten requirements for the properties of a telecoms system:
 1. The system must be able to handle very large numbers of concurrent
 activities.
@@ -81,14 +85,14 @@ certain time.
 14
 
 CHAPTER 2. THE ARCHITECTURAL MODEL
-5. The sodware systems are very large.
+5. The software systems are very large.
 6. The system exhibits complex functionality such as, feature interaction.
 7. The systems should be in continuous operation for many years.
 8. Sodware maintenance (reconfiguration, etc) should be performed
 without stopping the system.
 9. There are stringent quality, and reliability requirements.
 
-10. Fault tolerance both to hardware failures, and sodware errors, must
+10. Fault tolerance both to hardware failures, and software errors, must
 be provided.
 We can motivate these requirements as follows:
 • Concurrency — switching systems are inherently concurrent since in
@@ -115,23 +119,23 @@ peripheral hardware which must be controlled and monitored. This
 implies that it should be possible to write eecient device drivers,
 and that context switching between dicerent device drivers should
 be eecient.
-• Large sodware systems — switching systems are large, for example,
-the Ericsson AXE10, and the AT&T 5ESS switch, have several million lines of program code [71]. This means that our sodware systems
+• Large software systems — switching systems are large, for example,
+the Ericsson AXE10, and the AT&T 5ESS switch, have several million lines of program code [71]. This means that our software systems
 must work with millions of lines of source code.
 • Complex functionality — switching systems have complex functionality. Market pressure encourages the development, and deployment
 of systems with large numbers of complex features. Oden systems
 are deployed before the interaction between such features is well
-understood. During the lifetime of a system the feature set will probably be changed and extended in many ways. Feature, and sodware
+understood. During the lifetime of a system the feature set will probably be changed and extended in many ways. Feature, and software
 upgrade must be performed “in place,” that is, without stopping the
 system.
 • Continuous operation — telecommunications systems are designed
-for many years of continuous operation. This implies that operations like sodware, and hardware maintenance, must be performed
+for many years of continuous operation. This implies that operations like software, and hardware maintenance, must be performed
 without stopping the system.
 • Quality requirements — switching systems should run with an acceptable level of service even in the presence of errors. Telephone
 exchanges are expected to be extremely reliable.1
 • Fault tolerance — switching systems should be “fault tolerant.” This
 means that from the outset we know that faults will occur, and that
-we must design a sodware and hardware infrastructure that can deal
+we must design a software and hardware infrastructure that can deal
 with these faults, and provide an acceptable level of service even in
 the presence of faults.
 1
@@ -150,15 +154,15 @@ similar list of requirements.
 
 Philosophy
 
-How can we make a fault-tolerant sodware system which behaves in a
-reasonable manner in the presence of sodware errors? Answering this will
+How can we make a fault-tolerant software system which behaves in a
+reasonable manner in the presence of software errors? Answering this will
 take the rest of this thesis. I will start by giving a short answer which will
 be refined in the remainder of the thesis.
-To make a fault-tolerant sodware system which behaves reasonably in
-the presence of sodware errors we proceed as follows:
-1. We organise the sodware into a hierarchy of tasks that the system has
+To make a fault-tolerant software system which behaves reasonably in
+the presence of software errors we proceed as follows:
+1. We organise the software into a hierarchy of tasks that the system has
 to perform. Each task corresponds to the achievement of a number
-of goals. The sodware for a given task has to try and achieve the
+of goals. The software for a given task has to try and achieve the
 goals associated with the task.
 Tasks are ordered by complexity. The top level task is the most
 complex, when all the goals in the top level task can be achieved
@@ -177,15 +181,15 @@ We need strong encapsulation for error isolation. We want to stop pro-
 
 17
 
-gramming errors in one part of the system adversely acecting sodware in
+gramming errors in one part of the system adversely acecting software in
 other parts of the system.
 We need to isolate all the code that runs in order to achieve a goal in
 such a way that we can detect if any errors occurred when trying to achieve
 a goal. Also, when we are trying to simultaneously achieve multiple goals
-we do not want a sodware error occurring in one part of the system to
+we do not want a software error occurring in one part of the system to
 propagate to another part of the system.
 The essential problem that must be solved in making a fault-tolerant
-sodware system is therefore that of fault-isolation. Dicerent programmers
+software system is therefore that of fault-isolation. Dicerent programmers
 will write dicerent modules, some modules will be correct, others will have
 errors. We do not want the errors in one module to adversely acect the
 behaviour of a module which does not have any errors.
@@ -231,7 +235,7 @@ processors. Note that the eeciency is only potential, and works best
 when the application can be partitioned into a number of truly independent tasks. If there are strong data dependencies between the
 tasks this might not always be possible.
 3. Fault isolation — concurrent processes with no data sharing provide
-a strong measure of fault isolation. A sodware error in a concurrent
+a strong measure of fault isolation. A software error in a concurrent
 process should not influence processing in the other processes in the
 system.
 
@@ -242,12 +246,12 @@ system.
 Of these three uses of concurrency, the first two are non-essential characteristics and can be provided by some kind of in-built scheduler which
 provides various forms of pseudo-parallel time sharing between processes.
 The third characteristic is essential for programming fault-tolerant systems. Each independent activity should be performed in a completely
-isolated process. Such processes should share no data, and only communicate by message passing. This is to limit the consequences of a sodware
+isolated process. Such processes should share no data, and only communicate by message passing. This is to limit the consequences of a software
 error.
 As soon as two processes share any common resource, for example,
 memory or a pointer to memory, or a mutex etc the possibility exists that
-a sodware error in one of the processes will corrupt the shared resource.
-Since eliminating all such sodware errors for large sodware systems is an
+a software error in one of the processes will corrupt the shared resource.
+Since eliminating all such software errors for large software systems is an
 unsolved problem I think that the only realistic way to build large reliable
 systems is by partitioning the system into independent parallel processes,
 and by providing mechanisms for monitoring and restarting these processes.
@@ -371,7 +375,7 @@ example, in a distributed system, we might receive a message informing
 us that a process has died, when in fact a network error has occurred.
 
 2.4.3 Process isolation
-The notion of isolation is central to understanding COP, and to the construction of fault-tolerant sodware. Two processes operating on the same
+The notion of isolation is central to understanding COP, and to the construction of fault-tolerant software. Two processes operating on the same
 
 2.4. CONCURRENCY ORIENTED PROGRAMMING
 
@@ -380,7 +384,7 @@ The notion of isolation is central to understanding COP, and to the construction
 machine must be as independent as if they ran on physically separated
 machines.
 Indeed the ideal architecture to run a CO program on would be a
-machine which assigned one new physical processor per sodware process.
+machine which assigned one new physical processor per software process.
 Until this ideal is reached we will have to live with the fact that multiple
 processes will run on the same machine. We should still think of them as
 if they ran on physically separated machine.
@@ -391,7 +395,7 @@ are imagined to run on physically separated machines.
 Again since nothing is shared this is the only means possible to
 exchange data.
 3. Isolation implies that message passing is asynchronous. If process
-communication is synchronous then a sodware error in the receiver
+communication is synchronous then a software error in the receiver
 of a message could indefinitely block the sender of the message
 destroying the property of isolation.
 4. Since nothing is shared, everything necessary to perform a distributed computation must be copied. Since nothing is shared, and
@@ -413,10 +417,10 @@ CHAPTER 2. THE ARCHITECTURAL MODEL
 easy, and the programs you write can be made scalable, and fault-tolerant,
 with very little ecort.
 Because all our processes are required to be complete isolated adding
-more processes cannot acect the original system. The sodware must have
+more processes cannot acect the original system. The software must have
 been written so as to handle collections of isolated processes, so adding a
 few more processors is usually accomplished without any major changes
-to the application sodware.
+to the application software.
 Since we made no assumptions about reliable message passing, and
 must write our application so that it works in the presence of unreliable
 message passing it should indeed work in the presence of message passing
@@ -498,7 +502,7 @@ Protocols
 
 Isolation of components, and message passing between components, is
 architecturally suecient for protecting a system from the consequences of
-a sodware error, but it is not suecient to specify the behaviour of a system,
+a software error, but it is not suecient to specify the behaviour of a system,
 nor, in the event of some kind of failure to determine which component
 has failed.
 Up to now we have assumed that failure is a property of a single
@@ -527,7 +531,7 @@ a day-to-day basis, the groups communicate by message-passing (e-mail
 
 or phone) but do not regularly meet. In some cases the groups work in
 dicerent countries, and never meet. It is amusing to note that not only
-is the organisation of a sodware system into isolated components which
+is the organisation of a software system into isolated components which
 communicate by pure message passing desirable for a number of reasons,
 but also that it is the way that large programming groups are organised.
 
@@ -646,8 +650,8 @@ device drivers.
 
 2.8 Application libraries
 Stable storage etc is not provided as a language primitive in Erlang, but
-is provided in the basic Erlang libraries. Having such libraries is a precondition for writing any complex application sodware. Complex applications need much higher-level abstractions than storage etc. To build such
-applications we need pre-packaged sodware entities to help us program
+is provided in the basic Erlang libraries. Having such libraries is a precondition for writing any complex application software. Complex applications need much higher-level abstractions than storage etc. To build such
+applications we need pre-packaged software entities to help us program
 things like client-server solutions etc.
 The OTP libraries provide us with a complete set of design patterns
 (called behaviours) for building fault-tolerant applications. In this thesis I
@@ -661,7 +665,7 @@ fault-tolerant applications. These are:
 31
 
 • gen_event — a behaviour used for implementing event handling
-sodware.
+software.
 • gen_fsm — a behaviour used for implementing finite state machines.
 Of these, the central component that is used for programming faulttolerant applications is the supervision model.
 
@@ -694,9 +698,9 @@ CHAPTER 2. THE ARCHITECTURAL MODEL
 
 Related work
 
-The inability to isolate sodware components from each other is the main
+The inability to isolate software components from each other is the main
 reason why many popular programming languages cannot be used for
-making robust system sodware.
+making robust system software.
 It is essential for security to be able to isolate mistrusting programs from one another, and to protect the host platform from
 such programs. Isolation is diecult in object-oriented systems
 because objects can easily become aliased.4 —Bryce [21]
@@ -737,7 +741,7 @@ These conclusions are not new. Very similar conclusions were arrived
 at some two decades earlier by Jim Gray who described the architecture
 of the Tandem Computer in his highly readable paper Why do computers
 stop and what can be done about it. He says:
-As with hardware, the key to sodware fault-tolerance is to hierarchically decompose large systems into modules, each module being a unit of service and a unit of failure. A failure of a
+As with hardware, the key to software fault-tolerance is to hierarchically decompose large systems into modules, each module being a unit of service and a unit of failure. A failure of a
 module does not propagate beyond the module.
 ...
 The process achieves fault containment by sharing no state
@@ -783,7 +787,7 @@ but all state that was stored in stable storage should be available ader the
 crash.
 A remarkably similar idea can be found in [38] where Gray talks about
 “fail-fast” processes.
-The process approach to fault isolation advocates that the process sodware be fail-fast, it should either function correctly or
+The process approach to fault isolation advocates that the process software be fail-fast, it should either function correctly or
 it should detect the fault, signal failure and stop operating.
 7
 
@@ -797,13 +801,13 @@ Processes are made fail-fast by defensive programming. They
 check all their inputs, intermediate results and data structures
 as a matter of course. If any error is detected, they signal
 a failure and stop. In the terminology of [Cristian], fail-fast
-sodware has small fault detection latency. — [38]
+software has small fault detection latency. — [38]
 Both Schneider, and Gray, have the same essential idea; one is talking
-about hardware, the other about sodware but the underlying principles are
+about hardware, the other about software but the underlying principles are
 the same.
 Renzel argued that it is important that processes fail as soon as possible
 ader an uncorrectable error has occurred:
-A fault in a sodware system can cause one or more errors.
+A fault in a software system can cause one or more errors.
 The latency time which is the interval between the existence
 of the fault and the occurrence of the error can be very high,
 which complicates the backwards analysis of an error ...
@@ -815,7 +819,7 @@ property strong isolation.
 2. Processes do what they are supposed to do or fail as soon as possible.
 3. Failure, and the reason for failure, can be detected by remote processes.
 4. Processes share no state, but communicate by message passing.
-A language and system with such properties, has the necessary preconditions for writing fault-tolerant sodware. Later in this thesis we will see
+A language and system with such properties, has the necessary preconditions for writing fault-tolerant software. Later in this thesis we will see
 how these properties are satisfied by Erlang, and the Erlang libraries.
 
 36
@@ -829,20 +833,20 @@ principles of Concurrency Oriented Programming which where discussed
 earlier.
 Here are two quotes from the paper, firstly the design principles on
 page 15 of [38].
-The keys to this sodware fault-tolerance are:
+The keys to this software fault-tolerance are:
 • Sodware modularity through processes, and messages.
-• Fault containment through fail-fast sodware modules.
-• Process-pairs to tolerant hardware, and transient sodware
+• Fault containment through fail-fast software modules.
+• Process-pairs to tolerant hardware, and transient software
 faults.
 • Transaction mechanisms to provide data, and message
 integrity.
 • Transaction mechanisms combined with process-pairs to
-ease exception handling, and tolerate sodware faults.
+ease exception handling, and tolerate software faults.
 Sodware modularity through processes and messages. As with
-hardware, the key to sodware fault-tolerance is to hierarchically decompose large systems into modules, each module being a unit of service and a unit of failure. A failure of a module
+hardware, the key to software fault-tolerance is to hierarchically decompose large systems into modules, each module being a unit of service and a unit of failure. A failure of a module
 does not propagate beyond the module.
 There is considerable controversy about how to modularize
-sodware. Starting with Burroughs’ Espol and continuing through
+software. Starting with Burroughs’ Espol and continuing through
 languages like Mesa and Ada, compiler writers have assumed
 perfect hardware and contended that they can provide good
 isolation through static compile-time type checking. In contrast, operating systems designers have advocated run-time
@@ -859,7 +863,7 @@ have favored the run-time checks plus the process approach to
 fault-containment. It has the virtue of simplicity—if a process or
 its processor misbehaves, stop it. The process provides a clean
 unit of modularity, service, fault containment and failure.
-Fault containment through fail-fast sodware modules.
+Fault containment through fail-fast software modules.
 The process achieves fault containment by sharing no state
 with other processes; its only contact with other processes is
 via messages carried by a kernel message system. — [38]
@@ -870,11 +874,11 @@ OTP libraries.
 The idea of “fail-fast” modules is mirrored in our guidelines for programming where we say that processes should only do when they are supposed to do according to the specification, otherwise they should crash.
 The supervision hierarchies in our system correspond to the hierarchies of
 modules that Gray refers to. This idea can also be found in the work of
-Candea and Fox [22] who talked about “crash-only sodware”—they argue
+Candea and Fox [22] who talked about “crash-only software”—they argue
 that allowing components to crash and then restart leads to a simpler fault
 model and more reliable code.
 More modern work with object-oriented systems has also recognised
-the importance of isolating sodware components from each other. In [21]
+the importance of isolating software components from each other. In [21]
 Bryce and Razafimahefa argue that is is essential to isolate programs from
 one another, and from the programs which run in the host operating system. This, they consider, is the essential characteristic that any object
 system must have. As they point out in their paper, this is a diecult

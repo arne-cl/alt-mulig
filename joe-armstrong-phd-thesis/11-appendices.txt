@@ -121,7 +121,7 @@ Contents
 
 1 Purpose
 This paper lists some aspects which should be taken into consideration
-when specifying and programming sodware systems using Erlang. It does
+when specifying and programming software systems using Erlang. It does
 not attempt to give a complete description of general specification and
 design activities which are independent of the use of Erlang.
 
@@ -463,7 +463,7 @@ The error should be handled in a dicerent process. (See “Each process
 should only have one role” on page 229).
 Clean separation of error recovery code and normal case code should
 greatly simplify the overall system design.
-The error logs which are generated when a sodware or hardware error
+The error logs which are generated when a software or hardware error
 is detected will be used at a later stage to diagnose and correct the error.
 A permanent record should be kept of any information that will be helpful
 in this process.
@@ -524,7 +524,7 @@ such as the generic server implemented in the standard libraries. Con-
 230 APPENDIX B. PROGRAMMING RULES AND CONVENTIONS
 sistent use of a small set of generic servers will greatly simplify the total
 system structure.
-The same is possible for most of the protocol handling sodware in the
+The same is possible for most of the protocol handling software in the
 system.
 5.7 Tag messages
 All messages should be tagged. This makes the order in the receive statement less important and the implementation of new messages easier.
@@ -1437,7 +1437,7 @@ checker.
 6. Programming by Contract
 Central to UBF is the idea of a contract. The contract regulates the set
 of legal conversations that can take place between a client and a server.
-A sodware component (the contract checker) is placed between a client
+A software component (the contract checker) is placed between a client
 and server and it checks that all interactions between the client and server
 are legal.
 The contract is written using types - the contract says (in a formal
@@ -1655,8 +1655,8 @@ with the 391 lines of code in the UBF implementation.
 
 8. Performance
 So far, the system has been implemented entirely in Erlang and no thought
-given to embedding the UBF encoding/decoding sodware and the type
-checking sodware into the Erlang run-time system.
+given to embedding the UBF encoding/decoding software and the type
+checking software into the Erlang run-time system.
 The only measure of performance we give here concerns the packing
 density of UBF encoded Erlang terms.
 As a simple check we compared the size of the encoding of the parse
@@ -2094,7 +2094,7 @@ practice used in the Gutenberg 42 line bible of allowing punctuation at the
 end of lines to slightly protrude into the right-hand margin. This practice
 improves the optical alignment of the led-hand margin and produces better
 line breaks.
-Unfortunately I abandoned this approach, since the sodware for margin
+Unfortunately I abandoned this approach, since the software for margin
 kerning did not always work correctly with multiple typefaces on the same
 line. For this reason alone further work on Erlguten seems motivated.
 Finally, I would like to thank the small army of people who have read
@@ -2173,7 +2173,7 @@ http://www.w3.org/tr/2000/rec-xml-20001006. 2000.
 [21] Ciaràn Bryce and Chrislain Razafimahefa. An approach to safe object
 sharing. In Proceedings of the conference on Object-oriented programming,
 systems, languages, and applications, pages 367–381. ACM Press, 2000.
-[22] George Candea and Armando Fox. Crash only sodware. In Proceedings of the 9th workshop on Hot Topics in Operating Systems (TotOS-IX),
+[22] George Candea and Armando Fox. Crash only software. In Proceedings of the 9th workshop on Hot Topics in Operating Systems (TotOS-IX),
 May 2003.
 [23] Richard Carlsson, Thomas Lindgren, Björn Gustavsson, Sven-Olof
 Nyström, Robert Virding, Erik Johansson, and Mikael Pettersson.
@@ -2202,7 +2202,7 @@ APPENDIX D. COLOPHON
 A robust and scalable internet server. May 1998.
 [32] D. C. Fallside (Ed). Xml schema part 0: Primer. may 2002.
 http://www.w3.org/tr/2001/rec-xmlschema-0-20010502/. 2002.
-[33] Dick Eriksson, Mats Persson, and Kerstin Ödling. A switching sodware architecture prototype using real time declarative language. XIV
+[33] Dick Eriksson, Mats Persson, and Kerstin Ödling. A switching software architecture prototype using real time declarative language. XIV
 International Switching Symposium, October 1992.
 [34] Open source erlang distribution. 1999.
 [35] J. A. Feldman, J. R. Low, and P. D. Rovner. Programming distributed
@@ -2271,7 +2271,7 @@ state machine approach: a tutorial. ACM Computing Surveys (CSUR),
 [62] R. Srinivasan. RFC 1832: XDR: External data representation standard. August 1995.
 [63] Ann T. Tai, Kam S. Tso, Leon Alkalai, Savio N. Chau, and William H.
 Sanders. On the ecectiveness of a message-driven confidence-driven
-protocol for guarded sodware upgrading. Performance Evaluation,
+protocol for guarded software upgrading. Performance Evaluation,
 44(1-4):211–236, 2001.
 [64] Hàn Thê Thành. Micro-typographic extensions to the tex typesetting
 system. Masaryk University Brno, 2000.
@@ -2289,7 +2289,7 @@ August 2001.
 [69] Ulf Wiger. Private communication.
 [70] Ulf Wiger, Gösta Ask, and Kent Boortz. World-class product certification using erlang. In Proceedings of the 2002 ACM SIGPLAN workshop
 on Erlang, pages 24–33. ACM Press, 2002.
-[71] Weider D. Yu. A sodware fault prevention approach in coding and
+[71] Weider D. Yu. A software fault prevention approach in coding and
 root cause analysis. Bell Labs Technical Journal, 3(2), 1998.
 
 

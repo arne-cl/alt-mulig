@@ -7,7 +7,7 @@ block diagram of the system is shown in figure 7.1, which is taken
 from the article in [66]. As can be seen from figure 7.1 the OTP system is a so-called “middleware platform” designed to be run on top of a
 conventional operating system.
 The OTP system was developed internally at Ericsson. Most of the
-sodware was released into the public domain subject to the Erlang public
+software was released into the public domain subject to the Erlang public
 license.1
 Included in the OTP release are the following components:
 

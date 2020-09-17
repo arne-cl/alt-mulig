@@ -17,7 +17,7 @@ T
 
 Behaviours
 
-Applications which use the OTP sodware are built from a number of “behaviours.” Behaviours are abstractions of common programming patterns,
+Applications which use the OTP software are built from a number of “behaviours.” Behaviours are abstractions of common programming patterns,
 which can be used as the building blocks for implementing systems in
 Erlang. The behaviours discussed in the remainder of this chapter are as
 follows:
@@ -41,7 +41,7 @@ how to make an instance of the behaviour.
 In OTP systems are built in the following hierarchical manner:
 • Releases — releases are at the top of the hierarchy. A release contains
 all the information necessary to build and run a system. A release
-will consists of a sodware archive (packed in some form) and a set
+will consists of a software archive (packed in some form) and a set
 of procedures for installing the release. The process of installing a
 release can be highly complicated, since upgrade releases oden have
 to be installed without stopping the target systems. An OTP release
@@ -1213,11 +1213,11 @@ previous versions of the system.
 157
 
 Releases contain not only information about the current version of the
-sodware but also information about previous releases of the sodware. In
+software but also information about previous releases of the software. In
 particular they contain procedures for upgrading the system from an earlier
-version of the sodware to the current version of the sodware. This upgrade
+version of the software to the current version of the software. This upgrade
 must oden be performed without stopping the system. A release must also
-handle the situation where the installation of the new sodware fails for
+handle the situation where the installation of the new software fails for
 some reason. If a new release fails, then the system should revert back to
 a previous stable state. All this is handled by the release management part
 of the OTP system.
@@ -1267,7 +1267,7 @@ In our system the behaviours solve orthogonal problems—for example,
 client–server has nothing to do with worker-supervisor. In building a real
 system we pick and mix between behaviours and combine them in many
 dicerent ways to solve problems.
-Ocering a small and fixed set of behaviours to a sodware designer has
+Ocering a small and fixed set of behaviours to a software designer has
 several benefits:
 • It focuses attention on a small set of well-proven techniques. We
 know in advance that the individual techniques work well in practice. Given totally unconstrained choice and complete freedom of

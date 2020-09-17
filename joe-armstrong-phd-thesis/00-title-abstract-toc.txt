@@ -1,7 +1,7 @@
 Making reliable
 distributed systems
 in the presence of
-sodware errors
+software errors
 Final version (with corrections) — last update 20 November 2003
 
 Joe Armstrong
@@ -54,7 +54,7 @@ these language requirements, and show how they are satisfied by Erlang.
 Problems can be solved in a programming language, or in the standard libraries which accompany the language. I argue how certain of the
 requirements necessary to build a fault-tolerant system are solved in the
 language, and others are solved in the standard libraries. Together these
-form a basis for building fault-tolerant sodware systems.
+form a basis for building fault-tolerant software systems.
 No theory is complete without proof that the ideas work in practice. To
 demonstrate that these ideas work in practice I present a number of case
 studies of large commercially successful products which use this technology. At the time of writing the largest of these projects is a major Ericsson
@@ -1259,7 +1259,7 @@ Discussion . . . . . . . . . .
 8 Case Studies
 8.1 Methodology . . . . . . . . . . . . . . . .
 8.2 AXD301 . . . . . . . . . . . . . . . . . . .
-8.3 Quantitative properties of the sodware . .
+8.3 Quantitative properties of the software . .
 8.3.1 System Structure . . . . . . . . . .
 8.3.2 Evidence for fault recovery . . . .
 8.3.3 Trouble report HD90439 . . . . .

@@ -28,7 +28,7 @@ Dugan quoted in Voas [67].
 116 CHAPTER 5. PROGRAMMING FAULT-TOLERANT SYSTEMS
 The presentation here follows Dugan’s advice, I explain exactly what
 happens when an abnormal condition is detected and how we can make a
-sodware structure which detects and corrects errors.
+software structure which detects and corrects errors.
 The remainder of this chapter describes:
 • A strategy for programming fault-tolerance — the strategy is to fail
 immediately if you cannot correct an error and then try to do something that is simpler to achieve.
@@ -38,7 +38,7 @@ correctly. The generation of an exception in a well-behaved function
 is interpreted as a failure.
 
 5.1 Programming fault-tolerance
-To make a system fault-tolerant we organise the sodware into a hierarchy
+To make a system fault-tolerant we organise the software into a hierarchy
 of tasks that must be performed. The highest level task is to run the application according to some specification. If this task cannot be performed
 then the system will try to perform some simpler task. If the simpler task
 cannot be performed then the system will try to perform an even simpler
@@ -46,7 +46,7 @@ task and so on. If the lowest level task in the system cannot be performed
 then the system will fail.
 This method is intuitively attractive. It says if we cannot do what we
 want to do, then try to do something simpler. We also try to organise the
-sodware so that simpler tasks are performed by simpler sodware, so that
+software so that simpler tasks are performed by simpler software, so that
 the likelihood of success increases as the tasks become simpler.
 As the tasks become simpler, the emphasis upon what operation is
 performed changes—we become more interested in protecting the system
