@@ -56,9 +56,9 @@ def create_feed(articles, output_filepath=None):
         entry.content(f"""<img src="{article['image_url']}" align="left" hspace="10"> {article["pub_date"]} {article["intro"]}""")
         
     if output_filepath:
-        feed.rss_file(output_filepath)
+        feed.atom_file(output_filepath)
     else:
-        print(feed.rss_str(pretty=True).decode('utf-8'))
+        print(feed.atom_str(pretty=True).decode('utf-8'))
 
 
 if __name__ == '__main__':
