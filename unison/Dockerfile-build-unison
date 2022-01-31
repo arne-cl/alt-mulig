@@ -1,0 +1,32 @@
+FROM ubuntu:20.04
+
+RUN apt update && apt upgrade -y
+
+RUN apt-get install wget make -y
+
+WORKDIR /opt
+
+RUN wget https://github.com/ocaml/ocaml/archive/4.06.1.tar.gz
+
+RUN tar -xvzf 4.06.1.tar.gz
+
+WORKDIR /opt/ocaml-4.06.1
+
+RUN apt-get install gcc -y
+
+RUN ./configure && \
+    make world.opt && \
+    make install
+
+WORKDIR /opt
+
+RUN wget https://github.com/bcpierce00/unison/archive/refs/tags/v2.51.2.tar.gz && \
+    tar -xvzf v2.51.2.tar.gz
+
+WORKDIR /opt/unison-2.51.2
+
+RUN make text
+
+# /opt/unison-2.51.2/src/unison
+
+
