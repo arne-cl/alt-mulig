@@ -24,7 +24,7 @@
     "dompurify": "0.8.5",
     "dotenv": "4.0.0",
     "es6-promisify": "5.0.0",
-    "express": "4.15.2",
+    "express": "4.17.3",
     "express-session": "1.15.1",
     "express-validator": "3.1.2",
     "faker": "4.1.0",
