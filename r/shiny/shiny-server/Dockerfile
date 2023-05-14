@@ -6,4 +6,7 @@ RUN rm -rf /srv/shiny-server/*
 
 WORKDIR /srv/shiny-server/
 
+# Copy the config file into the container
+COPY shiny-server.conf /etc/shiny-server/
+
 COPY ./app.R ./app.R
