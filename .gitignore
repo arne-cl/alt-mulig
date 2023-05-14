@@ -6,3 +6,4 @@
 *.anjuta
 cfg-catch
 cfg-test
+__pycache__
