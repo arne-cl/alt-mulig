@@ -47,6 +47,10 @@ class SlideExtractor(object):
         cv2.imwrite(f"{self.output_prefix}-{timestamp}.png", comparison_frame)
         print(f"Extracted slide {self.slide_count} (after {self.similar_frames} similar frames) at timestamp {timestamp}s.")
 
+    def print_progress(self):
+        progress = (self.frame_count / self.total_frames) * 100
+        print(f"Progress: {progress:.2f}%, Frame: {self.frame_count}")
+
     def extract_slides(self):
         ret, comparison_frame = self.cap.read()
         if not ret:
@@ -74,10 +78,9 @@ class SlideExtractor(object):
                 comparison_frame = frame
                 self.similar_frames = 0
 
-            # Progress indicator
-            if time.time() - self.start_time >= 5:  # Update progress every 5 seconds of real time
-                progress = (self.frame_count / self.total_frames) * 100
-                print(f"Progress: {progress:.2f}%, Frame: {self.frame_count}")
+            # print progress every 5 seconds of real time
+            if time.time() - self.start_time >= 5:
+                self.print_progress()
                 self.start_time = time.time()
 
         self.cap.release()
