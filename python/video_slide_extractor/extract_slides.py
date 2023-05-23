@@ -64,7 +64,7 @@ class SlideExtractor(object):
                     timestamp = timestamp[:timestamp.rfind('.')+3]
                     cv2.imwrite(f"{self.output_prefix}-{timestamp}.png", comparison_frame)
                     self.slide_count += 1
-                    print(f"Extracted slide {self.slide_count} at timestamp {timestamp}s")
+                    print(f"Extracted slide {self.slide_count} (after {self.similar_frames} similar frames) at timestamp {timestamp}s.")
 
                 comparison_frame = frame
                 self.similar_frames = 0
