@@ -1,11 +1,13 @@
 #!/bin/env python3
 
+import argparse
+from datetime import timedelta
+import os
+import time
+
 import cv2
 import numpy as np
-import argparse
-import os
 from skimage.metrics import structural_similarity as ssim
-import time
 
 
 def compare_frames(frame1, frame2):
@@ -56,7 +58,10 @@ class SlideExtractor(object):
                 self.similar_frames += 1
             else: # frame is not similar to comparison_frame
                 if self.similar_frames >= self.consecutive_frames:
-                    timestamp = self.cap.get(cv2.CAP_PROP_POS_MSEC) / 1000
+                    timestamp_seconds = self.cap.get(cv2.CAP_PROP_POS_MSEC) / 1000
+                    timestamp = str(timedelta(seconds=timestamp_seconds))
+                    # Keep only the first two digits of the milliseconds
+                    timestamp = timestamp[:timestamp.rfind('.')+3]
                     cv2.imwrite(f"{self.output_prefix}-{timestamp}.png", comparison_frame)
                     self.slide_count += 1
                     print(f"Extracted slide {self.slide_count} at timestamp {timestamp}s")
