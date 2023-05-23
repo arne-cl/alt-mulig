@@ -62,20 +62,20 @@ class SlideExtractor(object):
         self.start_time = time.time()
 
         while self.cap.isOpened():
-            ret, frame = self.cap.read()
+            ret, current_frame = self.cap.read()
             if not ret:
                 break
 
             self.frame_count += 1
 
-            if compare_frames(comparison_frame, frame) >= self.ssim_threshold:
+            if compare_frames(comparison_frame, current_frame) >= self.ssim_threshold:
                 self.similar_frames += 1
-            else: # frame is not similar to comparison_frame
+            else: # current_frame is not similar to comparison_frame
                 if self.similar_frames >= self.consecutive_frames:
                     self.save_slide(comparison_frame)
                     self.slide_count += 1
 
-                comparison_frame = frame
+                comparison_frame = current_frame
                 self.similar_frames = 0
 
             # print progress every 5 seconds of real time
