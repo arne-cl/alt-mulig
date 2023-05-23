@@ -44,7 +44,7 @@ class SlideExtractor(object):
         # Keep only the first two digits of the milliseconds
         timestamp = timestamp[:timestamp.rfind('.')+3]
 
-        cv2.imwrite(f"{self.output_prefix}-{timestamp}.png", comparison_frame)
+        cv2.imwrite(f"{self.output_prefix}-{timestamp}-{self.similar_frames}-similar-frames.png", comparison_frame)
         print(f"Extracted slide {self.slide_count} (after {self.similar_frames} similar frames) at timestamp {timestamp}s.")
 
     def print_progress(self):
