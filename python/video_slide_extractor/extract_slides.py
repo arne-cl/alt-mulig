@@ -37,6 +37,16 @@ class SlideExtractor(object):
         self.total_frames = int(self.cap.get(cv2.CAP_PROP_FRAME_COUNT))
         print(f"Video information: Frame rate: {self.frame_rate}, Frame width: {self.frame_width}, Frame height: {self.frame_height}, Total frames: {self.total_frames}")
 
+    def save_slide(self, comparison_frame):
+        # extract and format timestamp of the slide
+        timestamp_seconds = self.cap.get(cv2.CAP_PROP_POS_MSEC) / 1000
+        timestamp = str(timedelta(seconds=timestamp_seconds))
+        # Keep only the first two digits of the milliseconds
+        timestamp = timestamp[:timestamp.rfind('.')+3]
+
+        cv2.imwrite(f"{self.output_prefix}-{timestamp}.png", comparison_frame)
+        print(f"Extracted slide {self.slide_count} (after {self.similar_frames} similar frames) at timestamp {timestamp}s.")
+
     def extract_slides(self):
         ret, comparison_frame = self.cap.read()
         if not ret:
@@ -58,13 +68,8 @@ class SlideExtractor(object):
                 self.similar_frames += 1
             else: # frame is not similar to comparison_frame
                 if self.similar_frames >= self.consecutive_frames:
-                    timestamp_seconds = self.cap.get(cv2.CAP_PROP_POS_MSEC) / 1000
-                    timestamp = str(timedelta(seconds=timestamp_seconds))
-                    # Keep only the first two digits of the milliseconds
-                    timestamp = timestamp[:timestamp.rfind('.')+3]
-                    cv2.imwrite(f"{self.output_prefix}-{timestamp}.png", comparison_frame)
+                    self.save_slide(comparison_frame)
                     self.slide_count += 1
-                    print(f"Extracted slide {self.slide_count} (after {self.similar_frames} similar frames) at timestamp {timestamp}s.")
 
                 comparison_frame = frame
                 self.similar_frames = 0
