@@ -8,22 +8,6 @@ from skimage.metrics import structural_similarity as ssim
 import time
 
 
-def open_video(video_path):
-    cap = cv2.VideoCapture(video_path)
-
-    if cap is None or not cap.isOpened():
-        raise Exception(f"Error opening video file {video_path}")
-    return cap
-
-def get_video_info(cap):
-    frame_rate = cap.get(cv2.CAP_PROP_FPS)
-    frame_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-    frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-    total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-
-    print(f"Video information: Frame rate: {frame_rate}, Frame width: {frame_width}, Frame height: {frame_height}, Total frames: {total_frames}")
-    return frame_rate, frame_width, frame_height, total_frames
-
 def compare_frames(frame1, frame2):
     grayA = cv2.cvtColor(frame1, cv2.COLOR_BGR2GRAY)
     grayB = cv2.cvtColor(frame2, cv2.COLOR_BGR2GRAY)
@@ -37,11 +21,22 @@ class SlideExtractor(object):
         self.ssim_threshold = ssim_threshold
         self.consecutive_frames = consecutive_frames
 
-    def extract_slides(self):
-        cap = open_video(self.video_path)
-        frame_rate, frame_width, frame_height, total_frames = get_video_info(cap)
+        # load video and metadata
+        cap = cv2.VideoCapture(self.video_path)
+        if cap is None or not cap.isOpened():
+            raise Exception(f"Error opening video file {self.video_path}")
+        self.cap = cap
+        self.get_video_info()
 
-        ret, comparison_frame = cap.read()
+    def get_video_info(self):
+        self.frame_rate = self.cap.get(cv2.CAP_PROP_FPS)
+        self.frame_width = int(self.cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+        self.frame_height = int(self.cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+        self.total_frames = int(self.cap.get(cv2.CAP_PROP_FRAME_COUNT))
+        print(f"Video information: Frame rate: {self.frame_rate}, Frame width: {self.frame_width}, Frame height: {self.frame_height}, Total frames: {self.total_frames}")
+
+    def extract_slides(self):
+        ret, comparison_frame = self.cap.read()
         if not ret:
             raise Exception("Error reading the first frame")
 
@@ -50,8 +45,8 @@ class SlideExtractor(object):
         self.slide_count = 0
         self.start_time = time.time()
 
-        while cap.isOpened():
-            ret, frame = cap.read()
+        while self.cap.isOpened():
+            ret, frame = self.cap.read()
             if not ret:
                 break
 
@@ -61,7 +56,7 @@ class SlideExtractor(object):
                 self.similar_frames += 1
             else: # frame is not similar to comparison_frame
                 if self.similar_frames >= self.consecutive_frames:
-                    timestamp = cap.get(cv2.CAP_PROP_POS_MSEC) / 1000
+                    timestamp = self.cap.get(cv2.CAP_PROP_POS_MSEC) / 1000
                     cv2.imwrite(f"{self.output_prefix}-{timestamp}.png", comparison_frame)
                     self.slide_count += 1
                     print(f"Extracted slide {self.slide_count} at timestamp {timestamp}s")
@@ -70,12 +65,12 @@ class SlideExtractor(object):
                 self.similar_frames = 0
 
             # Progress indicator
-            if time.time() - self.start_time >= 1:  # Update progress every second of real time
-                progress = (self.frame_count / total_frames) * 100
+            if time.time() - self.start_time >= 5:  # Update progress every 5 seconds of real time
+                progress = (self.frame_count / self.total_frames) * 100
                 print(f"Progress: {progress:.2f}%, Frame: {self.frame_count}")
-                start_time = time.time()
+                self.start_time = time.time()
 
-        cap.release()
+        self.cap.release()
         cv2.destroyAllWindows()
 
 
