@@ -197,7 +197,18 @@
         button.innerText = 'search OKF';
         console.log('Button created:', button);
 
+        // Create "search OKF in new tab" button and append it to the row
+        let newTabButton = document.createElement('a');
+        // Copy styles from the original button
+        newTabButton.style = button.style.cssText;
+
+        newTabButton.href = searchURL;  // Link directly to the search URL
+        newTabButton.target = '_blank';  // Open in new tab
+        newTabButton.innerText = 'search OKF in new tab';
+        console.log('New tab button created:', newTabButton);
+
         row.appendChild(button);
-        console.log('Button appended to row');
+        row.appendChild(newTabButton);  // Append the new button to the row
+        console.log('Buttons appended to row');
     });
 })();
