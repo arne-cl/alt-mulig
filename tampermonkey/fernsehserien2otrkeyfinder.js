@@ -75,8 +75,11 @@
             console.log(".size element: ", size);
             console.log(".mirrors element: ", mirrors);
 
+            // Build the correct URL with OKF domain
+            let url = 'https://www.otrkeyfinder.com' + otrkey.getAttribute('href');
+
             return {
-                url: otrkey.href,
+                url: url,
                 quality: quality,
                 size: size,
                 mirrors: mirrors,
