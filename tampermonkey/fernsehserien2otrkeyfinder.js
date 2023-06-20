@@ -98,7 +98,9 @@
         console.log("Filename: ", filename);
 
         // Extract time and duration from filename using a regular expression
-        let match = filename.match(/(\d{2}-\d{2})_(\d+)_/);
+        // Here we are looking for a pattern where the time is preceded by underscore 
+        // and followed by underscore or hyphen. The same applies to duration.
+        let match = filename.match(/_(\d{2}-\d{2})_(\d+)_/);
         if (match) {
             let startTime = match[1].replace('-', '');
             let duration = match[2];
