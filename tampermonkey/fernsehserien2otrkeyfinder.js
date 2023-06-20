@@ -157,6 +157,12 @@
         let startTimeFormatted = timeAndDuration.startTime.slice(0, 2) + ":" + timeAndDuration.startTime.slice(2, 4);
         let endTimeFormatted = endTime.slice(0, 2) + ":" + endTime.slice(2, 4);
         link.innerText = startTimeFormatted + "-" + endTimeFormatted;
+        
+        // Style the link to make it distinguishable
+        link.style.color = 'blue';
+        link.style.textDecoration = 'underline';
+        link.style.fontWeight = 'bold';
+        
         linkCell.appendChild(link);
 
         resultsRow.append(emptyCell, qualityCell, sizeCell, linkCell, mirrorsCell);
