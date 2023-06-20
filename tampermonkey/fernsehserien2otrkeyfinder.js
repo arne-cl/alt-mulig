@@ -47,6 +47,7 @@
     }
 
     // Function to download the HTML of a given URL
+    // We can't use the regular fetch() API b/c of CORS.
     function fetchHTML(url) {
         return new Promise((resolve, reject) => {
             GM_xmlhttpRequest({
