@@ -90,10 +90,9 @@
 
 
     // Function to create a cell element
-    function createCell(className, text) {
+    function createCell(text) {
         let cell = document.createElement('span');
         cell.setAttribute('role', 'cell');
-        cell.className = className;
         cell.innerText = text || '';  // if text is undefined, set it to an empty string
         return cell;
     }
@@ -103,12 +102,12 @@
         let resultsRow = document.createElement('div');
         resultsRow.setAttribute('role', 'row');
 
-        let qualityCell = createCell('sendetermine-2019-wochentag okf-quality', result.quality);
-        let sizeCell = createCell('sendetermine-2019-datum okf-file-size', result.size);
-        let mirrorsCell = createCell('sendetermine-2019-uhrzeit okf-mirrors', 
-                                     result.mirrors === 1 ? '1 mirror' : result.mirrors + ' mirrors');
-        let senderCell = createCell('sendetermine-2019-sender');
-        let titleCell = createCell('sendetermine-2019-episodentitel');
+        let qualityCell = createCell(result.quality);
+        let sizeCell = createCell(result.size);
+        let mirrorsCell = createCell(result.mirrors === 1 ? '1 mirror' : result.mirrors + ' mirrors');
+
+        let senderCell = createCell('');
+        let titleCell = createCell('');
 
         let link = document.createElement('a');
         link.href = result.url;
@@ -126,8 +125,8 @@
         let resultsRow = document.createElement('div');
         resultsRow.setAttribute('role', 'row');
 
-        let emptyCells = Array.from({length: 4}, () => createCell('sendetermine-2019-streams'));
-        let messageCell = createCell('sendetermine-2019-episodentitel', 'No OTR recordings found');
+        let emptyCells = Array.from({length: 4}, () => createCell(''));
+        let messageCell = createCell('No OTR recordings found');
 
         resultsRow.append(...emptyCells, messageCell);
         return resultsRow;
