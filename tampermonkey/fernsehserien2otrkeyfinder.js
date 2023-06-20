@@ -142,8 +142,20 @@
     function createResultRow(result) {
         // Extract time and duration from the filename
         let timeAndDuration = extractTimeAndDuration(result.url);
-        // Calculate the end time
-        let endTime = calculateEndTime(timeAndDuration);
+        let linkTitle;
+        let filename = result.url.substring(result.url.lastIndexOf("/") + 1);
+        filename = filename.replace('?search=', '');
+
+        // Calculate the end time if timeAndDuration is not null
+        if (timeAndDuration) {
+            let endTime = calculateEndTime(timeAndDuration);
+            let startTimeFormatted = timeAndDuration.startTime.slice(0, 2) + ":" + timeAndDuration.startTime.slice(2, 4);
+            let endTimeFormatted = endTime.slice(0, 2) + ":" + endTime.slice(2, 4);
+            linkTitle = startTimeFormatted + "-" + endTimeFormatted;
+        } else {
+            // Use the filename as the link title if timeAndDuration is null
+            linkTitle = decodeURIComponent(filename);
+        }
 
         let resultsRow = document.createElement('div');
         resultsRow.setAttribute('role', 'row');
@@ -154,13 +166,11 @@
         let sizeCell = createCell(result.size);
         let mirrorsCell = createCell(result.mirrors === 1 ? '1 mirror' : result.mirrors + ' mirrors');
         
-        // Create link to the otrkey file with start time and end time
+        // Create link to the otrkey file
         let linkCell = createCell();
         let link = document.createElement('a');
         link.href = result.url;
-        let startTimeFormatted = timeAndDuration.startTime.slice(0, 2) + ":" + timeAndDuration.startTime.slice(2, 4);
-        let endTimeFormatted = endTime.slice(0, 2) + ":" + endTime.slice(2, 4);
-        link.innerText = startTimeFormatted + "-" + endTimeFormatted;
+        link.innerText = linkTitle;
         
         // Style the link to make it distinguishable
         link.style.color = 'blue';
