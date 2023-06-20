@@ -22,6 +22,18 @@
         return name.replace(/[^\w\s]/gi, '').replace(/\s+/g, '').toLowerCase();
     }
 
+    // Replace a channel name if it has a different name on OKF than on FS
+    function mapChannelName(fsChannelName) {
+        const channelMap = {
+            "Das Erste": "ard",
+            // add more mappings here as needed
+        };
+
+        // if a mapping for the channel name exists, return it, else return the original name
+        return channelMap[fsChannelName] || fsChannelName;
+    }
+
+
     // Function to convert date from 'DD.MM.YYYY' to 'YY.MM.DD'
     function convertDate(date) {
         let parts = date.split('-');
@@ -226,7 +238,7 @@ function extractTimeAndDuration(url) {
         // Extract date, time, and channel name
         let date = row.querySelector('span.sendetermine-2019-datum > time').getAttribute('datetime').slice(0,10);
         let channelName = row.querySelector('span.sendetermine-2019-sender > span').getAttribute('content');
-        let formattedChannelName = formatChannelName(channelName);
+        let formattedChannelName = formatChannelName(mapChannelName(channelName));
 
         console.log('Row:', row);
         console.log('Date:', date);
