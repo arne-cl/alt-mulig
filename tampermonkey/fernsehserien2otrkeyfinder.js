@@ -89,19 +89,23 @@
     }
 
     // extract start time and duration from otrkey filename
-    function extractTimeAndDuration(filename) {
-        let timeAndDurationMatch = filename.match(/(\d{2})-(\d{2})_(\w+_\w+)_(\d+)/);
-        if (timeAndDurationMatch) {
-            let startTime = timeAndDurationMatch[1] + timeAndDurationMatch[2];  // Concatenate hour and minute parts
-            let duration = timeAndDurationMatch[4];
-            return {
-                startTime: startTime,
-                duration: duration
-            };
-        } else {
-            console.warn('Could not extract start time and duration from filename: ' + filename);
+    function extractTimeAndDuration(url) {
+        let filename = url.substring(url.lastIndexOf("/") + 1);
+        filename = filename.replace('?search=', '');
+        console.log('Filename:', filename);
+        
+        let timeAndDuration = filename.match(/_(\d{2}-\d{2})_(\d+)_/);
+        if (!timeAndDuration) {
+            console.warn("Failed to extract time and duration from URL:", url);
             return null;
         }
+
+        let startTime = timeAndDuration[1].replace('-', '');
+        let duration = timeAndDuration[2];
+        return {
+            startTime: startTime,
+            duration: duration
+        };
     }
 
     // Given the start time and duration of a recording, calculate the end time.
