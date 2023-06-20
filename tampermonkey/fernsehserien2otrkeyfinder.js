@@ -136,24 +136,30 @@
 
     // Function to create a row of cells for a result
     function createResultRow(result) {
+        // Extract time and duration from the filename
+        let timeAndDuration = extractTimeAndDuration(result.url);
+        // Calculate the end time
+        let endTime = calculateEndTime(timeAndDuration);
+
         let resultsRow = document.createElement('div');
         resultsRow.setAttribute('role', 'row');
 
+        // Create cells
+        let emptyCell = createCell('');
         let qualityCell = createCell(result.quality);
         let sizeCell = createCell(result.size);
         let mirrorsCell = createCell(result.mirrors === 1 ? '1 mirror' : result.mirrors + ' mirrors');
-
-        let senderCell = createCell('');
-        let titleCell = createCell('');
-
+        
+        // Create link to the otrkey file with start time and end time
+        let linkCell = createCell();
         let link = document.createElement('a');
         link.href = result.url;
-        let filename = result.url.substring(result.url.lastIndexOf("/") + 1);
-        filename = filename.replace('?search=', '');
-        link.innerText = decodeURIComponent(filename);
-        titleCell.appendChild(link);
+        let startTimeFormatted = timeAndDuration.startTime.slice(0, 2) + ":" + timeAndDuration.startTime.slice(2, 4);
+        let endTimeFormatted = endTime.slice(0, 2) + ":" + endTime.slice(2, 4);
+        link.innerText = startTimeFormatted + "-" + endTimeFormatted;
+        linkCell.appendChild(link);
 
-        resultsRow.append(qualityCell, sizeCell, mirrorsCell, senderCell, titleCell);
+        resultsRow.append(emptyCell, qualityCell, sizeCell, linkCell, mirrorsCell);
         return resultsRow;
     }
 
