@@ -89,28 +89,28 @@
     }
 
     // extract start time and duration from otrkey filename
-    function extractTimeAndDuration(url) {
-        console.log("URL passed to extractTimeAndDuration: ", url);
+function extractTimeAndDuration(url) {
+    console.log("URL passed to extractTimeAndDuration: ", url);
 
-        // Extract the filename from the URL's search parameters
-        let searchParams = new URL(url).searchParams;
-        let filename = searchParams.get('search');
-        console.log("Filename: ", filename);
+    // Extract the filename from the URL's search parameters
+    let searchParams = new URL(url).searchParams;
+    let filename = searchParams.get('search');
+    console.log("Filename: ", filename);
 
-        // Extract time and duration from filename using a regular expression
-        // Here we are looking for a pattern where the time is preceded by underscore 
-        // and followed by underscore or hyphen. The same applies to duration.
-        let match = filename.match(/_(\d{2}-\d{2})_(\d+)_/);
-        if (match) {
-            let startTime = match[1].replace('-', '');
-            let duration = match[2];
-            console.log("Start time: ", startTime, ", Duration: ", duration);
-            return { startTime, duration };
-        } else {
-            console.warn("Failed to extract time and duration from URL: ", url);
-            return null;
-        }
+    // Extract time and duration from filename using a regular expression
+    // The regular expression is looking for the last instance of _HH-MM_ and _XX_ where:
+    // HH-MM represents the start time and XX represents the duration.
+    let match = filename.match(/.*_(\d{2}-\d{2})_.*_(\d+)_/);
+    if (match) {
+        let startTime = match[1].replace('-', '');
+        let duration = match[2];
+        console.log("Start time: ", startTime, ", Duration: ", duration);
+        return { startTime, duration };
+    } else {
+        console.warn("Failed to extract time and duration from URL: ", url);
+        return null;
     }
+}
 
     // Given the start time and duration of a recording, calculate the end time.
     function calculateEndTime(timeAndDuration) {
