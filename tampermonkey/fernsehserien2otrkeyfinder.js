@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name         FS to OKF
+// @name         FS2OKF
 // @namespace    http://tampermonkey.net/
-// @version      0.1
-// @description  Adds a "search OKF" button next to each air date on the FS page.
-// @author       OpenAI
+// @version      1.0
+// @description  Embeds search results from otrkeyfinder.com (OKF) on fernsehserien.de (FS)
+// @author       GPT-4 (wrote all the code), Arne Neumann (wrote all the prompts)
 // @match        https://www.fernsehserien.de/*
 // @grant        GM_xmlhttpRequest
 // ==/UserScript==
@@ -11,18 +11,18 @@
 (function() {
     'use strict';
 
-    // Function to format show name, removing special characters and converting umlauts
+    // format TV show name, removing special characters and converting umlauts
     function formatShowName(name) {
         name = name.replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue').replace(/ß/g, 'ss');
         return name.replace(/[^\w\s]/gi, '').replace(/\s+/g, '%20').toLowerCase();
     }
 
-    // Function to format channel name, removing special characters and spaces
+    // format TV channel name, removing special characters and spaces
     function formatChannelName(name) {
         return name.replace(/[^\w\s]/gi, '').replace(/\s+/g, '').toLowerCase();
     }
 
-    // Replace a channel name if it has a different name on OKF than on FS
+    // replace a channel name if it has a different name on OKF than on FS
     function mapChannelName(fsChannelName) {
         const channelMap = {
             "Das Erste": "ard",
@@ -34,20 +34,20 @@
     }
 
 
-    // Function to convert date from 'DD.MM.YYYY' to 'YY.MM.DD'
+    // convert date from 'DD.MM.YYYY' to 'YY.MM.DD'
     function convertDate(date) {
         let parts = date.split('-');
         return parts[0].slice(-2) + '.' + parts[1] + '.' + parts[2];
     }
 
-    // Function to create the OKF search URL
+    // create OKF search URL
     function createSearchURL(date, showName, channelName) {
         let formattedDate = convertDate(date);
         return 'https://otrkeyfinder.com/en/?search=' + showName + '%20' + formattedDate + '%20' + channelName;
     }
 
-    // Function to download the HTML of a given URL
-    // We can't use the regular fetch() API b/c of CORS.
+    // download the HTML of a given URL
+    // (We can't use the regular fetch() API because of CORS.)
     function fetchHTML(url) {
         return new Promise((resolve, reject) => {
             GM_xmlhttpRequest({
@@ -69,7 +69,7 @@
         }).catch(err => console.warn('Something went wrong.', err));
     }
 
-    // Function to parse the results from the OKF page
+    // parse OKF search results page
     function parseResults(responseText) {
         console.log("Response text passed to parseResults: ", responseText);
         let parser = new DOMParser();
@@ -125,7 +125,7 @@
         }
     }
 
-    // Given the start time and duration of a recording, calculate the end time.
+    // calculate the end time of a recording
     function calculateEndTime(timeAndDuration) {
         if (!timeAndDuration) return null;
 
@@ -147,7 +147,7 @@
         return endTime;
     }
 
-    // Function to create a cell element
+    // create a column (<span role="cell">) of the results row
     function createCell(text) {
         let cell = document.createElement('span');
         cell.setAttribute('role', 'cell');
@@ -155,7 +155,7 @@
         return cell;
     }
 
-    // Function to create a row of cells for a result
+    // create a results row consisting of several columns ("cells")
     function createResultRow(result) {
         // Extract time and duration from the filename
         let timeAndDuration = extractTimeAndDuration(result.url);
@@ -201,7 +201,7 @@
         return resultsRow;
     }
 
-    // Function to create a row with a no results message
+    // create a row with a no results message
     function createNoResultsRow() {
         let resultsRow = document.createElement('div');
         resultsRow.setAttribute('role', 'row');
@@ -213,7 +213,7 @@
         return resultsRow;
     }
 
-    // Function to display the results under a row
+    // display the OKF search results under the air date of an episode on FS
     function displayResults(row, results) {
         if(results.length === 0){
             let resultsRow = createNoResultsRow();
@@ -226,18 +226,16 @@
         }
     }
 
-
-
-    // Get show name and format it
+    // get TV show name and format it
     let showName = document.querySelector('.serien-titel > a:nth-child(1)').innerText;
     let formattedShowName = formatShowName(showName);
     console.log('Show name:', showName, ', formatted:', formattedShowName);
 
-    // Get all rows with air dates and iterate over them
+    // get all rows with air dates and iterate over them
     let rows = document.querySelectorAll('#episode-sendetermine > div');
     console.log('Found', rows.length, 'rows');
     rows.forEach(row => {
-        // Extract date, time, and channel name
+        // extract date, time, and channel name
         let date = row.querySelector('span.sendetermine-2019-datum > time').getAttribute('datetime').slice(0,10);
         let channelName = row.querySelector('span.sendetermine-2019-sender > span').getAttribute('content');
         let formattedChannelName = formatChannelName(mapChannelName(channelName));
@@ -246,11 +244,11 @@
         console.log('Date:', date);
         console.log('Channel name:', channelName, ', formatted:', formattedChannelName);
 
-        // Create the OKF search URL
+        // create the OKF search URL
         let searchURL = createSearchURL(date, formattedShowName, formattedChannelName);
         console.log('Search URL:', searchURL);
 
-        // Create "search OKF" button and append it to the row
+        // create "search OKF" button and append it to the row
         let button = document.createElement('a');
         button.style.backgroundColor = '#4CAF50';
         button.style.border = 'none';
@@ -277,9 +275,9 @@
         button.innerText = 'search OKF';
         console.log('Button created:', button);
 
-        // Create "search OKF in new tab" button and append it to the row
+        // create "search OKF in new tab" button and append it to the row
         let newTabButton = document.createElement('a');
-        // Copy styles from the original button
+        // copy styles from the original button
         newTabButton.style = button.style.cssText;
 
         newTabButton.href = searchURL;  // Link directly to the search URL
