@@ -88,6 +88,43 @@
         return results;
     }
 
+    // extract start time and duration from otrkey filename
+    function extractTimeAndDuration(filename) {
+        let timeAndDurationMatch = filename.match(/(\d{2})-(\d{2})_(\w+_\w+)_(\d+)/);
+        if (timeAndDurationMatch) {
+            let startTime = timeAndDurationMatch[1] + timeAndDurationMatch[2];  // Concatenate hour and minute parts
+            let duration = timeAndDurationMatch[4];
+            return {
+                startTime: startTime,
+                duration: duration
+            };
+        } else {
+            console.warn('Could not extract start time and duration from filename: ' + filename);
+            return null;
+        }
+    }
+
+    // Given the start time and duration of a recording, calculate the end time.
+    function calculateEndTime(timeAndDuration) {
+        if (!timeAndDuration) return null;
+
+        // Extract the hours and minutes from the start time
+        let startHour = parseInt(timeAndDuration.startTime.slice(0, 2));
+        let startMinute = parseInt(timeAndDuration.startTime.slice(2, 4));
+
+        // Convert the duration to an integer and add it to the start time
+        let duration = parseInt(timeAndDuration.duration);
+        let endHour = startHour + Math.floor((startMinute + duration) / 60);
+        let endMinute = (startMinute + duration) % 60;
+
+        // If endHour is 24 or more, subtract 24 from it
+        endHour = endHour >= 24 ? endHour - 24 : endHour;
+
+        // Format the end time
+        let endTime = (endHour < 10 ? '0' : '') + endHour.toString() + (endMinute < 10 ? '0' : '') + endMinute.toString();
+
+        return endTime;
+    }
 
     // Function to create a cell element
     function createCell(text) {
