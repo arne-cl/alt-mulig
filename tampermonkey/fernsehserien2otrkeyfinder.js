@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         FS2OKF
+// @name         otrkeyfinder results on fernsehserien.de
 // @namespace    http://tampermonkey.net/
 // @version      1.0
 // @description  Embeds search results from otrkeyfinder.com (OKF) on fernsehserien.de (FS)
@@ -280,13 +280,13 @@
         // copy styles from the original button
         newTabButton.style = button.style.cssText;
 
-        newTabButton.href = searchURL;  // Link directly to the search URL
-        newTabButton.target = '_blank';  // Open in new tab
+        newTabButton.href = searchURL; // link directly to the search URL
+        newTabButton.target = '_blank'; // open in new tab
         newTabButton.innerText = 'search OKF in new tab';
         console.log('New tab button created:', newTabButton);
 
         row.appendChild(button);
-        row.appendChild(newTabButton);  // Append the new button to the row
+        row.appendChild(newTabButton); // append the new button to the row
         console.log('Buttons appended to row');
     });
 })();
