@@ -26,6 +26,7 @@
     function mapChannelName(fsChannelName) {
         const channelMap = {
             "Das Erste": "ard",
+            "ProSieben": "pro7"
             // add more mappings here as needed
         };
 
