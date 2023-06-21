@@ -14,7 +14,8 @@
     // format TV show name, removing special characters and converting umlauts
     function formatShowName(name) {
         name = name.replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue').replace(/ß/g, 'ss');
-        return name.replace(/[^\w\s]/gi, '').replace(/\s+/g, '%20').toLowerCase();
+        // Allow dashes, letters, numbers and whitespace
+        return name.replace(/[^\w\s-]/gi, '').replace(/\s+/g, '%20').toLowerCase();
     }
 
     // format TV channel name, removing special characters and spaces
