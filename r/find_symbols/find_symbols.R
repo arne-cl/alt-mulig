@@ -28,7 +28,7 @@ find_functions_in_directory <- function(directory, function_names) {
 cli <- function() {
   parser <- arg_parser("Find symbols in R code and print the code for them.")
   
-  parser <- add_argument(parser, "symbols", nargs = "*", help="Symbols to search for in the R code")
+  parser <- add_argument(parser, "symbols", nargs = 1, help="Symbols to search for in the R code, separated by commas")
   
   parser <- add_argument(parser, c("-f", "--file"), action="store", type="character",
                          help="Files to search")
@@ -53,15 +53,17 @@ cli <- function() {
     directories <- "."
   }
   
+  symbols <- strsplit(args$symbols, ",")[[1]]
+  
   if (!is.null(files)) {
     for (file in files) {
-      find_functions_in_file(file, args$symbols)
+      find_functions_in_file(file, symbols)
     }
   }
   
   if (!is.null(directories)) {
     for (directory in directories) {
-      find_functions_in_directory(directory, args$symbols)
+      find_functions_in_directory(directory, symbols)
     }
   }
 }
