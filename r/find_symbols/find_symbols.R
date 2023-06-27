@@ -28,7 +28,7 @@ find_functions_in_directory <- function(directory, function_names) {
 cli <- function() {
   parser <- arg_parser("Find symbols in R code and print the code for them.")
   
-  parser <- add_argument(parser, "symbols", nargs = "*")
+  parser <- add_argument(parser, "symbols", nargs = "*", help="Symbols to search for in the R code")
   
   parser <- add_argument(parser, c("-f", "--file"), action="store", type="character",
                          help="Files to search")
@@ -67,4 +67,3 @@ cli <- function() {
 }
 
 cli()
-
