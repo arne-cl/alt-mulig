@@ -1,0 +1,84 @@
+\documentclass[paper=a6,11pt]{scrbook}
+\usepackage{geometry}
+
+\usepackage{iftex}
+
+%---------------------------- font settings
+\usepackage[utf8]{inputenc}
+\usepackage[english,latin.classic]{babel}
+
+
+\usepackage[T1]{fontenc}
+
+\usepackage{lmodern}
+\usepackage{ebgaramond}
+\usepackage{lettrine}
+
+\usepackage[protrusion=false,final,letterspace=-100]{microtype}
+\newcommand{\spacedtext}[1]{\ifXeTeX{\addfontfeature{LetterSpace=20}\scshape #1} \else \textls[170]{\scshape #1}\fi}
+
+\newcommand{\longs}{\ifXeTeX ſ\else s\fi}
+
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage{trimspaces}
+
+\input Zallman.fd
+
+
+%--------------------------- other packages
+\usepackage{hyperref}
+\usepackage{marginnote}
+\usepackage{graphicx}
+\usepackage{parskip}
+\usepackage{xcolor}
+\usepackage{tikz}
+%--------------------------------
+
+\title{\emph{Symbola Aureae Mensae} (1617)}
+\author{\LaTeX{} Ninja}
+\date{October 2018}
+
+\begin{document}
+
+\maketitle
+
+\section*{Introduction} 
+Please go to next page for an example page inspired by the  \href{https://github.com/raphink/geneve_1564}{\emph{Bible de Genève} (1564)} Garamond typesetting.
+
+Looks nicer if compiled using XeLaTeX.
+
+\newpage
+
+\phantom{ }
+
+\begin{figure}[H]
+\begin{tikzpicture}[fill opacity=0.5]
+\hspace*{-0.5cm}\includegraphics[width=1.15\textwidth]{decoration-vector.png}
+\end{tikzpicture}
+\end{figure}
+
+
+\Centering
+{\bfseries \textsc{{\Huge SYMBOLA AVREÆ} \linebreak {\Large MENSÆ DVODECIM NA-}\linebreak {\large TIONVM.}}} 
+
+{\large\textit{LIBER PRIMVS.}}
+
+\medskip
+
+
+\justify
+\fontsize{9.5pt}{11pt}\selectfont
+
+\renewcommand{\LettrineFontHook}{\usefont{U}{Zallman}{xl}{n}\color{red!50!black}}
+\lettrine[lines=5,,loversize=-0.05, lraise=.05]{P}{}
+\emph{O\longs t horribiles minas \& graui\longs \longs imas debac-}
+   \marginnote{\fontsize{6.5pt}{7pt}\selectfont\emph{Quæ cau\longs a} \linebreak \emph{occa\longs io} \linebreak \emph{huius con-} \linebreak \emph{uentus Phi-} \linebreak \emph{lo\longs ophici.} } \linebreak
+\emph{chationes, quas Pyrgopolynices in} \spacedtext{Che-} \linebreak \spacedtext{miam}  \emph{Virginem, orphanam, \& ab om- \linebreak nibus derelictam, iam pridem effuderat} \linebreak
+(proclamans illam \longs puriam, meretri- \linebreak cem, adulteram, deformem, imbellem, impoten- \linebreak tem, mendacem, mendicam, inhone\longs tam, imò o- \linebreak mnium \longs cele\longs ti\longs \longs imam, \longs acrilegam, relegandam \linebreak aut morte pe\longs \longs ima delendam) \emph{hæc præ dolore animi} \linebreak
+\emph{impatiens Comitia indixit omnibus, quotquot \longs e\longs e }{\spacedtext{Do-} \linebreak \spacedtext{minam} }\emph{ agno\longs cerent, præ\longs ertim } {\spacedtext{Senioribvs}}\emph{, qui ef-
+\linebreak frenatæ illius in\longs aniæ re\longs ponderent, \longs e\longs e\ifXeTeX q́\else q\fi; pro virili ca\longs tam
+\linebreak \& intactam defenderent.}
+Conuentuitaque habito ex \linebreak præcipuis no\longs tri Orbis nationibus, duodecim in- \linebreak primis comparuerunt, \longs ingulæ in \longs uas {\spacedtext{Tribvs}} 
+\end{document}
+
